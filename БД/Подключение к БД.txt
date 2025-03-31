@@ -1,0 +1,1 @@
+"MKLocal": "Host=edu.pg.ngknn.local;Port=5432;Database=43P_Klimycheva_MK;Username=43P;Password=444444;Pooling=true;SearchPath=public;"
