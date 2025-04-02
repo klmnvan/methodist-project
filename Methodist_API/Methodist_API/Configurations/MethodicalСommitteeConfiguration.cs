@@ -8,13 +8,26 @@ namespace Methodist_API.Configurations
     {
         public void Configure(EntityTypeBuilder<MethodicalСommittee> builder)
         {
-            builder.Property(p => p.Id).HasColumnName("id");
+            builder.ToTable("methodical_committees");
+
+            builder.Property(p => p.Id).HasColumnName("id").HasDefaultValueSql("gen_random_uuid()").ValueGeneratedOnAdd();
             builder.Property(p => p.Name).HasColumnName("name");
             builder.Property(p => p.HeadId).HasColumnName("head_id");
 
             //связь один ко многим 
-            builder.HasOne(it => it.Profile).WithMany(it => it.MethodicalСommittees).OnDelete(DeleteBehavior.Cascade).HasForeignKey(t => t.HeadId);
-            builder.HasMany(it => it.Profiles).WithOne(it => it.MethodicalСommittee).OnDelete(DeleteBehavior.Cascade);
+            builder
+                .HasMany(it => it.Profiles)
+                .WithOne(it => it.MethodicalСommittee)
+                .HasForeignKey(it => it.MC_id)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired(false);
+
+            builder
+                .HasOne(it => it.Profile)
+                .WithMany(it => it.MethodicalСommittees)
+                .HasForeignKey(it => it.HeadId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired(false);
         }
     }
 }

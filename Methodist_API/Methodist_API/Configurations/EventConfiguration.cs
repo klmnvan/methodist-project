@@ -8,7 +8,9 @@ namespace Methodist_API.Configurations
     {
         public void Configure(EntityTypeBuilder<Event> builder)
         {
-            builder.Property(p => p.Id).HasColumnName("id");
+            builder.ToTable("events");
+
+            builder.Property(p => p.Id).HasColumnName("id").HasDefaultValueSql("gen_random_uuid()").ValueGeneratedOnAdd();
             builder.Property(p => p.DateOfEvent).HasColumnName("date_of_event");
             builder.Property(p => p.EndDateOfEvent).HasColumnName("end_date_of_event");
             builder.Property(p => p.TypeId).HasColumnName("type_id");
@@ -25,9 +27,9 @@ namespace Methodist_API.Configurations
             builder.Property(p => p.ProfileId).HasColumnName("profile_id");
 
             //связь один ко многим 
-            builder.HasOne(p => p.Profile).WithMany(p => p.Events).OnDelete(DeleteBehavior.Cascade).IsRequired();
-            builder.HasOne(p => p.TypeOfEvent).WithMany(p => p.Events).OnDelete(DeleteBehavior.Cascade).IsRequired();
-            builder.HasMany(p => p.FileEvents).WithOne(p => p.Event).OnDelete(DeleteBehavior.Cascade).IsRequired();
+            builder.HasOne(p => p.Profile).WithMany(p => p.Events).OnDelete(DeleteBehavior.Cascade).HasForeignKey(r => r.ProfileId);
+            builder.HasOne(p => p.TypeOfEvent).WithMany(p => p.Events).OnDelete(DeleteBehavior.Cascade).HasForeignKey(r => r.TypeId);
+            builder.HasMany(p => p.FileEvents).WithOne(p => p.Event).OnDelete(DeleteBehavior.Cascade).HasForeignKey(r => r.EventId);
         }
     }
 }

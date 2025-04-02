@@ -9,10 +9,12 @@ namespace Methodist_API.Models.DB
         public string FirstName { get; set; } = String.Empty;
         public string LastName { get; set; } = String.Empty;
         public string Patronymic { get; set; } = String.Empty;
-        public Guid MC_id { get; set; }
+        public Guid? MC_id { get; set; }
 
         [JsonIgnore]
         public AppUser AppUser { get; set; }
+        //[JsonIgnore]
+        //public ICollection<UserToken> UserTokens { get; set; }
 
         [JsonIgnore]
         public MethodicalСommittee MethodicalСommittee { get; set; }

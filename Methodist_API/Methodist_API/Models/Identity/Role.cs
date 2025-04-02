@@ -6,10 +6,7 @@ namespace Methodist_API.Models.Identity
 
     public class Role : IdentityRole<Guid>
     {
-        public Role()
-        {
-            Id = Guid.NewGuid();
-        }
+        public Role() { }
 
         public Role(string roleName) : this()
         {

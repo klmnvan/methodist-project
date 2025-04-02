@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Methodist_API.Models.DB
 {
@@ -6,13 +6,13 @@ namespace Methodist_API.Models.DB
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = String.Empty;
-        public Guid HeadId { get; set; }
+        public Guid? HeadId { get; set; }
 
         [JsonIgnore]
-        public Profile Profile { get; set; }
+        public Profile? Profile { get; set; }
 
         [JsonIgnore]
-        public ICollection<Profile> Profiles { get; set; } = [];
+        public ICollection<Profile> Profiles { get; set; } = new List<Profile>();
     }
 
 }

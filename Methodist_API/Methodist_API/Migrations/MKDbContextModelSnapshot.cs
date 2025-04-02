@@ -27,7 +27,8 @@ namespace Methodist_API.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<DateTime>("DateOfEvent")
                         .HasColumnType("timestamp with time zone")
@@ -93,16 +94,13 @@ namespace Methodist_API.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("type_id");
 
-                    b.Property<Guid>("TypeOfEventId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId");
 
-                    b.HasIndex("TypeOfEventId");
+                    b.HasIndex("TypeId");
 
-                    b.ToTable("Events");
+                    b.ToTable("events", (string)null);
                 });
 
             modelBuilder.Entity("Methodist_API.Models.DB.FileEvent", b =>
@@ -110,7 +108,8 @@ namespace Methodist_API.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<Guid>("EventId")
                         .HasColumnType("uuid")
@@ -125,7 +124,7 @@ namespace Methodist_API.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("FileEvents");
+                    b.ToTable("file_events", (string)null);
                 });
 
             modelBuilder.Entity("Methodist_API.Models.DB.MethodicalСommittee", b =>
@@ -133,9 +132,10 @@ namespace Methodist_API.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<Guid>("HeadId")
+                    b.Property<Guid?>("HeadId")
                         .HasColumnType("uuid")
                         .HasColumnName("head_id");
 
@@ -148,14 +148,83 @@ namespace Methodist_API.Migrations
 
                     b.HasIndex("HeadId");
 
-                    b.ToTable("MethodicalСommittees");
+                    b.ToTable("methodical_committees", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("52c00ef1-4a3d-4995-a842-eb525fe82aef"),
+                            Name = "Математических и естественно - научных дисциплин"
+                        },
+                        new
+                        {
+                            Id = new Guid("12b926c0-2e39-4d06-a588-1f8f018622a9"),
+                            Name = "Гуманитарных дисциплин"
+                        },
+                        new
+                        {
+                            Id = new Guid("49dcb840-1885-4a19-87d6-8c0fa80fede7"),
+                            Name = "Иностранного языка"
+                        },
+                        new
+                        {
+                            Id = new Guid("cc476f29-7419-4254-aa5c-7d869a21bbe9"),
+                            Name = "Дисциплин физической культуры и БЖД"
+                        },
+                        new
+                        {
+                            Id = new Guid("f778fac4-7fff-4f7b-a8a1-49a07640acab"),
+                            Name = "Общественных и правовых дисциплин"
+                        },
+                        new
+                        {
+                            Id = new Guid("d793c1bb-9082-4367-8789-53ff550057cc"),
+                            Name = "Информатика и вычислительная техника"
+                        },
+                        new
+                        {
+                            Id = new Guid("97c70cce-7639-4154-b84d-8cc94593820b"),
+                            Name = "Экономика и управление, логистика"
+                        },
+                        new
+                        {
+                            Id = new Guid("5d22e938-b4fc-4044-be1b-00bc654becdb"),
+                            Name = "Специальностей Товароведение, Коммерция"
+                        },
+                        new
+                        {
+                            Id = new Guid("707b476f-0905-41ba-8dea-f32fea287448"),
+                            Name = "Специальностей Банковское дело, ДОУ"
+                        },
+                        new
+                        {
+                            Id = new Guid("c2d0d4dc-35ce-4d37-b0ec-462eae895980"),
+                            Name = "Инструментальных дисциплин"
+                        },
+                        new
+                        {
+                            Id = new Guid("4e3f28ce-029a-40d5-a02a-765d72f35bfe"),
+                            Name = "Музыкальных дисциплин"
+                        },
+                        new
+                        {
+                            Id = new Guid("574378fc-b335-4466-84ab-b15441e3b3bb"),
+                            Name = "Специальности Дошкольное образование"
+                        },
+                        new
+                        {
+                            Id = new Guid("67f33b56-53ba-4609-9423-ca5565996262"),
+                            Name = "Специальности Преподавание в начальных классах"
+                        });
                 });
 
             modelBuilder.Entity("Methodist_API.Models.DB.Profile", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -167,12 +236,9 @@ namespace Methodist_API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("last_name");
 
-                    b.Property<Guid>("MC_id")
+                    b.Property<Guid?>("MC_id")
                         .HasColumnType("uuid")
                         .HasColumnName("MC_id");
-
-                    b.Property<Guid>("MethodicalСommitteeId")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("Patronymic")
                         .IsRequired()
@@ -181,9 +247,9 @@ namespace Methodist_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MethodicalСommitteeId");
+                    b.HasIndex("MC_id");
 
-                    b.ToTable("Profiles");
+                    b.ToTable("profiles", (string)null);
                 });
 
             modelBuilder.Entity("Methodist_API.Models.DB.TypeOfEvent", b =>
@@ -191,7 +257,8 @@ namespace Methodist_API.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -200,7 +267,29 @@ namespace Methodist_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeOfEvents");
+                    b.ToTable("type_of_events", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ec2d1d7b-4cb7-41e1-aa80-74f695fea627"),
+                            Name = "Проведение"
+                        },
+                        new
+                        {
+                            Id = new Guid("638ea3fe-b998-4a6e-a06e-3331597e34b8"),
+                            Name = "Участие"
+                        },
+                        new
+                        {
+                            Id = new Guid("5ce9f584-6fea-41e9-9a64-4ab4d9d09e84"),
+                            Name = "Публикация"
+                        },
+                        new
+                        {
+                            Id = new Guid("01f2e985-5066-4a1c-bc51-5c46b6b20362"),
+                            Name = "Стажировка"
+                        });
                 });
 
             modelBuilder.Entity("Methodist_API.Models.Identity.AppUser", b =>
@@ -297,16 +386,40 @@ namespace Methodist_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cb5032ec-1915-4957-a476-6a567d0dd308"),
+                            Id = new Guid("f47ac10b-58cc-4372-a567-0e02b2c3d479"),
+                            ConcurrencyStamp = "f47ac10b-58cc-4372-a567-0e02b2c3d479",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("1386a204-ec83-468c-b29a-201b22c79f53"),
+                            Id = new Guid("c9eb182b-1c3e-4c3b-8c3e-1c3e4c3b8c3e"),
+                            ConcurrencyStamp = "c9eb182b-1c3e-4c3b-8c3e-1c3e4c3b8c3e",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         });
+                });
+
+            modelBuilder.Entity("Methodist_API.Models.Identity.UserToken", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeviceId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("text");
+
+                    b.HasKey("UserId", "LoginProvider", "Name", "DeviceId");
+
+                    b.ToTable("UserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -330,7 +443,10 @@ namespace Methodist_API.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("AspNetRoleClaims", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
@@ -354,7 +470,10 @@ namespace Methodist_API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("AspNetUserClaims", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
@@ -375,7 +494,10 @@ namespace Methodist_API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("AspNetUserLogins", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
@@ -409,7 +531,10 @@ namespace Methodist_API.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("AspNetUserTokens", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
                 });
 
             modelBuilder.Entity("Methodist_API.Models.DB.Event", b =>
@@ -422,7 +547,7 @@ namespace Methodist_API.Migrations
 
                     b.HasOne("Methodist_API.Models.DB.TypeOfEvent", "TypeOfEvent")
                         .WithMany("Events")
-                        .HasForeignKey("TypeOfEventId")
+                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -447,8 +572,7 @@ namespace Methodist_API.Migrations
                     b.HasOne("Methodist_API.Models.DB.Profile", "Profile")
                         .WithMany("MethodicalСommittees")
                         .HasForeignKey("HeadId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Profile");
                 });
@@ -463,9 +587,8 @@ namespace Methodist_API.Migrations
 
                     b.HasOne("Methodist_API.Models.DB.MethodicalСommittee", "MethodicalСommittee")
                         .WithMany("Profiles")
-                        .HasForeignKey("MethodicalСommitteeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MC_id")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("AppUser");
 

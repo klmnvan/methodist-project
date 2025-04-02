@@ -147,3 +147,8 @@ D:\klim\methodist-progect\Methodist_API\Methodist_API\obj\Debug\net8.0\refint\Me
 D:\klim\methodist-progect\Methodist_API\Methodist_API\obj\Debug\net8.0\Methodist_API.pdb
 D:\klim\methodist-progect\Methodist_API\Methodist_API\obj\Debug\net8.0\Methodist_API.genruntimeconfig.cache
 D:\klim\methodist-progect\Methodist_API\Methodist_API\obj\Debug\net8.0\ref\Methodist_API.dll
+D:\klim\methodist-progect\Methodist_API\Methodist_API\obj\Debug\net8.0\Methodist_API.sourcelink.json
+D:\klim\methodist-progect\Methodist_API\Methodist_API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
+D:\klim\methodist-progect\Methodist_API\Methodist_API\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\klim\methodist-progect\Methodist_API\Methodist_API\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\klim\methodist-progect\Methodist_API\Methodist_API\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

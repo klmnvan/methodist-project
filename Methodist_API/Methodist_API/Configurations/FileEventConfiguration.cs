@@ -8,7 +8,9 @@ namespace Methodist_API.Configurations
     {
         public void Configure(EntityTypeBuilder<FileEvent> builder)
         {
-            builder.Property(p => p.Id).HasColumnName("id");
+            builder.ToTable("file_events");
+
+            builder.Property(p => p.Id).HasColumnName("id").HasDefaultValueSql("gen_random_uuid()").ValueGeneratedOnAdd();
             builder.Property(p => p.EventId).HasColumnName("event_id");
             builder.Property(p => p.FileName).HasColumnName("file_name");
 

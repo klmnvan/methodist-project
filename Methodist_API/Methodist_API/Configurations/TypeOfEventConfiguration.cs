@@ -8,7 +8,9 @@ namespace Methodist_API.Configurations
     {
         public void Configure(EntityTypeBuilder<TypeOfEvent> builder)
         {
-            builder.Property(p => p.Id).HasColumnName("id");
+            builder.ToTable("type_of_events");
+
+            builder.Property(p => p.Id).HasColumnName("id").HasDefaultValueSql("gen_random_uuid()").ValueGeneratedOnAdd();
             builder.Property(p => p.Name).HasColumnName("name");
 
             //связь один ко многим 

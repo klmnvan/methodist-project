@@ -1,0 +1,21 @@
+﻿using Methodist_API.Models.DB;
+
+namespace Methodist_API.Dtos.Patch
+{
+    public class PatchEventDto: PatchDtoBase
+    {
+        public DateTime DateOfEvent { get; set; }
+        public DateTime EndDateOfEvent { get; set; }
+        public Guid TypeId { get; set; }
+        public bool IsChecked { get; set; }
+        public bool IsApproved { get; set; }
+        public string Type { get; set; } = String.Empty;
+        public string Name { get; set; } = String.Empty;
+        public string FormOfParticipation { get; set; } = String.Empty;
+        public string FormOfEvent { get; set; } = String.Empty;
+        public string Status { get; set; } = String.Empty;
+        public string Location { get; set; } = String.Empty;
+        public string QuantityOfHours { get; set; } = String.Empty;
+        public string Result { get; set; } = String.Empty;
+    }
+}

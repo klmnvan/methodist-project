@@ -8,15 +8,29 @@ namespace Methodist_API.Configurations
     {
         public void Configure(EntityTypeBuilder<Profile> builder)
         {
-            builder.Property(p => p.Id).HasColumnName("id");
+            builder.ToTable("profiles");
+
+            builder.Property(p => p.Id).HasColumnName("id").HasDefaultValueSql("gen_random_uuid()").ValueGeneratedOnAdd();
             builder.Property(p => p.FirstName).HasColumnName("first_name");
             builder.Property(p => p.LastName).HasColumnName("last_name");
             builder.Property(p => p.Patronymic).HasColumnName("patronymic");
-            builder.Property(p => p.MC_id).HasColumnName("MC_id");
+            builder.Property(p => p.MC_id).HasColumnName("MC_id").IsRequired(false);
 
-            builder.HasMany(p => p.MethodicalСommittees).WithOne(p => p.Profile).OnDelete(DeleteBehavior.Cascade).IsRequired();           
-            builder.HasMany(p => p.Events).WithOne(p => p.Profile).OnDelete(DeleteBehavior.Cascade).IsRequired();           
-            builder.HasOne(p => p.MethodicalСommittee).WithMany(p => p.Profiles).OnDelete(DeleteBehavior.Cascade).IsRequired();           
+            builder.HasMany(p => p.Events).WithOne(p => p.Profile).OnDelete(DeleteBehavior.Cascade).HasForeignKey(r => r.ProfileId);
+
+            builder
+                .HasOne(it => it.MethodicalСommittee)
+                .WithMany(it => it.Profiles)
+                .HasForeignKey(it => it.MC_id)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired(false);
+
+            builder
+                .HasMany(it => it.MethodicalСommittees)
+                .WithOne(it => it.Profile)
+                .HasForeignKey(it => it.HeadId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired(false);
         }
     }
 }
