@@ -21,12 +21,14 @@ using Methodist_API.Dtos.Patch;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
+
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ContractResolver = new PatchRequestContractResolver();
 });
 
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(option =>
 {
     option.EnableAnnotations();
@@ -40,20 +42,20 @@ builder.Services.AddSwaggerGen(option =>
         BearerFormat = "JWT",
         Scheme = "Bearer"
     });
-    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement 
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
                 {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type=ReferenceType.SecurityScheme,
-                                Id="Bearer"
-                            }
-                        },
-                        new List<string>()
-                    }
-                });
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new List<string>()
+        }
+    });
     option.MapType<DateOnly>(() => new OpenApiSchema
     {
         Type = "string",
@@ -64,8 +66,8 @@ builder.Services.AddSwaggerGen(option =>
 
 builder.Services.AddDbContext<MKDbContext>(options =>
 {
-    options.UseNpgsql(
-        builder.Configuration.GetConnectionString("MKLocal"));
+    //options.UseNpgsql(builder.Configuration.GetConnectionString("MKLocal"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Home"));
 });
 
 builder.Services.AddScoped<ITokenService, TokenService>();
@@ -81,9 +83,9 @@ builder.Services.AddIdentity<AppUser, Role>(options =>
     options.Password.RequireLowercase = false;
     options.User.RequireUniqueEmail = true;
 })
-                .AddRoles<Role>()
-                .AddEntityFrameworkStores<MKDbContext>()
-                .AddDefaultTokenProviders();
+    .AddRoles<Role>()
+    .AddEntityFrameworkStores<MKDbContext>()
+    .AddDefaultTokenProviders();
 
 var validIssuer = builder.Configuration.GetValue<string>("JWT:Issuer");
 var validAudience = builder.Configuration.GetValue<string>("JWT:Audience");

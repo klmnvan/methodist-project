@@ -46,30 +46,6 @@ namespace Methodist_API.Controllers
             }
         }
 
-        [SwaggerOperation(Summary = "Создать мероприятие")]
-        [HttpPost("Create")]
-        public async Task<ActionResult<Event>> Create([FromBody] CreateEventDto newEvent)
-        {
-            try
-            {
-                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (appUser == null)
-                {
-                    return Unauthorized();
-                }
-                if(_eventRepository.TypeIsExists(newEvent.TypeId))
-                {
-                    return BadRequest("Тип мероприятия заполнен некорректно");
-                }
-                var entity = _eventRepository.Insert(newEvent, appUser.Id);
-                return Ok(entity);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
         [SwaggerOperation(Summary = "Изменить часть мероприятия")]
         [HttpPatch("UpdatePart")]
         public async Task<ActionResult<Event>> UpdatePart([FromHeader(Name = "EventId")] Guid eventId, PatchEventDto dto)
@@ -89,5 +65,45 @@ namespace Methodist_API.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [SwaggerOperation(Summary = "Создать мероприятие")]
+        [HttpPost("Create")]
+        public async Task<ActionResult<Event>> Create([FromBody] CreateEventDto newEvent)
+        {
+            try
+            {
+                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (appUser == null)
+                {
+                    return Unauthorized();
+                }
+                if (!_eventRepository.TypeIsExists(newEvent.TypeId))
+                {
+                    return BadRequest("Тип мероприятия заполнен некорректно");
+                }
+                var entity = _eventRepository.Insert(newEvent, appUser.Id);
+                return Ok(entity);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [SwaggerOperation(Summary = "Удалить мероприятие")]
+        [HttpDelete("Remove")]
+        public async Task<ActionResult> Remove([FromHeader(Name = "EventId")] Guid eventId)
+        {
+            try
+            {
+                var listEntity = _eventRepository.Delete(eventId);
+                return Ok($"Мероприятие было удалено");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
     }
 }

@@ -13,6 +13,7 @@ namespace Methodist_API.Interfaces
         public bool TypeIsExists(Guid typeId);
 
         public Event UpdatePart(Guid eventId, PatchEventDto dto);
+        public bool Delete(Guid eventId);
 
     }
 }

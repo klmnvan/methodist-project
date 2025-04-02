@@ -34,7 +34,7 @@ namespace Methodist_API.Repositories
 
         public bool TypeIsExists(Guid typeId)
         {
-            return _context.Events.Any(it => it.TypeId == typeId);
+            return _context.TypeOfEvents.Any(it => it.Id == typeId);
         }
 
         public Event UpdatePart(Guid EventId, PatchEventDto dto)
@@ -62,6 +62,17 @@ namespace Methodist_API.Repositories
         {
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false; //было ли изменено хотя бы одно значение в базе данных
+        }
+
+        public bool Delete(Guid eventId)
+        {
+            Event el = _context.Events.FirstOrDefault(x => x.Id == eventId);
+            if (el != null)
+            {
+                _context.Remove(el);
+                return Save();
+            }
+            return false;
         }
     }
 }
