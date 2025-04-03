@@ -13,8 +13,6 @@ namespace Methodist_API.Models.DB
 
         [JsonIgnore]
         public AppUser AppUser { get; set; }
-        //[JsonIgnore]
-        //public ICollection<UserToken> UserTokens { get; set; }
 
         [JsonIgnore]
         public MethodicalСommittee MethodicalСommittee { get; set; }

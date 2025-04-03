@@ -1,5 +1,5 @@
 В Терминале (Вид-Терминал)
-dotnet ef migrations add initial 
+dotnet ef migrations add initial
 эта команда создаст маграцию со снимком (ModelSnapshot)
 dotnet ef database update
 эта команда загружает в базу данные
