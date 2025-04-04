@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Methodist_API.Dtos.Account;
 using Methodist_API.Dtos.CreateEntity;
 using Methodist_API.Dtos.Patch;
 using Methodist_API.Interfaces;
@@ -7,7 +8,9 @@ using Methodist_API.Models.Identity;
 using Methodist_API.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Annotations;
+using Profile = Methodist_API.Models.DB.Profile;
 
 namespace Methodist_API.Controllers
 {

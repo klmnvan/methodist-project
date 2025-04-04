@@ -1,4 +1,4 @@
-package com.example.methodist_mobile_app.presentation.screens
+package com.example.methodist_mobile_app.presentation.screens.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -33,7 +33,8 @@ fun Splash(controller: NavHostController, vm: SplashVM = hiltViewModel()) {
 
     Box(
         Modifier
-            .fillMaxSize().background(colors.background)
+            .fillMaxSize()
+            .background(colors.background)
             .padding(horizontal = 30.dp), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
@@ -44,7 +45,7 @@ fun Splash(controller: NavHostController, vm: SplashVM = hiltViewModel()) {
                 contentScale = ContentScale.FillWidth
             )
             SpacerHeight(12.dp)
-            Text("Beta version", style = typography.splashHint.color(colors.primary))
+            Text("Beta version", style = typography.textInFiled.color(colors.primary))
         }
 
     }

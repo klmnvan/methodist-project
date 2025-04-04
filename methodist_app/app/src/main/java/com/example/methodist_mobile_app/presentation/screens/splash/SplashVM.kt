@@ -1,4 +1,4 @@
-package com.example.methodist_mobile_app.presentation.screens
+package com.example.methodist_mobile_app.presentation.screens.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -24,3 +24,4 @@ class SplashVM @Inject constructor(): ViewModel() {
     }
 
 }
+

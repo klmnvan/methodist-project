@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Methodist_API.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -174,7 +174,8 @@ namespace Methodist_API.Migrations
                     first_name = table.Column<string>(type: "text", nullable: false),
                     last_name = table.Column<string>(type: "text", nullable: false),
                     patronymic = table.Column<string>(type: "text", nullable: false),
-                    MC_id = table.Column<Guid>(type: "uuid", nullable: true)
+                    MC_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    image_url = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

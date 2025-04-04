@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Methodist_API.Dtos.Patch
 {
-    public class PatchRequestContractResolver : DefaultContractResolver
+    public class PatchRequestContractResolver : CamelCasePropertyNamesContractResolver
     {
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {

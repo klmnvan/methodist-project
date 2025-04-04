@@ -6,6 +6,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.example.methodist_mobile_app.R
 
@@ -38,31 +39,53 @@ data class Typography(
     val descriptionScreen: TextStyle = TextStyle(),
     val textButton: TextStyle = TextStyle(),
     val hintScreen: TextStyle = TextStyle(),
-    val splashHint: TextStyle = TextStyle(),
+    val textInFiled: TextStyle = TextStyle(),
+    val titleField: TextStyle = TextStyle(),
+    val titleDialog: TextStyle = TextStyle(),
+    val descDialog: TextStyle = TextStyle(),
 )
 
 val typography = Typography(
 
-    //splash
-    splashHint = TextStyle(
+    textInFiled = TextStyle(
+        fontFamily = raleway,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 20.sp
+    ),
+    titleScreen = TextStyle(
+        fontFamily = raleway,
+        fontWeight = FontWeight.Bold,
+        fontSize = 32.sp,
+        lineHeight = 20.sp
+    ),
+    descriptionScreen = TextStyle(
         fontFamily = raleway,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        color = Color(Gray1.value)
+        lineHeight = 20.sp
+    ),
+    titleDialog = TextStyle(
+        fontFamily = raleway,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
+        lineHeight = 20.sp
+    ),
+    descDialog = TextStyle(
+        fontFamily = raleway,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        textAlign = TextAlign.Center
     ),
 
-    titleScreen = TextStyle(
-        fontWeight = FontWeight.W500,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.01.sp
-    ),
-    descriptionScreen = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 18.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.01.sp
-    ),
+
+
+
+
+
+
+
+
     textButton = TextStyle(
         fontWeight = FontWeight.W600,
         fontSize = 18.sp,

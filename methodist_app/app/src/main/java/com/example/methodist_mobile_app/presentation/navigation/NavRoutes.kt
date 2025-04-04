@@ -6,4 +6,7 @@ object NavRoutes {
     //Экраны системы авторизации
     const val LOGIN = "login"
     const val REGISTER = "register"
+
+    //экраны для авторизованных пользователей
+    const val HOME = "home"
 }

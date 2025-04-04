@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Methodist_API.Migrations
 {
     [DbContext(typeof(MKDbContext))]
-    [Migration("20250402171949_initial")]
-    partial class initial
+    [Migration("20250404091653_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -233,6 +233,10 @@ namespace Methodist_API.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("first_name");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("text")
+                        .HasColumnName("image_url");
 
                     b.Property<string>("LastName")
                         .IsRequired()

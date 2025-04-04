@@ -10,6 +10,7 @@ namespace Methodist_API.Models.DB
         public string LastName { get; set; } = String.Empty;
         public string Patronymic { get; set; } = String.Empty;
         public Guid? MC_id { get; set; }
+        public string? ImageUrl { get; set; } = null;
 
         [JsonIgnore]
         public AppUser AppUser { get; set; }

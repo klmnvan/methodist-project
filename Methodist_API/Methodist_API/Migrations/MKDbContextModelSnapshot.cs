@@ -231,6 +231,10 @@ namespace Methodist_API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("first_name");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("text")
+                        .HasColumnName("image_url");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text")
