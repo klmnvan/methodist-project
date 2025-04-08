@@ -1,4 +1,6 @@
-﻿namespace Methodist_API.Dtos.DB
+﻿using Methodist_API.Models.DB;
+
+namespace Methodist_API.Dtos.DB
 {
     public class ProfileDto
     {
@@ -6,7 +8,9 @@
         public string FirstName { get; set; } = String.Empty;
         public string LastName { get; set; } = String.Empty;
         public string Patronymic { get; set; } = String.Empty;
-        public Guid? MC_id { get; set; }
+        public MethodicalСommittee MC { get; set; }
         public string? ImageUrl { get; set; } = null;
+        public string Email { get; set; } = "";
+        public List<string> Roles { get; set; } = new();
     }
 }

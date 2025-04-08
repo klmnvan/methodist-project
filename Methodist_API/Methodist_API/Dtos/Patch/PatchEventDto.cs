@@ -1,5 +1,4 @@
-﻿using Methodist_API.Models.DB;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Methodist_API.Dtos.Patch
 {

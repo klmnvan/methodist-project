@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.methodist_mobile_app.data.network.ApiServiceImpl
+import com.example.methodist_mobile_app.domain.repository.UserRepository
 import com.example.methodist_mobile_app.presentation.navigation.NavRoutes
 import com.example.methodist_mobile_app.presentation.screens.DialogSt
+import com.example.methodist_mobile_app.presentation.screens.auth.login.state.LoginSt
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -41,11 +43,11 @@ class LoginVM @Inject constructor(
                 Log.d("test", "${dataSt.value.email} ${dataSt.value.password}")
                 val response = service.signIn(dataSt.value.email, dataSt.value.password)
                 if(response.profileDto != null) {
-                    /*PrefManager.act = 1
-                    PrefManager.token = response.token
-                    CurrentUser.token = response.token
-                    Log.d("token", CurrentUser.token)*/
-                    navController.navigate(NavRoutes.HOME){
+                    UserRepository.act = 2
+                    UserRepository.token = response.profileDto.token
+                    UserRepository.profileId = response.profileDto.id
+                    Log.d("token", UserRepository.token)
+                    navController.navigate(NavRoutes.HOME) {
                         popUpTo(NavRoutes.LOGIN) {
                             inclusive = true
                         }

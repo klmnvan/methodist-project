@@ -1,4 +1,5 @@
-﻿using Methodist_API.Models.DB;
+﻿using Methodist_API.Dtos.Patch;
+using Methodist_API.Models.DB;
 
 namespace Methodist_API.Interfaces
 {
@@ -6,6 +7,7 @@ namespace Methodist_API.Interfaces
     {
         public Profile SelectByIdProfile(Guid profileId);
         public bool UpdateImage(Guid profileId, string url);
+        public Profile UpdatePart(Guid ProfileId, PatchProfileDto dto);
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.methodist_mobile_app.presentation.screens.auth.register
+package com.example.methodist_mobile_app.presentation.screens.auth.register.state
 
 import kotlinx.serialization.Serializable
 

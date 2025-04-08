@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Methodist_API.Dtos.Account;
 using Methodist_API.Dtos.CreateEntity;
+using Methodist_API.Dtos.DB;
 using Methodist_API.Dtos.Patch;
 using Methodist_API.Interfaces;
 using Methodist_API.Models.DB;
@@ -31,7 +32,7 @@ namespace Methodist_API.Controllers
 
         [SwaggerOperation(Summary = "Получить все мероприятия пользователя")]
         [HttpGet("GetByIdProfile")]
-        public async Task<ActionResult<List<Event>>> GetByIdProfile()
+        public async Task<ActionResult<List<EventDto>>> GetByIdProfile()
         {
             try
             {
@@ -41,7 +42,14 @@ namespace Methodist_API.Controllers
                     return Unauthorized();
                 }
                 var listEntity = _eventRepository.SelectByIdProfile(appUser.Id);
-                return Ok(listEntity);
+                List<EventDto> listResult = new();
+                listEntity.ForEach(e =>
+                {
+                    EventDto newEvent = _mapper.Map<EventDto>(e);
+                    newEvent.TypeOfEvent = e.TypeOfEvent;
+                    listResult.Add(newEvent);
+                });
+                return Ok(_mapper.Map<List<EventDto>>(listResult));
             }
             catch (Exception ex)
             {

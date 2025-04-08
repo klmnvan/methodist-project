@@ -50,52 +50,52 @@ fun Register(controller: NavHostController, vm: RegisterVM = hiltViewModel()) {
             .padding(horizontal = 20.dp, vertical = 25.dp),
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Регистрация", style = typography.titleScreen.color(colors.title))
+        Text("Регистрация", style = typography.titleAuth.color(colors.title))
         SpacerHeight(8.dp)
         Text(
             "Зарегистрируйтесь, чтобы пользоваться функциями приложения",
-            style = typography.descriptionScreen.color(
+            style = typography.descriptionAuth.color(
                 colors.description
             )
         )
         SpacerHeight(30.dp)
-        Text("Фамилия", style = typography.descriptionScreen.color(colors.title))
+        Text("Фамилия", style = typography.descriptionAuth.color(colors.title))
         SpacerHeight(8.dp)
         TextFieldAuth(stateData.lastName, "Иванов") {
             vm.updData(stateData.copy(lastName = it))
         }
         SpacerHeight(12.dp)
-        Text("Имя", style = typography.descriptionScreen.color(colors.title))
+        Text("Имя", style = typography.descriptionAuth.color(colors.title))
         SpacerHeight(8.dp)
         TextFieldAuth(stateData.firstName, "Иван") {
             vm.updData(stateData.copy(firstName = it))
         }
         SpacerHeight(12.dp)
-        Text("Отчество", style = typography.descriptionScreen.color(colors.title))
+        Text("Отчество", style = typography.descriptionAuth.color(colors.title))
         SpacerHeight(8.dp)
         TextFieldAuth(stateData.patronymic, "Иванович") {
             vm.updData(stateData.copy(patronymic = it))
         }
         SpacerHeight(12.dp)
-        Text("Адрес эл. почты", style = typography.descriptionScreen.color(colors.title))
+        Text("Адрес эл. почты", style = typography.descriptionAuth.color(colors.title))
         SpacerHeight(8.dp)
         TextFieldAuth(stateData.email, "user@mail.ru") {
             vm.updData(stateData.copy(email = it))
         }
         SpacerHeight(12.dp)
-        Text("Пароль", style = typography.descriptionScreen.color(colors.title))
+        Text("Пароль", style = typography.descriptionAuth.color(colors.title))
         SpacerHeight(8.dp)
         TextFieldAuth(stateData.password, "*********") {
             vm.updData(stateData.copy(password = it))
         }
         SpacerHeight(12.dp)
-        Text("Подтвердите пароль", style = typography.descriptionScreen.color(colors.title))
+        Text("Подтвердите пароль", style = typography.descriptionAuth.color(colors.title))
         SpacerHeight(8.dp)
         TextFieldAuth(stateData.confirmPassword, "*********") {
             vm.updData(stateData.copy(confirmPassword = it))
         }
         SpacerHeight(40.dp)
-        ButtonMaxWidth("Далее", stateData.email.isNotEmpty() && stateData.password.isNotEmpty()) {
+        ButtonMaxWidth("Далее", stateData.email.isNotEmpty() && stateData.password.isNotEmpty(), colors.primary) {
             vm.signUp(controller)
         }
         SpacerHeight(12.dp)
@@ -114,7 +114,7 @@ fun Register(controller: NavHostController, vm: RegisterVM = hiltViewModel()) {
                     controller.navigate(NavRoutes.LOGIN)
                 },
             textAlign = TextAlign.Center,
-            style = typography.descriptionScreen
+            style = typography.descriptionAuth
         )
 
     }

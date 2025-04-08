@@ -5,31 +5,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImagePainter
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
-import coil.size.Size
+import androidx.navigation.compose.rememberNavController
+import com.example.methodist_mobile_app.domain.repository.UserRepository
 import com.example.methodist_mobile_app.presentation.navigation.Navigation
+import com.example.methodist_mobile_app.presentation.navigation.bottombar.BottomBar
 import com.example.methodist_mobile_app.presentation.ui.theme.MethodistTheme
 import com.example.methodist_mobile_app.presentation.ui.theme.ThemeMode
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,17 +25,30 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val currentThemeMode: MutableState<ThemeMode> = remember { mutableStateOf(ThemeMode.Dark) }
+            UserRepository.init(LocalContext.current)
+            UserRepository.checkToken()
+            val controller = rememberNavController()
+            val currentThemeMode: MutableState<ThemeMode> = remember { mutableStateOf(UserRepository.themes.first { it.title == UserRepository.theme }) }
+            val isBottomBarVisible = remember { mutableStateOf(false) }
             MethodistTheme (themeMode = currentThemeMode.value) {
-                Scaffold {
-                    //Navigation(currentThemeMode)
-                    ImageTest()
+                Scaffold(
+                    bottomBar = {
+                        if (isBottomBarVisible.value) {
+                            BottomBar(
+                                navController = controller,
+                            )
+                        }
+                    }
+                ) {
+                    Navigation(controller, currentThemeMode, isBottomBarVisible)
+                    //ImageTest()
                 }
             }
         }
     }
 }
 
+/*
 @Composable
 fun ImageTest() {
 //картинка
@@ -77,4 +74,4 @@ fun ImageTest() {
             }
         }
     }
-}
+}*/

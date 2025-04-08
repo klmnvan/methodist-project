@@ -1,7 +1,9 @@
-package com.example.methodist_mobile_app.di.network
+package com.example.methodist_mobile_app.data.network
 
 import android.content.Context
-import com.example.methodist_mobile_app.data.network.ApiServiceImpl
+import androidx.room.Room
+import com.example.methodist_mobile_app.data.room.converters.Converters
+import com.example.methodist_mobile_app.data.room.database.MKDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -51,8 +53,31 @@ class ApiServiceProvider {
     }
 
     @Provides
-    fun provideService(client: HttpClient): ApiServiceImpl {
-        return ApiServiceImpl(client)
+    fun provideConverters(): Converters {
+        return Converters() // Пока без базы
+    }
+
+    @Provides
+    fun provideDb(
+        @ApplicationContext context: Context,
+        converters: Converters // Получаем конвертер
+    ): MKDatabase {
+        val db = Room.databaseBuilder(
+            context,
+            MKDatabase::class.java,
+            "mk_database"
+        )
+            .allowMainThreadQueries()
+            .addTypeConverter(converters) // Передаём конвертер
+            .build()
+
+        converters.setDatabase(db) // Теперь конвертер знает о базе
+        return db
+    }
+
+    @Provides
+    fun provideService(client: HttpClient, database: MKDatabase): ApiServiceImpl {
+        return ApiServiceImpl(client, database)
     }
 
 }

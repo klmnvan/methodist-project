@@ -9,4 +9,6 @@ object NavRoutes {
 
     //экраны для авторизованных пользователей
     const val HOME = "home"
+    const val PROFILE = "profile"
+    const val CREATE_EVENT = "create event"
 }

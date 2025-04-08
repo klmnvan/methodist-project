@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ProfileDto(
+    val id: String = "",
     val firstName: String = "",
     val lastName: String = "",
     val mC_id: String? = "",

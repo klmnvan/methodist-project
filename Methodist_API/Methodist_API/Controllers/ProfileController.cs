@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Methodist_API.Dtos.DB;
+using Methodist_API.Dtos.Patch;
 using Methodist_API.Interfaces;
 using Methodist_API.Models.DB;
 using Methodist_API.Models.Identity;
@@ -58,7 +59,11 @@ namespace Methodist_API.Controllers
                     return BadRequest("Пользователь не найден");
                 }
                 var profile = _profileRepository.SelectByIdProfile(appUser.Id);
-                return Ok(_mapper.Map<ProfileDto>(profile));
+                var dto = _mapper.Map<ProfileDto>(profile);
+                dto.MC = profile.MethodicalСommittee;
+                dto.Email = appUser.Email;
+                dto.Roles = userRoles.ToList();
+                return Ok(dto);
             }
             catch (Exception e)
             {
@@ -140,6 +145,26 @@ namespace Methodist_API.Controllers
             // Возвращаем файл
             var fileBytes = System.IO.File.ReadAllBytes(filePath);
             return File(fileBytes, "application/octet-stream", fileName);
+        }
+
+        [SwaggerOperation(Summary = "Изменить часть профиля")]
+        [HttpPatch("UpdatePart")]
+        public async Task<ActionResult<Models.DB.Profile>> UpdatePart(PatchProfileDto dto)
+        {
+            try
+            {
+                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (appUser == null)
+                {
+                    return Unauthorized();
+                }
+                var entity = _profileRepository.UpdatePart(appUser.Id, dto);
+                return Ok(entity);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

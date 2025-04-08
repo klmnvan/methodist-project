@@ -7,6 +7,7 @@ import com.example.methodist_mobile_app.data.dto.RegisterDto
 import com.example.methodist_mobile_app.data.network.ApiServiceImpl
 import com.example.methodist_mobile_app.presentation.navigation.NavRoutes
 import com.example.methodist_mobile_app.presentation.screens.DialogSt
+import com.example.methodist_mobile_app.presentation.screens.auth.register.state.RegisterSt
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

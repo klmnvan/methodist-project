@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Methodist_API.Data;
+using Methodist_API.Dtos.Patch;
 using Methodist_API.Interfaces;
+using Methodist_API.Models.DB;
+using Microsoft.EntityFrameworkCore;
 
 namespace Methodist_API.Repositories
 {
@@ -15,7 +18,10 @@ namespace Methodist_API.Repositories
             _mapper = mapper;
         }
 
-        public Models.DB.Profile SelectByIdProfile(Guid profileId) => _context.Profiles.Single(it => it.Id == profileId);
+        public Models.DB.Profile SelectByIdProfile(Guid profileId) => _context.Profiles
+            .Include(it => it.MethodicalСommittees)
+            .Include(it => it.MethodicalСommittee)
+            .Single(it => it.Id == profileId);
 
         public bool UpdateImage(Guid profileId, string url)
         {
@@ -29,6 +35,27 @@ namespace Methodist_API.Repositories
         {
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false; //было ли изменено хотя бы одно значение в базе данных
+        }
+
+        public Models.DB.Profile UpdatePart(Guid ProfileId, PatchProfileDto dto)
+        {
+            var item = _context.Profiles.Single(x => x.Id == ProfileId);
+            var dtoProperties = typeof(PatchProfileDto).GetProperties();
+
+            foreach (var property in dtoProperties)
+            {
+                var newValue = property.GetValue(dto);
+                if (dto.IsFieldPresent(property.Name))
+                {
+                    var itemProperty = typeof(Models.DB.Profile).GetProperty(property.Name);
+                    if (itemProperty != null && itemProperty.CanWrite)
+                    {
+                        itemProperty.SetValue(item, newValue);
+                    }
+                }
+            }
+            if (Save()) return item;
+            else throw new Exception("Ошибка изменения профиля");
         }
     }
 }

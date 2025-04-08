@@ -86,8 +86,19 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
 
+    //Для декодирования JWT токена
+    implementation ("io.jsonwebtoken:jjwt-api:0.12.6")
+    runtimeOnly ("io.jsonwebtoken:jjwt-impl:0.12.6")
+    implementation ("com.auth0.android:jwtdecode:2.0.2")
+    runtimeOnly ("io.jsonwebtoken:jjwt-gson:0.12.6")
 
     //coil
     implementation("io.coil-kt:coil-compose:2.2.2")
     implementation("io.coil-kt:coil-svg:2.2.2")
+
+    //Room
+    val room_version = "2.4.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation ("androidx.room:room-ktx:$room_version")
 }

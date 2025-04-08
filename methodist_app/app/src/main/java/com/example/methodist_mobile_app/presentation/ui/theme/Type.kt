@@ -9,6 +9,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.example.methodist_mobile_app.R
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
 val poppins = FontFamily(
     Font(R.font.poppins_black, FontWeight.Black),
@@ -35,14 +38,19 @@ val raleway = FontFamily(
 )
 
 data class Typography(
-    val titleScreen: TextStyle = TextStyle(),
-    val descriptionScreen: TextStyle = TextStyle(),
+    val titleAuth: TextStyle = TextStyle(),
+    val descriptionAuth: TextStyle = TextStyle(),
     val textButton: TextStyle = TextStyle(),
     val hintScreen: TextStyle = TextStyle(),
     val textInFiled: TextStyle = TextStyle(),
     val titleField: TextStyle = TextStyle(),
     val titleDialog: TextStyle = TextStyle(),
     val descDialog: TextStyle = TextStyle(),
+    val menuCategory: TextStyle = TextStyle(),
+    val titleMain: TextStyle = TextStyle(),
+    val hintEventItem: TextStyle = TextStyle(),
+    val dateInItemEvent: TextStyle = TextStyle(),
+    val titleProfile: TextStyle = TextStyle(),
 )
 
 val typography = Typography(
@@ -53,13 +61,13 @@ val typography = Typography(
         fontSize = 16.sp,
         lineHeight = 20.sp
     ),
-    titleScreen = TextStyle(
+    titleAuth = TextStyle(
         fontFamily = raleway,
         fontWeight = FontWeight.Bold,
         fontSize = 32.sp,
         lineHeight = 20.sp
     ),
-    descriptionScreen = TextStyle(
+    descriptionAuth = TextStyle(
         fontFamily = raleway,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
@@ -77,18 +85,38 @@ val typography = Typography(
         fontSize = 16.sp,
         textAlign = TextAlign.Center
     ),
-
-
-
-
-
-
-
-
-
-    textButton = TextStyle(
-        fontWeight = FontWeight.W600,
+    menuCategory = TextStyle(
+        fontFamily = raleway,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 12.sp,
+        textAlign = TextAlign.Center
+    ),
+    titleMain = TextStyle(
+        fontFamily = poppins,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 18.sp,
+    ),
+    hintEventItem = TextStyle(
+        fontFamily = raleway,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 20.sp,
+    ),
+    dateInItemEvent = TextStyle(
+        fontFamily = poppins,
+        fontWeight = FontWeight.Medium,
+        fontSize = 12.sp,
+        lineHeight = 20.sp,
+    ),
+    titleProfile = TextStyle(
+        fontFamily = raleway,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+    ),
+    textButton = TextStyle(
+        fontFamily = raleway,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 16.sp,
     )
 )
 
@@ -96,4 +124,24 @@ val LocalTypography = staticCompositionLocalOf { typography }
 
 fun TextStyle.color(color: Color): TextStyle {
     return this.copy(color = color)
+}
+
+fun String.firstCharUp(): String {
+    if (isEmpty()) return this
+    return this.first().uppercase() + this.substring(1)
+}
+
+fun String.convertDate(): String {
+    return if (this.isNotEmpty()) {
+        try {
+            val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            val outputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+            val localDate = LocalDate.parse(this, inputFormatter)
+            localDate.format(outputFormatter)
+        } catch (e: DateTimeParseException) {
+            this // Возвращаем исходную строку, если не удалось распарсить дату
+        }
+    } else {
+        this
+    }
 }

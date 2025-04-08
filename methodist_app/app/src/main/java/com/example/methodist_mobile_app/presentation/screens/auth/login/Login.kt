@@ -19,7 +19,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.methodist_mobile_app.presentation.common.buttons.ButtonMaxWidth
@@ -51,23 +50,23 @@ fun Login(controller: NavHostController, vm: LoginVM = hiltViewModel()) {
             .padding(horizontal = 20.dp, vertical = 25.dp),
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Авторизация", style = typography.titleScreen.color(colors.title))
+        Text("Авторизация", style = typography.titleAuth.color(colors.title))
         SpacerHeight(8.dp)
-        Text("Войдите, чтобы пользоваться функциями приложения", style = typography.descriptionScreen.color(colors.description))
+        Text("Войдите, чтобы пользоваться функциями приложения", style = typography.descriptionAuth.color(colors.description))
         SpacerHeight(30.dp)
-        Text("Адрес эл. почты", style = typography.descriptionScreen.color(colors.title))
+        Text("Адрес эл. почты", style = typography.descriptionAuth.color(colors.title))
         SpacerHeight(12.dp)
         TextFieldAuth(stateData.email, "user@mail.ru") {
             vm.updData(stateData.copy(email = it))
         }
         SpacerHeight(20.dp)
-        Text("Пароль", style = typography.descriptionScreen.color(colors.title))
+        Text("Пароль", style = typography.descriptionAuth.color(colors.title))
         SpacerHeight(12.dp)
         TextFieldAuth(stateData.password, "*********") {
             vm.updData(stateData.copy(password = it))
         }
         SpacerHeight(40.dp)
-        ButtonMaxWidth("Далее", stateData.email.isNotEmpty() && stateData.password.isNotEmpty()) {
+        ButtonMaxWidth("Далее", stateData.email.isNotEmpty() && stateData.password.isNotEmpty(), colors.primary) {
             vm.signIn(controller)
         }
         SpacerHeight(12.dp)
@@ -86,7 +85,7 @@ fun Login(controller: NavHostController, vm: LoginVM = hiltViewModel()) {
                     controller.navigate(NavRoutes.REGISTER)
                 },
             textAlign = TextAlign.Center,
-            style = typography.descriptionScreen
+            style = typography.descriptionAuth
         )
 
     }
