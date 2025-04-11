@@ -7,9 +7,13 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.example.methodist_mobile_app.R
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 
@@ -51,6 +55,7 @@ data class Typography(
     val hintEventItem: TextStyle = TextStyle(),
     val dateInItemEvent: TextStyle = TextStyle(),
     val titleProfile: TextStyle = TextStyle(),
+    val createEventButton: TextStyle = TextStyle(),
 )
 
 val typography = Typography(
@@ -64,8 +69,7 @@ val typography = Typography(
     titleAuth = TextStyle(
         fontFamily = raleway,
         fontWeight = FontWeight.Bold,
-        fontSize = 32.sp,
-        lineHeight = 20.sp
+        fontSize = 32.sp
     ),
     descriptionAuth = TextStyle(
         fontFamily = raleway,
@@ -117,6 +121,12 @@ val typography = Typography(
         fontFamily = raleway,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,
+    ),
+    createEventButton = TextStyle(
+        fontFamily = raleway,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 3.5.em,
+        textAlign = TextAlign.Center
     )
 )
 
@@ -144,4 +154,19 @@ fun String.convertDate(): String {
     } else {
         this
     }
+}
+
+fun convertDateToTimestamptz(chosenYear: Int, chosenMonth: Int, chosenDay: Int): String {
+    val currentTime = LocalDateTime.now()
+
+    // Создаем LocalDateTime с выбранной датой и текущими значениями времени
+    val localDateTime = LocalDateTime.of(chosenYear, chosenMonth, chosenDay,
+        currentTime.hour, currentTime.minute, currentTime.second, currentTime.nano)
+
+    // Преобразуем в ZonedDateTime с учетом часового пояса UTC
+    val zonedDateTime = ZonedDateTime.of(localDateTime, ZoneOffset.UTC)
+
+    // Форматируем в строку с миллисекундами
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    return formatter.format(zonedDateTime)
 }

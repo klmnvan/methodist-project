@@ -1,6 +1,9 @@
 package com.example.methodist_mobile_app.data.network
 
+import android.content.Context
+import android.net.Uri
 import android.util.Log
+import com.example.methodist_mobile_app.data.dto.CreateEventDto
 import com.example.methodist_mobile_app.data.dto.LoginDto
 import com.example.methodist_mobile_app.data.dto.ProfileDto
 import com.example.methodist_mobile_app.data.dto.RegisterDto
@@ -15,14 +18,20 @@ import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.RedirectResponseException
 import io.ktor.client.plugins.ServerResponseException
+import io.ktor.client.request.forms.MultiPartFormDataContent
+import io.ktor.client.request.forms.formData
 import io.ktor.client.request.get
 import io.ktor.client.request.patch
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.http.ContentType
+import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
+import io.ktor.util.InternalAPI
+import okhttp3.RequestBody
+import java.io.ByteArrayOutputStream
 
 class ApiServiceImpl (
     private val client: HttpClient,
@@ -118,6 +127,30 @@ class ApiServiceImpl (
         }
     }
 
+    override suspend fun createEvent(event: CreateEventDto): GeneralResponse {
+        return try {
+            client.post {
+                url(HttpRoutes.CREATE_EVENT)
+                setBody(event)
+                contentType(ContentType.Application.Json)
+                headers.append(HttpHeaders.Authorization, "Bearer ${UserRepository.token}")
+            }
+            GeneralResponse()
+        } catch (e: RedirectResponseException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            return GeneralResponse(error = "Ошибка ${e.response.status.value}")
+        } catch (e: ClientRequestException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            GeneralResponse(error = "Ошибка ${e.response.status.value}")
+        } catch (e: ServerResponseException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            GeneralResponse(error = "Ошибка сервера")
+        } catch (e: Exception) {
+            println("Error: ${e.message}")
+            GeneralResponse(error = e.message.toString())
+        }
+    }
+
     override suspend fun getProfile(profileId: String): GeneralResponse {
         return try {
             val response = client.get {
@@ -172,5 +205,80 @@ class ApiServiceImpl (
         }
     }
 
+    override suspend fun getDefaultValue(): GeneralResponse {
+        return try {
+            val eventForms = client.get {
+                url(HttpRoutes.GET_EVENT_FORMS)
+                contentType(ContentType.Application.Json)
+                headers.append(HttpHeaders.Authorization, "Bearer ${UserRepository.token}")
+            }.body<List<String>>()
+            val eventStatuses = client.get {
+                url(HttpRoutes.GET_EVENT_STATUSES)
+                contentType(ContentType.Application.Json)
+                headers.append(HttpHeaders.Authorization, "Bearer ${UserRepository.token}")
+            }.body<List<String>>()
+            val eventResults = client.get {
+                url(HttpRoutes.GET_EVENT_RESULTS)
+                contentType(ContentType.Application.Json)
+                headers.append(HttpHeaders.Authorization, "Bearer ${UserRepository.token}")
+            }.body<List<String>>()
+            val participationForms = client.get {
+                url(HttpRoutes.GET_PARTICIPATION_FORMS)
+                contentType(ContentType.Application.Json)
+                headers.append(HttpHeaders.Authorization, "Bearer ${UserRepository.token}")
+            }.body<List<String>>()
+            GeneralResponse(listStatuses = eventStatuses, listResults = eventResults, listEventsForms = eventForms, listPartForms = participationForms)
+        } catch (e: RedirectResponseException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            return GeneralResponse(error = "Ошибка ${e.response.status.value}")
+        } catch (e: ClientRequestException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            GeneralResponse(error = "Ошибка ${e.response.status.value}")
+        } catch (e: ServerResponseException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            GeneralResponse(error = "Ошибка сервера")
+        } catch (e: Exception) {
+            println("Error: ${e.message}")
+            GeneralResponse(error = e.message.toString())
+        }
+    }
+
+    override suspend fun loadImg(imageBytes: ByteArray): GeneralResponse {
+        return try {
+            client.patch {
+                url(HttpRoutes.UPLOAD_IMAGE)
+                setBody(
+                    MultiPartFormDataContent(
+                        formData {
+                            append(
+                                key = "image",
+                                value = imageBytes,
+                                headers = Headers.build {
+                                    append(
+                                        HttpHeaders.ContentDisposition,
+                                        "filename=\"image.jpg\""
+                                    )
+                                }
+                            )
+                        }
+                    )
+                )
+                headers.append(HttpHeaders.Authorization, "Bearer ${UserRepository.token}")
+            }
+            GeneralResponse()
+        } catch (e: RedirectResponseException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            return GeneralResponse(error = "Ошибка ${e.response.status.value}")
+        } catch (e: ClientRequestException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            GeneralResponse(error = "Ошибка ${e.response.status.value}")
+        } catch (e: ServerResponseException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            GeneralResponse(error = "Ошибка сервера")
+        } catch (e: Exception) {
+            println("Error: ${e.message}")
+            GeneralResponse(error = e.message.toString())
+        }
+    }
 
 }

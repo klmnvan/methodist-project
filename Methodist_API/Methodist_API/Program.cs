@@ -25,6 +25,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ContractResolver = new PatchRequestContractResolver();
+    options.SerializerSettings.DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffZ"; // ‘ормат с миллисекундами
 });
 
 //дл€ извлечени€ базового URL

@@ -3,6 +3,7 @@ package com.example.methodist_mobile_app.presentation.screens.main.profile.compo
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
@@ -36,7 +37,12 @@ fun ImageProfile(imageUrl: String) {
         )
     }
     else {
-        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+        Box(
+            modifier = Modifier
+                .clip(CircleShape)
+                .height(120.dp),
+            contentAlignment = Alignment.Center
+        ) {
             CircularProgressIndicator()
         }
     }

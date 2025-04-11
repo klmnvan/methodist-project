@@ -97,7 +97,7 @@ class HomeVM @Inject constructor(
             if(selectedCategory != categorySelectAll)
                 listEvent = listEvent.filter { it.typeOfEvent == selectedCategory }.toMutableList()
             if (search.isNotEmpty())
-                listEvent = eventsShow.filter { it.name.contains(search, ignoreCase = true) }.toMutableList()
+                listEvent = eventsShow.filter { it.name.contains(search, ignoreCase = true) || it.location.contains(search, ignoreCase = true) }.toMutableList()
             when(sortedType) {
                 0 -> {
                     listEvent = listEvent.sortedWith(Comparator.comparing<EventModel, LocalDate> { model ->

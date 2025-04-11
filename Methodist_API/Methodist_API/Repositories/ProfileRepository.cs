@@ -41,6 +41,7 @@ namespace Methodist_API.Repositories
         {
             var item = _context.Profiles.Single(x => x.Id == ProfileId);
             var dtoProperties = typeof(PatchProfileDto).GetProperties();
+            bool hasChanges = false;
 
             foreach (var property in dtoProperties)
             {
@@ -50,10 +51,13 @@ namespace Methodist_API.Repositories
                     var itemProperty = typeof(Models.DB.Profile).GetProperty(property.Name);
                     if (itemProperty != null && itemProperty.CanWrite)
                     {
+                        var currentValue = itemProperty.GetValue(item); // Получаем текущее значение
+                        if (!Equals(currentValue, newValue)) hasChanges = true; // Изменения есть только если значения разные
                         itemProperty.SetValue(item, newValue);
                     }
                 }
             }
+            if(!hasChanges) return item;
             if (Save()) return item;
             else throw new Exception("Ошибка изменения профиля");
         }

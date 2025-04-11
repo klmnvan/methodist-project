@@ -7,6 +7,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.methodist_mobile_app.presentation.screens.auth.login.Login
 import com.example.methodist_mobile_app.presentation.screens.auth.register.Register
+import com.example.methodist_mobile_app.presentation.screens.main.events.createevent.CreateEvent
+import com.example.methodist_mobile_app.presentation.screens.main.events.holding.Holding
+import com.example.methodist_mobile_app.presentation.screens.main.events.internship.Internship
+import com.example.methodist_mobile_app.presentation.screens.main.events.participation.Participation
+import com.example.methodist_mobile_app.presentation.screens.main.events.publication.Publication
 import com.example.methodist_mobile_app.presentation.screens.main.home.Home
 import com.example.methodist_mobile_app.presentation.screens.main.profile.Profile
 import com.example.methodist_mobile_app.presentation.screens.splash.Splash
@@ -34,6 +39,21 @@ fun Navigation(controller: NavHostController, currentThemeMode: MutableState<The
         }
         composable(NavRoutes.PROFILE) {
             Profile(controller, currentThemeMode)
+        }
+        composable(NavRoutes.CREATE_EVENT) {
+            CreateEvent(controller)
+        }
+        composable(NavRoutes.INTERNSHIP) {
+            Internship(controller)
+        }
+        composable(NavRoutes.PUBLICATION) {
+            Publication(controller)
+        }
+        composable(NavRoutes.HOLDING) {
+            Holding(controller)
+        }
+        composable(NavRoutes.PARTICIPATION) {
+            Participation(controller)
         }
     }
 }

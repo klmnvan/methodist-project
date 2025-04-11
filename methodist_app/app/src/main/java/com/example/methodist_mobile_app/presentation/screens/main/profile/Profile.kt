@@ -29,7 +29,7 @@ fun Profile(controller: NavHostController, currentThemeMode: MutableState<ThemeM
             ShowProfile(controller, currentThemeMode, vm, stateData)
         }
         ProfileUISt.Edit -> {
-            EditProfile(vm, stateData)
+            EditProfile(controller, vm, stateData)
         }
     }
 

@@ -8,3 +8,4 @@ data class UpdateProfileDto(
     val lastName: String,
     val patronymic: String,
 )
+

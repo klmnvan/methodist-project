@@ -95,7 +95,7 @@ namespace Methodist_API.Controllers
                 }
 
                 // путь к файлу
-                string imageName = $"{appUser.Id}_{image.FileName}";
+                string imageName = $"{Guid.NewGuid()}_{image.FileName}";
                 var filePath = Path.Combine(uploadPath, imageName);
 
                 //Получаем текущее название картинки и проверяем, есть ли такое сейчас в API
