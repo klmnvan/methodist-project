@@ -13,6 +13,8 @@ import com.example.methodist_mobile_app.data.models.EventModel
 import com.example.methodist_mobile_app.data.models.ProfileModel
 import com.example.methodist_mobile_app.data.room.database.MKDatabase
 import com.example.methodist_mobile_app.domain.repository.UserRepository
+import com.example.methodist_mobile_app.presentation.screens.main.events.participation.UiFile
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
@@ -32,10 +34,12 @@ import io.ktor.http.contentType
 import io.ktor.util.InternalAPI
 import okhttp3.RequestBody
 import java.io.ByteArrayOutputStream
+import java.io.IOException
 
 class ApiServiceImpl (
     private val client: HttpClient,
-    private val database: MKDatabase
+    private val database: MKDatabase,
+    @ApplicationContext private val context: Context
 ): ApiService {
 
     override suspend fun signIn(email: String, password: String): GeneralResponse {
@@ -129,11 +133,54 @@ class ApiServiceImpl (
 
     override suspend fun createEvent(event: CreateEventDto): GeneralResponse {
         return try {
-            client.post {
+            val response = client.post {
                 url(HttpRoutes.CREATE_EVENT)
                 setBody(event)
                 contentType(ContentType.Application.Json)
                 headers.append(HttpHeaders.Authorization, "Bearer ${UserRepository.token}")
+            }
+            GeneralResponse(event = response.body<EventModel>())
+        } catch (e: RedirectResponseException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            return GeneralResponse(error = "Ошибка ${e.response.status.value}")
+        } catch (e: ClientRequestException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            GeneralResponse(error = "Ошибка ${e.response.status.value}")
+        } catch (e: ServerResponseException) {
+            Log.d("Error ${e.response.status.value}", e.message)
+            GeneralResponse(error = "Ошибка сервера")
+        } catch (e: Exception) {
+            println("Error: ${e.message}")
+            GeneralResponse(error = e.message.toString())
+        }
+    }
+
+    override suspend fun uploadFiles(files: List<UiFile>, idEvent: String): GeneralResponse {
+        return try {
+            client.post {
+                url(HttpRoutes.UPLOAD_FILES)
+                setBody(
+                    MultiPartFormDataContent(
+                        formData {
+                            files.forEachIndexed { index, uiFile ->
+                                val bytes = getByteArrayFromUri(uiFile.uri)
+                                append(
+                                    key = "files",
+                                    value = bytes,
+                                    headers = Headers.build {
+                                        append(
+                                            HttpHeaders.ContentDisposition,
+                                            "filename=\"${uiFile.name}\""
+                                        )
+                                        append(HttpHeaders.ContentType, getMimeType(uiFile.name))
+                                    }
+                                )
+                            }
+                        }
+                    )
+                )
+                headers.append(HttpHeaders.Authorization, "Bearer ${UserRepository.token}")
+                headers.append("idEvent", idEvent)
             }
             GeneralResponse()
         } catch (e: RedirectResponseException) {
@@ -278,6 +325,21 @@ class ApiServiceImpl (
         } catch (e: Exception) {
             println("Error: ${e.message}")
             GeneralResponse(error = e.message.toString())
+        }
+    }
+
+    private fun getByteArrayFromUri(uri: Uri): ByteArray {
+        val inputStream = context.contentResolver.openInputStream(uri)
+        return inputStream?.use { it.readBytes() } ?: throw IOException("Не удалось прочитать файл")
+    }
+
+    private fun getMimeType(fileName: String): String {
+        return when {
+            fileName.endsWith(".jpg", ignoreCase = true) -> "image/jpeg"
+            fileName.endsWith(".png", ignoreCase = true) -> "image/png"
+            fileName.endsWith(".pdf", ignoreCase = true) -> "application/pdf"
+            // Добавьте другие MIME-типы по необходимости
+            else -> "application/octet-stream"
         }
     }
 

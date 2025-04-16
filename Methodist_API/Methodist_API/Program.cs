@@ -17,7 +17,6 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using Methodist_API.Dtos.Patch;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
@@ -78,6 +77,7 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IMKRepository, MKRepository>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<IFileUsersRepository, FileUsersRepository>();
 
 builder.Services.AddIdentity<AppUser, Role>(options =>
 {
@@ -158,7 +158,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 app.UseHttpsRedirection();
 

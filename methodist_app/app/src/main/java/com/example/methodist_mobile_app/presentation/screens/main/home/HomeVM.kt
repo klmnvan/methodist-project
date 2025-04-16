@@ -99,12 +99,12 @@ class HomeVM @Inject constructor(
             if (search.isNotEmpty())
                 listEvent = eventsShow.filter { it.name.contains(search, ignoreCase = true) || it.location.contains(search, ignoreCase = true) }.toMutableList()
             when(sortedType) {
-                0 -> {
+                1 -> {
                     listEvent = listEvent.sortedWith(Comparator.comparing<EventModel, LocalDate> { model ->
                         LocalDate.parse(model.dateOfEvent, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                     }.reversed()).toMutableList()
                 }
-                1 -> {
+                2 -> {
                     listEvent = listEvent.sortedWith(Comparator.comparing { model ->
                         LocalDate.parse(model.dateOfEvent, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                     }).toMutableList()

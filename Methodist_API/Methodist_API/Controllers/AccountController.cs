@@ -100,51 +100,6 @@ namespace Methodist_API.Controllers
             }
         }
 
-        /*[SwaggerOperation(Summary = "Авторизация в системе")]
-        [HttpPost("Login")]
-        [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginDto loginDto)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            //Поиск пользователя в системе (как схема auth в supabase?)
-            var appUser = await _userManager.FindByEmailAsync(loginDto.Email.ToLower());
-            //var appUser = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == loginDto.Email.ToLower());
-
-            if (appUser == null) return Unauthorized("Такого пользователя нет в базе");
-
-            //Проверка совпадения пароля с тем, что в системе
-            var result = await _signInManager.CheckPasswordSignInAsync(appUser, loginDto.Password, false);
-
-            if (!result.Succeeded) return Unauthorized("Неверный пароль");
-
-            var user = _context.Profiles.FirstOrDefault(u => u.Id == appUser.Id);
-
-            if(!_context.TypeOUserTokens.Any(it => it.UserId == user.Id.ToString() && it.DeviceId == loginDto.Device))
-            {
-                var token = _tokenService.CreateToken(appUser, _userManager.GetRolesAsync(appUser).Result.First());
-                _context.TypeOUserTokens.Add(
-                    new() { 
-                        UserId = user.Id.ToString(), 
-                        LoginProvider = "Default", 
-                        Name = "TokenName", 
-                        Value = token, 
-                        DeviceId = loginDto.Device 
-                    }
-                );
-            }
-            else
-            {
-                var token = _context.TypeOUserTokens.First(it => it.UserId == user.Id.ToString() && it.DeviceId == loginDto.Device);
-                    
-            }
-
-            return Ok(
-               
-            );
-        }*/
-
         [SwaggerOperation(Summary = "Авторизация в системе")]
         [HttpPost("Login")]
         [AllowAnonymous]

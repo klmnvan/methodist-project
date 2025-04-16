@@ -9,6 +9,7 @@ object HttpRoutes {
     //Мероприятия
     const val GET_EVENTS = "$BASE_URL/Event/GetByIdProfile"
     const val CREATE_EVENT = "$BASE_URL/Event/Create"
+    const val UPLOAD_FILES = "$BASE_URL/Event/UploadFiles"
 
     //Профиль
     const val GET_PROFILE = "$BASE_URL/Profile/GetProfile"

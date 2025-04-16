@@ -11,6 +11,7 @@ data class HomeSt(
     var categories: MutableList<TypeOfEventModel> = mutableListOf(categorySelectAll),
     var selectedCategory: TypeOfEventModel = categorySelectAll,
     var sortedType: Int = 0,
-    var listSortedType: List<String> = listOf("дата: по убыванию", "дата: по возрастанию"),
-    var filtersIsOpen: Boolean = false
+    var listSortedType: List<String> = listOf("без сортировки","дата: по убыванию", "дата: по возрастанию"),
+    var filtersIsOpen: Boolean = false,
+    var showEvent: EventModel? = null
 )

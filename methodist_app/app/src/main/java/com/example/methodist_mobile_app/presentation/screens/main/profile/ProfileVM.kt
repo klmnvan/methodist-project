@@ -93,12 +93,6 @@ class ProfileVM @Inject constructor (
         viewModelScope.launch {
             val response = service.getProfile(profileId = UserRepository.profileId)
             if(response.profile != null) {
-                updData(
-                    dataSt.value.copy(profile = dataSt.value.profile.copy(imageUrl = ""))
-                )
-                updData(
-                    dataSt.value.copy(profile = response.profile)
-                )
                 updateValues()
             }
             if (response.error.isNotEmpty()) showError("Ошибка синхронизации", response.error)

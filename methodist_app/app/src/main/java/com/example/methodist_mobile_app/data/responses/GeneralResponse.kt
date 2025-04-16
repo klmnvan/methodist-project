@@ -8,6 +8,7 @@ data class GeneralResponse(
     val profileDto: ProfileDto? = null,
     val error: String = "",
     val listEvent: List<EventModel> = listOf(),
+    val event: EventModel? = null,
     val profile: ProfileModel? = null,
     val listStatuses: List<String> = listOf(),
     val listResults: List<String> = listOf(),

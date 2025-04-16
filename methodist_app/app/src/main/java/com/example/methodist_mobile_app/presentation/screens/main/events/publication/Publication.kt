@@ -61,7 +61,7 @@ fun Publication(controller: NavHostController, vm: PublicationVM = hiltViewModel
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 20.dp, vertical = 40.dp)
         ) {
-            Text("Сведения", style = typography.titleAuth.color(colors.title))
+            Text("Публикация", style = typography.titleAuth.color(colors.title))
             SpacerHeight(12.dp)
             Text("Название", style = typography.titleMain.color(colors.title))
             SpacerHeight(12.dp)

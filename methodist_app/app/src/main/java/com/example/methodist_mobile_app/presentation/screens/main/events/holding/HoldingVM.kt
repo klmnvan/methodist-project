@@ -68,12 +68,16 @@ class HoldingVM @Inject constructor(
                         endDateOfEvent = endDateOfEvent,
                         typeId = "ec2d1d7b-4cb7-41e1-aa80-74f695fea627"
                     )
-                    val response = service.createEvent(dto)
+                    var response = service.createEvent(dto)
                     if (response.error.isNotEmpty()) showError("Ошибка при создании мероприятия", response.error)
                     else {
-                        controller.navigate(NavRoutes.HOME) {
-                            popUpTo(NavRoutes.HOLDING) {
-                                inclusive = true
+                        response = service.uploadFiles(dataSt.value.uploadedFiles, response.event!!.id)
+                        if(response.error.isNotEmpty()) showError("Ошибка при создании мероприятия", response.error)
+                        else {
+                            controller.navigate(NavRoutes.HOME) {
+                                popUpTo(NavRoutes.INTERNSHIP) {
+                                    inclusive = true
+                                }
                             }
                         }
                     }

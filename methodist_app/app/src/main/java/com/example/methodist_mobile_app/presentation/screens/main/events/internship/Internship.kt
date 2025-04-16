@@ -61,7 +61,7 @@ fun Internship(controller: NavHostController, vm: InternshipVM = hiltViewModel()
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 20.dp, vertical = 40.dp)
         ) {
-            Text("Сведения", style = typography.titleAuth.color(colors.title))
+            Text("Стажировка", style = typography.titleAuth.color(colors.title))
             SpacerHeight(12.dp)
             Text("Место прохождения", style = typography.titleMain.color(colors.title))
             SpacerHeight(12.dp)

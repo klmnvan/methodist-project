@@ -7,10 +7,14 @@ using Methodist_API.Interfaces;
 using Methodist_API.Models.DB;
 using Methodist_API.Models.Identity;
 using Methodist_API.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
+using static System.Net.Mime.MediaTypeNames;
 using Profile = Methodist_API.Models.DB.Profile;
 
 namespace Methodist_API.Controllers
@@ -22,12 +26,33 @@ namespace Methodist_API.Controllers
         private readonly IMapper _mapper;
         private readonly IEventRepository _eventRepository;
         private readonly UserManager<AppUser> _userManager;
+        private static string packageName = "Events";
+        private string uploadPath = Path.Combine($"{Directory.GetCurrentDirectory()}\\Uploads", packageName);
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IFileUsersRepository _fileUsersRepository;
 
-        public EventController(IMapper mapper, IEventRepository eventRepository, UserManager<AppUser> userManager)
+        public EventController(IMapper mapper, IEventRepository eventRepository, UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor,
+            IFileUsersRepository fileUsersRepository)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;
             _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
+            _fileUsersRepository = fileUsersRepository;
+            Directory.CreateDirectory(uploadPath);
+        }
+
+        //http://localhost/Uploads/Events
+        private string BaseUrlWithPackage => $"{BaseUrl}/Uploads/{packageName}"; // Формирование базового URL
+
+        //http://localhost
+        private string BaseUrl
+        {
+            get
+            {
+                var request = _httpContextAccessor.HttpContext.Request;
+                return $"{request.Scheme}://{request.Host}";
+            }
         }
 
         [SwaggerOperation(Summary = "Получить все мероприятия пользователя")]
@@ -79,7 +104,7 @@ namespace Methodist_API.Controllers
 
         [SwaggerOperation(Summary = "Создать мероприятие")]
         [HttpPost("Create")]
-        public async Task<ActionResult<Event>> Create([FromBody] CreateEventDto newEvent)
+        public async Task<ActionResult<EventDto>> Create([FromBody] CreateEventDto newEvent)
         {
             try
             {
@@ -93,7 +118,9 @@ namespace Methodist_API.Controllers
                     return BadRequest("Тип мероприятия заполнен некорректно");
                 }
                 var entity = _eventRepository.Insert(newEvent, appUser.Id);
-                return Ok(entity);
+                var result = _mapper.Map<EventDto>(entity);
+                result.TypeOfEvent = entity.TypeOfEvent;
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -113,6 +140,52 @@ namespace Methodist_API.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
+            }
+        }
+
+        [SwaggerOperation(Summary = "Загрузить файлы к мероприятию")]
+        [HttpPost("UploadFiles")]
+        public async Task<IActionResult> UploadFiles(List<IFormFile> files, [FromHeader(Name = "idEvent")] Guid idEvent)
+        {
+            try
+            {
+                //ModelState.IsValid используется для проверки, прошла ли модель валидацию. Если в модели есть ошибки, это свойство будет равно false.
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                var userRoles = await _userManager.GetRolesAsync(appUser);
+                if (appUser == null || userRoles == null)
+                {
+                    return BadRequest("Пользователь не найден");
+                }
+                if (files.IsNullOrEmpty())
+                {
+                    return BadRequest("Файл загрузки не передан");
+                }
+
+                foreach (var file in files)
+                {
+
+                    // путь к файлу
+                    string imageName = $"{Guid.NewGuid()}_{file.FileName}";
+                    var filePath = Path.Combine(uploadPath, imageName);
+
+                    // сохраняем файл в папку Uploads
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+
+                    _fileUsersRepository.Insert(idEvent, imageName);
+                }
+                return Ok($"Файлы успешно загружены");
+            }
+            catch (Exception e)
+            {
+                var json = JsonConvert.SerializeObject(e)!;
+                return StatusCode(500, e);
             }
         }
 

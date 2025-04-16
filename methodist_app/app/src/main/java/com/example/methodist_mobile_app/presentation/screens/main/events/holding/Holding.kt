@@ -1,34 +1,27 @@
 package com.example.methodist_mobile_app.presentation.screens.main.events.holding
 
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.RadioButton
-import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.methodist_mobile_app.presentation.common.buttons.ButtonMaxWidth
 import com.example.methodist_mobile_app.presentation.common.buttons.ButtonNext
 import com.example.methodist_mobile_app.presentation.common.dialogs.DialogError
 import com.example.methodist_mobile_app.presentation.common.spacers.SpacerHeight
@@ -36,7 +29,12 @@ import com.example.methodist_mobile_app.presentation.common.textfields.TextField
 import com.example.methodist_mobile_app.presentation.common.textfields.TextFieldFormOtherValue
 import com.example.methodist_mobile_app.presentation.screens.main.events.components.CustomDatePickerDialog
 import com.example.methodist_mobile_app.presentation.screens.main.events.components.DatePickerRow
-import com.example.methodist_mobile_app.presentation.ui.theme.Blue
+import com.example.methodist_mobile_app.presentation.screens.main.events.components.OptionsChooseFrom
+import com.example.methodist_mobile_app.presentation.screens.main.events.participation.UiFile
+import com.example.methodist_mobile_app.presentation.screens.main.events.participation.UploadedFilesList
+import com.example.methodist_mobile_app.presentation.screens.main.events.participation.getFileName
+import com.example.methodist_mobile_app.presentation.screens.main.events.participation.getFileSize
+import com.example.methodist_mobile_app.presentation.ui.theme.MethodistTheme
 import com.example.methodist_mobile_app.presentation.ui.theme.MethodistTheme.colors
 import com.example.methodist_mobile_app.presentation.ui.theme.color
 import com.example.methodist_mobile_app.presentation.ui.theme.convertDateToTimestamptz
@@ -48,6 +46,43 @@ fun Holding(controller: NavHostController, vm: HoldingVM = hiltViewModel()) {
     val stateData = vm.dataSt.collectAsState().value
     val stateDialog = vm.dialogSt.collectAsState().value
     val focusManager = LocalFocusManager.current
+    val context = LocalContext.current
+
+    val fileLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetMultipleContents(),
+        onResult = { uris ->
+            val maxSizeMb = 10
+            val maxSizeBytes = maxSizeMb * 1024 * 1024
+            val maxCount = 3
+            val validFiles = uris.mapNotNull { uri ->
+                val size = uri.getFileSize(context)
+                when {
+                    size == null -> {
+                        Toast.makeText(context, "Не удалось определить размер файла", Toast.LENGTH_SHORT).show()
+                        null
+                    }
+                    size > maxSizeBytes -> {
+                        val sizeMB = String.format("%.1f", size.toDouble() / (1024 * 1024))
+                        Toast.makeText(
+                            context,
+                            "Файл ${uri.getFileName(context)} ($sizeMB МБ) превышает лимит $maxSizeMb МБ",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        null
+                    }
+                    else -> UiFile(
+                        uri = uri,
+                        name = uri.getFileName(context),
+                        size = size
+                    )
+                }
+            }.take(maxCount)
+            val currentCount = stateData.uploadedFiles.size
+            val remainingSlots = maxCount - currentCount
+            val filesToAdd = validFiles.take(remainingSlots)
+            vm.updData(stateData.copy(uploadedFiles = (stateData.uploadedFiles + filesToAdd).distinctBy { it.uri }))
+        }
+    )
 
     if(stateDialog.dialogIsOpen) {
         DialogError(stateDialog.title, stateDialog.description) {
@@ -79,7 +114,7 @@ fun Holding(controller: NavHostController, vm: HoldingVM = hiltViewModel()) {
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 20.dp, vertical = 40.dp)
         ) {
-            Text("Сведения", style = typography.titleAuth.color(colors.title))
+            Text("Проведение мероприятия", style = typography.titleAuth.color(colors.title))
             SpacerHeight(12.dp)
             Text("Название", style = typography.titleMain.color(colors.title))
             SpacerHeight(12.dp)
@@ -158,7 +193,29 @@ fun Holding(controller: NavHostController, vm: HoldingVM = hiltViewModel()) {
             DatePickerRow(chosenDay, chosenMonth, chosenYear) {
                 vm.updData(copy(showDatePicker = true))
             }
+            SpacerHeight(20.dp)
+            Text("Подтверждение документа (при наличии)", style = typography.titleMain.color(colors.title))
             SpacerHeight(12.dp)
+            Text("Загрузите файлы поддерживаемого типа.\nРазмер файла – не более 200 MB.", style = typography.descriptionAuth.color(colors.description))
+            SpacerHeight(12.dp)
+            ButtonMaxWidth ("Выбрать файлы", true, colors.primary) {
+                fileLauncher.launch("*/*")
+            }
+            SpacerHeight(20.dp)
+            if(uploadedFiles.isNotEmpty()) {
+                Text(
+                    "Загруженные файлы (${uploadedFiles.size})",
+                    style = MethodistTheme.typography.titleMain.color(colors.title)
+                )
+                SpacerHeight(8.dp)
+                UploadedFilesList(
+                    files = uploadedFiles,
+                    onRemove = { file ->
+                        vm.updData(stateData.copy(uploadedFiles = uploadedFiles - file))
+                    }
+                )
+                SpacerHeight(12.dp)
+            }
             ButtonNext {
                 vm.createEvent(controller)
             }
@@ -166,56 +223,5 @@ fun Holding(controller: NavHostController, vm: HoldingVM = hiltViewModel()) {
         }
     }
 
-}
-
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-fun OptionsChooseFrom (list: List<String>, selected: String, onClick: (String) -> Unit ){
-    FlowRow(
-        Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        maxItemsInEachRow = Int.MAX_VALUE
-    ) {
-        list.forEach { el ->
-            var colorBorder = colors.outline
-            if (el == selected) {
-                colorBorder = Blue
-            }
-            Row(
-                modifier = Modifier
-                    .border(
-                        width = 1.dp,
-                        color = colorBorder,
-                        shape = RoundedCornerShape(15.dp)
-                    )
-                    .background(colors.container, shape = RoundedCornerShape(15.dp))
-                    .clickable(interactionSource = remember { MutableInteractionSource() },
-                        indication = null) {
-                        onClick(el)
-                    }
-                ,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                RadioButton(
-                    selected = (el == selected),
-                    onClick = {
-                        onClick(el)
-                    },
-                    colors = RadioButtonDefaults.colors(
-                        selectedColor = Color(Blue.value),
-                        unselectedColor = colors.outline
-                    )
-                )
-                Text(
-                    modifier = Modifier
-                        .padding(end = 24.dp)
-                        .padding(vertical = 8.dp),
-                    text = el,
-                    style = typography.textInFiled.color(colors.title)
-                )
-            }
-        }
-    }
 }
 

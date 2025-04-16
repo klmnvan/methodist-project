@@ -5,6 +5,7 @@ import com.example.methodist_mobile_app.data.models.TypeOfEventModel
 import com.example.methodist_mobile_app.presentation.screens.main.events.components.currentDay
 import com.example.methodist_mobile_app.presentation.screens.main.events.components.currentMonth
 import com.example.methodist_mobile_app.presentation.screens.main.events.components.currentYear
+import com.example.methodist_mobile_app.presentation.screens.main.events.participation.UiFile
 import com.example.methodist_mobile_app.presentation.ui.theme.convertDateToTimestamptz
 
 data class CreateEventSt(
@@ -36,4 +37,5 @@ data class CreateEventSt(
     var listResult: List<String> = listOf("Тест", "Тест2"),
     var listStatus: List<String> = listOf("Тест", "Тест2"),
     var listFormOfParticipation: List<String> = listOf("Очное", "Заочное", "Проведение мероприятия"),
+    var uploadedFiles: List<UiFile> = listOf()
 )

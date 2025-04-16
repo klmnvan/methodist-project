@@ -76,8 +76,8 @@ class ApiServiceProvider {
     }
 
     @Provides
-    fun provideService(client: HttpClient, database: MKDatabase): ApiServiceImpl {
-        return ApiServiceImpl(client, database)
+    fun provideService(client: HttpClient, database: MKDatabase, @ApplicationContext context: Context): ApiServiceImpl {
+        return ApiServiceImpl(client, database, context)
     }
 
 }

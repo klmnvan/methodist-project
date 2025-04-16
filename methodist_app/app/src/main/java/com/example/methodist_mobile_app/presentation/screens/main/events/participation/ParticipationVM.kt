@@ -71,12 +71,16 @@ class ParticipationVM @Inject constructor(
                         endDateOfEvent = endDateOfEvent,
                         typeId = "638ea3fe-b998-4a6e-a06e-3331597e34b8"
                     )
-                    val response = service.createEvent(dto)
+                    var response = service.createEvent(dto)
                     if (response.error.isNotEmpty()) showError("Ошибка при создании мероприятия", response.error)
                     else {
-                        controller.navigate(NavRoutes.HOME) {
-                            popUpTo(NavRoutes.INTERNSHIP) {
-                                inclusive = true
+                        response = service.uploadFiles(dataSt.value.uploadedFiles, response.event!!.id)
+                        if(response.error.isNotEmpty()) showError("Ошибка при создании мероприятия", response.error)
+                        else {
+                            controller.navigate(NavRoutes.HOME) {
+                                popUpTo(NavRoutes.INTERNSHIP) {
+                                    inclusive = true
+                                }
                             }
                         }
                     }

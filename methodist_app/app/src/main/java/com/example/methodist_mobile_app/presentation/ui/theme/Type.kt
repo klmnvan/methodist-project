@@ -56,6 +56,7 @@ data class Typography(
     val dateInItemEvent: TextStyle = TextStyle(),
     val titleProfile: TextStyle = TextStyle(),
     val createEventButton: TextStyle = TextStyle(),
+    val typeOfEventDialog: TextStyle = TextStyle(),
 )
 
 val typography = Typography(
@@ -92,6 +93,12 @@ val typography = Typography(
     menuCategory = TextStyle(
         fontFamily = raleway,
         fontWeight = FontWeight.SemiBold,
+        fontSize = 12.sp,
+        textAlign = TextAlign.Center
+    ),
+    typeOfEventDialog = TextStyle(
+        fontFamily = raleway,
+        fontWeight = FontWeight.Medium,
         fontSize = 12.sp,
         textAlign = TextAlign.Center
     ),

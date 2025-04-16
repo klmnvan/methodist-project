@@ -27,7 +27,7 @@ namespace Methodist_API.Repositories
             _event.Id = Guid.NewGuid();
             var item = _context.Events.Add(_event);
             _context.SaveChanges();
-            return item.Entity;
+            return _context.Events.Include(it => it.TypeOfEvent).Single(it => it.Id == item.Entity.Id);
         }
 
         public List<Event> SelectByIdProfile(Guid profileId) => _context.Events.Where(it => it.ProfileId == profileId).Include(it => it.TypeOfEvent).ToList();
