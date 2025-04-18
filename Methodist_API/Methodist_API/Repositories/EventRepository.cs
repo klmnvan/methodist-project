@@ -5,7 +5,6 @@ using Methodist_API.Dtos.Patch;
 using Methodist_API.Interfaces;
 using Methodist_API.Models.DB;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace Methodist_API.Repositories
 {

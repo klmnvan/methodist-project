@@ -56,7 +56,7 @@ import com.example.methodist_mobile_app.presentation.screens.main.home.component
 import com.example.methodist_mobile_app.presentation.ui.theme.MethodistTheme.colors
 import com.example.methodist_mobile_app.presentation.ui.theme.MethodistTheme.typography
 import com.example.methodist_mobile_app.presentation.ui.theme.color
-import com.example.methodist_mobile_app.presentation.ui.theme.convertDate
+import com.example.methodist_mobile_app.presentation.ui.theme.convertTimestamptzToCalendarDate
 
 @Composable
 fun Home(controller: NavHostController, vm: HomeVM = hiltViewModel()) {
@@ -192,7 +192,7 @@ fun ShowEvent(event: EventModel, onDismissRequest: () -> Unit) {
                 }
                 if (event.dateOfEvent.isNotEmpty()) {
                     SpacerHeight(12.dp)
-                    EventDialogSection("Дата прохождения", event.dateOfEvent.convertDate())
+                    EventDialogSection("Дата прохождения", event.dateOfEvent.convertTimestamptzToCalendarDate())
                 }
                 if (event.location.isNotEmpty()) {
                     SpacerHeight(12.dp)

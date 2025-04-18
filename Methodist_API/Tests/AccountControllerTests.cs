@@ -256,7 +256,7 @@ namespace Tests
             //Arrange
             var dto = new LoginDto()
             {
-                Email = "ivanivanovich@example.com",
+                Email = "invaliduser",
                 Password = "invalidpassword",
             };
 

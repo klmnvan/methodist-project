@@ -148,7 +148,7 @@ fun String.firstCharUp(): String {
     return this.first().uppercase() + this.substring(1)
 }
 
-fun String.convertDate(): String {
+fun String.convertTimestamptzToCalendarDate(): String {
     return if (this.isNotEmpty()) {
         try {
             val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -156,7 +156,7 @@ fun String.convertDate(): String {
             val localDate = LocalDate.parse(this, inputFormatter)
             localDate.format(outputFormatter)
         } catch (e: DateTimeParseException) {
-            this // Возвращаем исходную строку, если не удалось распарсить дату
+            this
         }
     } else {
         this
@@ -165,15 +165,9 @@ fun String.convertDate(): String {
 
 fun convertDateToTimestamptz(chosenYear: Int, chosenMonth: Int, chosenDay: Int): String {
     val currentTime = LocalDateTime.now()
-
-    // Создаем LocalDateTime с выбранной датой и текущими значениями времени
     val localDateTime = LocalDateTime.of(chosenYear, chosenMonth, chosenDay,
         currentTime.hour, currentTime.minute, currentTime.second, currentTime.nano)
-
-    // Преобразуем в ZonedDateTime с учетом часового пояса UTC
     val zonedDateTime = ZonedDateTime.of(localDateTime, ZoneOffset.UTC)
-
-    // Форматируем в строку с миллисекундами
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     return formatter.format(zonedDateTime)
 }

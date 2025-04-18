@@ -28,7 +28,7 @@ import com.example.methodist_mobile_app.data.models.EventModel
 import com.example.methodist_mobile_app.presentation.common.spacers.SpacerHeight
 import com.example.methodist_mobile_app.presentation.ui.theme.Black
 import com.example.methodist_mobile_app.presentation.ui.theme.MethodistTheme
-import com.example.methodist_mobile_app.presentation.ui.theme.convertDate
+import com.example.methodist_mobile_app.presentation.ui.theme.convertTimestamptzToCalendarDate
 import com.example.methodist_mobile_app.presentation.ui.theme.firstCharUp
 
 @Composable
@@ -84,7 +84,7 @@ fun ItemEvent(event: EventModel, onClick: () -> Unit) {
             }
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = event.dateOfEvent.convertDate(),
+                text = event.dateOfEvent.convertTimestamptzToCalendarDate(),
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .padding(top = 3.dp),
