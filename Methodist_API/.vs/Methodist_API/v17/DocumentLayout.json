@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\methodist-project\\Methodist_API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{27CFC3BA-0F58-498E-8BA5-D0095537FCDA}|Tests\\Tests.csproj|d:\\methodist-project\\methodist_api\\tests\\accountcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27CFC3BA-0F58-498E-8BA5-D0095537FCDA}|Tests\\Tests.csproj|solutionrelative:tests\\accountcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\controllers\\formvaluescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\controllers\\formvaluescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,10 +35,6 @@
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\models\\db\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27CFC3BA-0F58-498E-8BA5-D0095537FCDA}|Tests\\Tests.csproj|d:\\methodist-project\\methodist_api\\tests\\accountcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27CFC3BA-0F58-498E-8BA5-D0095537FCDA}|Tests\\Tests.csproj|solutionrelative:tests\\accountcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\repositories\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\repositories\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -46,11 +46,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 311,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "FormValuesController.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\FormValuesController.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Controllers\\FormValuesController.cs",
@@ -58,12 +58,11 @@
               "RelativeToolTip": "Methodist_API\\Controllers\\FormValuesController.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAQwB0AAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:28:04.107Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T16:28:04.107Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "20250404091653_init.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Migrations\\20250404091653_init.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Migrations\\20250404091653_init.cs",
@@ -71,12 +70,11 @@
               "RelativeToolTip": "Methodist_API\\Migrations\\20250404091653_init.cs",
               "ViewState": "AQIAAH8AAAAAAAAAAAAgwFIAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:17:01.167Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T16:17:01.167Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TypeOfEvent.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Models\\DB\\TypeOfEvent.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Models\\DB\\TypeOfEvent.cs",
@@ -84,12 +82,11 @@
               "RelativeToolTip": "Methodist_API\\Models\\DB\\TypeOfEvent.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:13:04.701Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T16:13:04.701Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Profile.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Models\\DB\\Profile.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Models\\DB\\Profile.cs",
@@ -97,12 +94,11 @@
               "RelativeToolTip": "Methodist_API\\Models\\DB\\Profile.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAIwBUAAABEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:12:58.523Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T16:12:58.523Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Methodical\u0421ommittee.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Models\\DB\\Methodical\u0421ommittee.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Models\\DB\\Methodical\u0421ommittee.cs",
@@ -110,12 +106,11 @@
               "RelativeToolTip": "Methodist_API\\Models\\DB\\Methodical\u0421ommittee.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:12:55.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T16:12:55.012Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "FileEvent.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Models\\DB\\FileEvent.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Models\\DB\\FileEvent.cs",
@@ -123,12 +118,11 @@
               "RelativeToolTip": "Methodist_API\\Models\\DB\\FileEvent.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:12:49.954Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T16:12:49.954Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Event.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Models\\DB\\Event.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Models\\DB\\Event.cs",
@@ -136,18 +130,17 @@
               "RelativeToolTip": "Methodist_API\\Models\\DB\\Event.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T16:12:43.54Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T16:12:43.54Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "AccountControllerTests.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Tests\\AccountControllerTests.cs",
               "RelativeDocumentMoniker": "Tests\\AccountControllerTests.cs",
               "ToolTip": "D:\\methodist-project\\Methodist_API\\Tests\\AccountControllerTests.cs",
               "RelativeToolTip": "Tests\\AccountControllerTests.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAwwF8AAAAtAAAA",
+              "ViewState": "AQIAAEsBAAAAAAAAAAAowGMBAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T02:09:53.452Z",
               "EditorCaption": ""
