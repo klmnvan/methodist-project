@@ -19,6 +19,16 @@ using Methodist_API.Dtos.Patch;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Policy", builder =>
+    {
+        builder.WithOrigins("http://localhost:5173")
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
@@ -151,6 +161,8 @@ builder.Services.AddAuthorization(options =>
 }); //для того, чтобы для каждого запроса нужна была атворизация
 
 var app = builder.Build();
+
+app.UseCors("Policy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
