@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+input, button, ul, li {
+  all: unset;
+}
+
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+:root {
+  --font-raleway: 'Raleway', sans-serif;
+  --font-poppins: 'Open Sans', sans-serif;
+  --color-bg: #272A37;
+  --color-container: #323644;
+  --color-title: #FFFFFF;
+  --color-description: #939396;
+  --color-outline: #AAADB2;
+  --color-primary: #1977FF;
+  --color-inversePrimary: #555B69;
+  --color-error: #FF7C3B;
+}
+

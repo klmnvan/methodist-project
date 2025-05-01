@@ -1,0 +1,46 @@
+.background {
+    background-color: var(--color-container);
+    flex: calc(1 / 20);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 0 !important;
+}
+
+.sections {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.section-cont {
+    border-radius: 20%;
+    display: flex;
+    padding: 20% !important;
+}
+
+.section-cont:hover {
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    color: var(--color-title) !important;
+}
+
+.logo {
+    width: 60%;
+    height: auto;
+}
+
+.section {
+    width: 100%;
+    height: auto;
+}
+
+.sectionActive {
+    width: 100%;
+    height: auto;
+    padding: 0.5em !important;
+    background: color-mix(in srgb, var(--color-primary) 50%, transparent);
+    border-radius: 20%;
+}
+

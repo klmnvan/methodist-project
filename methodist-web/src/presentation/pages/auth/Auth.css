@@ -1,0 +1,7 @@
+.background-cont {
+    background: linear-gradient(to bottom, #53B9F5, #1977FF); /* Градиент слева направо */
+    height: 100vh; /* Задайте высоту, чтобы увидеть градиент */
+    width: 100vw;
+    font-family: var(--font-poppins), serif;
+    color: var(--color-title);
+}

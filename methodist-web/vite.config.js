@@ -9,8 +9,16 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@pages': fileURLToPath(new URL('./src/views', import.meta.url)),
-      '@images': fileURLToPath(new URL('./src/assets/images', import.meta.url)),
+      '@views': fileURLToPath(new URL('./src/views', import.meta.url)),
+      '@images': fileURLToPath(new URL('./src/shared/assets/images', import.meta.url)),
+      '@ui': fileURLToPath(new URL('./src/shared/ui', import.meta.url)),
+      '@viewModels': fileURLToPath(new URL('./src/viewModels', import.meta.url)),
+    }
+  },
+  css: {
+    modules: {
+      scopeBehaviour: 'local',
+      localsConvention: 'camelCase',
     }
   }
 })

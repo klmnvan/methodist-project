@@ -1,0 +1,43 @@
+.background {
+    width: 100vw;
+    height: 100vh;
+    background: var(--color-bg);
+    display: flex;
+}
+
+.form-cont {
+    flex: calc(3 / 5);
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.form {
+    width: 50%;
+    margin: auto auto !important;
+}
+
+.onBoard-cont {
+    flex: calc(2 / 5);
+    background: var(--color-container);
+    display: flex;
+    text-align: center;
+}
+
+.title-auth {
+    font-family: var(--font-poppins), serif ;
+    font-size: 2.0vw;
+    font-weight: bold;
+    color: var(--color-title);
+}
+
+.description-auth {
+    font-family: var(--font-poppins), serif;
+    font-size: 1.0vw;
+    color: var(--color-description);
+}
+
+.description-auth.link {
+    color: var(--color-primary);
+}

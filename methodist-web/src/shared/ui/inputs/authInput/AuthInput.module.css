@@ -1,0 +1,24 @@
+.inputAuth {
+    font-family: var(--font-poppins), serif;
+    background: var(--color-container);
+    border-radius: 0.8em;
+    font-size: 0.8vw;
+    text-align: left;
+    padding: 1.2vh 0.8vw !important;
+}
+
+.inputAuth > div {
+    color: var(--color-description);
+    font-size: 0.6vw;
+    margin-bottom: 0.2em !important;
+}
+
+.inputAuth > input {
+    background: var(--color-container);
+    color: var(--color-title);
+    width: 100%;
+}
+
+.inputAuth > input::placeholder {
+    color: var(--color-description);
+}

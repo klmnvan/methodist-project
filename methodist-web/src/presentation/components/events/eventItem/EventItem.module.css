@@ -1,0 +1,64 @@
+.background {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-container);
+    border-radius: 0.5em;
+    padding: 1em !important;
+    height: 100%;
+}
+
+.rowDate {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    font-family: var(--font-raleway), serif;
+    font-size: 0.8em;
+}
+
+.date {
+    display: flex;
+    flex: 1;
+    color: var(--color-primary);
+    height: auto;
+    align-items: center;
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    color: var(--color-primary);
+    align-items: center
+}
+
+.approveBtn {
+    padding: 0.3em 1em !important;
+    border-radius: 0.5em;
+}
+
+.categoryBtn {
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    padding: 0.3em 1em !important;
+    border-radius: 0.5em;
+}
+
+.title {
+    font-family: var(--font-raleway), serif;
+    font-size: 1em;
+    color: var(--color-title);
+    font-weight: 600;
+}
+
+.description {
+    font-family: var(--font-raleway), serif;
+    font-size: 1em;
+    color: var(--color-title);
+    font-weight: 600;
+}
+
+.gradient-line {
+    height: 0.1em; /* Высота линии */
+    background: linear-gradient(to right, #53B9F5, #1977FF); /* Градиент от одного цвета к другому */
+    width: 100%; /* Ширина линии */
+}

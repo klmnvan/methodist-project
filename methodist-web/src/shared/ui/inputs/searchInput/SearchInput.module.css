@@ -1,0 +1,26 @@
+.background {
+    font-family: var(--font-poppins), serif;
+    background: var(--color-container);
+    border-radius: 0.5em;
+    font-size: 1vw;
+    text-align: left;
+    padding: 0.8vw 0.8vw !important;
+    display: flex;
+}
+
+.background > div {
+    color: var(--color-description);
+    font-size: 0.6vw;
+    height: 10%;
+    margin-bottom: 0.2em !important;
+}
+
+.background > input {
+    background: var(--color-container);
+    color: var(--color-title);
+    width: 100%;
+}
+
+.background > input::placeholder {
+    color: var(--color-description);
+}

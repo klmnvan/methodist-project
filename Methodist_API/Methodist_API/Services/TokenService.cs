@@ -36,7 +36,7 @@ namespace Methodist_API.Services
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddMinutes(20), //токен на * период
+                Expires = DateTime.Now.AddDays(31), //токен на * период
                 SigningCredentials = creds,
                 Issuer = _config["JWT:Issuer"],
                 Audience = _config["JWT:Audience"]

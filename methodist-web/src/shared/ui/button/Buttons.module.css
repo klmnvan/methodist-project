@@ -1,0 +1,14 @@
+.buttonAuth {
+    font-family: var(--font-poppins), serif;
+    font-size: 0.8vw;
+    font-weight: 600;
+    padding: 1.5vh 0 !important;
+    color: #FFFFFF;
+    background: var(--color-primary);
+    border-radius: 0.8em;
+    width: 100%;
+}
+
+.buttonAuth:hover {
+    background: var(--color-inversePrimary);
+}
