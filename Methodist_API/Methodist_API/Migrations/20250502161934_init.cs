@@ -65,21 +65,6 @@ namespace Methodist_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserTokens",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "text", nullable: false),
-                    LoginProvider = table.Column<string>(type: "text", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    DeviceId = table.Column<string>(type: "text", nullable: false),
-                    Value = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name, x.DeviceId });
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
@@ -108,6 +93,8 @@ namespace Methodist_API.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
                     date_of_event = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     end_date_of_event = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     type_id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -171,6 +158,8 @@ namespace Methodist_API.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
                     first_name = table.Column<string>(type: "text", nullable: false),
                     last_name = table.Column<string>(type: "text", nullable: false),
                     patronymic = table.Column<string>(type: "text", nullable: false),
@@ -199,8 +188,11 @@ namespace Methodist_API.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("c9eb182b-1c3e-4c3b-8c3e-1c3e4c3b8c3e"), "c9eb182b-1c3e-4c3b-8c3e-1c3e4c3b8c3e", "Teacher", "TEACHER" },
-                    { new Guid("f47ac10b-58cc-4372-a567-0e02b2c3d479"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", "Admin", "ADMIN" }
+                    { new Guid("9a9d03fb-f049-4c25-971a-7dd54bddc09e"), "9a9d03fb-f049-4c25-971a-7dd54bddc09e", "Председатель методической комиссии", "HEAD_COMISSION" },
+                    { new Guid("b8512aaf-c060-4ccb-8adf-87b93354f7ac"), "b8512aaf-c060-4ccb-8adf-87b93354f7ac", "Руководитель корпуса", "HEAD_CORPS" },
+                    { new Guid("c9eb182b-1c3e-4c3b-8c3e-1c3e4c3b8c3e"), "c9eb182b-1c3e-4c3b-8c3e-1c3e4c3b8c3e", "Член методической комиссии", "MEMBER_COMISSION" },
+                    { new Guid("f47ac10b-58cc-4372-a567-0e02b2c3d479"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", "Администратор", "ADMIN" },
+                    { new Guid("fe824cde-91a7-4883-bce0-9e1cc89dd06c"), "fe824cde-91a7-4883-bce0-9e1cc89dd06c", "Представитель научно-методического центра", "HEAD_CENTER" }
                 });
 
             migrationBuilder.InsertData(
@@ -314,9 +306,6 @@ namespace Methodist_API.Migrations
 
             migrationBuilder.DropTable(
                 name: "file_events");
-
-            migrationBuilder.DropTable(
-                name: "UserTokens");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

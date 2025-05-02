@@ -15,7 +15,6 @@ namespace Methodist_API.Data
         public DbSet<FileEvent> FileEvents { get; set; }
         public DbSet<MethodicalСommittee> MethodicalСommittees { get; set; }
         public DbSet<TypeOfEvent> TypeOfEvents { get; set; }
-        public DbSet<UserToken> TypeOUserTokens { get; set; }
 
         //при запуске миграции, EF итак создаст таблицы (без конфигурации), но, чтобы быть уверенным в том, чтобы все связи и вся БД создалась правильно, делают конфигурацию
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,7 +27,6 @@ namespace Methodist_API.Data
             modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AspNetUserTokens", t => t.ExcludeFromMigrations());
 
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
-            modelBuilder.ApplyConfiguration(new UserTokenConfiguration());
             modelBuilder.ApplyConfiguration(new EventConfiguration());
             modelBuilder.ApplyConfiguration(new FileEventConfiguration());
             modelBuilder.ApplyConfiguration(new MethodicalСommitteeConfiguration());
@@ -41,15 +39,36 @@ namespace Methodist_API.Data
                 new Role
                 {
                     Id = new Guid("f47ac10b-58cc-4372-a567-0e02b2c3d479"),
-                    Name = "Admin",
+                    Name = "Администратор",
                     NormalizedName = "ADMIN",
                     ConcurrencyStamp = "f47ac10b-58cc-4372-a567-0e02b2c3d479"
                 },
                 new Role
                 {
+                    Id = new Guid("b8512aaf-c060-4ccb-8adf-87b93354f7ac"),
+                    Name = "Руководитель корпуса",
+                    NormalizedName = "HEAD_CORPS",
+                    ConcurrencyStamp = "b8512aaf-c060-4ccb-8adf-87b93354f7ac"
+                },
+                new Role
+                {
+                    Id = new Guid("fe824cde-91a7-4883-bce0-9e1cc89dd06c"),
+                    Name = "Представитель научно-методического центра",
+                    NormalizedName = "HEAD_CENTER",
+                    ConcurrencyStamp = "fe824cde-91a7-4883-bce0-9e1cc89dd06c"
+                },
+                new Role
+                {
+                    Id = new Guid("9a9d03fb-f049-4c25-971a-7dd54bddc09e"),
+                    Name = "Председатель методической комиссии",
+                    NormalizedName = "HEAD_COMISSION",
+                    ConcurrencyStamp = "9a9d03fb-f049-4c25-971a-7dd54bddc09e"
+                },
+                new Role
+                {
                     Id = new Guid("c9eb182b-1c3e-4c3b-8c3e-1c3e4c3b8c3e"),
-                    Name = "Teacher",
-                    NormalizedName = "TEACHER",
+                    Name = "Член методической комиссии",
+                    NormalizedName = "MEMBER_COMISSION",
                     ConcurrencyStamp = "c9eb182b-1c3e-4c3b-8c3e-1c3e4c3b8c3e"
                 },
             });

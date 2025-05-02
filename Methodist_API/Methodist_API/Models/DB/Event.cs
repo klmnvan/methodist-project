@@ -5,6 +5,8 @@ namespace Methodist_API.Models.DB
     public class Event
     {
         public Guid Id { get; set; }
+        public DateTime СreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
         public DateTime DateOfEvent { get; set; }
         public DateTime EndDateOfEvent { get; set; }
         public Guid TypeId { get; set; }

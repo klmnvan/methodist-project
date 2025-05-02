@@ -154,5 +154,22 @@ namespace Methodist_API.Controllers
                 return StatusCode(500, e);
             }
         }
+
+        /*[SwaggerOperation(Summary = "Назначить роль")]
+        [HttpPatch]
+        [Route("AccountInfo")]
+        public async Task<IActionResult> SetRole([FromHeader(Name = "roles")] List<string> roles)
+        {
+            try
+            {
+                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                var userRoles = await _userManager.GetRolesAsync(appUser);
+            }
+            catch (Exception e)
+            {
+                var json = JsonConvert.SerializeObject(e)!;
+                return StatusCode(500, e);
+            }
+        }*/
     }
 }

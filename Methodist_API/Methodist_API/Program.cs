@@ -16,6 +16,7 @@ using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using Methodist_API.Dtos.Patch;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -170,6 +171,31 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<MKDbContext>();
+        var userManager = services.GetRequiredService<UserManager<AppUser>>();
+        var roleManager = services.GetRequiredService<RoleManager<Role>>();
+        var mapper = services.GetRequiredService<IMapper>();
+
+        // Применяем миграции
+        context.Database.Migrate();
+
+        // Инициализируем базу данных
+        await DbInitializer.InitializeAsync(context, userManager, roleManager, mapper);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
+        Console.WriteLine($"Ошибка при инициализации БД: {ex.Message}");
+    }
+}
+
 
 app.UseHttpsRedirection();
 

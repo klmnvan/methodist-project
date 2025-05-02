@@ -94,6 +94,18 @@ namespace Methodist_API.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("type_id");
 
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("СreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId");
@@ -249,6 +261,18 @@ namespace Methodist_API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("patronymic");
 
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("СreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
                     b.HasKey("Id");
 
                     b.HasIndex("MC_id");
@@ -392,38 +416,37 @@ namespace Methodist_API.Migrations
                         {
                             Id = new Guid("f47ac10b-58cc-4372-a567-0e02b2c3d479"),
                             ConcurrencyStamp = "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                            Name = "Admin",
+                            Name = "Администратор",
                             NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = new Guid("b8512aaf-c060-4ccb-8adf-87b93354f7ac"),
+                            ConcurrencyStamp = "b8512aaf-c060-4ccb-8adf-87b93354f7ac",
+                            Name = "Руководитель корпуса",
+                            NormalizedName = "HEAD_CORPS"
+                        },
+                        new
+                        {
+                            Id = new Guid("fe824cde-91a7-4883-bce0-9e1cc89dd06c"),
+                            ConcurrencyStamp = "fe824cde-91a7-4883-bce0-9e1cc89dd06c",
+                            Name = "Представитель научно-методического центра",
+                            NormalizedName = "HEAD_CENTER"
+                        },
+                        new
+                        {
+                            Id = new Guid("9a9d03fb-f049-4c25-971a-7dd54bddc09e"),
+                            ConcurrencyStamp = "9a9d03fb-f049-4c25-971a-7dd54bddc09e",
+                            Name = "Председатель методической комиссии",
+                            NormalizedName = "HEAD_COMISSION"
                         },
                         new
                         {
                             Id = new Guid("c9eb182b-1c3e-4c3b-8c3e-1c3e4c3b8c3e"),
                             ConcurrencyStamp = "c9eb182b-1c3e-4c3b-8c3e-1c3e4c3b8c3e",
-                            Name = "Teacher",
-                            NormalizedName = "TEACHER"
+                            Name = "Член методической комиссии",
+                            NormalizedName = "MEMBER_COMISSION"
                         });
-                });
-
-            modelBuilder.Entity("Methodist_API.Models.Identity.UserToken", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("DeviceId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("text");
-
-                    b.HasKey("UserId", "LoginProvider", "Name", "DeviceId");
-
-                    b.ToTable("UserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
