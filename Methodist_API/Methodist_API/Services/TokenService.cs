@@ -1,6 +1,7 @@
 ﻿using Methodist_API.Interfaces;
 using Methodist_API.Models.Identity;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -19,17 +20,22 @@ namespace Methodist_API.Services
         }
 
         //Создание токена
-        public string CreateToken(AppUser user, string role)
+        public string CreateToken(AppUser user, IList<string> roles)
         {
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Name, user.Email),
                 new Claim(JwtRegisteredClaimNames.GivenName, user.UserName),
-                new Claim(ClaimTypes.Role, role),
                 new Claim(ClaimTypes.Name, user.Email),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email)
             };
+
+            // Добавляем ВСЕ роли пользователя в claims
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 

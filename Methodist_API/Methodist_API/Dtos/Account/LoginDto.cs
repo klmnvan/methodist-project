@@ -15,10 +15,5 @@ namespace Methodist_API.Dtos.Account
         [DataType(DataType.Password)]
         [DefaultValue("12345678")]
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "Не указан ID устройства")]
-        [Display(Name = "Уникальный идентификатор устройства")]
-        [DefaultValue("12345678")]
-        public string Device { get; set; }
     }
 }

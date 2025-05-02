@@ -48,7 +48,7 @@ namespace Methodist_API.Controllers
 
         [SwaggerOperation(Summary = "Получить список возможных форм мероприятий")]
         [HttpGet("GetEventForms")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult<List<string>>> GetEventForms()
         {
             return Ok(eventForms);
