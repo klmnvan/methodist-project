@@ -22,3 +22,37 @@ li {
     flex-direction: column; /* Позволяет элементам растягиваться по высоте */
     justify-content: space-between; /* Распределяет пространство между элементами */
 }
+
+.navigationButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-poppins), serif;
+    color: var(--color-title);
+}
+
+.btnContainer {
+    width: 4vh; /* Adjust size as needed */
+    height: 4vh; /* Adjust size as needed */
+    border: none;
+    border-radius: 0.4em; /* Rounded corners */
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    margin: 0 1vw !important;
+}
+
+.btnContainer:hover {
+    background: color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+
+.image-in-button {
+    width: 30%; /* Adjust size of the SVG */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute; /* Center the icon */
+}

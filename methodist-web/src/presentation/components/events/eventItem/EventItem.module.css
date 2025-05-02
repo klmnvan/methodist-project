@@ -7,6 +7,10 @@
     height: 100%;
 }
 
+.background:hover {
+    background: color-mix(in srgb, var(--color-container) 60%, transparent);
+}
+
 .rowDate {
     display: flex;
     flex-direction: row;

@@ -8,12 +8,14 @@ export class EventsVM {
     allEvents = []; // Все мероприятия
     filteredEvents = []; // Отфильтрованные мероприятия
     itemsPerPage = 12;
+    types = [{name: "Всё", id: ""}];
 
     constructor() {
         makeObservable(this, {
             search: observable,
             currentPage: observable,
             allEvents: observable,
+            types: observable,
             filteredEvents: observable,
             handleSearch: action,
             getEvents: action,
