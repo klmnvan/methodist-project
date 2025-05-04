@@ -4,7 +4,8 @@ import {LoginVM} from "@/presentation/components/login/LoginVM.jsx";
 import SpacerV from "@ui/spacers/SpacerV.jsx";
 import ButtonAuth from "@ui/button/ButtonAuth.jsx";
 import classes from  '../../pages/authorization/Authorization.module.css'
-import AuthInput from "@ui/inputs/searchInput/SearchInput.jsx";
+import AuthInput from "@ui/inputs/authInput/AuthInput.jsx";
+
 
 export const Login = observer(({onSwitch}) => {
     const formVM = useMemo(() => new LoginVM(), [])
@@ -12,14 +13,14 @@ export const Login = observer(({onSwitch}) => {
         <div className={classes.formCont}>
             <div className={classes.form}>
                 <h1 className={classes.titleAuth}>Войдите в аккаунт.</h1>
-                <SpacerV size={1} orientation={'v'}/>
+                {/*<SpacerV size={1} orientation={'v'}/>
                 <p>
                     <span className={classes.descriptionAuth}>Ещё нет аккаунта? </span>
                     <span
                         className={`${classes.descriptionAuth} ${classes.link}`}
                         onClick={onSwitch}
                     >Создайте!</span>
-                </p>
+                </p>*/}
                 <SpacerV size={3} orientation={'v'}/>
                 <AuthInput
                     label="Email" type="email" placeholder="user@example.com" value={formVM.formData.email}

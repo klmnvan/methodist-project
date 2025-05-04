@@ -20,5 +20,15 @@ export default defineConfig({
       scopeBehaviour: 'local',
       localsConvention: 'camelCase',
     }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost',
+        changeOrigin: true,
+        secure: false,
+        ws: true
+      }
+    }
   }
 })

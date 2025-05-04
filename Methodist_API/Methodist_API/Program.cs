@@ -17,16 +17,19 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using Methodist_API.Dtos.Patch;
 using AutoMapper;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("Policy", builder =>
+    options.AddPolicy("ReactPolicy", builder =>
     {
         builder.WithOrigins("http://localhost:5173")
         .AllowAnyMethod()
-        .AllowAnyHeader();
+        .AllowAnyHeader()
+        .AllowCredentials()
+        .SetPreflightMaxAge(TimeSpan.FromHours(1));
     });
 });
 
@@ -84,6 +87,7 @@ builder.Services.AddDbContext<MKDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Home"));
 });
 
+builder.Services.AddScoped<TokenValidationFilter>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IMKRepository, MKRepository>();
@@ -133,7 +137,7 @@ builder.Services.AddAuthentication(options =>  // схема аутентификации - с помощ
             Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
         )
     };
-    options.Events = new JwtBearerEvents //Для создания кастомного сообщения о том, что пользователь не авторизован
+    options.Events = new JwtBearerEvents
     {
         OnChallenge = async context =>
         {
@@ -151,10 +155,27 @@ builder.Services.AddAuthentication(options =>  // схема аутентификации - с помощ
 
             var result = new ObjectResult(problemDetails) { StatusCode = statusCode };
             await result.ExecuteResultAsync(actionContext);
-        }
-    };
-    options.Events = new JwtBearerEvents
-    {
+        },
+        OnTokenValidated = async context =>
+        {
+            // Дополнительная проверка SecurityStamp
+            var userManager = context.HttpContext.RequestServices.GetRequiredService<UserManager<AppUser>>();
+            var userId = context.Principal?.FindFirstValue(ClaimTypes.NameIdentifier);
+            var tokenStamp = context.Principal?.FindFirstValue("SecurityStamp");
+
+            if (userId == null || tokenStamp == null)
+            {
+                context.Fail("Invalid token claims");
+                return;
+            }
+
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null || user.SecurityStamp != tokenStamp)
+            {
+                context.Fail("Token revoked");
+                return;
+            }
+        },
         OnMessageReceived = context =>
         {
             var accessToken = context.Request.Query["access_token"];
@@ -175,7 +196,7 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
-app.UseCors("Policy");
+app.UseCors("ReactPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

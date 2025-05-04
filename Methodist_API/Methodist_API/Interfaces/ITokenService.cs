@@ -4,6 +4,8 @@ namespace Methodist_API.Interfaces
 {
     public interface ITokenService
     {
-        string CreateToken(AppUser user, IList<string> roles);
+        string CreateAccessToken(AppUser user, IList<string> roles);
+        string CreateRefreshToken(Guid userId);
+        bool ValidateRefreshToken(string refreshToken, Guid userId, out DateTime? expiryDate);
     }
 }

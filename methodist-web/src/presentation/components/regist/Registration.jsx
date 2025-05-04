@@ -4,7 +4,7 @@ import {RegistrationVM} from "@/presentation/components/regist/RegistrationVM.js
 import SpacerV from "@ui/spacers/SpacerV.jsx";
 import classes from  '../../pages/authorization/Authorization.module.css'
 import ButtonAuth from "@ui/button/ButtonAuth.jsx";
-import AuthInput from "@ui/inputs/searchInput/SearchInput.jsx";
+import AuthInput from "@ui/inputs/authInput/AuthInput.jsx";
 
 export const Registration = observer(({onSwitch}) => {
     const formVM = useMemo(() => new RegistrationVM(), [])
