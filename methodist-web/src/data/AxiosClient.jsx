@@ -1,16 +1,77 @@
 import axios from "axios";
-import UserStore from "@/stores/UserStore.jsx";
+import {userStore} from "@/stores/UserStore.jsx";
 
 class AxiosClient {
 
-    axiosClient = axios.create({
-        baseURL: 'http://localhost:80/',
-        timeout: 1000,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-    })
+    constructor() {
+        this.axiosClient = axios.create({
+            baseURL: 'http://localhost:80/',
+            timeout: 1000,
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true,
+        });
+        this.isRefreshing = false;
+        this.failedRequestsQueue = [];
+        this._initializeInterceptors();
+    }
+
+    async refreshToken() {
+        try {
+            const response = await this.axiosClient.patch('Account/RefreshToken');
+            userStore.setToken(response.data.accessToken);
+            console.log("refreshToken", `Токены обновлены\nНовый access token: ${response.data.accessToken}`);
+            return true;
+        }
+        catch (error) {
+            console.error("Ошибка обновления токена:", error);
+            userStore.clearAuthData();
+            window.dispatchEvent(new CustomEvent('authFailed'));
+            throw error;
+        }
+    }
+
+    _initializeInterceptors() {
+        // Добавляем accessToken в заголовки
+        this.axiosClient.interceptors.request.use(config => {
+            if (userStore.accessToken) {
+                config.headers.Authorization = `Bearer ${userStore.accessToken}`;
+            }
+            return config;
+        });
+
+        // Обработка 401 ошибок
+        this.axiosClient.interceptors.response.use(
+            response => response,
+            async error => {
+                const originalRequest = error.config;
+
+                if (error.response?.status === 401 && !originalRequest._retry) {
+                    if (this.isRefreshing) {
+                        return new Promise((resolve, reject) => {
+                            this.failedRequestsQueue.push({ resolve, reject });
+                        }).then(() => this.axiosClient(originalRequest));
+                    }
+
+                    originalRequest._retry = true;
+                    this.isRefreshing = true;
+
+                    try {
+                        await this.refreshToken();
+                        this.failedRequestsQueue.forEach(prom => prom.resolve());
+                        originalRequest.headers.Authorization = `Bearer ${userStore.accessToken}`;
+                        return this.axiosClient(originalRequest);
+                    } catch (refreshError) {
+                        this.failedRequestsQueue.forEach(prom => prom.reject(refreshError));
+                        return Promise.reject(refreshError);
+                    } finally {
+                        this.isRefreshing = false;
+                        this.failedRequestsQueue = [];
+                    }
+                }
+                return Promise.reject(error);
+            }
+        );
+    }
 
     async login(formData) {
         try {
@@ -37,13 +98,10 @@ class AxiosClient {
 
     async getEvents() {
         try {
-            return await this.axiosClient.get('Event/GetByIdProfile', {
-                headers: {
-                    'Authorization': `Bearer ${UserStore.token}`
-                },
-            })
+            return await this.axiosClient.get('Event/GetByIdProfile')
         }
         catch (error) {
+            console.error(error);
             if (error.response && error.response.data && error.response.data.errors) {
                 const errors = error.response.data.errors;
                 const firstErrorArray = Object.values(errors)[0];
@@ -54,71 +112,6 @@ class AxiosClient {
             }
         }
     }
-
-    async checkAuthState() {
-        try {
-            // 1. Проверяем, есть ли access-токен
-            const hasAccessToken = await this.checkAccessToken();
-
-            if (hasAccessToken) {
-                return true; // Пользователь авторизован
-            }
-
-            // 2. Проверяем refresh-токен
-            const refreshValid = await this.validateRefreshToken();
-
-            if (refreshValid) {
-                // 3. Если refresh-токен валиден, обновляем access
-                await this.refreshAccessToken();
-                return true;
-            }
-
-            return false;
-        } catch (error) {
-            console.error('Auth check failed:', error);
-            return false;
-        }
-    }
-
-    async checkAccessToken() {
-        try {
-            // Проверяем валидность access-токена
-            await this.axiosClient.post('Account/ValidateRefreshToken', { withCredentials: true });
-            console.log("true")
-            return true;
-        } catch (error) {
-            console.log("false")
-            return false;
-        }
-    }
-
-    async validateRefreshToken() {
-        try {
-            const response = await this.axiosClient.post(
-                'Account/ValidateRefreshToken',
-                {},
-                { withCredentials: true }
-            );
-            return response.data.isValid;
-        } catch (error) {
-            return false;
-        }
-    }
-
-    async refreshAccessToken() {
-        try {
-            const response = await this.axiosClient.post(
-                'Account/RefreshToken',
-                {},
-                { withCredentials: true }
-            );
-            return true;
-        } catch (error) {
-            console.error('Token refresh failed:', error);
-            throw error;
-        }
-    }
-
 
 }
 

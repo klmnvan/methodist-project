@@ -132,28 +132,8 @@ namespace Methodist_API.Controllers
             bool isMobileApp = Request.Headers.ContainsKey("X-Client-Type") &&
                               Request.Headers["X-Client-Type"] == "Mobile";
 
-            if (isMobileApp)
+            if (!isMobileApp)
             {
-                return Ok(new
-                {
-                    Profile = _mapper.Map<NewProfileDto>(user),
-                    AccessToken = accessToken,
-                    RefreshToken = refreshToken
-                });
-            } 
-            else
-            {
-                // Для веб-клиента устанавливаем HTTP-Only куки
-                Response.Cookies.Append("accessToken", accessToken, new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = true,
-                    SameSite = SameSiteMode.None,
-                    Path = "/", // Корневой путь
-                    Expires = DateTime.UtcNow.AddMinutes(15),
-                    IsEssential = true
-                });
-
                 Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions
                 {
                     HttpOnly = true,
@@ -163,10 +143,13 @@ namespace Methodist_API.Controllers
                     Path = "/", // Корневой путь
                     IsEssential = true
                 });
-
-                // Возвращаем только профиль (токены в куках)
-                return Ok(user);
-            }
+            } 
+            return Ok(new
+            {
+                Profile = _mapper.Map<NewProfileDto>(user),
+                AccessToken = accessToken,
+                RefreshToken = refreshToken
+            });
         }
 
         //Этот метод возвращает разные значения для web и mobile.
@@ -213,65 +196,24 @@ namespace Methodist_API.Controllers
             var roles = await _userManager.GetRolesAsync(appUser);
             var newAccessToken = _tokenService.CreateAccessToken(appUser, roles);
 
-            if (isMobileApp)
+            if (!isMobileApp)
             {
-                // Для мобильного приложения возвращаем новые токены в теле ответа
-                return Ok(new
-                {
-                    AccessToken = newAccessToken,
-                    RefreshToken = newRefreshToken
-                });
-            }
-            else
-            {
-                // Для веб-клиента обновляем куки
-                Response.Cookies.Append("accessToken", newAccessToken, new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = false,
-                    SameSite = SameSiteMode.None,
-                    Expires = DateTime.UtcNow.AddMinutes(15),
-                    Domain = "localhost:5173", // Явно указываем порт
-                    Path = "/"
-                });
-
                 Response.Cookies.Append("refreshToken", newRefreshToken, new CookieOptions
                 {
                     HttpOnly = true,
-                    Secure = false,
+                    Secure = true,
                     SameSite = SameSiteMode.None,
                     Expires = DateTime.UtcNow.AddDays(30),
-                    Domain = "localhost:5173", // Явно указываем порт
-                    Path = "/"
-                });
-
-                return Ok(); // Токены в куках, тело пустое
+                    Path = "/", // Корневой путь
+                    IsEssential = true
+                });  
             }
+            return Ok(new
+            {
+                AccessToken = newAccessToken,
+                RefreshToken = newRefreshToken
+            });
         }
-
-        //Для веб
-        [SwaggerOperation(Summary = "Проверка валидности refresh-токена")]
-        [HttpPost("ValidateRefreshToken")]
-        [AllowAnonymous]
-        public async Task<IActionResult> ValidateRefreshToken()
-        {
-            // Получаем refresh-токен из куки
-            var refreshToken = Request.Cookies["refreshToken"];
-
-            if (string.IsNullOrEmpty(refreshToken))
-                return Unauthorized("Refresh token отсутствует");
-
-            // Проверяем валидность токена
-            var userId = ExtractUserIdFromRefreshToken(refreshToken);
-
-            if (!_tokenService.ValidateRefreshToken(refreshToken, userId, out var expiryDate))
-                return Unauthorized("Недействительный refresh token");
-
-            // Если токен валиден, возвращаем успешный статус
-            return Ok(new { IsValid = true, ExpiresIn = (expiryDate - DateTime.UtcNow).Value.TotalSeconds });
-        }
-
-
 
         //Этот метод только для web (потому что куки очищает)
         [SwaggerOperation(Summary = "Выход из системы")]

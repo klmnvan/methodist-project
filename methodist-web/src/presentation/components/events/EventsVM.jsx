@@ -45,6 +45,7 @@ export class EventsVM {
             this.filteredEvents = [...this.allEvents];
             console.log(response.data);
         } catch (error) {
+            console.log(error.message);
             alert(`Ошибка получения данных: ${error}`);
             console.log(`Ошибка получения данных: ${error}`);
         }

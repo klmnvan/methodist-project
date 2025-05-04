@@ -1,6 +1,6 @@
 import {action, makeObservable, observable} from "mobx";
 import httpClient from "@/data/AxiosClient.jsx";
-import userStore from "@/stores/UserStore.jsx";
+import {userStore} from "@/stores/UserStore.jsx";
 
 export class LoginVM {
 
