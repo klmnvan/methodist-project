@@ -58,6 +58,7 @@ namespace Methodist_API.Repositories
                 }
             }
             if(!hasChanges) return item;
+            item.UpdatedAt = DateTime.UtcNow;
             if (Save()) return item;
             else throw new Exception("Ошибка изменения профиля");
         }

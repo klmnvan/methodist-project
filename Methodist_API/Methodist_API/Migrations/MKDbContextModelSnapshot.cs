@@ -261,6 +261,11 @@ namespace Methodist_API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("patronymic");
 
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("phone_number");
+
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")

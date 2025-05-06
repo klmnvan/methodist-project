@@ -10,6 +10,7 @@ namespace Methodist_API.Dtos.DB
         public string FirstName { get; set; } = String.Empty;
         public string LastName { get; set; } = String.Empty;
         public string Patronymic { get; set; } = String.Empty;
+        public string PhoneNumber { get; set; } = String.Empty;
         public MethodicalСommittee MC { get; set; }
         public string? ImageUrl { get; set; } = null;
         public string Email { get; set; } = "";

@@ -36,7 +36,7 @@ export default function EventItem({event}) {
                             : "var(--color-primary)",
                         color: !event.isApproved
                             ? "var(--color-primary)"
-                            : "var(--color-title)",
+                            : "#FFFFFF",
                     }}>
                     {event.isApproved ? "Одобрено" : "Не одобрено"}
                 </div>

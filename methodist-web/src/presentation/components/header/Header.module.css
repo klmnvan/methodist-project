@@ -167,6 +167,7 @@
     max-width: 100%;
     margin: 0 !important; /* Сбрасываем стандартные отступы */
     padding: 0 !important;
+    cursor: pointer;
 }
 
 /* Бургер-меню (скрыто на десктопе) */
@@ -182,7 +183,7 @@
 }
 
 .theme {
-
+    cursor: pointer;
 }
 
 .theme svg {

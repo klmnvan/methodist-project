@@ -8,15 +8,15 @@ export const darkTheme = {
 }
 
 export const lightTheme = {
-    back: "#F7F7F9",
+    back: "#F3F3F3",
     container: "#FFFFFF",
-    title: "#000000",
+    title: "#26272B",
     description: "#AAADB2",
 }
 
 const ThemeContext = createContext();
 export const MethodistThemeProvider = ({ children }) => {
-    const [themeName, setThemeName] = useState("light");
+    const [themeName, setThemeName] = useState("dark");
 
     const switchTheme = () => {
         const newTheme = themeName === "light" ? "dark" : "light";

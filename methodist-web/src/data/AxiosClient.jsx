@@ -3,9 +3,12 @@ import {userStore} from "@/stores/UserStore.jsx";
 
 class AxiosClient {
 
+    BASE_URL = 'http://localhost:80/'
+
     constructor() {
+        this.BASE_URL = 'http://localhost:80/'
         this.axiosClient = axios.create({
-            baseURL: 'http://localhost:80/',
+            baseURL: this.BASE_URL,
             timeout: 1000,
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
@@ -159,6 +162,23 @@ class AxiosClient {
     async logOut() {
         try {
             return await this.axiosClient.delete('Account/Logout')
+        }
+        catch (error) {
+            console.error(error);
+            if (error.response && error.response.data && error.response.data.errors) {
+                const errors = error.response.data.errors;
+                const firstErrorArray = Object.values(errors)[0];
+                const firstErrorMessage = firstErrorArray ? firstErrorArray[0] : 'Неизвестная ошибка';
+                throw new Error(firstErrorMessage); // Выбрасываем ошибку с сообщением
+            } else {
+                throw new Error('Неизвестная ошибка');
+            }
+        }
+    }
+
+    async updateProfile(newProfile) {
+        try {
+            return await this.axiosClient.patch('Profile/UpdatePart', newProfile);
         }
         catch (error) {
             console.error(error);

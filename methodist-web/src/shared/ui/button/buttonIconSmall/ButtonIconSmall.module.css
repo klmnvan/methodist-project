@@ -1,0 +1,22 @@
+button {
+    font-family: var(--font-raleway), serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 12px !important;
+    width: 60%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.icon {
+    height: 18px;
+    width: 18px;
+    margin-right: 8px !important;
+}

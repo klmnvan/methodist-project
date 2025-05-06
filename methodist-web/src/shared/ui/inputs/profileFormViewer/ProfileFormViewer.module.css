@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: var(--font-raleway), serif;
+    font-size: 16px;
+    color: var(--color-title);
+}
+
+.label {
+    margin-bottom: 12px !important;
+}
+
+.valueContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: var(--color-container);
+    border-radius: 10px;
+    padding: 16px !important;
+}
+
+.value {
+    flex: 1;
+}
+
+.icon {
+    margin-left: 12px !important;
+    width: auto;
+    height: 10px;
+}

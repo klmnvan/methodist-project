@@ -7,6 +7,7 @@ using Methodist_API.Models.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -100,14 +101,18 @@ namespace Methodist_API.Controllers
 
                 //Получаем текущее название картинки и проверяем, есть ли такое сейчас в API
                 var profileLastImage = _profileRepository.SelectByIdProfile(appUser.Id).ImageUrl;
-                // Определение пути к файлу
-                var uploadsFolderPath = Path.Combine($"{Directory.GetCurrentDirectory()}\\Uploads", packageName);
-                var filePathLastImage = Path.Combine(uploadsFolderPath, profileLastImage);
-
-                // Проверка, существует ли файл
-                if (System.IO.File.Exists(filePathLastImage))
+                if (!profileLastImage.IsNullOrEmpty()) 
                 {
-                    System.IO.File.Delete(filePathLastImage);
+
+                    // Определение пути к файлу
+                    var uploadsFolderPath = Path.Combine($"{Directory.GetCurrentDirectory()}\\Uploads", packageName);
+                    var filePathLastImage = Path.Combine(uploadsFolderPath, profileLastImage);
+
+                    // Проверка, существует ли файл
+                    if (System.IO.File.Exists(filePathLastImage))
+                    {
+                        System.IO.File.Delete(filePathLastImage);
+                    }
                 }
 
                 // сохраняем файл в папку Uploads

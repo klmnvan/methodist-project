@@ -1,43 +1,148 @@
 .background {
-    background: var(--color-bg);
-    flex: calc(19 / 20);
     display: flex;
-    flex-direction: column;
-    padding: 1em !important;
-    font-size: 1vw;
+    gap: 70px;
+    flex-direction: row;
+    max-width: 1440px;
     font-family: var(--font-raleway), serif;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 28px 20px !important;
+    margin: auto !important;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-outline) var(--color-container);
+    align-content: center;
+    align-items: stretch;
 }
 
-.rowTitles {
+.leftColumn {
+    flex: 1 0 280px; /* Фиксированная ширина, не растягивается и не сжимается */
+    background: var(--color-container); /* Полупрозрачный фон для наглядности */
+    box-sizing: border-box;
+    padding: 12px !important;
+    border-radius: var(--border-radius);
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rightColumn {
+    flex: 100%; /* Занимает всё оставшееся пространство */
+    padding: 20px;
+    height: 100%;
+}
+
+.hint {
+    color: var(--color-title);
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: normal;
+}
+
+.rolesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.role {
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    color: var(--color-primary);
+    border-radius: 5px;
+    padding: 4px 12px !important;
+    font-size: 12px;
+    line-height: 12px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.role:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
 }
 
 .title {
-    font-size: 1.5em;
+    font-size: 24px;
+    font-weight: 600;
     color: var(--color-title);
+    margin: 40px 0 !important;
 }
 
-.mainRow {
+.avatarContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: all 0.6s ease;
+}
+
+.avatar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.none {
+    width: 200px;
+    height: 200px;
+}
+
+.comission {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-align: center;
+    text-transform: lowercase;
+    margin-top: 16px !important;
+}
+
+.comission::first-letter {
+    text-transform: uppercase;
+}
+
+.rowButtonsEdit {
     display: flex;
     flex-direction: row;
+    gap: 28px;
 }
 
-.mainRow > .avatarContainer {
-    flex: calc(1/5);
+@media (max-width: 768px) {
+    .background {
+        flex-direction: column;
+        gap: 16px;
+        align-items: normal;
+    }
+
+    .title {
+        margin: 16px 0 !important;
+    }
+
+    .leftColumn {
+        flex: 0 0 auto; /* Сбрасываем фиксированную высоту */
+        min-height: 100px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .none {
+        width: 100px;
+        height: 100px;
+    }
 }
 
-.avatarContainer > .avatar {
-    width: 60%;
-    border-radius: 0.5em;
-}
-
-.mainRow > .formContainer {
-    flex: calc(4/5);
-}
-
-.formTitle {
-    font-size: 1em;
-    color: var(--color-title);
+@media (max-width: 480px) {
+    .role {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
 }
