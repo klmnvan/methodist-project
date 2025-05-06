@@ -5,8 +5,8 @@ import {userStore} from "@/stores/UserStore.jsx";
 export class LoginVM {
 
     formData = {
-        email: "admin@example.com",
-        password: "Adm1n@!7",
+        email: "user@example.com",
+        password: "12345678",
     }
 
     constructor() {
@@ -26,12 +26,13 @@ export class LoginVM {
         }
     }
 
-    logIn = async () => {
+    logIn = async (navigate) => {
         try {
             const response = await httpClient.login(this.formData)
             console.log("Получил accessToken:" + response.data.accessToken);
             console.log("Получил refreshToken:" + response.data.refreshToken);
-            userStore.setToken(response.data.token);
+            userStore.setToken(response.data.accessToken);
+            navigate("/main", { replace: true });
         } catch (error) {
             alert(`Ошибка авторизации: ${error}`);
         }

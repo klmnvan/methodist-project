@@ -1,26 +1,62 @@
 .background {
-    background: var(--color-bg);
-    flex: calc(19 / 20);
+    flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 1em !important;
-    font-size: 1vw;
+    font-size: 18px;
+    height: 100%;
+    width: 100%;
+    padding: 28px 20px !important;
+    box-sizing: border-box;
+    overflow-y: auto;
+    font-family: var(--font-raleway), serif;
+    max-width: 1440px;
+    margin: 0 auto !important;
+    background: var(--color-bg);
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-outline) var(--color-container);
 }
 
-ul {
+.rowSearch {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 24px !important;
+    width: 100%;
+}
+
+.rowSorts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.totalPage {
+    font-family: var(--font-poppins), serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    color: var(--color-title);
+    flex: 1;
+}
+
+.totalPage .count {
+    color: var(--color-primary);
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-title);
+    line-height: 20px;
+}
+
+.eventsGrid {
     display: grid;
-    height: 100vh;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    gap: 1em;
-    list-style-type: 'none';
-    align-items: stretch;
-}
-
-li {
-    display: flex; /* Используем Flexbox для элементов списка */
-    flex-direction: column; /* Позволяет элементам растягиваться по высоте */
-    justify-content: space-between; /* Распределяет пространство между элементами */
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    gap: 24px; /* Отступ между карточками */
+    margin: 24px 0 !important;
 }
 
 .navigationButtons {
@@ -28,15 +64,287 @@ li {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 15px;
+    width: 100%;
+    font-family: var(--font-poppins), serif;
+    color: var(--color-title);
+    flex-shrink: 0;
+}
+
+.btnContainer {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+.btnContainer:hover {
+    background: color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+.btnContainer:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.current-page {
+    font-size: 1.2rem;
+    min-width: 30px;
+    text-align: center;
+}
+
+
+.image-in-button {
+    width: 30%;
+    height: auto;
+    position: absolute;
+}
+
+/* Адаптация для планшетов */
+@media (max-width: 1024px) {
+    .eventsGrid {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+    }
+}
+
+@media (max-width: 767px) {
+    .background {
+        padding: 15px !important;
+    }
+    .rowSearch {
+        gap: 8px !important;
+    }
+    .eventsGrid {
+        grid-template-columns: 1fr; /* 1 колонка */
+        gap: 16px;
+    }
+}
+
+
+/*
+!* Основной контейнер контента *!
+.content-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+.hint {
+    font-size: 18px;
     font-family: var(--font-poppins), serif;
     color: var(--color-title);
 }
 
+.rowSorts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sortSelector {
+    border-radius: 4px;
+    border: 0 solid transparent;
+    background-color: transparent;
+    min-width: 200px; !* Фиксированная ширина *!
+    font-size: 0.8em;
+    color: var(--color-primary);
+}
+
+.sortTitle {
+    font-size: 0.8em;
+    flex-direction: row;
+    color: var(--color-title);
+}
+
+!* Стили для кастомного селектора *!
+.custom-select {
+    position: relative;
+    min-width: 200px;
+    border-radius: 8px;
+    border: 1px solid var(--color-outline);
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+}
+
+.custom-select:hover {
+    border-color: var(--color-primary);
+}
+
+.custom-select.active {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(25, 119, 255, 0.2);
+}
+
+.select-label {
+    font-size: 0.8em;
+    color: var(--color-outline);
+    margin-bottom: 4px;
+}
+
+.selected-value {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.select-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.custom-select.active .select-icon {
+    transform: rotate(180deg);
+}
+
+.select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid var(--color-outline);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    display: none;
+}
+
+.custom-select.active .select-dropdown {
+    display: block;
+}
+
+.select-option {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.select-option:hover {
+    background-color: #f5f5f5;
+}
+
+.select-option.selected {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+!* Скрываем нативный select *!
+.hidden-select {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.typeSelect {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: white;
+    min-width: 200px; !* Фиксированная ширина *!
+    font-size: 14px;
+}
+
+!* Для мобильных устройств можно добавить адаптивность *!
+@media (max-width: 767px) {
+    .rowSearch {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .typeSelect {
+        width: 100%;
+    }
+    .background {
+        padding: 15px !important;
+    }
+}
+
+.listContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    width: 100%;
+}
+
+ul {
+    display: grid;
+    gap: 1rem;
+    overflow-y: auto;
+    flex: 1;
+    align-items: stretch;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    list-style: none;
+}
+
+!* Грид-контейнер *!
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+!* Адаптация колонок *!
+@media (max-width: 1024px) {
+    .events-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .events-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+li {
+    display: flex; !* Используем Flexbox для элементов списка *!
+    flex-direction: column; !* Позволяет элементам растягиваться по высоте *!
+    justify-content: space-between; !* Распределяет пространство между элементами *!
+    height: 100%;
+}
+
+.navigationButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0 !important;
+    width: 100%;
+    font-family: var(--font-poppins), serif;
+    color: var(--color-title);
+    flex-shrink: 0;
+}
+
 .btnContainer {
-    width: 4vh; /* Adjust size as needed */
-    height: 4vh; /* Adjust size as needed */
-    border: none;
-    border-radius: 0.4em; /* Rounded corners */
+    width: 40px;
+    height: 40px;
+    border-radius: 8px; !* Rounded corners *!
     background: color-mix(in srgb, var(--color-primary) 20%, transparent);
     display: flex;
     justify-content: center;
@@ -44,15 +352,27 @@ li {
     cursor: pointer;
     position: relative;
     margin: 0 1vw !important;
+    transition: background 0.3s ease;
 }
 
 .btnContainer:hover {
     background: color-mix(in srgb, var(--color-primary) 40%, transparent);
 }
 
+.btnContainer:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.current-page {
+    font-size: 1.2rem;
+    min-width: 30px;
+    text-align: center;
+}
+
 
 .image-in-button {
-    width: 30%; /* Adjust size of the SVG */
-    height: auto; /* Maintain aspect ratio */
-    position: absolute; /* Center the icon */
-}
+    width: 30%; !* Adjust size of the SVG *!
+    height: auto; !* Maintain aspect ratio *!
+    position: absolute; !* Center the icon *!
+}*/

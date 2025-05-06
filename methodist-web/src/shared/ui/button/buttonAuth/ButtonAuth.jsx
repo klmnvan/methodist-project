@@ -10,3 +10,4 @@ export default function ButtonAuth({children, ...props}) {
         </button>
     )
 }
+

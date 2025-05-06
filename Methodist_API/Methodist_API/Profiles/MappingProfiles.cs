@@ -21,6 +21,7 @@ namespace Methodist_API.Profiles
             CreateMap<Event, CreateEventDto>().ReverseMap();
             CreateMap<Event, PatchEventDto>().ReverseMap();
             CreateMap<Event, EventDto>().ReverseMap();
+            CreateMap<Event, EventDetailsDto>().ReverseMap();
             //MethodicalСommittee
             CreateMap<MethodicalСommittee, CreateMKDto>().ReverseMap();
             //FileEvent

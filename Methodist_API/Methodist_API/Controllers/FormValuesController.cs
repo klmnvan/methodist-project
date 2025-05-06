@@ -48,6 +48,7 @@ namespace Methodist_API.Controllers
 
         [SwaggerOperation(Summary = "Получить список возможных форм мероприятий")]
         [HttpGet("GetEventForms")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<string>>> GetEventForms()
         {
             return Ok(eventForms);
@@ -55,7 +56,7 @@ namespace Methodist_API.Controllers
 
         [SwaggerOperation(Summary = "Получить список возможных статусов мероприятий")]
         [HttpGet("GetEventStatuses")]
-        [Authorize(Roles = "Представитель научно-методического центра")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<string>>> GetEventStatuses()
         {
             return Ok(eventStatuses);

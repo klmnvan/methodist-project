@@ -4,3 +4,33 @@
     background: var(--color-bg);
     display: flex;
 }
+
+/* Контентная область */
+.main-content {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+    margin-left: var(--header-width-desktop) !important;
+    flex-direction: column;
+    height: 100%;
+}
+
+@media (max-width: 767px) {
+    .background {
+        flex-direction: row;
+        overflow-x: hidden;
+    }
+
+    .main-content {
+        min-width: 100vw;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+        width: 100%;
+        margin-left: 0 !important;
+    }
+
+    /* Когда меню открыто */
+    .header.active ~ .main-content {
+        transform: translateX(250px); /* Сдвигаем контент */
+    }
+}

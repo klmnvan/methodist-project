@@ -1,0 +1,43 @@
+.background {
+    background: var(--color-bg);
+    flex: calc(19 / 20);
+    display: flex;
+    flex-direction: column;
+    padding: 1em !important;
+    font-size: 1vw;
+    font-family: var(--font-raleway), serif;
+}
+
+.rowTitles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 1.5em;
+    color: var(--color-title);
+}
+
+.mainRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.mainRow > .avatarContainer {
+    flex: calc(1/5);
+}
+
+.avatarContainer > .avatar {
+    width: 60%;
+    border-radius: 0.5em;
+}
+
+.mainRow > .formContainer {
+    flex: calc(4/5);
+}
+
+.formTitle {
+    font-size: 1em;
+    color: var(--color-title);
+}

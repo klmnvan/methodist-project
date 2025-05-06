@@ -15,17 +15,41 @@ class AxiosClient {
         this._initializeInterceptors();
     }
 
+    async validateRefreshToken() {
+        try {
+            console.log("Проверяю refresh token");
+            //const response = await this.axiosClient.patch('Account/ValidateWebRefreshToken');
+            const response = await axios(
+                {
+                    url: 'http://localhost:80/Account/ValidateWebRefreshToken',
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
+                }
+            )
+            return response.data;
+        }
+        catch (error) {
+            console.error(error);
+            return false;
+        }
+    }
+
     async refreshToken() {
         try {
-            const response = await this.axiosClient.patch('Account/RefreshToken');
-            userStore.setToken(response.data.accessToken);
-            console.log("refreshToken", `Токены обновлены\nНовый access token: ${response.data.accessToken}`);
-            return true;
+            if(await this.validateRefreshToken()) {
+                console.log("зашёл в refresh token");
+                const response = await this.axiosClient.patch('Account/RefreshToken');
+                userStore.setToken(response.data.accessToken);
+                console.log("refreshToken", `Токены обновлены\nНовый access token: ${response.data.accessToken}`);
+                return true;
+            }
+            else {
+                console.log("ну пиздец")
+            }
         }
         catch (error) {
             console.error("Ошибка обновления токена:", error);
             userStore.clearAuthData();
-            window.dispatchEvent(new CustomEvent('authFailed'));
             throw error;
         }
     }
@@ -43,9 +67,11 @@ class AxiosClient {
         this.axiosClient.interceptors.response.use(
             response => response,
             async error => {
+                console.error("Перехватил 401", error);
                 const originalRequest = error.config;
 
                 if (error.response?.status === 401 && !originalRequest._retry) {
+                    console.log("Запуск refresh token");
                     if (this.isRefreshing) {
                         return new Promise((resolve, reject) => {
                             this.failedRequestsQueue.push({ resolve, reject });
@@ -98,7 +124,41 @@ class AxiosClient {
 
     async getEvents() {
         try {
-            return await this.axiosClient.get('Event/GetByIdProfile')
+            return await this.axiosClient.get('Event/GetEventsComission')
+        }
+        catch (error) {
+            console.error(error);
+            if (error.response && error.response.data && error.response.data.errors) {
+                const errors = error.response.data.errors;
+                const firstErrorArray = Object.values(errors)[0];
+                const firstErrorMessage = firstErrorArray ? firstErrorArray[0] : 'Неизвестная ошибка';
+                throw new Error(firstErrorMessage); // Выбрасываем ошибку с сообщением
+            } else {
+                throw new Error('Неизвестная ошибка');
+            }
+        }
+    }
+
+    async getProfile() {
+        try {
+            return await this.axiosClient.get('Profile/GetProfile')
+        }
+        catch (error) {
+            console.error(error);
+            if (error.response && error.response.data && error.response.data.errors) {
+                const errors = error.response.data.errors;
+                const firstErrorArray = Object.values(errors)[0];
+                const firstErrorMessage = firstErrorArray ? firstErrorArray[0] : 'Неизвестная ошибка';
+                throw new Error(firstErrorMessage); // Выбрасываем ошибку с сообщением
+            } else {
+                throw new Error('Неизвестная ошибка');
+            }
+        }
+    }
+
+    async logOut() {
+        try {
+            return await this.axiosClient.delete('Account/Logout')
         }
         catch (error) {
             console.error(error);

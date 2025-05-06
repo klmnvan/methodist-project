@@ -5,6 +5,8 @@ namespace Methodist_API.Dtos.DB
     public class EventDto
     {
         public Guid Id { get; set; }
+        public DateTime СreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
         public DateTime DateOfEvent { get; set; }
         public DateTime EndDateOfEvent { get; set; }
         public TypeOfEvent TypeOfEvent { get; set; }

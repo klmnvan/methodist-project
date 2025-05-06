@@ -7,6 +7,7 @@ using Methodist_API.Interfaces;
 using Methodist_API.Models.DB;
 using Methodist_API.Models.Identity;
 using Methodist_API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -75,6 +76,37 @@ namespace Methodist_API.Controllers
                     listResult.Add(newEvent);
                 });
                 return Ok(_mapper.Map<List<EventDto>>(listResult));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [SwaggerOperation(Summary = "Получить все мероприятия методической комиссии")]
+        [HttpGet("GetEventsComission")]
+        [Authorize(Roles = "Председатель методической комиссии")]
+        public async Task<ActionResult<List<EventDetailsDto>>> GetEventsComission()
+        {
+            try
+            {
+                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (appUser == null) return Unauthorized();
+                var userRoles = await _userManager.GetRolesAsync(appUser);
+                var listEntity = _eventRepository.SelectByIdMC(appUser.Id);
+                List<EventDetailsDto> listResult = new();
+                listEntity.ForEach(e =>
+                {
+                    EventDetailsDto newEvent = _mapper.Map<EventDetailsDto>(e);
+                    newEvent.TypeOfEvent = e.TypeOfEvent;
+                    var profile = _mapper.Map<ProfileDto>(e.Profile);
+                    profile.MC = e.Profile.MethodicalСommittee;
+                    profile.Email = appUser.Email;
+                    profile.Roles = userRoles.ToList();
+                    newEvent.Profile = profile;
+                    listResult.Add(newEvent);
+                });
+                return Ok(_mapper.Map<List<EventDetailsDto>>(listResult));
             }
             catch (Exception ex)
             {

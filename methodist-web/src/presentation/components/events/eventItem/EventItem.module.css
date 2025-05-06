@@ -4,7 +4,10 @@
     background: var(--color-container);
     border-radius: 0.5em;
     padding: 1em !important;
-    height: 100%;
+    min-height: 200px; /* Запрет уменьшения */
+    overflow: hidden; /* Обрезаем выходящий за границы контент */
+    font-family: var(--font-raleway), serif;
+    font-size: 1em;
 }
 
 .background:hover {
@@ -31,20 +34,22 @@
 .btns {
     display: flex;
     flex-direction: row;
-    justify-content: end;
     color: var(--color-primary);
-    align-items: center
+    align-items: center;
+    font-size: 12px;
+    box-sizing: border-box;
+    gap: 8px;
 }
 
 .approveBtn {
-    padding: 0.3em 1em !important;
-    border-radius: 0.5em;
+    border-radius: 5px;
+    padding: 4px 12px !important;
 }
 
 .categoryBtn {
     background: color-mix(in srgb, var(--color-primary) 20%, transparent);
-    padding: 0.3em 1em !important;
-    border-radius: 0.5em;
+    border-radius: 5px;
+    padding: 4px 12px !important;
 }
 
 .title {
@@ -52,17 +57,64 @@
     font-size: 1em;
     color: var(--color-title);
     font-weight: 600;
+    text-transform: capitalize;
 }
 
 .description {
     font-family: var(--font-raleway), serif;
-    font-size: 1em;
+    font-size: 12px;
     color: var(--color-title);
-    font-weight: 600;
+    font-weight: normal;
+    text-transform: capitalize;
+    line-height: 20px;
 }
 
 .gradient-line {
-    height: 0.1em; /* Высота линии */
+    height: 0.05em; /* Высота линии */
     background: linear-gradient(to right, #53B9F5, #1977FF); /* Градиент от одного цвета к другому */
     width: 100%; /* Ширина линии */
+}
+
+.profileRow {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    font-family: var(--font-raleway), serif;
+    font-size: 1em;
+}
+
+.profileRow > .name {
+    font-family: var(--font-raleway), serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--color-title);
+}
+
+.profileRow > .mc {
+    font-family: var(--font-raleway), serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--color-primary);
+}
+
+.rowTitle {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    font-family: var(--font-raleway), serif;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.date {
+    font-family: var(--font-poppins), serif;
+    color: var(--color-outline);
+    font-weight: normal;
+    font-size: 0.8em;
 }

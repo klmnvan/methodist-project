@@ -2,13 +2,15 @@ import {observer} from "mobx-react-lite";
 import {useMemo} from "react";
 import {LoginVM} from "@/presentation/components/login/LoginVM.jsx";
 import SpacerV from "@ui/spacers/SpacerV.jsx";
-import ButtonAuth from "@ui/button/ButtonAuth.jsx";
 import classes from  '../../pages/authorization/Authorization.module.css'
 import AuthInput from "@ui/inputs/authInput/AuthInput.jsx";
+import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
+import {useNavigate} from "react-router-dom";
 
 
 export const Login = observer(({onSwitch}) => {
     const formVM = useMemo(() => new LoginVM(), [])
+    const navigate = useNavigate();
     return (<>
         <div className={classes.formCont}>
             <div className={classes.form}>
@@ -30,7 +32,7 @@ export const Login = observer(({onSwitch}) => {
                     label="Пароль" type="password" placeholder="******" value={formVM.formData.password}
                     onChange={formVM.handleChange} name="password"/>
                 <SpacerV size={2} orientation={'v'}/>
-                <ButtonAuth onClick={formVM.logIn}>Войти</ButtonAuth>
+                <ButtonAuth onClick={() => formVM.logIn(navigate)}>Войти</ButtonAuth>
             </div>
         </div>
     </>)

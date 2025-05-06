@@ -31,6 +31,16 @@ namespace Methodist_API.Repositories
 
         public List<Event> SelectByIdProfile(Guid profileId) => _context.Events.Where(it => it.ProfileId == profileId).Include(it => it.TypeOfEvent).ToList();
 
+        public List<Event> SelectByIdMC(Guid id)
+        {
+            var profile = _context.Profiles.Single(it => it.Id == id);
+            return _context.Events
+                .Where(it => it.Profile.MC_id == profile.MC_id)
+                .Include(it => it.TypeOfEvent)
+                .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
+                .ToList();
+        }
+
         public bool TypeIsExists(Guid typeId)
         {
             return _context.TypeOfEvents.Any(it => it.Id == typeId);

@@ -1,3 +1,4 @@
+/*
 .background {
     background-color: var(--color-container);
     flex: calc(1 / 20);
@@ -44,3 +45,242 @@
     border-radius: 20%;
 }
 
+*/
+
+/* Основной контейнер Header */
+.header {
+    background-color: var(--color-container);
+    width: var(--header-width-desktop);
+    min-height: 100vh; /* Фиксируем высоту */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--header-vertical-padding) 0 !important;
+    box-sizing: border-box;
+    position: fixed; /* Фиксируем позицию */
+    left: 0;
+    top: 0;
+    z-index: 1000; /* Убедимся, что Header поверх контента */
+    transform: translateX(-100%); /* Изначально скрыто за левой границей */
+    transition: transform 0.3s ease;
+}
+
+.header.active {
+    transform: translateX(0); /* Показываем меню */
+}
+
+/* Оверлей для затемнения фона */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Под Header'ом */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Секции с иконками */
+.sections {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Уменьшаем отступы */
+}
+
+/* Иконки/кнопки меню */
+.section-cont {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 10px;
+    margin: 5px 0 !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    padding: 0.5em !important;
+}
+
+/* Стили для активного состояния */
+.section-cont.active {
+    background: var(--color-primary);
+    color: var(--color-title) !important;
+    padding: 10px !important; /* Отступ внутри квадрата */
+    width: 60px;   /* 40px + 10px с каждой стороны */
+    height: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Иконка внутри кнопки */
+.section-cont svg,
+.section-cont img {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+}
+
+/* Увеличиваем иконку в активном состоянии */
+.section-cont.active svg,
+.section-cont.active img {
+    width: 32px;
+    height: 32px;
+}
+
+/* Квадратный фон для активного элемента */
+.section-cont.active::before {
+    content: '';
+    position: absolute;
+    width: 60px; /* 40px + 10px с каждой стороны */
+    height: 60px;
+    background: var(--color-primary);
+    border-radius: 10px; /* Умеренно скругленные углы */
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.section-cont:hover {
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+/* Логотип */
+.logo {
+    width: 50px;
+    height: auto;
+    max-width: 100%;
+    margin: 0 !important; /* Сбрасываем стандартные отступы */
+    padding: 0 !important;
+}
+
+/* Бургер-меню (скрыто на десктопе) */
+.burger {
+    display: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100;
+}
+
+.theme {
+
+}
+
+.theme svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 767px) {
+    .header {
+        width: 70px;
+        height: 100vh;
+        min-height: auto;
+        transform: translateX(-100%); /* Скрываем за пределами экрана */
+        padding: 1rem 0 !important;
+    }
+
+    .header.active {
+        transform: translateX(0); /* Показываем при клике на бургер */
+    }
+
+    .sections {
+        gap: 0 !important;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    /* Сдвигаем контент, когда меню открыто */
+    .main-content {
+        margin-left: 0 !important;
+    }
+
+    /* Иконки/кнопки меню */
+    .section-cont {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        border-radius: 10px;
+        margin: 1px 0 !important;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+        padding: 0.5em !important;
+    }
+
+    .section-cont.active::before {
+        content: '';
+        position: absolute;
+        width: 40px; /* 40px + 10px с каждой стороны */
+        height: 40px;
+        background: var(--color-primary);
+        border-radius: 10px; /* Умеренно скругленные углы */
+        z-index: -1;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Иконка внутри кнопки */
+    .section-cont svg,
+    .section-cont img {
+        width: 16px;
+        height: 16px;
+        transition: all 0.3s ease;
+    }
+
+    /* Увеличиваем иконку в активном состоянии */
+    .section-cont.active svg,
+    .section-cont.active img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .logo {
+        width: 24px;
+        height: 24px;
+    }
+
+    .theme {
+
+    }
+
+    .theme svg {
+        width: 12px;
+        height: 12px;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .header {
+        transform: translateX(0); /* Всегда видно на десктопе */
+    }
+
+    .burger, .menu-overlay {
+        display: none; /* Скрываем на десктопе */
+    }
+}

@@ -3,24 +3,27 @@ import {observer} from "mobx-react-lite";
 import {Header} from "@/presentation/components/header/Header.jsx";
 import {useState} from "react";
 import {Events} from "@/presentation/components/events/Events.jsx";
+import {Profile} from "@/presentation/components/profile/Profile.jsx";
 
 function MainPage() {
     const [category, setCategory] = useState('Мероприятия');
     return (
         <div className={classes.background}>
             <Header onClick={setCategory}/>
-            {(() => {
-                switch (category) {
-                    case 'Профиль':
-                        return <></>;
-                    case 'Мероприятия':
-                        return <Events/>;
-                    case 'Статистика':
-                        return <></>;
-                    default:
-                        return <></>;
-                }
-            })()}
+            <div className={classes.mainContent}>
+                {(() => {
+                    switch (category) {
+                        case 'Профиль':
+                            return <Profile/>;
+                        case 'Мероприятия':
+                            return <Events/>;
+                        case 'Статистика':
+                            return <></>;
+                        default:
+                            return <></>;
+                    }
+                })()}
+            </div>
         </div>
     )
 }

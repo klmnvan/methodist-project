@@ -7,6 +7,7 @@ namespace Methodist_API.Interfaces
     public interface IEventRepository
     {
         public List<Event> SelectByIdProfile(Guid profileId);
+        public List<Event> SelectByIdMC(Guid id);
 
         public Event Insert(CreateEventDto newEvent, Guid profileId);
 

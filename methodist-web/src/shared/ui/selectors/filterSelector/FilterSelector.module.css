@@ -1,0 +1,92 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Выравниваем элементы по центру по вертикали */
+    background: var(--color-container); /* Фон контейнера */
+    border-radius: var(--border-radius); /* Закругленные углы */
+    padding: 12px 16px !important; /* Вертикальные 12px, горизонтальные 16px */
+    box-sizing: border-box; /* Учитываем padding в общей ширине */
+    transition: all 0.2s ease; /* Плавные анимации */
+    position: relative; /* Для позиционирования выпадающего списка */
+    cursor: pointer;
+    user-select: none;
+    /* Новые стили для ограничения высоты */
+    flex: 0 0 auto;
+    width: 250px; /* Фиксированная ширина */
+    min-width: 250px; /* Запрещаем уменьшение */
+    max-width: 250px; /* Запрещаем увеличение */
+    min-height: 56px; /* Фиксированная минимальная высота */
+    max-height: 56px; /* Фиксированная максимальная высота */
+    height: 56px; /* Фиксированная высота */
+}
+
+.columnValues {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0; /* Ключевое свойство для работы text-overflow */
+    overflow: hidden; /* Дополнительная защита */
+}
+
+.label {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--font-raleway), serif;
+    margin-bottom: 4px !important;
+    color: var(--color-title);
+}
+
+.selectedValue {
+    font-size: 12px;
+    font-weight: normal;
+    font-family: var(--font-poppins), serif;
+    color: var(--color-outline);
+    white-space: nowrap;       /* Запрет переноса строк */
+    overflow: hidden;          /* Скрытие выходящего за границы текста */
+    text-overflow: ellipsis;   /* Добавление ... при обрезке */
+    display: block;            /* Для корректной работы text-overflow */
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    background: var(--color-container);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.option {
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: var(--font-poppins), serif;
+    color: var(--color-outline);
+    box-sizing: border-box;
+    padding: 12px !important;
+}
+
+.option:hover {
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.icon {
+    margin-left: 16px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    width: 24px; /* Фиксированная ширина */
+    height: 100%; /* Занимает всю высоту контейнера */
+}
+
+.icon svg {
+    width: 26px; /* Оригинальная ширина иконки */
+    height: 26px; /* Оригинальная высота иконки */
+    flex-shrink: 0;
+}

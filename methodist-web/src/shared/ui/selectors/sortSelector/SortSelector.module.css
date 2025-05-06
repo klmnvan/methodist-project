@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: var(--font-poppins), serif;
+    justify-content: flex-end;
+}
+
+.label {
+    color: var(--color-title);
+}
+
+.selectedValue {
+    color: var(--color-primary);
+    white-space: nowrap;       /* Запрет переноса строк */
+    overflow: hidden;          /* Скрытие выходящего за границы текста */
+    text-overflow: ellipsis;   /* Добавление ... при обрезке */
+    display: block;            /* Для корректной работы text-overflow */
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background: var(--color-container);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.option {
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: var(--font-poppins), serif;
+    color: var(--color-outline);
+    box-sizing: border-box;
+    padding: 12px !important;
+}
+
+.option:hover {
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}

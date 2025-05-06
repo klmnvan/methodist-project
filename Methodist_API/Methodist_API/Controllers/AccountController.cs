@@ -152,6 +152,37 @@ namespace Methodist_API.Controllers
             });
         }
 
+        [SwaggerOperation(Summary = "Проверка валидности refresh token")]
+        [HttpGet("ValidateWebRefreshToken")]
+        [AllowAnonymous]
+        public async Task<ActionResult<bool>> ValidateWebRefreshToken()
+        {
+            // Получаем refresh token исключительно из кук
+            var refreshToken = Request.Cookies["refreshToken"];
+
+            // Если токена нет в куках - сразу false
+            if (string.IsNullOrEmpty(refreshToken))
+            {
+                return false;
+            }
+
+            try
+            {
+                // Извлекаем userId из токена
+                var userId = ExtractUserIdFromRefreshToken(refreshToken);
+
+                // Проверяем валидность токена и существование пользователя
+                var isValid = _tokenService.ValidateRefreshToken(refreshToken, userId, out _);
+                var userExists = await _userManager.FindByIdAsync(userId.ToString()) != null;
+
+                return isValid && userExists;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         //Этот метод возвращает разные значения для web и mobile.
         //В клиенте refresh и access сохраняются в куки, а в мобильном приложении возвращаются в теле ответа
         [SwaggerOperation(Summary = "Обновление токена")]
@@ -221,7 +252,6 @@ namespace Methodist_API.Controllers
         public async Task<ActionResult> Logout()
         {
             // Всегда удаляем куки (если это веб-клиент)
-            Response.Cookies.Delete("accessToken");
             Response.Cookies.Delete("refreshToken");
             return Ok("Вы успешно вышли из системы");
         }
