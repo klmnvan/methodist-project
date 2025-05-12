@@ -11,7 +11,9 @@
     align-items: center;
     flex: 1;
     min-width: 200px;
-    height: 56px;
+    height: 50px;
+    min-height: 50px;
+    max-height: 50px;
 }
 
 .background > div {

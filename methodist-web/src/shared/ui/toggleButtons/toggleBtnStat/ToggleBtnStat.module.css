@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    font-family: var(--font-raleway), serif;
+    font-size: 16px;
+    color: var(--color-title);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    width: fit-content;
+    margin: 0 auto !important;
+}
+
+.section {
+    box-sizing: border-box;
+    padding: 12px 16px !important;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.section.active {
+    background: var(--color-primary);
+}

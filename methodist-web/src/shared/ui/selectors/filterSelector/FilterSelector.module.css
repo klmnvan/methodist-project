@@ -10,14 +10,14 @@
     position: relative; /* Для позиционирования выпадающего списка */
     cursor: pointer;
     user-select: none;
-    /* Новые стили для ограничения высоты */
+
     flex: 0 0 auto;
-    width: 250px; /* Фиксированная ширина */
-    min-width: 250px; /* Запрещаем уменьшение */
-    max-width: 250px; /* Запрещаем увеличение */
-    min-height: 56px; /* Фиксированная минимальная высота */
-    max-height: 56px; /* Фиксированная максимальная высота */
-    height: 56px; /* Фиксированная высота */
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 50px;
+    max-height: 50px;
+    height: 50px;
 }
 
 .columnValues {

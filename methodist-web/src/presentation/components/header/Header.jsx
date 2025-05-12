@@ -7,6 +7,8 @@ import {IconProfile} from "@ui/icons/IconProfile.jsx";
 import {IconEvent} from "@ui/icons/IconEvent.jsx";
 import {IconStat} from "@ui/icons/IconStat.jsx";
 
+import {IconHamburger} from "@ui/icons/IconHamburger.jsx";
+
 export const Header = observer(({onClick}) => {
     const [currentSection, setCurrentSection] = useState("Мероприятия");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,10 +39,15 @@ export const Header = observer(({onClick}) => {
 
             {/* Бургер-меню (видно только на мобильных) */}
             <div
-                className={classes.burger}
+                className={!isMenuOpen ? `${classes.burger}` : `${classes.burger} ${classes.active}`}
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-                {isMenuOpen ? '✕' : '☰'}
+                {isMenuOpen
+                    ?
+                    <IconHamburger style={{transform: 'scaleX(-1)'}}/>
+                    :
+                    <IconHamburger/>
+                }
             </div>
 
             {/* Оверлей */}

@@ -39,8 +39,8 @@ export class ProfileVM {
 
     updateProfile = async () => {
         try {
-            const response = await httpClient.updateProfile(this.draftProfile)
-            this.profile = response.data;
+            const response = await httpClient.updateProfile(this.draftProfile);
+            await this.getProfile();
             this.state = this.states[0];
             console.log(response.data);
         }

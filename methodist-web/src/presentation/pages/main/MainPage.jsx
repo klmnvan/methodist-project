@@ -4,6 +4,7 @@ import {Header} from "@/presentation/components/header/Header.jsx";
 import {useState} from "react";
 import {Events} from "@/presentation/components/events/Events.jsx";
 import {Profile} from "@/presentation/components/profile/Profile.jsx";
+import {Statistics} from "@/presentation/components/statistics/Statistics.jsx";
 
 function MainPage() {
     const [category, setCategory] = useState('Мероприятия');
@@ -18,7 +19,7 @@ function MainPage() {
                         case 'Мероприятия':
                             return <Events/>;
                         case 'Статистика':
-                            return <></>;
+                            return <Statistics/>;
                         default:
                             return <></>;
                     }
