@@ -1,13 +1,13 @@
 .background {
     display: flex;
-    gap: 70px;
     flex-direction: row;
+    gap: 70px;
     max-width: 1440px;
     font-family: var(--font-raleway), serif;
-    width: 100%;
     box-sizing: border-box;
     padding: 28px 20px !important;
     margin: auto !important;
+    width: 100%;
     scrollbar-width: thin;
     scrollbar-color: var(--color-outline) var(--color-container);
     align-content: center;

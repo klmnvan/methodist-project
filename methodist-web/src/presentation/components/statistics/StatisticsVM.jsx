@@ -16,25 +16,42 @@ export class StatisticsVM {
     modes = ["Комиссия", "Преподаватель"]
     mode = this.modes[1]
     search = ""
+    teachers = null
+    currentTeacher = null
+    commissions = null
+    currentCommission = null
     events = null
     data = [
-        {name:"Участие", value: 0},
-        {name:"Публикация", value: 0},
-        {name:"Стажировка", value: 0},
-        {name:"Проведение", value: 0},
+        {color: "#22B07D", name:"Участие", value: 0},
+        {color: "#FF7C3B", name:"Публикация", value: 0},
+        {color: "#C184FF", name:"Стажировка", value: 0},
+        {color: "#1977FF", name:"Проведение", value: 0},
     ]
+
+    colorMap = {
+        "Участие": "#22B07D",
+        "Публикация": "#FF7C3B",
+        "Стажировка": "#C184FF",
+        "Проведение": "#1977FF"
+    };
 
     constructor() {
         makeObservable(this, {
             dateRange: observable,
             mode: observable,
             displayedDateRange: observable,
+            teachers: observable,
+            currentTeacher: observable,
+            currentCommission: observable,
+            commissions: observable,
             data: observable,
             search: observable,
             handleSetDateRange: action,
             switchMode: action,
             onSearch: action,
             getEvents: action,
+            selectCommission: action,
+            selectTeacher: action
         })
     }
 
@@ -68,6 +85,16 @@ export class StatisticsVM {
             }
 
             this.events.forEach(event => {
+                if(this.mode === this.modes[0]) {
+                    console.log("Текущий препод", this.currentCommission);
+                    if (event.profile.mc.id !== this.currentCommission) return;
+                }
+                if(this.mode === this.modes[1]) {
+                    console.log("Текущий препод", this.currentTeacher);
+                    if (event.profile.id !== this.currentTeacher) return;
+                }
+
+                console.log("взяли", this.currentTeacher);
                 const eventDate = new Date(event.dateOfEvent).getTime();
                 const isInRange = eventDate >= startTimestamp && eventDate <= endTimestamp;
                 if (!isInRange) return;
@@ -79,8 +106,10 @@ export class StatisticsVM {
 
             this.data = Object.entries(counters).map(([name, value]) => ({
                 name,
-                value
+                value,
+                color: this.colorMap[name] || "#CCCCCC" // Используем цвет из карты или серый по умолчанию
             }));
+            console.log(toJS(this.data))
         }
     }
 
@@ -88,6 +117,37 @@ export class StatisticsVM {
         try {
             const response = await httpClient.getEvents()
             this.events = response.data;
+
+            const uniqueTechers = [
+                ...new Map(response.data
+                    .map(e => e.profile)
+                    .filter(Boolean)
+                    .map(teacher => [teacher.id, teacher]))
+                    .values()
+            ];
+
+            const uniqueCommissions = [
+                ...new Map(response.data
+                    .map(e => e.profile.mc)
+                    .filter(Boolean)
+                    .map(commission => [commission.id, commission]))
+                    .values()
+            ];
+
+            this.teachers = uniqueTechers.map(teacher => ({
+                id: teacher.id,
+                name: teacher.lastName + " " + teacher.firstName[0] + ". " + teacher.patronymic[0] + ".",
+            }))
+
+            this.commissions = uniqueCommissions.map(commission => ({
+                id: commission.id,
+                name: commission.name,
+            }))
+
+            this.currentTeacher = uniqueTechers[0].id;
+            this.currentCommission = uniqueCommissions[0].id;
+            console.log("Преподаватели:", toJS(this.teachers));
+            console.log("Комиссии:", toJS(this.commissions));
             console.log(response.data);
             this.calcData()
         } catch (error) {
@@ -104,12 +164,28 @@ export class StatisticsVM {
 
     switchMode = (mode) => {
         this.mode = mode;
+        if (mode === this.modes[0]) {
+
+        }
+        if (mode === this.modes[1]) {
+
+        }
         console.log(mode);
     }
 
     onSearch = (value) => {
         console.log("Строка поиска: ", toJS(value.target.value));
         this.search = value.target.value;
+    }
+
+    selectTeacher = (teacher) => {
+        console.log(toJS(teacher))
+        this.currentTeacher = teacher;
+    }
+
+    selectCommission = (commission) => {
+        console.log(toJS(commission))
+        this.currentCommission = commission;
     }
 
 }

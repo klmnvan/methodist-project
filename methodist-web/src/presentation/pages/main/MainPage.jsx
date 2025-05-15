@@ -5,6 +5,7 @@ import {useState} from "react";
 import {Events} from "@/presentation/components/events/Events.jsx";
 import {Profile} from "@/presentation/components/profile/Profile.jsx";
 import {Statistics} from "@/presentation/components/statistics/Statistics.jsx";
+import {Form} from "@/presentation/components/form/Form.jsx";
 
 function MainPage() {
     const [category, setCategory] = useState('Мероприятия');
@@ -20,6 +21,8 @@ function MainPage() {
                             return <Events/>;
                         case 'Статистика':
                             return <Statistics/>;
+                        case 'Создание формы':
+                            return <Form/>;
                         default:
                             return <></>;
                     }

@@ -2,16 +2,50 @@
     display: flex;
     flex-direction: column;
     background: var(--color-container);
-    border-radius: 0.5em;
-    padding: 1em !important;
-    min-height: 200px; /* Запрет уменьшения */
-    overflow: hidden; /* Обрезаем выходящий за границы контент */
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    padding: 16px !important;
+    min-height: 200px;
     font-family: var(--font-raleway), serif;
-    font-size: 1em;
+    overflow: hidden;
 }
 
 .background:hover {
     background: color-mix(in srgb, var(--color-container) 60%, transparent);
+}
+
+.rowTitle {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    min-width: 0;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.title {
+    color: var(--color-title);
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: lowercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    min-width: 0;
+}
+
+.title::first-letter {
+    text-transform: uppercase; /* Затем первую букву — к верхнему */
 }
 
 .rowDate {
@@ -19,16 +53,21 @@
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
-    font-family: var(--font-raleway), serif;
-    font-size: 0.8em;
+    font-size: 12px;
+    box-sizing: border-box;
 }
 
 .date {
-    display: flex;
-    flex: 1;
-    color: var(--color-primary);
-    height: auto;
-    align-items: center;
+    font-family: var(--font-poppins), serif;
+    color: var(--color-outline);
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.gradient-line {
+    height: 1px;
+    background: linear-gradient(to right, #53B9F5, #1977FF);
+    width: 100%;
 }
 
 .btns {
@@ -52,16 +91,7 @@
     padding: 4px 12px !important;
 }
 
-.title {
-    font-family: var(--font-raleway), serif;
-    font-size: 1em;
-    color: var(--color-title);
-    font-weight: 600;
-    text-transform: capitalize;
-}
-
 .description {
-    font-family: var(--font-raleway), serif;
     font-size: 12px;
     color: var(--color-title);
     font-weight: normal;
@@ -69,52 +99,21 @@
     line-height: 20px;
 }
 
-.gradient-line {
-    height: 0.05em; /* Высота линии */
-    background: linear-gradient(to right, #53B9F5, #1977FF); /* Градиент от одного цвета к другому */
-    width: 100%; /* Ширина линии */
-}
-
 .profileRow {
     display: flex;
     flex-direction: column;
     align-content: center;
     font-family: var(--font-raleway), serif;
-    font-size: 1em;
+    font-size: 12px;
 }
 
 .profileRow > .name {
     font-family: var(--font-raleway), serif;
-    font-size: 12px;
     font-weight: bold;
     color: var(--color-title);
 }
 
 .profileRow > .mc {
-    font-family: var(--font-raleway), serif;
-    font-size: 12px;
     font-weight: 400;
     color: var(--color-primary);
-}
-
-.rowTitle {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    font-family: var(--font-raleway), serif;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.date {
-    font-family: var(--font-poppins), serif;
-    color: var(--color-outline);
-    font-weight: normal;
-    font-size: 0.8em;
 }

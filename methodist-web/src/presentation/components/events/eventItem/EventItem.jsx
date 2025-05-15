@@ -8,12 +8,12 @@ export default function EventItem({event}) {
     return (
         <div className={classes.background}>
             <div className={classes.rowTitle}>
-                <div style={{color: getEventColor(event.typeOfEvent.name), height: "100%", width: "auto"}}>
+                <div style={{color: getEventColor(event.typeOfEvent.name), height: "100%", width: "auto" }}>
                     <IconEventBox style={{height: "100%", width: "auto"}}/>
                 </div>
                 <SpacerPX orientation="h" size={8}/>
                 <div className={classes.column}>
-                    <div className={classes.title}>{event.name}</div>
+                    <div className={classes.title}>{getTitleEvent(event)}</div>
                     <SpacerPX orientation="v" size={4}/>
                     <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                         <div style={{color: "var(--color-outline)", height: "100%", width: "auto"} }>
@@ -53,7 +53,7 @@ export default function EventItem({event}) {
             <SpacerPX orientation='v' size={12}/>
             {/*для описания*/}
             <div className={classes.description}>
-                Участие в чемпионате Профессионалы в компетенции “Разработка мобильных приложений”
+                {getDescriptionEvent(event)}
             </div>
             <SpacerPX orientation='v' size={12}/>
             <div className={classes.profileRow}>
@@ -74,3 +74,34 @@ const getEventColor = (category) => {
     // Далее другие варианты
     return 'transparent';
 };
+
+
+const getDescriptionEvent = (event) => {
+    switch(event.typeOfEvent.name) {
+        case "Участие":
+            return event.formOfEvent;
+        case "Проведение":
+            return event.location;
+        case "Стажировка":
+            return `Количество часов: ${event.quantityOfHours}`;
+        case "Публикация":
+            return event.location;
+        default:
+            return "";
+    }
+}
+
+const getTitleEvent = (event) => {
+    switch(event.typeOfEvent.name) {
+        case "Участие":
+            return event.name;
+        case "Проведение":
+            return event.name;
+        case "Стажировка":
+            return event.location;
+        case "Публикация":
+            return event.name;
+        default:
+            return "";
+    }
+}

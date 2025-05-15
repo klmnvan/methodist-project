@@ -7,7 +7,7 @@
     border-radius: 10px;
     background: color-mix(in srgb, var(--color-primary) 20%, transparent);
     width: fit-content;
-    margin: 0 auto !important;
+    flex-wrap: wrap;
 }
 
 .section {

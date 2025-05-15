@@ -1,24 +1,22 @@
 .onBoard {
     width: 80%;
     margin: auto auto !important;
+    font-family: var(--font-raleway), serif;
 }
 
 .title-onBoard {
-    font-family: var(--font-raleway), serif;
-    margin-top: 0.6vw !important;
-    font-size: 1.0vw;
+    margin-top: 56px !important;
+    font-size: 20px;
     font-weight: 600;
     color: var(--color-title);
     margin-bottom: 0.6vw !important;
 }
 
 .description-onBoard {
-    font-family: var(--font-raleway), serif;
-    margin-top: 0.6vw !important;
-    font-size: 0.8vw;
+    margin-top: 16px !important;
+    font-size: 16px;
     font-weight: normal;
     color: var(--color-description);
-    margin-bottom: 0.6vw !important;
 }
 
 .row-image {
@@ -29,25 +27,25 @@
 }
 
 .image-onBoard {
-    width: 30%;
+    width: 200px;
 }
 
-.row-image > button {
-    width: 4vh; /* Adjust size as needed */
-    height: 4vh; /* Adjust size as needed */
-    border: none;
-    border-radius: 10px; /* Rounded corners */
-    background: linear-gradient(180deg, #D9D9D9, #679FF0); /* Gradient background */
+.btnContainer {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--border-radius);
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     position: relative;
-    margin: 0 1vw !important;
+    transition: background 0.3s ease;
+    margin: 0 32px !important;
 }
 
 .row-image.button.image-in-button {
-    width: 50%; /* Adjust size of the SVG */
-    height: auto; /* Maintain aspect ratio */
-    position: absolute; /* Center the icon */
+    width: 30%;
+    height: auto;
+    position: absolute;
 }

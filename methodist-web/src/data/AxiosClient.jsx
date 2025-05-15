@@ -127,7 +127,7 @@ class AxiosClient {
 
     async getEvents() {
         try {
-            return await this.axiosClient.get('Event/GetEventsComission')
+            return await this.axiosClient.get('Event/GetEvents')
         }
         catch (error) {
             console.error(error);

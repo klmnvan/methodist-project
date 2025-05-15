@@ -12,7 +12,6 @@
 }
 
 .leftColumn {
-    width: fit-content;
     height: fit-content;
     background: var(--color-container);
     box-sizing: border-box;
@@ -22,6 +21,8 @@
     flex-direction: row;
     gap: 16px;
     margin: auto 16px !important;
+    max-width: 600px;
+    width: 600px;
 }
 
 .rightColumn {
@@ -42,6 +43,43 @@
 .modes {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.scrollableListContainer {
+    flex: 1;
+    flex-direction: column;
+    overflow-y: auto;
+    margin-top: 12px !important;
+    border-radius: var(--border-radius);
+    background: var(--color-bg);
+}
+
+.searchItem {
+    box-sizing: border-box;
+    padding: 16px !important;
+    color: var(--color-title);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchItem:hover {
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    cursor: pointer;
+}
+
+.noItems {
+    box-sizing: border-box;
+    padding: 16px !important;
+    color: var(--color-title);
+}
+
+.icon {
+    margin-left: 12px !important;
+    width: auto;
+    height: 10px;
 }
 
 .datePicker {
@@ -97,6 +135,8 @@
     .leftColumn {
         flex-direction: column;
         flex: 0 0 auto;
+        width: fit-content;
+        align-items: center
     }
 
     .rightColumn {

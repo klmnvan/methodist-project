@@ -8,6 +8,7 @@ import {IconEvent} from "@ui/icons/IconEvent.jsx";
 import {IconStat} from "@ui/icons/IconStat.jsx";
 
 import {IconHamburger} from "@ui/icons/IconHamburger.jsx";
+import {IconPlus} from "@ui/icons/IconPlus.jsx";
 
 export const Header = observer(({onClick}) => {
     const [currentSection, setCurrentSection] = useState("Мероприятия");
@@ -27,6 +28,10 @@ export const Header = observer(({onClick}) => {
         {
             image: <IconProfile/>,
             path: "Профиль"
+        },
+        {
+            image: <IconPlus/>,
+            path: "Создание формы"
         },
     ]
 

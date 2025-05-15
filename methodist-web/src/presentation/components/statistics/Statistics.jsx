@@ -7,8 +7,8 @@ import {PieChart} from "@/presentation/components/statistics/pieChart/PieChart.j
 import {ToggleBtnStat} from "@ui/toggleButtons/toggleBtnStat/ToggleBtnStat.jsx";
 import SearchInput from "@ui/inputs/searchInput/SearchInput.jsx";
 import SpacerPX from "@ui/spacers/SpacerPX.jsx";
-import ButtonSmallWidth from "@ui/button/buttonSmall/ButtonSmallWidth.jsx";
 import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
+import icon_tick from "@images/icon_tick.svg"
 
 export const Statistics = observer(() => {
     const vm = useMemo(() => new StatisticsVM(), [])
@@ -24,6 +24,45 @@ export const Statistics = observer(() => {
                     <ToggleBtnStat values={vm.modes} currentValue={vm.mode} onChange={vm.switchMode}/>
                     <SpacerPX orientation="v" size={12}/>
                     <SearchInput onChange={vm.onSearch} background={"var(--color-bg)"}/>
+                    <div className={classes.scrollableListContainer}>
+                        {vm.mode === vm.modes[1] && vm.teachers && (
+                            vm.teachers.map(teacher => (
+                                <>
+                                    <div
+                                        key={teacher.id}
+                                        className={classes.searchItem}
+                                        onClick={() => {vm.selectTeacher(teacher.id)}}>
+                                        {teacher.name}
+                                        <SpacerPX orientation="h" size={4}/>
+                                        {vm.currentTeacher && vm.currentTeacher === teacher.id && (
+                                            <img src={icon_tick} alt={""} className={classes.icon}/>
+                                        )}
+                                    </div>
+                                </>
+                            ))
+                        )}
+                        {vm.mode === vm.modes[0] && vm.commissions && (
+                            vm.commissions.map(commission => (
+                                <>
+                                    <div
+                                        key={commission.id}
+                                        className={classes.searchItem}
+                                        onClick={() => {vm.selectCommission(commission.id)}}>
+                                        {commission.name}
+                                        <SpacerPX orientation="h" size={4}/>
+                                        {vm.currentCommission && vm.currentCommission === commission.id && (
+                                            <img src={icon_tick} alt={""} className={classes.icon}/>
+                                        )}
+                                    </div>
+                                </>
+                            ))
+                        )}
+                        {!vm.teachers && (
+                            <div className={classes.noItems}>
+                                Нет данных
+                            </div>
+                        )}
+                    </div>
                 </div>
                 <div className={classes.datePicker}>
                     <CustomDatePicker rangeValue={vm.dateRange} handleSetDateRange={vm.handleSetDateRange}/>

@@ -29,7 +29,16 @@ namespace Methodist_API.Repositories
             return _context.Events.Include(it => it.TypeOfEvent).Single(it => it.Id == item.Entity.Id);
         }
 
-        public List<Event> SelectByIdProfile(Guid profileId) => _context.Events.Where(it => it.ProfileId == profileId).Include(it => it.TypeOfEvent).ToList();
+        public List<Event> SelectAll() => _context.Events
+            .Include(it => it.TypeOfEvent)
+            .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
+            .ToList();
+
+        public List<Event> SelectByIdProfile(Guid profileId) => _context.Events
+            .Where(it => it.ProfileId == profileId)
+            .Include(it => it.TypeOfEvent)
+            .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
+            .ToList();
 
         public List<Event> SelectByIdMC(Guid id)
         {

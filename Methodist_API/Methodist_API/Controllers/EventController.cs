@@ -56,45 +56,32 @@ namespace Methodist_API.Controllers
             }
         }
 
-        [SwaggerOperation(Summary = "Получить все мероприятия пользователя")]
-        [HttpGet("GetByIdProfile")]
-        public async Task<ActionResult<List<EventDto>>> GetByIdProfile()
-        {
-            try
-            {
-                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (appUser == null)
-                {
-                    return Unauthorized();
-                }
-                var listEntity = _eventRepository.SelectByIdProfile(appUser.Id);
-                List<EventDto> listResult = new();
-                listEntity.ForEach(e =>
-                {
-                    EventDto newEvent = _mapper.Map<EventDto>(e);
-                    newEvent.TypeOfEvent = e.TypeOfEvent;
-                    listResult.Add(newEvent);
-                });
-                return Ok(_mapper.Map<List<EventDto>>(listResult));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
-        [SwaggerOperation(Summary = "Получить все мероприятия методической комиссии")]
-        [HttpGet("GetEventsComission")]
-        [Authorize(Roles = "Председатель методической комиссии")]
-        public async Task<ActionResult<List<EventDetailsDto>>> GetEventsComission()
+        [SwaggerOperation(Summary = "Получить все мероприятия по доступности роли")]
+        [HttpGet("GetEvents")]
+        public async Task<ActionResult<List<EventDetailsDto>>> GetEvents()
         {
             try
             {
                 var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
                 if (appUser == null) return Unauthorized();
                 var userRoles = await _userManager.GetRolesAsync(appUser);
-                var listEntity = _eventRepository.SelectByIdMC(appUser.Id);
                 List<EventDetailsDto> listResult = new();
+                List<Event> listEntity = new();
+                if (userRoles.ToList().Contains("Администратор") ||
+                    userRoles.ToList().Contains("Руководитель корпуса") ||
+                    userRoles.ToList().Contains("Представитель научно-методического центра"))
+                {
+                    listEntity = _eventRepository.SelectAll();
+                }
+                else if(userRoles.ToList().Contains("Председатель методической комиссии"))
+                {
+                    listEntity = _eventRepository.SelectByIdMC(appUser.Id);
+                }
+                else if (userRoles.ToList().Contains("Член методической комиссии"))
+                {
+                    listEntity = _eventRepository.SelectByIdProfile(appUser.Id);
+                }
+
                 listEntity.ForEach(e =>
                 {
                     EventDetailsDto newEvent = _mapper.Map<EventDetailsDto>(e);
@@ -106,6 +93,7 @@ namespace Methodist_API.Controllers
                     newEvent.Profile = profile;
                     listResult.Add(newEvent);
                 });
+
                 return Ok(_mapper.Map<List<EventDetailsDto>>(listResult));
             }
             catch (Exception ex)

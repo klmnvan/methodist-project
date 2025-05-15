@@ -6,13 +6,6 @@ const MARGIN_X = 50;
 const MARGIN_Y = 50;
 const LEGEND_WIDTH = 60; // Ширина области для легенды
 
-const colors = [
-    "#22B07D",
-    "#FF7C3B",
-    "#C184FF",
-    "#1977FF"
-];
-
 export const PieChart = ({ data }) => {
     const svgRef = useRef(null);
     const containerRef = useRef(null);
@@ -79,6 +72,9 @@ export const PieChart = ({ data }) => {
         const centroid = arcGenerator.centroid(sliceInfo);
         const slicePath = arcGenerator(sliceInfo);
 
+        const dataItem = data.find(item => item.name === grp.data.name);
+        const color = allZero ? "#CCCCCC" : (dataItem?.color || "#22B07D");
+
         return (
             <g
                 key={i}
@@ -102,7 +98,7 @@ export const PieChart = ({ data }) => {
             >
                 <path
                     d={slicePath}
-                    fill={allZero ? "#CCCCCC" : colors[i % colors.length]}
+                    fill={color}
                 />
                 {!allZero && (
                     <text
@@ -129,7 +125,7 @@ export const PieChart = ({ data }) => {
                 y={0}
                 width={20}
                 height={20}
-                fill={allZero ? "#CCCCCC" : colors[i % colors.length]}
+                fill={allZero ? "#CCCCCC" : item.color}
             />
             <text
                 x={30}

@@ -1,0 +1,40 @@
+.background {
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    max-width: 1440px;
+    font-family: var(--font-raleway), serif;
+    box-sizing: border-box;
+    padding: 28px 20px !important;
+    margin: 0 auto !important;
+    width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-outline) var(--color-container);
+    color: var(--color-title);
+}
+
+.container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 28px !important;
+    border-radius: var(--border-radius);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+
+.titleInput {
+    font-size: 16px;
+    font-weight: normal;
+    color: var(--color-title);
+}
+
+.label {
+    margin-bottom: 12px !important;
+    font-family: var(--font-poppins), serif;
+    font-size: 16px;
+}

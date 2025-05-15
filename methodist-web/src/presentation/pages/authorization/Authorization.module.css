@@ -1,6 +1,7 @@
 .background {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    overflow-y: auto;
     background: var(--color-bg);
     display: flex;
 }
@@ -11,15 +12,21 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    box-sizing: border-box;
+    padding: 30px !important;
+    background: var(--color-bg);
 }
 
 .form {
-    width: 50%;
+    width: 100%;
+    height: 100%;
     margin: auto auto !important;
+    box-sizing: border-box;
 }
 
 .onBoard-cont {
     flex: calc(2 / 5);
+    padding: 30px !important;
     background: var(--color-container);
     display: flex;
     text-align: center;
@@ -27,17 +34,42 @@
 
 .title-auth {
     font-family: var(--font-poppins), serif ;
-    font-size: 2.0vw;
+    font-size: 24px;
     font-weight: bold;
     color: var(--color-title);
 }
 
 .description-auth {
     font-family: var(--font-poppins), serif;
-    font-size: 1.0vw;
+    font-size: 16px;
     color: var(--color-description);
 }
 
 .description-auth.link {
     color: var(--color-primary);
+}
+
+@media (max-width: 1000px) {
+
+    .background {
+        flex-direction: column;
+    }
+
+    .form-cont {
+        flex: 1;
+    }
+
+    .form {
+        width: 100%;
+        height: 100%;
+        margin: auto auto !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .onBoard-cont {
+        flex: 0;
+    }
+
 }
