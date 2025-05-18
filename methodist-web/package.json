@@ -1,5 +1,4 @@
 {
-  "proxy": "http://localhost:80",
   "name": "reacttest",
   "private": true,
   "version": "0.0.0",

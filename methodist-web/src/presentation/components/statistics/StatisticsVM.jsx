@@ -164,12 +164,6 @@ export class StatisticsVM {
 
     switchMode = (mode) => {
         this.mode = mode;
-        if (mode === this.modes[0]) {
-
-        }
-        if (mode === this.modes[1]) {
-
-        }
         console.log(mode);
     }
 

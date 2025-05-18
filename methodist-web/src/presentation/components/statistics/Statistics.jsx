@@ -1,5 +1,5 @@
 import {observer} from "mobx-react-lite";
-import React, {useEffect, useMemo} from "react";
+import React, {useEffect, useState} from "react";
 import {StatisticsVM} from "@/presentation/components/statistics/StatisticsVM.jsx";
 import classes from "./Statistics.module.css";
 import {CustomDatePicker} from "@ui/datePicker/customDatePicker/CustomDatePicker.jsx";
@@ -11,7 +11,7 @@ import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
 import icon_tick from "@images/icon_tick.svg"
 
 export const Statistics = observer(() => {
-    const vm = useMemo(() => new StatisticsVM(), [])
+    const [vm] = useState(() => new StatisticsVM());
 
     useEffect(() => {
         vm.getEvents();

@@ -3,10 +3,10 @@ import {userStore} from "@/stores/UserStore.jsx";
 
 class AxiosClient {
 
-    BASE_URL = 'http://localhost:80/'
+    BASE_URL = 'https://iis.ngknn.ru/ngknn/КлимычеваАА/API/'
 
     constructor() {
-        this.BASE_URL = 'http://localhost:80/'
+        this.BASE_URL = 'https://iis.ngknn.ru/ngknn/КлимычеваАА/API/'
         this.axiosClient = axios.create({
             baseURL: this.BASE_URL,
             timeout: 1000,
@@ -21,10 +21,9 @@ class AxiosClient {
     async validateRefreshToken() {
         try {
             console.log("Проверяю refresh token");
-            //const response = await this.axiosClient.patch('Account/ValidateWebRefreshToken');
             const response = await axios(
                 {
-                    url: 'http://localhost:80/Account/ValidateWebRefreshToken',
+                    url: 'https://iis.ngknn.ru/ngknn/КлимычеваАА/API/Account/ValidateWebRefreshToken',
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true,
                 }

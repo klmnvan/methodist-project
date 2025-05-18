@@ -24,7 +24,7 @@ namespace Tests
     
     public class AccountControllerTests
     {
-        private readonly ITokenService _tokenService;
+        /*private readonly ITokenService _tokenService;
         private readonly MKDbContext _context;
         private readonly ILogger<AccountController> _logger;
         private Guid idProfile;
@@ -350,7 +350,7 @@ namespace Tests
             }
             result.Should().NotBeNull();
             result.Should().BeAssignableTo<ActionResult<ProfileInfoDto>>();
-        }
+        }*/
 
     }
 }

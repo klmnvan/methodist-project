@@ -14,7 +14,7 @@ export const Header = observer(({onClick}) => {
     const [currentSection, setCurrentSection] = useState("Мероприятия");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const closeMenu = () => setIsMenuOpen(false);
-    const { theme, switchTheme } = useTheme();
+    const { switchTheme } = useTheme();
 
     let sections = [
         {
