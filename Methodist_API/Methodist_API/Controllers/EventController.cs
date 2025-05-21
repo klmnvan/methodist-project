@@ -102,6 +102,23 @@ namespace Methodist_API.Controllers
             }
         }
 
+        [SwaggerOperation(Summary = "Получить все категории мероприятий")]
+        [HttpGet("GetTypeOfEvents")]
+        public async Task<ActionResult<List<TypeOfEventDto>>> GetTypeOfEvents()
+        {
+            try
+            {
+                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (appUser == null) return Unauthorized();
+                var types = _eventRepository.SelectAllTypes();
+                return Ok(_mapper.Map<List<TypeOfEventDto>>(types));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [SwaggerOperation(Summary = "Изменить часть мероприятия")]
         [HttpPatch("UpdatePart")]
         public async Task<ActionResult<Event>> UpdatePart([FromHeader(Name = "EventId")] Guid eventId, PatchEventDto dto)

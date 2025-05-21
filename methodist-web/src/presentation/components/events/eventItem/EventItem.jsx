@@ -59,7 +59,7 @@ export default function EventItem({event}) {
             <div className={classes.profileRow}>
                 <div className={classes.name}>{`${event.profile.firstName} ${event.profile.patronymic} ${event.profile.lastName}`}</div>
                 <SpacerPX orientation="v" size={4}/>
-                <div className={classes.mc}>{`Комиссия ${event.profile.mc.name || "не указана" }`}</div>
+                <div className={classes.mc}>{`Комиссия ${event.profile && event.profile.mc && event.profile.mc.name || "не указана" }`}</div>
             </div>
 
         </div>

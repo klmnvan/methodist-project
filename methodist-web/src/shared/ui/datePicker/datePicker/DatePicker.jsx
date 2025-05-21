@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import classes from "../customDatePicker/CustomDatePicker.module.css";
+import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
 
 export const DatePicker = ({ selectedDate, handleDateSelect }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -72,10 +73,14 @@ export const DatePicker = ({ selectedDate, handleDateSelect }) => {
     return (
         <div className={classes.datepicker}>
             <div
-                className={classes.dateDisplay}
-                onClick={() => setIsOpen(!isOpen)}
+                className={classes.dateRow}
             >
-                {formatDate(selected) || "Выберите дату"}
+                <div className={classes.dateDisplay}>{formatDate(selected) || "Выберите дату"}</div>
+                <ButtonAuth
+                    onClick={() => setIsOpen(!isOpen)}
+                    style={{background:"var(--color-primary)"}}>
+                    {isOpen ? "Скрыть" : "Изменить"}
+                </ButtonAuth>
             </div>
 
             {isOpen && (

@@ -21,7 +21,6 @@ export default function SortSelector({title, selectedValue, options, onChange}) 
                             key={option.value}
                             className={classes.option}
                             onClick={() => {
-                                console.log(option.id)
                                 onChange(option.id);
                                 setIsOpen(false);
                             }}

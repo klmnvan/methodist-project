@@ -16,6 +16,7 @@ namespace Methodist_API.Interfaces
 
         public Event UpdatePart(Guid eventId, PatchEventDto dto);
         public bool Delete(Guid eventId);
+        public List<TypeOfEvent> SelectAllTypes();
 
     }
 }

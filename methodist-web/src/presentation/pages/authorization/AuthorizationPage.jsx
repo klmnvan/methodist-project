@@ -1,6 +1,6 @@
 import {observer} from "mobx-react-lite";
 import {useEffect, useRef, useState} from "react";
-import {OnBoardVM} from "@/presentation/components/onBoard/OnBoardVM.jsx";
+import {OnBoardVM} from "@/presentation/components/onBoard/OnBoardVM.js";
 import classes from "@/presentation/pages/authorization/Authorization.module.css";
 import {Login} from "@/presentation/components/login/Login.jsx";
 import {OnBoard} from "@/presentation/components/onBoard/OnBoard.jsx";

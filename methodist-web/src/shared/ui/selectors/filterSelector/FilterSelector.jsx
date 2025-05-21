@@ -21,8 +21,8 @@ export default function FilterSelector({title, icon, selectedValue, options, onC
                                 className={classes.option}
                                 onClick={() => {
                                     console.log(option.id)
-                                    onChange(option.id);
-                                    setIsOpen(false);
+                                    onChange(option.id)
+                                    setIsOpen(false)
                                 }}
                             >
                                 {option.name}

@@ -1,6 +1,6 @@
 import {observer} from "mobx-react-lite";
 import classes from "@/presentation/components/profile/Profile.module.css";
-import {ProfileVM} from "@/presentation/components/profile/ProfileVM.jsx";
+import {ProfileVM} from "@/presentation/components/profile/ProfileVM.js";
 import {useEffect, useMemo} from "react";
 import {useNavigate} from "react-router-dom";
 import SpacerPX from "@ui/spacers/SpacerPX.jsx";

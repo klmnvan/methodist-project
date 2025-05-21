@@ -54,7 +54,7 @@
 
 .eventsGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    grid-template-columns: repeat(4, 1fr); /* 3 колонки */
     gap: 24px; /* Отступ между карточками */
     margin: 24px 0 !important;
 }
@@ -106,7 +106,12 @@
     position: absolute;
 }
 
-/* Адаптация для планшетов */
+@media (max-width: 1424px) {
+    .eventsGrid {
+        grid-template-columns: repeat(3, 1fr); /* 2 колонки */
+    }
+}
+
 @media (max-width: 1024px) {
     .eventsGrid {
         grid-template-columns: repeat(2, 1fr); /* 2 колонки */

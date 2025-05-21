@@ -26,6 +26,8 @@ namespace Methodist_API.Profiles
             CreateMap<MethodicalСommittee, CreateMKDto>().ReverseMap();
             //FileEvent
             CreateMap<FileEvent, CreateFileEventDto>().ReverseMap();
+            //TypeOfEvent
+            CreateMap<TypeOfEvent, TypeOfEventDto>().ReverseMap();
         }
     }
 }

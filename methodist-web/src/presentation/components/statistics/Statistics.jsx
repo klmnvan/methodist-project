@@ -1,6 +1,6 @@
 import {observer} from "mobx-react-lite";
 import React, {useEffect, useState} from "react";
-import {StatisticsVM} from "@/presentation/components/statistics/StatisticsVM.jsx";
+import {StatisticsVM} from "@/presentation/components/statistics/StatisticsVM.js";
 import classes from "./Statistics.module.css";
 import {CustomDatePicker} from "@ui/datePicker/customDatePicker/CustomDatePicker.jsx";
 import {PieChart} from "@/presentation/components/statistics/pieChart/PieChart.jsx";

@@ -92,5 +92,10 @@ namespace Methodist_API.Repositories
             }
             return false;
         }
+
+        public List<TypeOfEvent> SelectAllTypes()
+        {
+            return _context.TypeOfEvents.ToList();
+        }
     }
 }

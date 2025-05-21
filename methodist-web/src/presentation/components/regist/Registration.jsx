@@ -1,6 +1,6 @@
 import {observer} from "mobx-react-lite";
 import {useMemo} from "react";
-import {RegistrationVM} from "@/presentation/components/regist/RegistrationVM.jsx";
+import {RegistrationVM} from "@/presentation/components/regist/RegistrationVM.js";
 import SpacerV from "@ui/spacers/SpacerV.jsx";
 import classes from  '../../pages/authorization/Authorization.module.css'
 import AuthInput from "@ui/inputs/authInput/AuthInput.jsx";

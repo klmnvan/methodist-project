@@ -1,8 +1,25 @@
 .datepicker {
     font-family: var(--font-poppins), sans-serif;
-    max-width: 350px;
-    background: var(--color-bg);
+    width: fit-content;
+    background: var(--color-container);
     border-radius: 10px;
+}
+
+.dateRow {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+}
+
+.dateDisplay {
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    padding: 16px 12px !important;
+    background: var(--color-container);
+    cursor: pointer;
 }
 
 .toggle-button {

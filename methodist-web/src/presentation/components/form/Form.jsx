@@ -2,13 +2,14 @@ import {observer} from "mobx-react-lite";
 import classes from "./Form.module.css"
 import {ToggleBtnStat} from "@ui/toggleButtons/toggleBtnStat/ToggleBtnStat.jsx";
 import {useEffect, useMemo} from "react";
-import {FormVM} from "@/presentation/components/form/FormVM.jsx";
+import {FormVM} from "@/presentation/components/form/FormVM.js";
 import SpacerPX from "@ui/spacers/SpacerPX.jsx";
 import ProfileInput from "@ui/inputs/profileInput/ProfileInput.jsx";
 import {DatePicker} from "@ui/datePicker/datePicker/DatePicker.jsx";
-import {Button} from "@mui/material";
 import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
 import {EventSelector} from "@/presentation/components/form/eventSelector/EventSelector.jsx";
+import {createPortal} from "react-dom";
+import {ImageSuccess} from "@ui/icons/ImageSuccess.jsx";
 
 export const Form = observer(() => {
 
@@ -20,7 +21,17 @@ export const Form = observer(() => {
 
     return(
         <div className={classes.background}>
-
+            {vm.modalIsOpen && createPortal(
+                <div className={classes.modalOverlay}>
+                    <div className={classes.modal}>
+                        <ImageSuccess className={classes.icon} width={"90"} height={"90"}/>
+                        <h2>Создание мероприятия</h2>
+                        <div className={classes.des}>Запись о мероприятии была успешно добавлена. Вы можете увидеть её в списке мероприятий. Для Вашего удобства форма была очищена.</div>
+                        <ButtonAuth onClick={() => vm.closeModal()}>Закрыть</ButtonAuth>
+                    </div>
+                </div>,
+                document.body
+            )}
             <div className={classes.container}>
                 <div className={classes.title}>Создание формы</div>
                 <SpacerPX size={12} orientation={"v"}/>
@@ -166,6 +177,10 @@ export const Form = observer(() => {
                     selectedDate={vm.event.dateOfEvent}
                     handleDateSelect={vm.handleDateSelect}
                 />
+                {vm.error && (<>
+                    <SpacerPX size={12} orientation={'v'}/>
+                    <div className={classes.error}>{vm.error}</div>
+                </>)}
                 <SpacerPX size={20} orientation={"v"}/>
                 <ButtonAuth onClick={vm.createForm}>Создать</ButtonAuth>
             </div>
