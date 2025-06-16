@@ -44,7 +44,9 @@ class LoginVM @Inject constructor(
                 val response = service.signIn(dataSt.value.email, dataSt.value.password)
                 if(response.profileDto != null) {
                     UserRepository.act = 2
-                    UserRepository.token = response.profileDto.token
+                    UserRepository.token = response.profileDto.accessToken
+                    UserRepository.accessToken = response.profileDto.accessToken
+                    UserRepository.refreshToken = response.profileDto.refreshToken
                     UserRepository.profileId = response.profileDto.id
                     Log.d("token", UserRepository.token)
                     navController.navigate(NavRoutes.HOME) {

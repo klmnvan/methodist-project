@@ -3,6 +3,7 @@ package com.example.methodist_mobile_app.data.room.converters
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.example.methodist_mobile_app.data.models.MKModel
+import com.example.methodist_mobile_app.data.models.ProfileModel
 import com.example.methodist_mobile_app.data.models.TypeOfEventModel
 import com.example.methodist_mobile_app.data.room.database.MKDatabase
 import kotlinx.serialization.encodeToString
@@ -31,8 +32,22 @@ class Converters {
 
     @TypeConverter
     fun fromMKModel(mk: MKModel?): String? {
-        if(mk != null) return mk.id
-        else return null
+        return mk?.id
+    }
+
+    @TypeConverter
+    fun fromProfile(p: ProfileModel?): String? {
+        return p?.id
+    }
+
+    @TypeConverter
+    fun toProfileModel(pId: String?): ProfileModel? {
+        if(pId != null) {
+            val dao = database?.profileDao
+            return dao?.getByIdSingle(pId)
+                ?: ProfileModel(id = pId)
+        }
+        return null
     }
 
     @TypeConverter

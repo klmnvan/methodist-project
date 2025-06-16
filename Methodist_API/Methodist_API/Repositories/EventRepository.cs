@@ -26,7 +26,10 @@ namespace Methodist_API.Repositories
             _event.Id = Guid.NewGuid();
             var item = _context.Events.Add(_event);
             _context.SaveChanges();
-            return _context.Events.Include(it => it.TypeOfEvent).Single(it => it.Id == item.Entity.Id);
+            return _context.Events
+                .Include(it => it.TypeOfEvent)
+                .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
+                .Single(it => it.Id == item.Entity.Id);
         }
 
         public List<Event> SelectAll() => _context.Events
@@ -59,6 +62,7 @@ namespace Methodist_API.Repositories
         {
             var item = _context.Events.Single(x => x.Id == EventId);
             var dtoProperties = typeof(PatchEventDto).GetProperties();
+            bool hasChanges = false;
 
             foreach (var property in dtoProperties)
             {
@@ -68,10 +72,14 @@ namespace Methodist_API.Repositories
                     var itemProperty = typeof(Event).GetProperty(property.Name);
                     if (itemProperty != null && itemProperty.CanWrite)
                     {
+                        var currentValue = itemProperty.GetValue(item);
+                        if (!Equals(currentValue, newValue)) hasChanges = true;
                         itemProperty.SetValue(item, newValue);
                     }
                 }
             }
+            if (!hasChanges) return item;
+            item.UpdatedAt = DateTime.UtcNow;
             if (Save()) return item;
             else throw new Exception("Ошибка изменения мероприятия");
         }

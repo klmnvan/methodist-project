@@ -12,7 +12,6 @@
 }
 
 .leftColumn {
-    height: fit-content;
     background: var(--color-container);
     box-sizing: border-box;
     padding: 12px !important;
@@ -22,6 +21,7 @@
     gap: 16px;
     margin: auto 16px !important;
     max-width: 600px;
+    height: 450px;
     width: 600px;
 }
 
@@ -44,6 +44,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    align-items: center;
 }
 
 .scrollableListContainer {
@@ -54,6 +55,8 @@
     margin-top: 12px !important;
     border-radius: var(--border-radius);
     background: var(--color-bg);
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-outline) var(--color-container);
 }
 
 .searchItem {
@@ -79,16 +82,21 @@
 
 .icon {
     margin-left: 12px !important;
-    width: auto;
-    height: 10px;
+    max-width: 12px;
+    min-width: 12px;
+    width: 12px;
+    height: auto;
 }
 
 .datePicker {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .buttons {
-
+    width: 100%;
 }
 
 .report {
@@ -136,8 +144,9 @@
     .leftColumn {
         flex-direction: column;
         flex: 0 0 auto;
-        width: fit-content;
-        align-items: center
+        align-items: center;
+        height: auto;
+        width: 100%;
     }
 
     .rightColumn {
@@ -146,6 +155,9 @@
         margin: 10px !important;
     }
 
+    .scrollableListContainer {
+        max-height: 200px;
+    }
 }
 
 @media (max-width: 1300px) {

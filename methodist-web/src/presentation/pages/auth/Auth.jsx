@@ -1,6 +1,6 @@
 import './Auth.css'
 
-import {useTheme} from "../../providers/MethodistThemeProvider.jsx";
+import {useTheme} from "../../providers/AppStoreProvider.jsx";
 
 function Auth() {
     const { switchTheme } = useTheme();

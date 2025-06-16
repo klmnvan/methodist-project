@@ -8,6 +8,7 @@
     min-height: 200px;
     font-family: var(--font-raleway), serif;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .background:hover {

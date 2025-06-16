@@ -42,9 +42,29 @@ export class FormVM {
             handleQuantityInput: action,
             handleInput: action,
             handleSelect: action,
-            closeModal: action
+            closeModal: action,
+            setParticipationForms: action,
+            setEventForms: action,
+            setStatuses: action,
+            setResults: action,
         })
         console.log(toJS(this.currentMode.name))
+    }
+
+    setParticipationForms(data) {
+        this.participationForms = data;
+    }
+
+    setEventForms(data) {
+        this.eventForms = data;
+    }
+
+    setStatuses(data) {
+        this.statuses = data;
+    }
+
+    setResults(data) {
+        this.results = data;
     }
 
     selectMode = (mode) => {
@@ -99,23 +119,6 @@ export class FormVM {
         };
         this.error = ""
     });
-
-    getValuesForms = async () => {
-        try {
-            const { data: participationForms } = await AxiosClient.axiosClient.get('FormValues/GetParticipationForms');
-            this.participationForms = participationForms;
-            const { data: eventForms } = await AxiosClient.axiosClient.get('FormValues/GetEventForms');
-            this.eventForms = eventForms;
-            const { data: statuses } = await AxiosClient.axiosClient.get('FormValues/GetEventStatuses');
-            this.statuses = statuses;
-            const { data: results } = await AxiosClient.axiosClient.get('FormValues/GetEventResults');
-            this.results = results;
-        } catch (error) {
-            console.log(error.message);
-            alert(`Ошибка получения данных: ${error}`);
-            console.log(`Ошибка получения данных: ${error}`);
-        }
-    }
 
     createForm = async () => {
         try {

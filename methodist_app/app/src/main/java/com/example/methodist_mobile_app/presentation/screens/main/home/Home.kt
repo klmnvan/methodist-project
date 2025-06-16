@@ -198,7 +198,7 @@ fun ShowEvent(event: EventModel, onDismissRequest: () -> Unit) {
                     SpacerHeight(12.dp)
                     EventDialogSection("Место прохождения", event.location)
                 }
-                if (event.quantityOfHours.isNotEmpty()) {
+                if (event.quantityOfHours.isNotEmpty() && event.quantityOfHours != "0") {
                     SpacerHeight(12.dp)
                     EventDialogSection("Количество часов", event.quantityOfHours)
                 }

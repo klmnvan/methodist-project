@@ -1,68 +1,121 @@
-import {useEffect, useState} from "react";
-import classes from "./EventSelector.module.css"
-import {IconRadioBtnOn} from "@ui/icons/IconRadioBtnOn.jsx";
-import {IconRadioBtnOff} from "@ui/icons/IconRadioBtnOff.jsx";
+import {useEffect, useRef, useState} from "react";
+import classes from "./EventSelector.module.css";
+import {IconTreg} from "@ui/icons/IconTreg.jsx";
 
-export const EventSelector = ({defaultValues, onSelect, label, defaultIsExists = true}) => {
-    const [options, setOptions] = useState(
-        defaultIsExists === true ? [...defaultValues, ""] : [...defaultValues]
-    );
-    const [selectedIndex, setSelectedIndex] = useState(null);
+export const EventSelector = ({ value, defaultValues = [], onSelect, label, defaultIsExists = true, bg="var(--color-container)" }) => {
+    const [selectedValue, setSelectedValue] = useState(null);
+    const [customValue, setCustomValue] = useState("");
+    const [isCustom, setIsCustom] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        setOptions(
-            defaultIsExists ? [...(defaultValues || []), ""] : [...(defaultValues || [])]
-        );
+        if(value) setSelectedValue(value)
+    }, [value])
+
+    const containerRef = useRef(null);
+
+    const options = defaultIsExists
+        ? [...defaultValues, "Другое"]
+        : [...defaultValues];
+
+    useEffect(() => {
+        setIsOpen(false);
     }, [defaultValues, defaultIsExists]);
 
-    const handleSelect = (index) => {
-        setSelectedIndex(index);
-        onSelect?.(options[index]);
-    };
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (containerRef.current && !containerRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
-    const handleCustomChange = (e) => {
-        const newValue = e.target.value;
-        const newOptions = [...options];
-        newOptions[newOptions.length - 1] = newValue;
-        setOptions(newOptions);
-        if (selectedIndex === options.length - 1) {
-            onSelect?.(newValue);
+    const handleSelect = (option) => {
+        if (option === "Другое") {
+            setIsCustom(true);
+            setSelectedValue(option);
+            onSelect?.("");
+            setIsOpen(false);
+        } else {
+            setIsCustom(false);
+            setSelectedValue(option);
+            onSelect?.(option);
+            setIsOpen(false);
         }
     };
 
+    const handleCustomChange = (e) => {
+        const val = e.target.value;
+        setCustomValue(val);
+        onSelect?.(val);
+    };
+
     return (
-        <>
-            <h3 className={classes.label}>{label}</h3>
-            <div className={classes.optionsList}>
-                {options.map((option, index) => (
-                    <div
-                        key={index}
-                        className={selectedIndex !== index ? classes.optionItem : `${classes.optionItem} ${classes.active}`}
-                        onClick={() => handleSelect(index)}
-                    >
-                        <div className={classes.icon}>
-                            { selectedIndex === index ? (<IconRadioBtnOn/>) : (<IconRadioBtnOff/>) }
+        <div className={classes.container} ref={containerRef}>
+            <label className={classes.label}>{label}</label>
+
+            <div
+                className={classes.value}
+                onClick={() => setIsOpen((prev) => !prev)}
+                style={{backgroundColor: bg}}
+            >
+                <div className={classes.row}>
+                    {selectedValue === "Другое" && isCustom ? (
+                        <div className={classes.customInputWrapper}>
+                            <div className={classes.hintOther}>Другое: </div>
+                            <input
+                                type="text"
+                                className={classes.customInputInValue}
+                                placeholder="введите свой вариант"
+                                value={customValue}
+                                onChange={handleCustomChange}
+                                autoFocus
+                                onClick={(e) => e.stopPropagation()}
+                            />
                         </div>
-                        {defaultIsExists && index === options.length - 1 ? (
-                            <div className={classes.customOption}>
-                                <span>Другое: </span>
-                                <input
-                                    type="text"
-                                    placeholder="свой вариант"
-                                    name = {name}
-                                    value={option}
-                                    onChange={handleCustomChange}
-                                    onClick={(e) => e.stopPropagation()}
-                                />
-                            </div>
-                        ) : (
-                            option
-                        )}
+                    ) : (
+                        <div
+                            className={classes.customInputWrapper}
+                            style={selectedValue ? {color: "var(--color-title)"} : {color: "var(--color-description)"}}
+                        >
+                            {selectedValue || "Выберите..."}
+                        </div>
+                    )}
+                    <div className={classes.icon}>
+                        <IconTreg/>
                     </div>
-                ))}
+                </div>
             </div>
-        </>
+
+            {isOpen && (
+                <div className={classes.dropdown} role="listbox"
+                style={{backgroundColor: bg}}>
+                    {options.map((option, i) => (
+                        <div
+                            key={i}
+                            className={`${classes.option} ${
+                                selectedValue === option ? classes.active : ""
+                            }`}
+                            onClick={(e) => {
+                                e.stopPropagation(); // чтобы не закрывать дважды
+                                handleSelect(option);
+                            }}
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                    handleSelect(option);
+                                }
+                            }}
+                            role="option"
+                            aria-selected={selectedValue === option}
+                        >
+                            {option}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
     );
-
-
-}
+};

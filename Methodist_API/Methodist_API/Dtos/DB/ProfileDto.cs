@@ -5,7 +5,7 @@ namespace Methodist_API.Dtos.DB
     public class ProfileDto
     {
         public Guid Id { get; set; }
-        public DateTime СreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public string FirstName { get; set; } = String.Empty;
         public string LastName { get; set; } = String.Empty;

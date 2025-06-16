@@ -4,9 +4,9 @@ import {IconDate} from "@ui/icons/IconDate.jsx";
 import {formatDateDDMMYYYY} from "@/data/converters/FormatDateDDMMYYYY.jsx";
 import SpacerPX from "@ui/spacers/SpacerPX.jsx";
 
-export default function EventItem({event}) {
+export default function EventItem({event, onClick}) {
     return (
-        <div className={classes.background}>
+        <div className={classes.background} onClick={onClick}>
             <div className={classes.rowTitle}>
                 <div style={{color: getEventColor(event.typeOfEvent.name), height: "100%", width: "auto" }}>
                     <IconEventBox style={{height: "100%", width: "auto"}}/>
@@ -66,7 +66,7 @@ export default function EventItem({event}) {
     )
 }
 
-const getEventColor = (category) => {
+export const getEventColor = (category) => {
     if (category === 'Участие') return '#22B07D';
     if (category === 'Стажировка') return '#C184FF';
     if (category === 'Публикация') return '#FF7C3B';
@@ -91,7 +91,7 @@ const getDescriptionEvent = (event) => {
     }
 }
 
-const getTitleEvent = (event) => {
+export const getTitleEvent = (event) => {
     switch(event.typeOfEvent.name) {
         case "Участие":
             return event.name;

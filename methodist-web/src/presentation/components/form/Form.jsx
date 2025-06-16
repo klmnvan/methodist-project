@@ -10,14 +10,33 @@ import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
 import {EventSelector} from "@/presentation/components/form/eventSelector/EventSelector.jsx";
 import {createPortal} from "react-dom";
 import {ImageSuccess} from "@ui/icons/ImageSuccess.jsx";
+import {useStore} from "@/presentation/providers/AppStoreProvider.jsx";
 
 export const Form = observer(() => {
 
     const vm = useMemo(() => new FormVM(), [])
+    const { statuses, results, eventForms, participationForms } = useStore()
+    //#region React Queries
+
+    //#endregion
+
+    //#region Use Effects
+    useEffect(() => {
+        if(participationForms) {vm.setParticipationForms(participationForms)}
+    }, [vm, participationForms])
 
     useEffect(() => {
-        vm.getValuesForms();
-    }, [vm])
+        if(eventForms) {vm.setEventForms(eventForms)}
+    }, [vm, eventForms])
+
+    useEffect(() => {
+        if(statuses) {vm.setStatuses(statuses)}
+    }, [vm, statuses])
+
+    useEffect(() => {
+        if(results) {vm.setResults(results)}
+    }, [vm, results])
+    //#endregion
 
     return(
         <div className={classes.background}>
@@ -44,7 +63,7 @@ export const Form = observer(() => {
                       <EventSelector
                           label="Форма участия"
                           defaultValues={vm.participationForms}
-                          defaultIsExists = {false}
+                          defaultIsExists={false}
                           onSelect={(value) => vm.handleSelect('formOfParticipation', value)}
                       />
                       <SpacerPX size={12} orientation={"v"}/>

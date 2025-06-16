@@ -15,8 +15,8 @@
 }
 
 .leftColumn {
-    flex: 1 0 280px; /* Фиксированная ширина, не растягивается и не сжимается */
-    background: var(--color-container); /* Полупрозрачный фон для наглядности */
+    flex: 1 0 280px;
+    background: var(--color-container);
     box-sizing: border-box;
     padding: 12px !important;
     border-radius: var(--border-radius);
@@ -26,7 +26,7 @@
 }
 
 .rightColumn {
-    flex: 100%; /* Занимает всё оставшееся пространство */
+    flex: 100%;
     padding: 20px;
     height: 100%;
 }

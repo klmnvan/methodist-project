@@ -25,7 +25,7 @@ namespace Methodist_API.Configurations
             builder.Property(p => p.QuantityOfHours).HasColumnName("quantity_of_hours");
             builder.Property(p => p.Result).HasColumnName("result");
             builder.Property(p => p.ProfileId).HasColumnName("profile_id");
-            builder.Property(p => p.СreatedAt).HasColumnName("created_at").IsRequired().HasDefaultValueSql("now()");
+            builder.Property(p => p.CreatedAt).HasColumnName("created_at").IsRequired().HasDefaultValueSql("now()");
             builder.Property(p => p.UpdatedAt).HasColumnName("updated_at").IsRequired().HasDefaultValueSql("now()");
 
             //связь один ко многим 

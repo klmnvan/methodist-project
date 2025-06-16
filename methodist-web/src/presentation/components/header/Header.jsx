@@ -1,7 +1,7 @@
 import {observer} from "mobx-react-lite";
 import classes from "./Header.module.css";
 import logo from "@images/logo.svg"
-import {useTheme} from "../../providers/MethodistThemeProvider.jsx";
+import {useTheme} from "../../providers/AppStoreProvider.jsx";
 import {useEffect, useState} from "react";
 import {IconProfile} from "@ui/icons/IconProfile.jsx";
 import {IconEvent} from "@ui/icons/IconEvent.jsx";
@@ -62,7 +62,7 @@ export const Header = observer(({onClick}) => {
             />
 
             {/* Основной Header */}
-            <header className={`${classes.header} ${isMenuOpen ? classes.active : ''}`}>
+            <header className={`${classes.header} ${isMenuOpen ? classes.active : ''}`} >
                 <img src={logo} alt="logo" className={classes.logo} onClick={() => setCurrentSection("Мероприятия")} />
                 <div className={classes.sections}>
                     {sections.map((section) => (

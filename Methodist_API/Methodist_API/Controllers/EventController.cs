@@ -141,7 +141,7 @@ namespace Methodist_API.Controllers
 
         [SwaggerOperation(Summary = "Создать мероприятие")]
         [HttpPost("Create")]
-        public async Task<ActionResult<EventDto>> Create([FromBody] CreateEventDto newEvent)
+        public async Task<ActionResult<EventDetailsDto>> Create([FromBody] CreateEventDto newEvent)
         {
             try
             {
@@ -155,7 +155,7 @@ namespace Methodist_API.Controllers
                     return BadRequest("Тип мероприятия заполнен некорректно");
                 }
                 var entity = _eventRepository.Insert(newEvent, appUser.Id);
-                var result = _mapper.Map<EventDto>(entity);
+                var result = _mapper.Map<EventDetailsDto>(entity);
                 result.TypeOfEvent = entity.TypeOfEvent;
                 return Ok(result);
             }

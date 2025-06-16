@@ -16,7 +16,7 @@ namespace Methodist_API.Configurations
             builder.Property(p => p.Patronymic).HasColumnName("patronymic");
             builder.Property(p => p.MC_id).HasColumnName("MC_id").IsRequired(false);
             builder.Property(p => p.ImageUrl).HasColumnName("image_url");
-            builder.Property(p => p.СreatedAt).HasColumnName("created_at").HasDefaultValueSql("now()").IsRequired();
+            builder.Property(p => p.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("now()").IsRequired();
             builder.Property(p => p.UpdatedAt).HasColumnName("updated_at").HasDefaultValueSql("now()").IsRequired();
             builder.Property(p => p.PhoneNumber).HasColumnName("phone_number");
 

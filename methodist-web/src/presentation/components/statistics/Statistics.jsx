@@ -9,24 +9,49 @@ import SearchInput from "@ui/inputs/searchInput/SearchInput.jsx";
 import SpacerPX from "@ui/spacers/SpacerPX.jsx";
 import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
 import icon_tick from "@images/icon_tick.svg"
+import {useStore} from "@/presentation/providers/AppStoreProvider.jsx";
 
 export const Statistics = observer(() => {
     const [vm] = useState(() => new StatisticsVM());
+    const { events, commissions } = useStore()
 
     useEffect(() => {
-        vm.getEvents();
-    }, [])
+        if(events) {
+            vm.setEvents(events)
+            const teachers = [
+                ...new Map(
+                    events
+                        .map(event => [
+                            event.profile.id,
+                            {
+                                id: event.profile.id,
+                                name: `${event.profile.lastName} ${event.profile.firstName} ${event.profile.patronymic}`
+                            }
+                        ])
+                ).values()
+            ];
+            vm.setTeachers(teachers)
+        }
+    }, [events, vm])
+
+    useEffect(() => {
+        if(commissions) {
+            vm.setCommissions(commissions)
+        }
+    }, [commissions, vm])
 
     return (
         <div className={classes.background}>
             <div className={classes.leftColumn}>
                 <div className={classes.modes}>
-                    <ToggleBtnStat values={vm.modes} currentValue={vm.mode} onChange={vm.switchMode}/>
+                    <ToggleBtnStat values={vm.modes} currentValue={vm.settings.mode} onChange={vm.setMode}/>
                     <SpacerPX orientation="v" size={12}/>
-                    <SearchInput onChange={vm.onSearch} background={"var(--color-bg)"}/>
+                    <div style={{width:'100%'}}>
+                        <SearchInput onChange={vm.onSearch} background={"var(--color-bg)"}/>
+                    </div>
                     <div className={classes.scrollableListContainer}>
-                        {vm.mode === vm.modes[1] && vm.teachers && (
-                            vm.teachers.map(teacher => (
+                        {vm.settings.mode === vm.modes[1] && vm.teachers && (
+                            vm.filteredTeachers.map(teacher => (
                                 <>
                                     <div
                                         key={teacher.id}
@@ -34,15 +59,17 @@ export const Statistics = observer(() => {
                                         onClick={() => {vm.selectTeacher(teacher.id)}}>
                                         {teacher.name}
                                         <SpacerPX orientation="h" size={4}/>
-                                        {vm.currentTeacher && vm.currentTeacher === teacher.id && (
-                                            <img src={icon_tick} alt={""} className={classes.icon}/>
-                                        )}
+                                        <div className={classes.icon}>
+                                            {vm.settings.teacher && vm.settings.teacher === teacher.id && (
+                                                <img src={icon_tick} alt={""} />
+                                            )}
+                                        </div>
                                     </div>
                                 </>
                             ))
                         )}
-                        {vm.mode === vm.modes[0] && vm.commissions && (
-                            vm.commissions.map(commission => (
+                        {vm.settings.mode === vm.modes[0] && vm.commissions && (
+                            vm.filteredCommissions.map(commission => (
                                 <>
                                     <div
                                         key={commission.id}
@@ -50,9 +77,11 @@ export const Statistics = observer(() => {
                                         onClick={() => {vm.selectCommission(commission.id)}}>
                                         {commission.name}
                                         <SpacerPX orientation="h" size={4}/>
-                                        {vm.currentCommission && vm.currentCommission === commission.id && (
-                                            <img src={icon_tick} alt={""} className={classes.icon}/>
-                                        )}
+                                        <div className={classes.icon}>
+                                            {vm.settings.commission && vm.settings.commission === commission.id && (
+                                                <img src={icon_tick} alt={""} />
+                                            )}
+                                        </div>
                                     </div>
                                 </>
                             ))
@@ -65,7 +94,8 @@ export const Statistics = observer(() => {
                     </div>
                 </div>
                 <div className={classes.datePicker}>
-                    <CustomDatePicker rangeValue={vm.dateRange} handleSetDateRange={vm.handleSetDateRange}/>
+                    <CustomDatePicker rangeValue={vm.settings.dateRange} handleSetDateRange={vm.setDateRange}
+                                      bg = "var(--color-bg)"/>
                     <SpacerPX orientation="v" size={12}/>
                     <div className={classes.buttons}>
                         <ButtonAuth onClick={() => vm.calcData()}>Применить</ButtonAuth>

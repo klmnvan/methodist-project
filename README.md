@@ -1,12 +1,17 @@
 # methodist-project
 Тема: Мобильное приложение для методической комиссии для отслеживания активности преподавателей.  
-Макет: https://www.figma.com/design/717WQgLSqK4lbRS1bnKBGr/%D0%9C%D0%9A-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82?node-id=390-80&m=dev&t=2ofN1qJQW4qE0gob-1  
-Презентация: https://www.figma.com/deck/swMTADNjIvjp6fzcVrAM7H/MethodistAppPresentation?node-id=1-48&t=wa00NlqshictBdh7-1
+Макет мобильного приложения: https://www.figma.com/design/717WQgLSqK4lbRS1bnKBGr/%D0%9C%D0%9A-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82?node-id=390-80&m=dev&t=2ofN1qJQW4qE0gob-1  
+Макет веб сайта: https://iis.ngknn.ru/ngknn/КлимычеваАА/APP  
+Презентация: https://www.figma.com/slides/PMIWQ9EBl87CKI1UB30Z9t/Untitled?node-id=1-118&t=GRwpRjT5H8eapqb8-1  
 
-## Установка
+## Установка мобильного приложения
+#### 1 способ:  
 1. Склонировать/Скачать архивом проект
 2. Открыть проект в Android Studio
-3. Собрать проект на вашем мобильном телефоне
+3. Собрать проект на вашем мобильном телефоне  
+#### 2 способ:  
+1. Скачать apk файл мобильного приложения
+2. Запустить apk файл   
 
 ## Описание коммитов
 | Название | Описание                                                                            |

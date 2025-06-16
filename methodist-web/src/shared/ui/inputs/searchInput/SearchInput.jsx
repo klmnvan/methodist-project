@@ -1,6 +1,7 @@
 import classes from './SearchInput.module.css';
 import {IconSearch} from "@ui/icons/IconSearch.jsx";
 import SpacerEM from "@ui/spacers/SpacerEM.jsx";
+import SpacerPX from "@ui/spacers/SpacerPX.jsx";
 
 export default function SearchInput({background, ...props}) {
     return (
@@ -11,7 +12,7 @@ export default function SearchInput({background, ...props}) {
             <div style={{color: "var(--color-outline)"}}>
                 <IconSearch/>
             </div>
-            <SpacerEM orientation='h' size={1}/>
+            <SpacerPX orientation={"h"} size={8}/>
             <input
                 {...props}
                 type="text"

@@ -9,9 +9,12 @@ import kotlinx.serialization.Serializable
 data class ProfileModel(
     @PrimaryKey
     var id: String = "",
+    var createdAt: String = "",
+    var updatedAt: String = "",
     var firstName: String = "",
     var lastName: String = "",
     var patronymic: String = "",
+    var phoneNumber: String = "",
     var mc: MKModel? = null,
     var imageUrl: String = "",
     var email: String = "",

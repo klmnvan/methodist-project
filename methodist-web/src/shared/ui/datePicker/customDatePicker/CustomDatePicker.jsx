@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "./CustomDatePicker.module.css";
 
-export const CustomDatePicker = ({ rangeValue, handleSetDateRange }) => {
+export const CustomDatePicker = ({ rangeValue, handleSetDateRange, bg = "var(--color-container)" }) => {
     const [dateRange, setDateRange] = useState({
         start: null,
         end: null,
@@ -80,7 +80,8 @@ export const CustomDatePicker = ({ rangeValue, handleSetDateRange }) => {
     const calendarDays = buildCalendarDays();
 
     return (
-        <div className={classes.datepicker}>
+        <div className={classes.datepicker}
+        style={{background: bg}}>
             <div className={classes.calendar}>
                 <div className={classes.title}>Текущий диапазон дат</div>
                 <div className={classes.hintsRow}>

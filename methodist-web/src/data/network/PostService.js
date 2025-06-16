@@ -3,6 +3,7 @@ import {userStore} from "@/stores/UserStore.jsx";
 
 class PostService {
     BASE_URL = "https://iis.ngknn.ru/ngknn/КлимычеваАА/API/"
+    //BASE_URL = 'http://localhost:80/'
 
     client = axios.create({
         baseURL: this.BASE_URL,
@@ -74,6 +75,23 @@ class PostService {
 
     updateProfile(newProfile) {
         return this.client.patch('Profile/UpdatePart', newProfile)
+    }
+
+    updateEvent(event, id) {
+        console.log(id)
+        return this.client.patch('Event/UpdatePart', event, {
+            headers: {
+                "EventId": id
+            }
+        })
+    }
+
+    deleteEvent(id) {
+        return this.client.delete('Event/Remove', {
+            headers: {
+              "EventId": id
+            }
+        })
     }
 
 }

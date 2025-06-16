@@ -1,3 +1,8 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 .label {
     font-family: var(--font-raleway), serif;
     font-size: 16px;
@@ -6,38 +11,62 @@
     margin-bottom: 12px !important;
 }
 
-.optionsList {
-    margin-top: 8px !important;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.optionItem {
-    box-sizing: border-box;
-    padding: 12px 16px !important;
-    border: 2px solid var(--color-container);
-    background: var(--color-container);
+.value {
     border-radius: var(--border-radius);
-    display: flex;
-    align-items: center;
+    padding: 16px !important;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-.optionItem.active {
-    border: 2px solid var(--color-primary);
+.dropdown {
+    margin-top: 4px !important;
+    border-radius: var(--border-radius);
+    max-height: 200px;
+    overflow-y: auto;
+    cursor: pointer;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-outline) var(--color-container);
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.option {
+    padding: 12px !important;
+    color: var(--color-description);
+    font-size: 16px;
+    transition: background 0.2s ease;
+}
+
+.option:hover {
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.customInputWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.customInputInValue {
+    margin-left: 8px !important;
+    cursor: initial;
+    flex: 1;
+}
+
+.customInputInValue::placeholder {
+    color: var(--color-description);
+}
+
+.hintOther {
+    color: var(--color-description);
 }
 
 .icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 12px !important;
-    color: var(--color-outline);
+    width: 12px;
+    height: auto;
 }
 
-.customOption {
-
-}
-
-.customOption > input::placeholder{
-    color: var(--color-outline);
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

@@ -30,6 +30,9 @@ interface ProfileDao {
     @Query("SELECT * FROM profiles WHERE id = :id")
     fun getById(id: String): Flow<List<ProfileModel>>
 
+    @Query("SELECT * FROM profiles WHERE id = :id")
+    fun getByIdSingle(id: String): ProfileModel
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(item: ProfileModel)
 

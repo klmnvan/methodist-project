@@ -9,19 +9,20 @@ import kotlinx.serialization.Serializable
 data class EventModel(
     @PrimaryKey
     var id: String,
+    var createdAt: String,
+    var updatedAt: String,
     var dateOfEvent: String,
     var endDateOfEvent: String,
-    var formOfEvent: String,
-    var formOfParticipation: String,
+    var typeOfEvent: TypeOfEventModel,
     var isApproved: Boolean,
-    var isChecked: Boolean,
-    var location: String,
+    var type: String,
     var name: String,
-    var profileId: String,
+    var formOfParticipation: String,
+    var formOfEvent: String,
+    var status: String,
+    var location: String,
     var quantityOfHours: String,
     var result: String,
-    var status: String,
-    var typeOfEvent: TypeOfEventModel,
-    var type: String
+    var profile: ProfileModel,
 )
 

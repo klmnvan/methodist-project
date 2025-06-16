@@ -9,5 +9,6 @@ data class ProfileDto(
     val lastName: String = "",
     val mC_id: String? = "",
     val patronymic: String = "",
-    val token: String = "",
+    val refreshToken: String = "",
+    val accessToken: String = "",
 )

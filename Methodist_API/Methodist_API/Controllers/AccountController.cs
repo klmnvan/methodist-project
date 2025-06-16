@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Data;
+using System.IO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Methodist_API.Controllers
@@ -139,17 +140,15 @@ namespace Methodist_API.Controllers
                     HttpOnly = true,
                     Secure = true,
                     SameSite = SameSiteMode.None,
-                    Expires = DateTime.UtcNow.AddDays(30),
+                    Expires = DateTime.UtcNow.AddDays(7),
                     Path = "/", // Корневой путь
                     IsEssential = true
                 });
-            } 
-            return Ok(new
-            {
-                Profile = _mapper.Map<NewProfileDto>(user),
-                AccessToken = accessToken,
-                RefreshToken = refreshToken
-            });
+            }
+            var profile = _mapper.Map<NewProfileDto>(user);
+            profile.AccessToken = accessToken;
+            profile.RefreshToken = refreshToken;
+            return Ok(profile);
         }
 
         [SwaggerOperation(Summary = "Проверка валидности refresh token")]
@@ -234,7 +233,7 @@ namespace Methodist_API.Controllers
                     HttpOnly = true,
                     Secure = true,
                     SameSite = SameSiteMode.None,
-                    Expires = DateTime.UtcNow.AddDays(30),
+                    Expires = DateTime.UtcNow.AddDays(7),
                     Path = "/", // Корневой путь
                     IsEssential = true
                 });  
@@ -253,6 +252,14 @@ namespace Methodist_API.Controllers
         {
             // Всегда удаляем куки (если это веб-клиент)
             Response.Cookies.Delete("refreshToken");
+            Response.Cookies.Append("refreshToken", "", new CookieOptions
+            {
+                Expires = DateTime.UtcNow.AddDays(-1),
+                SameSite = SameSiteMode.None,
+                Path = "/", // Корневой путь
+                Secure = true,
+                HttpOnly = true
+            });
             return Ok("Вы успешно вышли из системы");
         }
 
@@ -267,36 +274,6 @@ namespace Methodist_API.Controllers
             catch
             {
                 return Guid.Empty;
-            }
-        }
-
-        [SwaggerOperation(Summary = "Получение информации об аккаунте")]
-        [HttpGet]
-        [Route("AccountInfo")]
-        public async Task<ActionResult<ProfileInfoDto>> AccountInfo()
-        {
-            try
-            {
-                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
-                var userRoles = await _userManager.GetRolesAsync(appUser);
-                if (appUser == null || userRoles == null)
-                {
-                    return BadRequest("Пользователь не найден");
-                }
-                var user = _context.Profiles.Include(u => u.AppUser).FirstOrDefault(u => u.Id == appUser.Id);
-                if (user is null)
-                {
-                    return StatusCode(401);
-                }
-                ProfileInfoDto infoDto = _mapper.Map<ProfileInfoDto>(user);
-                infoDto.Email = appUser.Email;
-                infoDto.Role = userRoles.ToList();
-                return Ok(infoDto);
-            }
-            catch (Exception e)
-            {
-                var json = Newtonsoft.Json.JsonConvert.SerializeObject(e)!;
-                return StatusCode(500, e);
             }
         }
 

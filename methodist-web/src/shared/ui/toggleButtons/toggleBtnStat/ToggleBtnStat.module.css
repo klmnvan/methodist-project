@@ -5,7 +5,8 @@
     font-size: 16px;
     color: var(--color-title);
     border-radius: 10px;
-    width: 100%;
+    max-width: 100%;
+    width: fit-content;
     overflow-x: auto;
     background: color-mix(in srgb, var(--color-primary) 20%, transparent);
 }

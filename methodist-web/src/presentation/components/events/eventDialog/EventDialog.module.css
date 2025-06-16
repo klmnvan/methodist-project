@@ -1,0 +1,201 @@
+.dialog {
+    margin: auto !important;
+    max-width: 500px;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    padding: 24px !important;
+}
+
+.container {
+    align-items: center;
+    box-sizing: border-box;
+    background: var(--color-container);
+    padding: 24px !important;
+    border-radius: var(--border-radius);
+    font-family: var(--font-raleway), serif;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-outline) var(--color-container);
+    margin: auto !important;
+    width: 100%;
+}
+
+.rowHeader {
+    background: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.rowHeader > .rowIcons {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.rowHeader > .title {
+    font-size: 18px;
+    color: var(--color-title);
+    font-weight: 600;
+    overflow: hidden;
+}
+
+.rowHeader > .rowIcons > .icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-outline);
+    cursor: pointer;
+}
+
+.rowMode {
+    color: var(--color-error);
+    font-size: 12px;
+    font-family: var(--font-poppins), serif;
+    text-align: end;
+    margin-top: 12px !important;
+    margin-bottom: 16px !important;
+}
+
+.rowTitles {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.rowTitles > .rowIconTitles {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 12px;
+    align-items: center;
+}
+
+.rowTitles > .rowIconTitles > .icon {
+    height: 40px;
+    width: 40px;
+}
+
+.rowTitles > .rowIconTitles > .columnTitles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.rowTitles > .rowIconTitles > .columnTitles > .title {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-title);
+    text-overflow: ellipsis;
+    width: 100%;
+    min-width: 0;
+}
+
+.rowTitles > .rowIconTitles > .columnTitles > .type {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.rowTitles > .dateColumn {
+    font-family: var(--font-poppins), serif;
+    font-size: 12px;
+    gap: 4px;
+    text-align: right;
+}
+
+.rowTitles > .dateColumn > .create {
+    color: var(--color-title);
+}
+
+.rowTitles > .dateColumn > .update {
+    color: var(--color-outline);
+}
+
+.line {
+    height: 1px;
+    background: linear-gradient(to right, #53B9F5, #1977FF);
+    width: 100%;
+    margin-top: 16px !important;
+    margin-bottom: 20px !important;
+}
+
+.rowProfile {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 16px !important;
+}
+
+.rowProfile > .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.rowProfile > .columnTitles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+}
+
+.rowProfile > .columnTitles > .name {
+    color: var(--color-title);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.rowProfile > .columnTitles > .commission {
+    color: var(--color-primary);
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px !important;
+}
+
+.fieldInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.fieldInfo > .label {
+    color: var(--color-title);
+    font-weight: 600;
+}
+
+.fieldInfo > .value {
+    font-family: var(--font-poppins), serif;
+    font-size: 16px;
+    color: var(--color-outline);
+    font-weight: 300;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 12px !important;
+    width: 100%;
+    background: var(--color-error);
+    border-radius: var(--border-radius);
+}
+
+@media (max-width: 500px) {
+    .rowTitles {
+        flex-direction: column;
+        justify-content: normal;
+        align-items: normal;
+    }
+
+    .rowTitles > .dateColumn {
+        text-align: left;
+    }
+}

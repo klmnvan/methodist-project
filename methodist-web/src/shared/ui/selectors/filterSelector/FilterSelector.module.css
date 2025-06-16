@@ -1,13 +1,13 @@
 .container {
     display: flex;
     flex-direction: row;
-    align-items: center; /* Выравниваем элементы по центру по вертикали */
-    background: var(--color-container); /* Фон контейнера */
-    border-radius: var(--border-radius); /* Закругленные углы */
-    padding: 12px 16px !important; /* Вертикальные 12px, горизонтальные 16px */
-    box-sizing: border-box; /* Учитываем padding в общей ширине */
-    transition: all 0.2s ease; /* Плавные анимации */
-    position: relative; /* Для позиционирования выпадающего списка */
+    align-items: center;
+    background: var(--color-container);
+    border-radius: var(--border-radius);
+    padding: 12px 16px !important;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    position: relative;
     cursor: pointer;
     user-select: none;
 

@@ -1,6 +1,7 @@
 package com.example.methodist_mobile_app.presentation.screens.main.events.state
 
 import com.example.methodist_mobile_app.data.models.EventModel
+import com.example.methodist_mobile_app.data.models.ProfileModel
 import com.example.methodist_mobile_app.data.models.TypeOfEventModel
 import com.example.methodist_mobile_app.presentation.screens.main.events.components.currentDay
 import com.example.methodist_mobile_app.presentation.screens.main.events.components.currentMonth
@@ -10,21 +11,22 @@ import com.example.methodist_mobile_app.presentation.ui.theme.convertDateToTimes
 
 data class CreateEventSt(
     var event: EventModel = EventModel(
-        "",
-        convertDateToTimestamptz(currentYear, currentMonth, currentDay),
-        convertDateToTimestamptz(currentYear, currentMonth, currentDay),
-        "",
-        "",
-        false,
-        false,
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        TypeOfEventModel("", ""),
-        ""
+        id = "",
+        createdAt = convertDateToTimestamptz(currentYear, currentMonth, currentDay),
+        updatedAt = convertDateToTimestamptz(currentYear, currentMonth, currentDay),
+        dateOfEvent = convertDateToTimestamptz(currentYear, currentMonth, currentDay),
+        endDateOfEvent = convertDateToTimestamptz(currentYear, currentMonth, currentDay),
+        typeOfEvent = TypeOfEventModel("", ""),
+        isApproved = false,
+        type= "",
+        name = "",
+        formOfParticipation = "",
+        formOfEvent = "",
+        status = "",
+        location = "",
+        quantityOfHours = "",
+        result = "",
+        profile = ProfileModel()
     ),
     var chosenYear: Int = currentYear,
     var chosenMonth: Int = currentMonth,

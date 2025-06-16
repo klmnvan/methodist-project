@@ -13,14 +13,48 @@ import {IconProfileInButton} from "@ui/icons/IconProfileInButton.jsx";
 import {IconSettings} from "@ui/icons/IconSettings.jsx";
 import ProfileInput from "@ui/inputs/profileInput/ProfileInput.jsx";
 import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
+import {postService} from "@/data/network/PostService.js";
+import {useStore} from "@/presentation/providers/AppStoreProvider.jsx";
+import {useMutation} from "@tanstack/react-query";
+import httpClient from "@/data/AxiosClient.jsx";
+import {userStore} from "@/stores/UserStore.jsx";
 
 export const Profile = observer(() => {
     const vm = useMemo(() => new ProfileVM(), [])
     const navigate = useNavigate();
+    const { profile, queryClient } = useStore()
+
+    const { mutate } = useMutation({
+        mutationKey: 'update profile',
+        mutationFn: (newProfile) => postService.updateProfile(newProfile),
+    })
+    
+    const { mutate: logOut, isSuccess } = useMutation({
+        mutationKey: 'logOut',
+        mutationFn: () => postService.logOut(),
+    })
+
+    /*logOut = async (navigate) => {
+        try {
+            const response = await httpClient.logOut();
+            console.log(response.data);
+            userStore.clearAuthData();
+            // Создаем и диспатчим кастомное событие
+            navigate("/auth", { replace: true })
+        } catch (error) {
+            console.log(error);
+        }
+    }*/
+    
+    useEffect(() => {
+        if(isSuccess) {
+            navigate("/auth", { replace: true })
+        }
+    }, [isSuccess, navigate])
 
     useEffect(() => {
-        vm.getProfile();
-    }, []);
+        if(profile) vm.setProfile(profile)
+    }, [profile, vm]);
 
     return (
         <>
@@ -29,7 +63,7 @@ export const Profile = observer(() => {
                     <div className={classes.avatarContainer}>
                         {vm.profile && vm.profile.imageUrl ? (
                             <img
-                                src={`${AxiosClient.BASE_URL}Profile/Uploads/${vm.profile.imageUrl}`}
+                                src={`${postService.BASE_URL}Profile/Uploads/${vm.profile.imageUrl}`}
                                 alt={vm.profile.lastName}
                                 className={classes.avatar}
                             />) :
@@ -65,7 +99,7 @@ export const Profile = observer(() => {
                         } : {})}
                         icon={<IconSettings/>}/>
                     <SpacerPX orientation={"v"} size={24}/>
-                    <ButtonIconSmall onClick={() => vm.logOut(navigate)} children={"Выйти"} background={"var(--color-error)"} color="white" icon={<IconLogOut/>}/>
+                    <ButtonIconSmall onClick={() => logOut()} children={"Выйти"} background={"var(--color-error)"} color="white" icon={<IconLogOut/>}/>
                 </div>
                 <div className={classes.rightColumn}>
                     <div className={classes.hint}>Роли</div>
@@ -135,7 +169,7 @@ export const Profile = observer(() => {
                                 onClick={() => vm.handleRemoveChanges()}
                             >Отменить изменения</ButtonAuth>
                             <ButtonAuth
-                                onClick={() => vm.updateProfile()}
+                                onClick={() => vm.updateProfile(mutate, queryClient)}
                             >Сохранить изменения</ButtonAuth>
                         </div>
                     </>)}

@@ -1,33 +1,15 @@
-import {action, makeObservable, observable, toJS} from "mobx";
+import {action, computed, makeObservable, observable, toJS} from "mobx";
 import httpClient from "@/data/AxiosClient.jsx";
+import {typeSelectAll} from "@/presentation/components/events/EventVM.js";
 
 export class StatisticsVM {
 
-    dateRange = {
-        start: null,
-        end: null,
-    }
-
-    displayedDateRange = {
-        start: null,
-        end: null,
-    }
-
-    modes = ["Комиссия", "Преподаватель"]
-    mode = this.modes[1]
-    search = ""
-    teachers = null
-    currentTeacher = null
-    commissions = null
-    currentCommission = null
-    events = null
     data = [
         {color: "#22B07D", name:"Участие", value: 0},
         {color: "#FF7C3B", name:"Публикация", value: 0},
         {color: "#C184FF", name:"Стажировка", value: 0},
         {color: "#1977FF", name:"Проведение", value: 0},
     ]
-
     colorMap = {
         "Участие": "#22B07D",
         "Публикация": "#FF7C3B",
@@ -35,31 +17,72 @@ export class StatisticsVM {
         "Проведение": "#1977FF"
     };
 
+    displayedDateRange = {
+        start: null,
+        end: null,
+    }
+
+    modes = ["Комиссия", "Преподаватель"]
+    teachers = []
+    commissions = []
+    events = []
+    settings = {
+        dateRange: {
+            start: null,
+            end: null,
+        },
+        mode: this.modes[1],
+        teacher: typeSelectAll.id,
+        commission: typeSelectAll.id
+    }
+    search = ""
+
     constructor() {
         makeObservable(this, {
-            dateRange: observable,
-            mode: observable,
+            settings: observable,
             displayedDateRange: observable,
             teachers: observable,
-            currentTeacher: observable,
-            currentCommission: observable,
             commissions: observable,
             data: observable,
             search: observable,
-            handleSetDateRange: action,
-            switchMode: action,
+            setEvents: action,
+            setCommissions: action,
+            setTeachers: action,
+            setDateRange: action,
+            setMode: action,
             onSearch: action,
             getEvents: action,
             selectCommission: action,
-            selectTeacher: action
+            selectTeacher: action,
+            filteredTeachers: computed,
+            filteredCommissions: computed,
         })
     }
 
+    setEvents(data) {
+        this.events = data
+    }
+
+    setCommissions(data) {
+        this.commissions = [
+            typeSelectAll,
+            ...data
+        ]
+    }
+
+    setTeachers(data) {
+        this.teachers = [
+            typeSelectAll,
+            ...data
+        ]
+    }
+
     calcData() {
-        if(this.data && this.dateRange.start) {
+        if(this.data && this.settings.dateRange.start) {
+            console.log("тут")
             this.displayedDateRange = {
-                start: this.dateRange.start,
-                end: this.dateRange.end,
+                start: this.settings.dateRange.start,
+                end: this.settings.dateRange.end,
             };
             const counters = {
                 "Участие": 0,
@@ -68,13 +91,13 @@ export class StatisticsVM {
                 "Проведение": 0
             };
 
-            const startDate = new Date(this.dateRange.start)
+            const startDate = new Date(this.settings.dateRange.start)
             startDate.setHours(0, 0, 0, 0)
             const startTimestamp = startDate.getTime()
 
             let endTimestamp;
-            if (this.dateRange.end) {
-                const endDate = new Date(this.dateRange.end);
+            if (this.settings.dateRange.end) {
+                const endDate = new Date(this.settings.dateRange.end);
                 endDate.setHours(23, 59, 59, 999);
                 endTimestamp = endDate.getTime();
             }
@@ -85,16 +108,16 @@ export class StatisticsVM {
             }
 
             this.events.forEach(event => {
-                if(this.mode === this.modes[0]) {
-                    console.log("Текущий препод", this.currentCommission);
-                    if (event.profile && event.profile.mc && event.profile.mc.id !== this.currentCommission) return;
+                if(this.settings.mode === this.modes[0] && this.settings.commission !== 'all') {
+                    console.log("Текущая комиссия", this.settings.commission);
+                    if (event.profile && event.profile.mc && event.profile.mc.id !== this.settings.commission) return;
                 }
-                if(this.mode === this.modes[1]) {
-                    console.log("Текущий препод", this.currentTeacher);
-                    if (event.profile.id !== this.currentTeacher) return;
+                if(this.settings.mode === this.modes[1] && this.settings.teacher !== 'all') {
+                    console.log("Текущий препод", this.settings.teacher);
+                    if (event.profile.id !== this.settings.teacher) return;
                 }
 
-                console.log("взяли", this.currentTeacher);
+                console.log("взяли", this.settings.teacher);
                 const eventDate = new Date(event.dateOfEvent).getTime();
                 const isInRange = eventDate >= startTimestamp && eventDate <= endTimestamp;
                 if (!isInRange) return;
@@ -157,13 +180,13 @@ export class StatisticsVM {
         }
     }
 
-    handleSetDateRange = (newRange) => {
-        this.dateRange = newRange;
-        console.log("Полученный диапазон дат", toJS(this.dateRange));
+    setDateRange = (newRange) => {
+        this.settings.dateRange = newRange;
+        console.log("Полученный диапазон дат", toJS(this.settings.dateRange));
     }
 
-    switchMode = (mode) => {
-        this.mode = mode;
+    setMode = (mode) => {
+        this.settings.mode = mode;
         console.log(mode);
     }
 
@@ -174,12 +197,26 @@ export class StatisticsVM {
 
     selectTeacher = (teacher) => {
         console.log(toJS(teacher))
-        this.currentTeacher = teacher;
+        this.settings.teacher = teacher;
     }
 
     selectCommission = (commission) => {
         console.log(toJS(commission))
-        this.currentCommission = commission;
+        this.settings.commission = commission;
+    }
+
+    get filteredTeachers() {
+        if (!this.teachers) return null;
+        return this.teachers.filter(teacher =>
+            teacher.name.toLowerCase().includes(this.search)
+        );
+    }
+
+    get filteredCommissions() {
+        if (!this.commissions) return null;
+        return this.commissions.filter(commission =>
+            commission.name.toLowerCase().includes(this.search)
+        );
     }
 
 }
