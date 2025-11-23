@@ -1,7 +1,7 @@
 import {observer} from "mobx-react-lite";
 import classes from "./Form.module.css"
 import {ToggleBtnStat} from "@ui/toggleButtons/toggleBtnStat/ToggleBtnStat.jsx";
-import {useEffect, useMemo} from "react";
+import {useEffect, useMemo, useRef} from "react";
 import {FormVM} from "@/presentation/components/form/FormVM.js";
 import SpacerPX from "@ui/spacers/SpacerPX.jsx";
 import ProfileInput from "@ui/inputs/profileInput/ProfileInput.jsx";
@@ -11,11 +11,19 @@ import {EventSelector} from "@/presentation/components/form/eventSelector/EventS
 import {createPortal} from "react-dom";
 import {ImageSuccess} from "@ui/icons/ImageSuccess.jsx";
 import {useStore} from "@/presentation/providers/AppStoreProvider.jsx";
+import {useLoadFiles} from "@/presentation/components/form/hooks/useLoadFiles.jsx";
+import {useCreateEvent} from "@/presentation/components/form/hooks/useCreateEvent.jsx";
+import {IconEvent} from "@ui/icons/IconEvent.jsx";
+import {IconDelete} from "@ui/icons/IconDelete.jsx";
+import {IconFile} from "@ui/icons/IconFile.jsx";
 
 export const Form = observer(() => {
 
     const vm = useMemo(() => new FormVM(), [])
     const { statuses, results, eventForms, participationForms } = useStore()
+    const { mutate: mLoadFiles } = useLoadFiles()
+    const { mutate: mCreateEvent } = useCreateEvent()
+    const fileInputRef = useRef(null);
     //#region React Queries
 
     //#endregion
@@ -37,6 +45,67 @@ export const Form = observer(() => {
         if(results) {vm.setResults(results)}
     }, [vm, results])
     //#endregion
+
+    const handleFileSelect = (event) => {
+        const files = Array.from(event.target.files);
+        const maxFiles = 3;
+        const maxSize = 200 * 1024 * 1024; // 200 МБ в байтах
+
+        if (files.length === 0) {
+            event.target.value = '';
+            return;
+        }
+
+        // Проверка количества файлов
+        if (files.length > maxFiles) {
+            alert(`Можно загрузить не более ${maxFiles} файлов`);
+            event.target.value = '';
+            return;
+        }
+
+        // Проверка общего количества файлов (текущие + новые)
+        const totalFiles = vm.selectedFiles.length + files.length;
+        if (totalFiles > maxFiles) {
+            alert(`Можно загрузить не более ${maxFiles} файлов. У вас уже ${vm.selectedFiles.length} файлов`);
+            event.target.value = '';
+            return;
+        }
+
+        // Проверка размера каждого файла
+        const oversizedFiles = files.filter(file => file.size > maxSize);
+        if (oversizedFiles.length > 0) {
+            const oversizedFileNames = oversizedFiles.map(f => f.name).join(', ');
+            alert(`Следующие файлы превышают лимит 200 МБ: ${oversizedFileNames}`);
+            event.target.value = '';
+            return;
+        }
+
+        // Если все проверки пройдены, добавляем файлы
+        if (files.length > 0) {
+            vm.addFiles(files);
+            console.log('Состояние после добавления:', vm.selectedFiles);
+        }
+
+        event.target.value = '';
+    };
+
+    const handleAddFilesClick = () => {
+        fileInputRef.current?.click();
+    };
+
+    const handleRemoveFile = (index) => {
+        vm.removeFile(index);
+    };
+
+    const formatFileSize = (bytes) => {
+        if (bytes === 0) return '0 Bytes';
+
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    };
 
     return(
         <div className={classes.background}>
@@ -192,6 +261,7 @@ export const Form = observer(() => {
                 )}
                 <SpacerPX size={12} orientation={"v"}/>
                 <div className={classes.label}>Дата мероприятия</div>
+                <SpacerPX size={12} orientation={"v"}/>
                 <DatePicker
                     selectedDate={vm.event.dateOfEvent}
                     handleDateSelect={vm.handleDateSelect}
@@ -201,7 +271,61 @@ export const Form = observer(() => {
                     <div className={classes.error}>{vm.error}</div>
                 </>)}
                 <SpacerPX size={20} orientation={"v"}/>
-                <ButtonAuth onClick={vm.createForm}>Создать</ButtonAuth>
+                <div className={classes.label}>Подтверждение документа (при наличии)</div>
+                <SpacerPX size={12} orientation={"v"}/>
+                <div className={classes.hint}>Загрузите файлы поддерживаемого типа. Размер файла – не более 200 MB.</div>
+                <SpacerPX size={12} orientation={"v"}/>
+                <div>
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        multiple
+                        onChange={handleFileSelect}
+                        style={{ display: 'none' }}
+                    />
+                    <button
+                        className={classes.buttonFile}
+                        type="button"
+                        onClick={handleAddFilesClick}
+                        disabled={vm.selectedFiles.length >= 3} // Отключаем кнопку при достижении лимита
+                    >
+                        {vm.selectedFiles.length >= 3 ? 'Достигнут лимит файлов' : 'Выбрать файлы'}
+                    </button>
+                </div>
+
+                <div>
+                    {vm.selectedFiles.length > 0 && (
+                        <div>
+                            <SpacerPX size={12} orientation={"v"}/>
+                            <div className={classes.label}>Загруженные файлы ({vm.selectedFiles.length})</div>
+                            <SpacerPX size={12} orientation={"v"}/>
+                            {vm.selectedFiles.map((file, index) => (
+                                <div className={classes.fileBox}>
+                                    <div className={classes.fileIcon}>
+                                        <svg>
+                                            <IconFile/>
+                                        </svg>
+                                    </div>
+                                    <SpacerPX size={12} orientation={"h"}/>
+                                    <div className={classes.label}>{file.name}</div>
+                                    <SpacerPX size={12} orientation={"h"}/>
+                                    <div className={classes.label}>{formatFileSize(file.size)}</div>
+                                    <SpacerPX size={12} orientation={"h"}/>
+                                    <div style={{flex: 1}}></div> {/* Занимает все доступное пространство */}
+                                    <div className={classes.fileIcon} onClick={() => handleRemoveFile(index)} style={{color:'var(--color-error)'}} >
+                                        <svg>
+                                            <IconDelete/>
+                                        </svg>
+                                    </div>
+
+                                    <SpacerPX size={12} orientation={"h"}/>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                <SpacerPX size={12} orientation={"v"}/>
+                <ButtonAuth onClick={() => vm.createForm(mCreateEvent, mLoadFiles)}>Создать</ButtonAuth>
             </div>
 
         </div>

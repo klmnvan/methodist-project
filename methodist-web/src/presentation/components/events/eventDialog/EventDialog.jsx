@@ -139,7 +139,9 @@ export const EventDialog = observer(({ event, onClose}) => {
                             ))}
                         </div>
                         <button className={classes.button} onClick={() => deleteEvent(event.id)}>
-                            <IconDelete/>
+                            <svg style={{width:'24px', height:'24px'}}>
+                                <IconDelete/>
+                            </svg>
                         </button>
                     </>
                 ) : (

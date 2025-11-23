@@ -83,8 +83,9 @@ builder.Services.AddSwaggerGen(option =>
 
 builder.Services.AddDbContext<MKDbContext>(options =>
 {
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Home"));
     //options.UseNpgsql(builder.Configuration.GetConnectionString("MKLocal"));
-    options.UseNpgsql(builder.Configuration.GetConnectionString("NGK"));
+    //options.UseNpgsql(builder.Configuration.GetConnectionString("NGK"));
 });
 
 builder.Services.AddScoped<TokenValidationFilter>();

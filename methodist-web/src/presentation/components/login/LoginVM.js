@@ -8,11 +8,6 @@ export class LoginVM {
         password: "12345678",
     }
 
-    /*formData = {
-        email: "",
-        password: "",
-    }*/
-
     error = ""
 
     constructor() {

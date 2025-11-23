@@ -27,9 +27,12 @@ export class FormVM {
     modalIsOpen = false;
     error = ""
 
+    selectedFiles = [];
+
     constructor() {
         makeObservable(this, {
             modes: observable,
+            selectedFiles: observable,
             modalIsOpen: observable,
             currentMode: observable,
             error: observable,
@@ -45,11 +48,28 @@ export class FormVM {
             closeModal: action,
             setParticipationForms: action,
             setEventForms: action,
+            removeFile: action,
+            clearFiles: action,
+            addFiles: action,
             setStatuses: action,
             setResults: action,
         })
         console.log(toJS(this.currentMode.name))
     }
+
+
+    removeFile(index) {
+        this.selectedFiles = this.selectedFiles.filter((_, i) => i !== index);
+    };
+
+    addFiles = (files) => {
+        this.selectedFiles = [...this.selectedFiles, ...files];
+        console.log('Файлы добавлены:', this.selectedFiles); // Добавь лог
+    };
+
+    clearFiles = () => {
+        this.selectedFiles = [];
+    };
 
     setParticipationForms(data) {
         this.participationForms = data;
@@ -120,26 +140,32 @@ export class FormVM {
         this.error = ""
     });
 
-    createForm = async () => {
-        try {
-            if(this.formIdValid()) {
-                const eventToSend = {
-                    ...this.event,
-                    typeId: this.getFormOfEventId(),
-                    endDateOfEvent: this.event.dateOfEvent.toISOString(),
-                    dateOfEvent: this.event.dateOfEvent.toISOString(),
-                };
-                console.log("попытка отправить event", eventToSend);
-                const { data: newEvent } = await AxiosClient.axiosClient.post('Event/Create', eventToSend);
+    createForm = (mutateCreateEvent, mutateUploadFiles) => {
+        if (!this.formIdValid()) {
+            this.error = 'Не все поля заполнены';
+            return;
+        }
+        const eventToSend = {
+            ...this.event,
+            typeId: this.getFormOfEventId(),
+            endDateOfEvent: this.event.dateOfEvent.toISOString(),
+            dateOfEvent: this.event.dateOfEvent.toISOString(),
+        };
+        mutateCreateEvent(eventToSend, {
+            onSuccess: (response) => {
+                const eventId = response.data.id;
+                if (this.selectedFiles.length > 0) {
+                    mutateUploadFiles({ files: this.selectedFiles, eventId }, {
+                        onSuccess: (response) => {
+                            console.log('Файлы тоже загрузились ' + response);
+                        }
+                    });
+                }
                 this.resetForm();
                 this.modalIsOpen = true;
-                console.log("новый event", newEvent);
+                this.clearFiles();
             }
-            else this.error = 'Не все поля заполнены'
-        }
-        catch (error) {
-            console.log("Ошибка при создании мероприятия", error.message);
-        }
+        })
     }
 
     getFormOfEventId() {

@@ -20,6 +20,15 @@
     border-radius: var(--border-radius);
 }
 
+.buttonFile {
+    padding: 10px 0;
+    background: var(--color-primary);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: normal;
+}
+
 .title {
     font-size: 24px;
     font-weight: 600;
@@ -34,9 +43,16 @@
 }
 
 .label {
-    margin-bottom: 12px !important;
     font-family: var(--font-poppins), serif;
     font-size: 16px;
+    font-weight: normal;
+}
+
+.hint {
+    font-family: var(--font-poppins), serif;
+    font-size: 16px;
+    font-weight: normal;
+    color: color-mix(in srgb, var(--color-title) 40%, transparent);
 }
 
 .modal-overlay {
@@ -107,6 +123,37 @@
     color: var(--color-title);
     opacity: 0;
     animation: fadeIn 0.3s ease forwards !important;
+}
+
+.fileBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 0 !important;
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 12px !important;
+}
+
+.fileIcon {
+    margin-left: 16px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-title);
+    width: 24px; /* Фиксированная ширина */
+    height: 100%; /* Занимает всю высоту контейнера */
+}
+
+.fileIcon svg {
+    width: 26px; /* Оригинальная ширина иконки */
+    height: 26px; /* Оригинальная высота иконки */
+    flex-shrink: 0;
 }
 
 @keyframes fadeIn {

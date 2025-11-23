@@ -2,8 +2,8 @@ import axios from "axios";
 import {userStore} from "@/stores/UserStore.jsx";
 
 class PostService {
-    BASE_URL = "https://iis.ngknn.ru/ngknn/КлимычеваАА/API/"
-    //BASE_URL = 'http://localhost:80/'
+    //BASE_URL = "https://iis.ngknn.ru/ngknn/КлимычеваАА/API/"
+    BASE_URL = 'http://localhost:80/'
 
     client = axios.create({
         baseURL: this.BASE_URL,
@@ -92,6 +92,26 @@ class PostService {
               "EventId": id
             }
         })
+    }
+
+    uploadFiles(files, idEvent) {
+        const formData = new FormData();
+
+        files.forEach(file => {
+            formData.append('files', file);
+        });
+
+        return this.client.post('Event/UploadFiles', formData, {
+            headers: {
+                'idEvent': idEvent,
+                'Content-Type': 'multipart/form-data'
+            },
+            transformRequest: (data) => data,
+        });
+    }
+
+    createEvent(eventData) {
+        return this.client.post('Event/Create', eventData);
     }
 
 }
