@@ -19,7 +19,7 @@ namespace Methodist_API.Models.DB
         public string Status { get; set; } = String.Empty;
         public string Location { get; set; } = String.Empty;
         public string QuantityOfHours { get; set; } = String.Empty;
-        public string Result { get; set; } = String.Empty;
+        public int? ParticipantsCount { get; set; } = 0;
         public Guid ProfileId { get; set; }
 
         [JsonIgnore]

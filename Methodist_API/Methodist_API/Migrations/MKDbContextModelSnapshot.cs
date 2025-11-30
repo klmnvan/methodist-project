@@ -30,6 +30,12 @@ namespace Methodist_API.Migrations
                         .HasColumnName("id")
                         .HasDefaultValueSql("gen_random_uuid()");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
                     b.Property<DateTime>("DateOfEvent")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("date_of_event");
@@ -39,12 +45,10 @@ namespace Methodist_API.Migrations
                         .HasColumnName("end_date_of_event");
 
                     b.Property<string>("FormOfEvent")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("form_of_event");
 
                     b.Property<string>("FormOfParticipation")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("form_of_participation");
 
@@ -57,36 +61,30 @@ namespace Methodist_API.Migrations
                         .HasColumnName("is_checked");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("location");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
+
+                    b.Property<int?>("ParticipantsCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("participants_count");
 
                     b.Property<Guid>("ProfileId")
                         .HasColumnType("uuid")
                         .HasColumnName("profile_id");
 
                     b.Property<string>("QuantityOfHours")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("quantity_of_hours");
 
-                    b.Property<string>("Result")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("result");
-
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("status");
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("type");
 
@@ -98,12 +96,6 @@ namespace Methodist_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at")
-                        .HasDefaultValueSql("now()");
-
-                    b.Property<DateTime>("СreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at")
                         .HasDefaultValueSql("now()");
 
                     b.HasKey("Id");
@@ -128,15 +120,25 @@ namespace Methodist_API.Migrations
                         .HasColumnName("event_id");
 
                     b.Property<string>("FileName")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("file_name");
+
+                    b.Property<Guid>("OwnerTypeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("owner_type_id");
+
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("result");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("file_events", (string)null);
+                    b.HasIndex("OwnerTypeId");
+
+                    b.ToTable("result_events", (string)null);
                 });
 
             modelBuilder.Entity("Methodist_API.Models.DB.MethodicalСommittee", b =>
@@ -238,6 +240,12 @@ namespace Methodist_API.Migrations
                         .HasColumnName("id")
                         .HasDefaultValueSql("gen_random_uuid()");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -272,17 +280,41 @@ namespace Methodist_API.Migrations
                         .HasColumnName("updated_at")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<DateTime>("СreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at")
-                        .HasDefaultValueSql("now()");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MC_id");
 
                     b.ToTable("profiles", (string)null);
+                });
+
+            modelBuilder.Entity("Methodist_API.Models.DB.ResultOwnerType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("result_owner_types", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c1481f78-bee6-4dfc-8682-cc08d937711e"),
+                            Name = "Преподаватель"
+                        },
+                        new
+                        {
+                            Id = new Guid("8fe1805f-93a1-42f5-98b4-fc4a7687eb59"),
+                            Name = "Студент"
+                        });
                 });
 
             modelBuilder.Entity("Methodist_API.Models.DB.TypeOfEvent", b =>
@@ -322,6 +354,11 @@ namespace Methodist_API.Migrations
                         {
                             Id = new Guid("01f2e985-5066-4a1c-bc51-5c46b6b20362"),
                             Name = "Стажировка"
+                        },
+                        new
+                        {
+                            Id = new Guid("53ffe6e1-f95d-4b8a-9922-36c6c2840498"),
+                            Name = "Участие студентов"
                         });
                 });
 
@@ -596,7 +633,15 @@ namespace Methodist_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Methodist_API.Models.DB.ResultOwnerType", "ResultOwnerType")
+                        .WithMany("Results")
+                        .HasForeignKey("OwnerTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Event");
+
+                    b.Navigation("ResultOwnerType");
                 });
 
             modelBuilder.Entity("Methodist_API.Models.DB.MethodicalСommittee", b =>
@@ -693,6 +738,11 @@ namespace Methodist_API.Migrations
                     b.Navigation("Events");
 
                     b.Navigation("MethodicalСommittees");
+                });
+
+            modelBuilder.Entity("Methodist_API.Models.DB.ResultOwnerType", b =>
+                {
+                    b.Navigation("Results");
                 });
 
             modelBuilder.Entity("Methodist_API.Models.DB.TypeOfEvent", b =>

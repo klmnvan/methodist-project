@@ -15,6 +15,7 @@ namespace Methodist_API.Data
         public DbSet<FileEvent> FileEvents { get; set; }
         public DbSet<MethodicalСommittee> MethodicalСommittees { get; set; }
         public DbSet<TypeOfEvent> TypeOfEvents { get; set; }
+        public DbSet<ResultOwnerType> ResultOwnerTypes { get; set; }
 
         //при запуске миграции, EF итак создаст таблицы (без конфигурации), но, чтобы быть уверенным в том, чтобы все связи и вся БД создалась правильно, делают конфигурацию
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,6 +29,14 @@ namespace Methodist_API.Data
 
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new EventConfiguration());
+            modelBuilder.ApplyConfiguration(new ResultOwnerTypeConfiguration());
+
+            // Принадлежность результата мероприятия
+            modelBuilder.Entity<ResultOwnerType>().HasData(
+                new TypeOfEvent { Id = new Guid("c1481f78-bee6-4dfc-8682-cc08d937711e"), Name = "Преподаватель" },
+                new TypeOfEvent { Id = new Guid("8fe1805f-93a1-42f5-98b4-fc4a7687eb59"), Name = "Студент" }
+            );
+
             modelBuilder.ApplyConfiguration(new FileEventConfiguration());
             modelBuilder.ApplyConfiguration(new MethodicalСommitteeConfiguration());
             modelBuilder.ApplyConfiguration(new ProfileConfiguration());
@@ -78,7 +87,8 @@ namespace Methodist_API.Data
                 new TypeOfEvent { Id = new Guid("ec2d1d7b-4cb7-41e1-aa80-74f695fea627"), Name = "Проведение" },
                 new TypeOfEvent { Id = new Guid("638ea3fe-b998-4a6e-a06e-3331597e34b8"), Name = "Участие" },
                 new TypeOfEvent { Id = new Guid("5ce9f584-6fea-41e9-9a64-4ab4d9d09e84"), Name = "Публикация" },
-                new TypeOfEvent { Id = new Guid("01f2e985-5066-4a1c-bc51-5c46b6b20362"), Name = "Стажировка" }
+                new TypeOfEvent { Id = new Guid("01f2e985-5066-4a1c-bc51-5c46b6b20362"), Name = "Стажировка" },
+                new TypeOfEvent { Id = new Guid("53ffe6e1-f95d-4b8a-9922-36c6c2840498"), Name = "Участие студентов" }
             );
 
             // Методические комиссии

@@ -165,6 +165,32 @@ namespace Methodist_API.Controllers
             }
         }
 
+        /*[SwaggerOperation(Summary = "Создать мероприятие")]
+        [HttpPost("CreateEventWithFiles")]
+        public async Task<ActionResult<EventDetailsDto>> CreateEventWithFiles([FromBody] CreateCreateEventWithFilesDto newEvent)
+        {
+            try
+            {
+                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (appUser == null)
+                {
+                    return Unauthorized();
+                }
+                if (!_eventRepository.TypeIsExists(newEvent.TypeId))
+                {
+                    return BadRequest("Тип мероприятия заполнен некорректно");
+                }
+                var entity = _eventRepository.Insert(newEvent, appUser.Id);
+                var result = _mapper.Map<EventDetailsDto>(entity);
+                result.TypeOfEvent = entity.TypeOfEvent;
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }*/
+
         [SwaggerOperation(Summary = "Удалить мероприятие")]
         [HttpDelete("Remove")]
         public async Task<ActionResult> Remove([FromHeader(Name = "EventId")] Guid eventId)
