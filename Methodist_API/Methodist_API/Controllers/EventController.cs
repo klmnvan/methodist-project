@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Methodist_API.Data;
 using Methodist_API.Dtos.Account;
 using Methodist_API.Dtos.CreateEntity;
 using Methodist_API.Dtos.DB;
@@ -31,15 +32,17 @@ namespace Methodist_API.Controllers
         private string uploadPath = Path.Combine($"{Directory.GetCurrentDirectory()}\\Uploads", packageName);
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IFileUsersRepository _fileUsersRepository;
+        private readonly MKDbContext _context;
 
         public EventController(IMapper mapper, IEventRepository eventRepository, UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor,
-            IFileUsersRepository fileUsersRepository)
+            IFileUsersRepository fileUsersRepository, MKDbContext context)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
             _fileUsersRepository = fileUsersRepository;
+            _context = context;
             Directory.CreateDirectory(uploadPath);
         }
 
@@ -165,31 +168,79 @@ namespace Methodist_API.Controllers
             }
         }
 
-        /*[SwaggerOperation(Summary = "Создать мероприятие")]
-        [HttpPost("CreateEventWithFiles")]
-        public async Task<ActionResult<EventDetailsDto>> CreateEventWithFiles([FromBody] CreateCreateEventWithFilesDto newEvent)
+        /*public Event Insert(CreateEventDto newEvent, Guid profileId)
         {
-            try
-            {
-                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (appUser == null)
-                {
-                    return Unauthorized();
-                }
-                if (!_eventRepository.TypeIsExists(newEvent.TypeId))
-                {
-                    return BadRequest("Тип мероприятия заполнен некорректно");
-                }
-                var entity = _eventRepository.Insert(newEvent, appUser.Id);
-                var result = _mapper.Map<EventDetailsDto>(entity);
-                result.TypeOfEvent = entity.TypeOfEvent;
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            var _event = _mapper.Map<Event>(newEvent);
+            _event.ProfileId = profileId;
+            _event.Id = Guid.NewGuid();
+            var item = _context.Events.Add(_event);
+            _context.SaveChanges();
+            return _context.Events
+                .Include(it => it.TypeOfEvent)
+                .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
+                .Single(it => it.Id == item.Entity.Id);
         }*/
+
+
+        [SwaggerOperation(Summary = "Создать мероприятие")]
+        [HttpPost("CreateEventWithFiles")]
+        public async Task<ActionResult<EventResultsDto>> CreateEventWithFiles([FromBody] CreateEventWithFilesDto newEvent)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                    if (appUser == null) return Unauthorized();
+                    if (!_eventRepository.TypeIsExists(newEvent.TypeId)) return BadRequest("Тип мероприятия заполнен некорректно");
+                    if (!ModelState.IsValid) return BadRequest(ModelState);
+                    //создание мероприятия
+                    var _event = _mapper.Map<Event>(newEvent);
+                    _event.ProfileId = appUser.Id;
+                    var itemEvent = _context.Events.Add(_event);
+                    await _context.SaveChangesAsync();
+
+                    foreach (var resEvent in newEvent.Results)
+                    {
+                        var _result = _mapper.Map<FileEvent>(resEvent);
+                        if (resEvent.file != null)
+                        {
+                            string imageName = $"{Guid.NewGuid()}_{resEvent.file.FileName}";
+                            var filePath = Path.Combine(uploadPath, imageName);
+
+                            // сохраняем файл в папку Uploads
+                            using (var fileStream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await resEvent.file.CopyToAsync(fileStream);
+                            }
+                            _result.FileName = imageName;
+                        }
+                        _result.EventId = itemEvent.Entity.Id;
+                        _context.FileEvents.Add(_result);
+                    }
+
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                    var createdEventWithFiles = _context.Events
+                        .Include(it => it.TypeOfEvent)
+                        .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
+                        .Include(it => it.FileEvents)
+                        .Single(e => e.Id == itemEvent.Entity.Id);
+
+                    var result = _mapper.Map<EventResultsDto>(createdEventWithFiles);
+                    return Ok(result);
+                }
+                catch (Exception ex)
+                {
+                    //откат транзакции
+                    await transaction.RollbackAsync();
+                    return StatusCode(500, ex.Message);
+                }
+            }
+        }
+
+
 
         [SwaggerOperation(Summary = "Удалить мероприятие")]
         [HttpDelete("Remove")]
