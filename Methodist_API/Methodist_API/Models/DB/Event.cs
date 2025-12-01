@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using JsonIgnoreAttribute = System.Text.Json.Serialization.JsonIgnoreAttribute;
 
 namespace Methodist_API.Models.DB
 {

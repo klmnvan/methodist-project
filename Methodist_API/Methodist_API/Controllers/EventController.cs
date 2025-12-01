@@ -105,7 +105,54 @@ namespace Methodist_API.Controllers
             }
         }
 
-        [SwaggerOperation(Summary = "Получить все категории мероприятий")]
+        [SwaggerOperation(Summary = "Получить все мероприятия по доступности роли со списком результатов")]
+        [HttpGet("GetEventsWithResults")]
+        public async Task<ActionResult<List<EventResultsDto>>> GetEventsWithResults()
+        {
+            try
+            {
+                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (appUser == null) return Unauthorized();
+                var userRoles = await _userManager.GetRolesAsync(appUser);
+                List<EventResultsDto> listResult = new();
+                List<Event> listEntity = new();
+                if (userRoles.ToList().Contains("Администратор") ||
+                    userRoles.ToList().Contains("Руководитель корпуса") ||
+                    userRoles.ToList().Contains("Представитель научно-методического центра"))
+                {
+                    listEntity = _eventRepository.SelectAll();
+                }
+                else if (userRoles.ToList().Contains("Председатель методической комиссии"))
+                {
+                    listEntity = _eventRepository.SelectByIdMC(appUser.Id);
+                }
+                else if (userRoles.ToList().Contains("Член методической комиссии"))
+                {
+                    listEntity = _eventRepository.SelectByIdProfile(appUser.Id);
+                }
+
+                listEntity.ForEach(e =>
+                {
+                    EventResultsDto newEvent = _mapper.Map<EventResultsDto>(e);
+                    newEvent.TypeOfEvent = e.TypeOfEvent;
+                    newEvent.FileEvents = e.FileEvents;
+                    var profile = _mapper.Map<ProfileDto>(e.Profile);
+                    profile.MC = e.Profile.MethodicalСommittee;
+                    profile.Email = appUser.Email;
+                    profile.Roles = userRoles.ToList();
+                    newEvent.Profile = profile;
+                    listResult.Add(newEvent);
+                });
+
+                return Ok(_mapper.Map<List<EventResultsDto>>(listResult));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+            [SwaggerOperation(Summary = "Получить все категории мероприятий")]
         [HttpGet("GetTypeOfEvents")]
         public async Task<ActionResult<List<TypeOfEventDto>>> GetTypeOfEvents()
         {
