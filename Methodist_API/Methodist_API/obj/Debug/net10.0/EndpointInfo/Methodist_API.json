@@ -225,41 +225,25 @@
         }
       }
     },
-    "/Event/GetEventsWithResults": {
+    "/Event/Uploads/{fileName}": {
       "get": {
         "tags": [
           "Event"
         ],
-        "summary": "Получить все мероприятия по доступности роли со списком результатов",
+        "summary": "Получить файл результата",
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EventResultsDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EventResultsDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EventResultsDto"
-                  }
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
@@ -457,17 +441,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/EventResultsDto"
+                  "$ref": "#/components/schemas/EventDetailsDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EventResultsDto"
+                  "$ref": "#/components/schemas/EventDetailsDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EventResultsDto"
+                  "$ref": "#/components/schemas/EventDetailsDto"
                 }
               }
             }
@@ -1289,9 +1273,6 @@
             "type": "string",
             "format": "date-time"
           },
-          "typeOfEvent": {
-            "$ref": "#/components/schemas/TypeOfEvent"
-          },
           "isApproved": {
             "type": "boolean"
           },
@@ -1327,91 +1308,32 @@
             "type": "string",
             "nullable": true
           },
-          "profile": {
-            "$ref": "#/components/schemas/ProfileDto"
-          }
-        },
-        "additionalProperties": false
-      },
-      "EventResultsDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "dateOfEvent": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDateOfEvent": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "isApproved": {
-            "type": "boolean"
-          },
-          "isChecked": {
-            "type": "boolean"
-          },
-          "type": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "formOfParticipation": {
-            "type": "string",
-            "nullable": true
-          },
-          "formOfEvent": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "location": {
-            "type": "string",
-            "nullable": true
-          },
-          "quantityOfHours": {
-            "type": "string",
-            "nullable": true
-          },
           "participantsCount": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "typeOfEvent": {
-            "$ref": "#/components/schemas/TypeOfEvent"
+          "fileCount": {
+            "type": "integer",
+            "format": "int32"
           },
           "fileEvents": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/FileEvent"
+              "$ref": "#/components/schemas/EventResultDto"
             },
             "nullable": true
           },
           "profile": {
             "$ref": "#/components/schemas/ProfileDto"
+          },
+          "typeOfEvent": {
+            "$ref": "#/components/schemas/TypeOfEvent"
           }
         },
         "additionalProperties": false
       },
-      "FileEvent": {
+      "EventResultDto": {
         "type": "object",
         "properties": {
           "id": {
@@ -1433,12 +1355,6 @@
           "result": {
             "type": "string",
             "nullable": true
-          },
-          "event": {
-            "$ref": "#/components/schemas/Event"
-          },
-          "resultOwnerType": {
-            "$ref": "#/components/schemas/ResultOwnerType"
           }
         },
         "additionalProperties": false
@@ -1734,27 +1650,6 @@
             "type": "string",
             "format": "password",
             "default": "12345678"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ResultOwnerType": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "results": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FileEvent"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Methodist_API.Configurations
 {
-    public class FileEventConfiguration : IEntityTypeConfiguration<FileEvent>
+    public class FileEventConfiguration : IEntityTypeConfiguration<EventResult>
     {
-        public void Configure(EntityTypeBuilder<FileEvent> builder)
+        public void Configure(EntityTypeBuilder<EventResult> builder)
         {
             builder.ToTable("result_events");
 

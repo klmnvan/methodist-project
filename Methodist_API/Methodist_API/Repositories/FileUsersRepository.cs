@@ -16,9 +16,9 @@ namespace Methodist_API.Repositories
             _mapper = mapper;
         }
 
-        public FileEvent Insert(Guid idEvent, string fileName)
+        public EventResult Insert(Guid idEvent, string fileName)
         {
-            var item = _context.FileEvents.Add(new FileEvent { FileName = fileName, EventId = idEvent });
+            var item = _context.FileEvents.Add(new EventResult { FileName = fileName, EventId = idEvent });
             _context.SaveChanges();
             return item.Entity;
         }

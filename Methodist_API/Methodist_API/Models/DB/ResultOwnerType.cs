@@ -8,7 +8,7 @@ namespace Methodist_API.Models.DB
         public string Name { get; set; } = String.Empty;
 
         [JsonIgnore]
-        public ICollection<FileEvent> Results { get; set; } = [];
+        public ICollection<EventResult> Results { get; set; } = [];
     }
 
 }

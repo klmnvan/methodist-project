@@ -12,7 +12,7 @@ namespace Methodist_API.Data
         //добавление сущностей в контекст БД
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Event> Events { get; set; }
-        public DbSet<FileEvent> FileEvents { get; set; }
+        public DbSet<EventResult> FileEvents { get; set; }
         public DbSet<MethodicalСommittee> MethodicalСommittees { get; set; }
         public DbSet<TypeOfEvent> TypeOfEvents { get; set; }
         public DbSet<ResultOwnerType> ResultOwnerTypes { get; set; }

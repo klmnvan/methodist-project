@@ -89,6 +89,7 @@ namespace Methodist_API.Controllers
                 {
                     EventDetailsDto newEvent = _mapper.Map<EventDetailsDto>(e);
                     newEvent.TypeOfEvent = e.TypeOfEvent;
+                    newEvent.FileEvents = _mapper.Map<List<EventResultDto>>(e.FileEvents);
                     var profile = _mapper.Map<ProfileDto>(e.Profile);
                     profile.MC = e.Profile.MethodicalСommittee;
                     profile.Email = appUser.Email;
@@ -105,54 +106,27 @@ namespace Methodist_API.Controllers
             }
         }
 
-        [SwaggerOperation(Summary = "Получить все мероприятия по доступности роли со списком результатов")]
-        [HttpGet("GetEventsWithResults")]
-        public async Task<ActionResult<List<EventResultsDto>>> GetEventsWithResults()
+        [SwaggerOperation(Summary = "Получить файл результата")]
+        [HttpGet("Uploads/{fileName}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Uploads(string fileName)
         {
-            try
-            {
-                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (appUser == null) return Unauthorized();
-                var userRoles = await _userManager.GetRolesAsync(appUser);
-                List<EventResultsDto> listResult = new();
-                List<Event> listEntity = new();
-                if (userRoles.ToList().Contains("Администратор") ||
-                    userRoles.ToList().Contains("Руководитель корпуса") ||
-                    userRoles.ToList().Contains("Представитель научно-методического центра"))
-                {
-                    listEntity = _eventRepository.SelectAll();
-                }
-                else if (userRoles.ToList().Contains("Председатель методической комиссии"))
-                {
-                    listEntity = _eventRepository.SelectByIdMC(appUser.Id);
-                }
-                else if (userRoles.ToList().Contains("Член методической комиссии"))
-                {
-                    listEntity = _eventRepository.SelectByIdProfile(appUser.Id);
-                }
+            // Определение пути к файлу
+            var uploadsFolderPath = Path.Combine($"{Directory.GetCurrentDirectory()}\\Uploads", packageName);
+            var filePath = Path.Combine(uploadsFolderPath, fileName);
 
-                listEntity.ForEach(e =>
-                {
-                    EventResultsDto newEvent = _mapper.Map<EventResultsDto>(e);
-                    newEvent.TypeOfEvent = e.TypeOfEvent;
-                    newEvent.FileEvents = e.FileEvents;
-                    var profile = _mapper.Map<ProfileDto>(e.Profile);
-                    profile.MC = e.Profile.MethodicalСommittee;
-                    profile.Email = appUser.Email;
-                    profile.Roles = userRoles.ToList();
-                    newEvent.Profile = profile;
-                    listResult.Add(newEvent);
-                });
-
-                return Ok(_mapper.Map<List<EventResultsDto>>(listResult));
-            }
-            catch (Exception ex)
+            // Проверка, существует ли файл
+            if (!System.IO.File.Exists(filePath))
             {
-                return StatusCode(500, ex.Message);
+                return NotFound("Файл не найден.");
             }
+
+            // Возвращаем файл
+            var fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return File(fileBytes, "application/octet-stream", fileName);
         }
 
-            [SwaggerOperation(Summary = "Получить все категории мероприятий")]
+        [SwaggerOperation(Summary = "Получить все категории мероприятий")]
         [HttpGet("GetTypeOfEvents")]
         public async Task<ActionResult<List<TypeOfEventDto>>> GetTypeOfEvents()
         {
@@ -215,23 +189,10 @@ namespace Methodist_API.Controllers
             }
         }
 
-        /*public Event Insert(CreateEventDto newEvent, Guid profileId)
-        {
-            var _event = _mapper.Map<Event>(newEvent);
-            _event.ProfileId = profileId;
-            _event.Id = Guid.NewGuid();
-            var item = _context.Events.Add(_event);
-            _context.SaveChanges();
-            return _context.Events
-                .Include(it => it.TypeOfEvent)
-                .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
-                .Single(it => it.Id == item.Entity.Id);
-        }*/
-
 
         [SwaggerOperation(Summary = "Создать мероприятие")]
         [HttpPost("CreateEventWithFiles")]
-        public async Task<ActionResult<EventResultsDto>> CreateEventWithFiles([FromBody] CreateEventWithFilesDto newEvent)
+        public async Task<ActionResult<EventDetailsDto>> CreateEventWithFiles([FromBody] CreateEventWithFilesDto newEvent)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
@@ -249,7 +210,7 @@ namespace Methodist_API.Controllers
 
                     foreach (var resEvent in newEvent.Results)
                     {
-                        var _result = _mapper.Map<FileEvent>(resEvent);
+                        var _result = _mapper.Map<EventResult>(resEvent);
                         if (resEvent.file != null)
                         {
                             string imageName = $"{Guid.NewGuid()}_{resEvent.file.FileName}";
@@ -275,7 +236,7 @@ namespace Methodist_API.Controllers
                         .Include(it => it.FileEvents)
                         .Single(e => e.Id == itemEvent.Entity.Id);
 
-                    var result = _mapper.Map<EventResultsDto>(createdEventWithFiles);
+                    var result = _mapper.Map<EventDetailsDto>(createdEventWithFiles);
                     return Ok(result);
                 }
                 catch (Exception ex)
@@ -286,8 +247,6 @@ namespace Methodist_API.Controllers
                 }
             }
         }
-
-
 
         [SwaggerOperation(Summary = "Удалить мероприятие")]
         [HttpDelete("Remove")]

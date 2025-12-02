@@ -9,7 +9,6 @@ namespace Methodist_API.Dtos.DB
         public DateTime UpdatedAt { get; set; }
         public DateTime DateOfEvent { get; set; }
         public DateTime EndDateOfEvent { get; set; }
-        public TypeOfEvent TypeOfEvent { get; set; }
         public bool IsApproved { get; set; }
         public string Type { get; set; } = String.Empty;
         public string Name { get; set; } = String.Empty;
@@ -19,6 +18,11 @@ namespace Methodist_API.Dtos.DB
         public string Location { get; set; } = String.Empty;
         public string QuantityOfHours { get; set; } = String.Empty;
         public string Result { get; set; } = String.Empty;
+        public int? ParticipantsCount { get; set; } = 0;
+        public int FileCount { get; set; } = 0;
+        public ICollection<EventResultDto> FileEvents { get; set; } = [];
         public ProfileDto Profile { get; set; }
+        public TypeOfEvent TypeOfEvent { get; set; }
     }
+
 }

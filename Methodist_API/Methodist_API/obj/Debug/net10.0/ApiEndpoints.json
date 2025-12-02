@@ -144,7 +144,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Methodist_API.Dtos.DB.EventResultsDto",
+        "Type": "Methodist_API.Dtos.DB.EventDetailsDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -165,26 +165,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[Methodist_API.Dtos.DB.EventDetailsDto, Methodist_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Methodist_API.Controllers.EventController",
-    "Method": "GetEventsWithResults",
-    "RelativePath": "Event/GetEventsWithResults",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[Methodist_API.Dtos.DB.EventResultsDto, Methodist_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -278,6 +258,22 @@
         "Name": "idEvent",
         "Type": "System.Guid",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Methodist_API.Controllers.EventController",
+    "Method": "Uploads",
+    "RelativePath": "Event/Uploads/{fileName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileName",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
