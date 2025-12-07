@@ -20,7 +20,7 @@ import {IconFile} from "@ui/icons/IconFile.jsx";
 export const Form = observer(() => {
 
     const vm = useMemo(() => new FormVM(), [])
-    const { statuses, results, eventForms, participationForms } = useStore()
+    const { statuses, results, eventForms, participationForms, ownerTypeByResults } = useStore()
     const { mutate: mLoadFiles } = useLoadFiles()
     const { mutate: mCreateEvent } = useCreateEvent()
     const fileInputRef = useRef(null);
@@ -30,19 +30,23 @@ export const Form = observer(() => {
 
     //#region Use Effects
     useEffect(() => {
-        if(participationForms) {vm.setParticipationForms(participationForms)}
+        if(ownerTypeByResults) { vm.setOwnerTypeByResults(ownerTypeByResults) }
+    }, [vm, ownerTypeByResults])
+
+    useEffect(() => {
+        if(participationForms) { vm.setParticipationForms(participationForms) }
     }, [vm, participationForms])
 
     useEffect(() => {
-        if(eventForms) {vm.setEventForms(eventForms)}
+        if(eventForms) { vm.setEventForms(eventForms) }
     }, [vm, eventForms])
 
     useEffect(() => {
-        if(statuses) {vm.setStatuses(statuses)}
+        if(statuses) { vm.setStatuses(statuses) }
     }, [vm, statuses])
 
     useEffect(() => {
-        if(results) {vm.setResults(results)}
+        if(results) { vm.setResults(results) }
     }, [vm, results])
     //#endregion
 
@@ -257,6 +261,67 @@ export const Form = observer(() => {
                             value={vm.event.location}
                             onChange={vm.handleInput}
                         />
+                    </>
+                )}
+                {vm.currentMode === vm.modes[4] && (
+                    <>
+                        <EventSelector
+                            label="Форма участия"
+                            defaultValues={vm.participationForms}
+                            defaultIsExists={false}
+                            onSelect={(value) => vm.handleSelect('formOfParticipation', value)}
+                        />
+                        <SpacerPX size={12} orientation={"v"}/>
+                        <ProfileInput
+                            label="Название мероприятия"
+                            type="text"
+                            name="name"
+                            placeholder = "Название"
+                            value={vm.event.name}
+                            onChange={vm.handleInput}
+                        />
+                        <SpacerPX size={12} orientation={"v"}/>
+                        <EventSelector
+                            label="Форма мероприятия"
+                            defaultValues={vm.eventForms}
+                            onSelect={(value) => vm.handleSelect('formOfEvent', value)}
+                        />
+                        <SpacerPX size={12} orientation={"v"}/>
+                        <EventSelector
+                            label="Cтатус мероприятия"
+                            defaultValues={vm.statuses}
+                            onSelect={(value) => vm.handleSelect('status', value)}
+                        />
+                        <SpacerPX size={12} orientation={"v"}/>
+                        <ProfileInput
+                            label="Количество участников"
+                            type="text"
+                            inputMode="numeric"
+                            name="participantsCount"
+                            value={vm.event.participantsCount}
+                            onChange={(e) => {
+                                const newValue = vm.handleParticipantsCount(e.target.value);
+                                e.target.value = newValue; // Синхронизируем значение
+                            }}
+                            title="Только положительные целые числа"
+                            maxLength={10}
+                        />
+                        <SpacerPX size={12} orientation={"v"}/>
+                        <div className={classes.label}>Результаты</div>
+                        <SpacerPX size={12} orientation={"v"}/>
+                        {vm.event.results && vm.event.results.map((result, index) => (
+                            <div key={index} className={classes.rowResult}>
+                                <>{result.result}</>
+                                <SpacerPX size={12} orientation={"v"}/>
+                            </div>
+                        ))}
+                        <button
+                            className={classes.buttonFile}
+                            type="button"
+                            onClick={() => vm.initNewResult()}
+                        >
+                            Добавить результат
+                        </button>
                     </>
                 )}
                 <SpacerPX size={12} orientation={"v"}/>

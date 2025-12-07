@@ -53,6 +53,10 @@ class PostService {
         return this.client.get('Event/GetEvents')
     }
 
+    getOwnerTypeByResults() {
+        return this.client.get('Event/GetOwnerTypeByResults')
+    }
+
     getCommissions() {
         return this.client.get('MK/GetAll')
     }

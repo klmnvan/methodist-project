@@ -1,4 +1,5 @@
 ﻿using Methodist_API.Dtos.CreateEntity;
+using Methodist_API.Dtos.DB;
 using Methodist_API.Dtos.Patch;
 using Methodist_API.Models.DB;
 
@@ -17,6 +18,7 @@ namespace Methodist_API.Interfaces
         public Event UpdatePart(Guid eventId, PatchEventDto dto);
         public bool Delete(Guid eventId);
         public List<TypeOfEvent> SelectAllTypes();
+        public List<ResultOwnerType> SelectOwnerTypeByResults();
 
     }
 }

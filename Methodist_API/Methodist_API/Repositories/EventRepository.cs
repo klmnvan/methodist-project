@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Methodist_API.Data;
 using Methodist_API.Dtos.CreateEntity;
+using Methodist_API.Dtos.DB;
 using Methodist_API.Dtos.Patch;
 using Methodist_API.Interfaces;
 using Methodist_API.Models.DB;
@@ -107,6 +108,11 @@ namespace Methodist_API.Repositories
         public List<TypeOfEvent> SelectAllTypes()
         {
             return _context.TypeOfEvents.ToList();
+        }
+
+        public List<ResultOwnerType> SelectOwnerTypeByResults()
+        {
+            return _context.ResultOwnerTypes.ToList();
         }
     }
 }

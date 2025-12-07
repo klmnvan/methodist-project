@@ -15,7 +15,7 @@ import {useStore} from "@/presentation/providers/AppStoreProvider.jsx";
 function MainPage() {
     const [category, setCategory] = useState('Мероприятия');
     const navigate = useNavigate();
-    const { setEvents, setCategories, setCommissions, setProfile, setParticipationForms,
+    const { setEvents, setOwnerTypeByResults, setCategories, setCommissions, setProfile, setParticipationForms,
         setResults, setEventForms, setStatuses} = useStore()
     
     //#region React Queries
@@ -30,6 +30,13 @@ function MainPage() {
         queryFn: () => postService.getEvents(),
         select: (data) => data.data,
         refetchInterval: 30 * 1000, //раз в 30 сек обновляем список
+        enabled: !!userStore.accessToken,
+    })
+
+    const { data: ownerTypeByResults } = useQuery({
+        queryKey: ["ownerTypeByResults"],
+        queryFn: () => postService.getOwnerTypeByResults(),
+        select: (data) => data.data,
         enabled: !!userStore.accessToken,
     })
 
@@ -105,6 +112,10 @@ function MainPage() {
             setEvents(events)
         }
     }, [events, setEvents])
+
+    useEffect(() => {
+        if(ownerTypeByResults) { setOwnerTypeByResults(ownerTypeByResults) }
+    }, [ownerTypeByResults, setOwnerTypeByResults])
 
     useEffect(() => {
         if(categories) { setCategories(categories) }

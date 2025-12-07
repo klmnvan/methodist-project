@@ -31,6 +31,8 @@ namespace Methodist_API.Profiles
             CreateMap<EventResult, EventResultDto>().ReverseMap();
             //TypeOfEvent
             CreateMap<TypeOfEvent, TypeOfEventDto>().ReverseMap();
+            //ResultOwnerType
+            CreateMap<ResultOwnerType, ResultOwnerTypeDto>().ReverseMap();
         }
     }
 }

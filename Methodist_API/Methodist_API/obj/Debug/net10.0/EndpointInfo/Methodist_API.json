@@ -287,6 +287,45 @@
         }
       }
     },
+    "/Event/GetOwnerTypeByResults": {
+      "get": {
+        "tags": [
+          "Event"
+        ],
+        "summary": "Получить все типы владелцев для результатов",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResultOwnerTypeDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResultOwnerTypeDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResultOwnerTypeDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/Event/UpdatePart": {
       "patch": {
         "tags": [
@@ -1650,6 +1689,20 @@
             "type": "string",
             "format": "password",
             "default": "12345678"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResultOwnerTypeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

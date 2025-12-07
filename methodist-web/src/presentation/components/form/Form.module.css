@@ -156,6 +156,11 @@
     flex-shrink: 0;
 }
 
+.rowResult {
+    display: flex;
+    flex-direction: row;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

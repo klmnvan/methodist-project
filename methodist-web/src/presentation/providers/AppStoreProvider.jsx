@@ -19,6 +19,7 @@ class AppStore {
     queryClient = null;
     theme = "dark";
     events = []
+    ownerTypeByResults = []
     categories = []
     commissions = []
     statuses = [];
@@ -31,6 +32,7 @@ class AppStore {
         makeAutoObservable(this, {
             events: observable,
             commissions: observable,
+            ownerTypeByResults: observable,
             categories: observable,
             profile: observable,
             queryClient: observable,
@@ -73,6 +75,10 @@ class AppStore {
 
     setCommissions = (data) => {
         this.commissions = data
+    }
+
+    setOwnerTypeByResults = (data) => {
+        this.ownerTypeByResults = data
     }
 
     setCategories = (data) => {

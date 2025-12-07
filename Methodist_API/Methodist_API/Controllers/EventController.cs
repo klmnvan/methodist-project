@@ -143,6 +143,23 @@ namespace Methodist_API.Controllers
             }
         }
 
+        [SwaggerOperation(Summary = "Получить все типы владелцев для результатов")]
+        [HttpGet("GetOwnerTypeByResults")]
+        public async Task<ActionResult<List<ResultOwnerTypeDto>>> GetOwnerTypeByResults()
+        {
+            try
+            {
+                var appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (appUser == null) return Unauthorized();
+                var types = _eventRepository.SelectOwnerTypeByResults();
+                return Ok(_mapper.Map<List<ResultOwnerTypeDto>>(types));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [SwaggerOperation(Summary = "Изменить часть мероприятия")]
         [HttpPatch("UpdatePart")]
         public async Task<ActionResult<Event>> UpdatePart([FromHeader(Name = "EventId")] Guid eventId, PatchEventDto dto)

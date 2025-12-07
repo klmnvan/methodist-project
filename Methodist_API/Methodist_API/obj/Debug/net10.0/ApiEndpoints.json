@@ -176,6 +176,26 @@
   },
   {
     "ContainingType": "Methodist_API.Controllers.EventController",
+    "Method": "GetOwnerTypeByResults",
+    "RelativePath": "Event/GetOwnerTypeByResults",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Methodist_API.Dtos.DB.ResultOwnerTypeDto, Methodist_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Methodist_API.Controllers.EventController",
     "Method": "GetTypeOfEvents",
     "RelativePath": "Event/GetTypeOfEvents",
     "HttpMethod": "GET",

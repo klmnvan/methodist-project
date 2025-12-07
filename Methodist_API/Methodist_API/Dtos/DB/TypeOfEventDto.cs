@@ -1,4 +1,6 @@
-﻿namespace Methodist_API.Dtos.DB
+﻿using Methodist_API.Models.DB;
+
+namespace Methodist_API.Dtos.DB
 {
     public class TypeOfEventDto
     {
