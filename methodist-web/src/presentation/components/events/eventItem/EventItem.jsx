@@ -28,7 +28,7 @@ export default function EventItem({event, onClick}) {
             <div className={classes.gradientLine}/>
             <SpacerPX orientation="v" size={12}/>
             <div className={classes.btns}>
-                <div
+                {/*<div
                     className={classes.approveBtn}
                     style={{
                         background: !event.isApproved
@@ -39,7 +39,7 @@ export default function EventItem({event, onClick}) {
                             : "#FFFFFF",
                     }}>
                     {event.isApproved ? "Одобрено" : "Не одобрено"}
-                </div>
+                </div>*/}
                 <div
                     className={classes.categoryBtn}
                     style={{
@@ -71,6 +71,7 @@ export const getEventColor = (category) => {
     if (category === 'Стажировка') return '#C184FF';
     if (category === 'Публикация') return '#FF7C3B';
     if (category === 'Проведение') return '#1977FF';
+    if (category === 'Участие студентов') return '#FDB913';
     // Далее другие варианты
     return 'transparent';
 };

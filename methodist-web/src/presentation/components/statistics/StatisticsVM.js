@@ -9,12 +9,14 @@ export class StatisticsVM {
         {color: "#FF7C3B", name:"Публикация", value: 0},
         {color: "#C184FF", name:"Стажировка", value: 0},
         {color: "#1977FF", name:"Проведение", value: 0},
+        {color: "#FDB913", name:"Участие студентов", value: 0},
     ]
     colorMap = {
         "Участие": "#22B07D",
         "Публикация": "#FF7C3B",
         "Стажировка": "#C184FF",
-        "Проведение": "#1977FF"
+        "Проведение": "#1977FF",
+        "Участие студентов": "#FDB913"
     };
 
     displayedDateRange = {
@@ -88,7 +90,8 @@ export class StatisticsVM {
                 "Участие": 0,
                 "Публикация": 0,
                 "Стажировка": 0,
-                "Проведение": 0
+                "Проведение": 0,
+                "Участие студентов": 0
             };
 
             const startDate = new Date(this.settings.dateRange.start)

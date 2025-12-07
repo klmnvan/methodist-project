@@ -165,12 +165,12 @@
     gap: 4px;
 }
 
-.fieldInfo > .label {
+.label {
     color: var(--color-title);
     font-weight: 600;
 }
 
-.fieldInfo > .value {
+.value {
     font-family: var(--font-poppins), serif;
     font-size: 16px;
     color: var(--color-outline);
@@ -186,6 +186,33 @@
     width: 100%;
     background: var(--color-error);
     border-radius: var(--border-radius);
+}
+
+.rowResult {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.rowResult > .iconBox {
+    background: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    padding: 5px 10px !important;
+    gap: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: var(--font-raleway), serif;
+    font-size: 16px;
+}
+
+.rowResult > .iconBox > .icon svg {
+    width: 20px;
+    height: 20px;
 }
 
 @media (max-width: 500px) {

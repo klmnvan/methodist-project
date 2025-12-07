@@ -23,11 +23,13 @@ export class EventDialogVM {
     ]
     modes = ["просмотра", "редактирования"]
     mode = this.modes[0]
+    results = []
 
     constructor() {
         makeObservable(this, {
             draftEvent: observable,
             mode: observable,
+            results: observable,
             setEvent: action,
             swapMode: action,
             handleDateSelect: action,
@@ -85,7 +87,6 @@ export class EventDialogVM {
             name: 'Название',
             formOfEvent: 'Форма мероприятия',
             status: 'Статус',
-            result: 'Результат',
             location: 'Место проведения',
             quantityOfHours: 'Количество часов',
             type: 'Вид публикации'

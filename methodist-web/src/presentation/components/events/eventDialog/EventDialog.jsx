@@ -17,6 +17,7 @@ import ProfileInput from "@ui/inputs/profileInput/ProfileInput.jsx";
 import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
 import {DatePicker} from "@ui/datePicker/datePicker/DatePicker.jsx";
 import {EventSelector} from "@/presentation/components/form/eventSelector/EventSelector.jsx";
+import {IconFile} from "@ui/icons/IconFile.jsx";
 
 export const EventDialog = observer(({ event, onClose}) => {
 
@@ -35,6 +36,20 @@ export const EventDialog = observer(({ event, onClose}) => {
         mutationKey: "updateEvent",
         mutationFn: ({event, id}) => postService.updateEvent(event, id),
     });
+
+    const { mutate: getFile, isSuccess: fileSuccess } = useMutation({
+        mutationKey: "getFile",
+        mutationFn: (fileName) => postService.getResultFile(fileName),
+    });
+
+    const handleDownload = (fileName) => {
+        const link = document.createElement('a');
+        link.href = `http://localhost/Event/Uploads/${fileName}`;
+        link.download = fileName; // Указываем имя файла для скачивания
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     useEffect(() => {
         if(deleted) {
@@ -127,6 +142,7 @@ export const EventDialog = observer(({ event, onClose}) => {
                     </div>
                 </div>
                 {vm.mode === vm.modes[0] ? (
+                    /*Просмотр*/
                     <>
                         <div className={classes.fields}>
                             {event && vm.getFieldsForEventType(event.typeOfEvent.name).map(field => (
@@ -137,6 +153,31 @@ export const EventDialog = observer(({ event, onClose}) => {
                                     </div>
                                 </div>
                             ))}
+                            {event.fileEvents && event.fileEvents.length > 0 &&
+                                <>
+                                    <div className={classes.label}>Результаты</div>
+                                    {event.fileEvents.map(file => (
+                                        <div className={classes.rowResult}>
+                                            <div className={classes.value}>
+                                                {file.result}
+                                            </div>
+                                            { file.fileName && true &&
+                                                <>
+                                                    <div className={classes.iconBox}
+                                                         onClick={ () => handleDownload(file.fileName) }
+                                                         style={{
+                                                             cursor: 'pointer',
+                                                         }}>
+                                                        Скачать файл
+                                                    </div>
+                                                </>
+                                            }
+
+                                        </div>
+                                    ))
+                                    }
+                                </>
+                            }
                         </div>
                         <button className={classes.button} onClick={() => deleteEvent(event.id)}>
                             <svg style={{width:'24px', height:'24px'}}>

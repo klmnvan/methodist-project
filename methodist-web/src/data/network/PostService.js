@@ -61,6 +61,10 @@ class PostService {
         return this.client.get('Event/GetTypeOfEvents')
     }
 
+    getResultFile(fileName) {
+        return this.client.get(`Event/Uploads/${fileName}`)
+    }
+
     getProfile() {
         return this.client.get('Profile/GetProfile')
     }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Methodist_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f15d760cbb5d3875c0f1fca2c576eec6a875d29c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27f08c91337711968700bf8d39b05bb2f1218002")]
 [assembly: System.Reflection.AssemblyProductAttribute("Methodist_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Methodist_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

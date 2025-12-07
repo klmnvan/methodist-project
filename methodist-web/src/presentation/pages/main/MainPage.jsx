@@ -100,7 +100,10 @@ function MainPage() {
     }, [isError, data, navigate])
 
     useEffect(() => {
-        if(events) { setEvents(events) }
+        if(events) {
+            console.log(events);
+            setEvents(events)
+        }
     }, [events, setEvents])
 
     useEffect(() => {
