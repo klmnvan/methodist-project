@@ -17,10 +17,8 @@ namespace Methodist_API.Dtos.DB
         public string Status { get; set; } = String.Empty;
         public string Location { get; set; } = String.Empty;
         public string QuantityOfHours { get; set; } = String.Empty;
-        public string Result { get; set; } = String.Empty;
         public int? ParticipantsCount { get; set; } = 0;
-        public int FileCount { get; set; } = 0;
-        public ICollection<EventResultDto> FileEvents { get; set; } = [];
+        public ICollection<EventResultDto> Results { get; set; } = [];
         public ProfileDto Profile { get; set; }
         public TypeOfEvent TypeOfEvent { get; set; }
     }

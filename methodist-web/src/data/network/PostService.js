@@ -119,36 +119,7 @@ class PostService {
     }
 
     createEvent(eventData) {
-        const formData = new FormData();
-
-        // 1. Добавляем все корневые поля (кроме results)
-        Object.keys(eventData).forEach(key => {
-            if (key !== 'results' && eventData[key] != null) {
-                formData.append(key, eventData[key]);
-            }
-        });
-
-        // 2. Обрабатываем массив results
-        eventData.results.forEach((result, index) => {
-            // Добавляем все поля результата (кроме file)
-            Object.keys(result).forEach(resultKey => {
-                if (resultKey !== 'file' && result[resultKey] != null) {
-                    formData.append(`results[${index}].${resultKey}`, result[resultKey]);
-                }
-            });
-
-            // Добавляем файл, если он есть
-            if (result.file instanceof File) {
-                formData.append(`results[${index}].file`, result.file, result.file.name);
-            }
-        });
-
-        // 3. Отладка: вывести содержимое formData (опционально)
-        for (let [key, value] of formData.entries()) {
-            console.log(key, value, typeof value);
-        }
-
-        return this.client.post('Event/CreateEventWithFiles', formData);
+        return this.client.post('Event/Create', eventData)
     }
 
 

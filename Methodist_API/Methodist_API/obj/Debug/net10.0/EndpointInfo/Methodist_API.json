@@ -452,24 +452,29 @@
         "summary": "Создать мероприятие",
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/CreateEventWithFilesDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEventWithFilesDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEventWithFilesDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEventWithFilesDto"
+                "type": "object",
+                "properties": {
+                  "newEventJson": {
+                    "type": "string"
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "newEventJson": {
+                  "style": "form"
+                },
+                "files": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -1111,62 +1116,6 @@
             "type": "string",
             "nullable": true
           },
-          "result": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CreateEventWithFilesDto": {
-        "type": "object",
-        "properties": {
-          "dateOfEvent": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDateOfEvent": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "typeId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isChecked": {
-            "type": "boolean"
-          },
-          "isApproved": {
-            "type": "boolean"
-          },
-          "type": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "formOfParticipation": {
-            "type": "string",
-            "nullable": true
-          },
-          "formOfEvent": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "location": {
-            "type": "string",
-            "nullable": true
-          },
-          "quantityOfHours": {
-            "type": "string",
-            "nullable": true
-          },
           "participantsCount": {
             "type": "integer",
             "format": "int32",
@@ -1342,20 +1291,12 @@
             "type": "string",
             "nullable": true
           },
-          "result": {
-            "type": "string",
-            "nullable": true
-          },
           "participantsCount": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "fileCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fileEvents": {
+          "results": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EventResultDto"

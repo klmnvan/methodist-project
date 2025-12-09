@@ -153,10 +153,10 @@ export const EventDialog = observer(({ event, onClose}) => {
                                     </div>
                                 </div>
                             ))}
-                            {event.fileEvents && event.fileEvents.length > 0 &&
+                            {event.results && event.results.length > 0 &&
                                 <>
                                     <div className={classes.label}>Результаты</div>
-                                    {event.fileEvents.map(file => (
+                                    {event.results.map(file => (
                                         <div className={classes.rowResult}>
                                             <div className={classes.value}>
                                                 {file.result}

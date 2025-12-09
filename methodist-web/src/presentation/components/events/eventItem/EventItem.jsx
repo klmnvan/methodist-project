@@ -102,6 +102,8 @@ export const getTitleEvent = (event) => {
             return event.location;
         case "Публикация":
             return event.name;
+        case "Участие студентов":
+            return event.name;
         default:
             return "";
     }

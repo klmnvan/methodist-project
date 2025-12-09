@@ -137,9 +137,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "newEvent",
-        "Type": "Methodist_API.Dtos.CreateEntity.CreateEventWithFilesDto",
-        "IsRequired": true
+        "Name": "newEventJson",
+        "Type": "System.String",
+        "IsRequired": false
       },
       {
         "Name": "files",

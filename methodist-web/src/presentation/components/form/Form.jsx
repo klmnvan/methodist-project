@@ -11,25 +11,23 @@ import {EventSelector} from "@/presentation/components/form/eventSelector/EventS
 import {createPortal} from "react-dom";
 import {ImageSuccess} from "@ui/icons/ImageSuccess.jsx";
 import {useStore} from "@/presentation/providers/AppStoreProvider.jsx";
-import {useLoadFiles} from "@/presentation/components/form/hooks/useLoadFiles.jsx";
 import {useCreateEvent} from "@/presentation/components/form/hooks/useCreateEvent.jsx";
-import {IconEvent} from "@ui/icons/IconEvent.jsx";
-import {IconDelete} from "@ui/icons/IconDelete.jsx";
-import {IconFile} from "@ui/icons/IconFile.jsx";
-import {IconPlus} from "@ui/icons/IconPlus.jsx";
+import {useLoadFiles} from "@/presentation/components/form/hooks/useLoadFiles.jsx";
 
 export const Form = observer(() => {
 
     const vm = useMemo(() => new FormVM(), [])
     const { statuses, results, eventForms, participationForms, ownerTypeByResults } = useStore()
+    //#region React Queries
     const { mutate: mLoadFiles } = useLoadFiles()
     const { mutate: mCreateEvent } = useCreateEvent()
-    //#region React Queries
-
     //#endregion
     //#region Use Effects
+
     useEffect(() => {
-        if(ownerTypeByResults) { vm.setOwnerTypeByResults(ownerTypeByResults) }
+        if(ownerTypeByResults) {
+            vm.setOwnerTypeByResults(ownerTypeByResults)
+        }
     }, [vm, ownerTypeByResults])
 
     useEffect(() => {
@@ -47,6 +45,7 @@ export const Form = observer(() => {
     useEffect(() => {
         if(results) { vm.setResults(results) }
     }, [vm, results])
+
     //#endregion
     return(
         <div className={classes.background}>
@@ -99,11 +98,42 @@ export const Form = observer(() => {
                             onSelect={(value) => vm.handleSelect('status', value)}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
-                        <EventSelector
-                            label="Результат"
-                            defaultValues={vm.results}
-                            onSelect={(value) => vm.handleSelect('result', value)}
-                        />
+                        <div className={classes.label}>Результаты</div>
+                        <SpacerPX size={12} orientation={"v"}/>
+                        {vm.event.results && vm.event.results.map((result, index) => (
+                            <>
+                                <div key={index} className={classes.rowResult}>
+                                    <div className={classes.titleResult}>
+                                        <div className={classes.label}>{index + 1}.</div>
+                                        <div className={classes.hint}>{result.result}</div>
+                                    </div>
+                                    {!result.fileName && (
+                                        <button
+                                            className={classes.buttonFile}
+                                            onClick={() => {vm.handleFileSelect(index)}}
+                                        >
+                                            Добавить файл
+                                        </button>)
+                                    }
+                                    {result.fileName && (
+                                        <button
+                                            className={classes.buttonFile}
+                                            onClick={() => vm.handleRemoveFile(index)}
+                                        >
+                                            Удалить файл
+                                        </button>
+                                    )}
+                                </div>
+                                <SpacerPX size={12} orientation={"v"}/>
+                            </>
+                        ))}
+                        <button
+                            className={classes.buttonFile}
+                            onClick={() => vm.initNewResult()}
+                            disabled={vm.event.results.length >= 10}
+                        >
+                            Добавить результат
+                        </button>
                     </>
                     //#endregion
                 )}
@@ -140,11 +170,42 @@ export const Form = observer(() => {
                             onSelect={(value) => vm.handleSelect('status', value)}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
-                        <EventSelector
-                            label="Результат"
-                            defaultValues={vm.results}
-                            onSelect={(value) => vm.handleSelect('result', value)}
-                        />
+                        <div className={classes.label}>Результаты</div>
+                        <SpacerPX size={12} orientation={"v"}/>
+                        {vm.event.results && vm.event.results.map((result, index) => (
+                            <>
+                                <div key={index} className={classes.rowResult}>
+                                    <div className={classes.titleResult}>
+                                        <div className={classes.label}>{index + 1}.</div>
+                                        <div className={classes.hint}>{result.result}</div>
+                                    </div>
+                                    {!result.fileName && (
+                                        <button
+                                            className={classes.buttonFile}
+                                            onClick={() => {vm.handleFileSelect(index)}}
+                                        >
+                                            Добавить файл
+                                        </button>)
+                                    }
+                                    {result.fileName && (
+                                        <button
+                                            className={classes.buttonFile}
+                                            onClick={() => vm.handleRemoveFile(index)}
+                                        >
+                                            Удалить файл
+                                        </button>
+                                    )}
+                                </div>
+                                <SpacerPX size={12} orientation={"v"}/>
+                            </>
+                        ))}
+                        <button
+                            className={classes.buttonFile}
+                            onClick={() => vm.initNewResult()}
+                            disabled={vm.event.results.length >= 10}
+                        >
+                            Добавить результат
+                        </button>
                     </>
                     //#endregion
                 )}
@@ -262,7 +323,7 @@ export const Form = observer(() => {
                                         <div className={classes.label}>{index + 1}.</div>
                                         <div className={classes.hint}>{result.result}</div>
                                     </div>
-                                    {!result.file && (
+                                    {!result.fileName && (
                                         <button
                                             className={classes.buttonFile}
                                             onClick={() => {vm.handleFileSelect(index)}}
@@ -270,12 +331,12 @@ export const Form = observer(() => {
                                             Добавить файл
                                         </button>)
                                     }
-                                    {result.file && (
+                                    {result.fileName && (
                                         <button
                                             className={classes.buttonFile}
                                             onClick={() => vm.handleRemoveFile(index)}
                                         >
-                                            Удалить файл {result.file.name}
+                                            Удалить файл
                                         </button>
                                     )}
                                 </div>

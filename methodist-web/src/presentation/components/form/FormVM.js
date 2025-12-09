@@ -29,7 +29,7 @@ export class FormVM {
             status: "",
             location: "",
             quantityOfHours: "0",
-            participantsCount: "0",
+            participantsCount: "1",
             results: []
         }
 
@@ -64,11 +64,10 @@ export class FormVM {
 
     /** Добавление нового результата в список results модели мероприятия **/
     initNewResult() {
-        console.log('добавляю');
         const newResult = {
-            ownerTypeId: this.ownerTypeByResults[0],
+            ownerTypeId: this.ownerTypeByResults[0].id,
             result: this.results[0],
-            file: null
+            fileName: null
         }
         this.event.results = [...this.event.results, newResult];
         console.log(this.event.results);
@@ -79,7 +78,7 @@ export class FormVM {
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '*'; // можно уточнить типы, например 'image/*, .pdf'
-        input.onchange = (e) => {
+        input.onchange = async (e) => {
             const file = e.target.files[0];
             if (!file) return;
             const maxSize = 10 * 1024 * 1024;
@@ -87,32 +86,53 @@ export class FormVM {
                 alert('Файл слишком большой. Максимальный размер — 10 МБ.');
                 return;
             }
+            // Генерируем уникальное имя файла
+            const uniqueName = this.generateFileName(file);
+            // Сохраняем файл с новым именем
+            const fileToSave = new File([file], uniqueName, { type: file.type });
             this.event.results = this.event.results.map((result, idx) => {
                 if (idx === index) {
                     return {
                         ...result,
-                        file: file
+                        fileName: uniqueName
                     };
                 }
                 return result;
             });
-            console.log('Файл добавлен:', this.event.results[index].file);
+            this.selectedFiles = [...this.selectedFiles, fileToSave];
+            console.log('Файл добавлен:', fileToSave.name);
+            console.log('Все файлы:', this.selectedFiles);
         };
         input.click();
     };
 
+    fileCounter = 0;
+    /** Генерация уникального имени файла.
+     * Формат: оригинальное_имя_счетчик.расширение **/
+    generateFileName(file) {
+        this.fileCounter++;
+        const originalName = file.name;
+        const nameWithoutExt = originalName.replace(/\.[^/.]+$/, "");
+        const extension = originalName.split('.').pop();
+        return `${nameWithoutExt}_${this.fileCounter}.${extension}`;
+    }
+
     /** Обработчик для удаления файла у результата **/
     handleRemoveFile(index) {
-        this.event.results = this.event.results.map((result, idx) => {
-            if (idx === index) {
-                return {
-                    ...result,
-                    file: null // сбрасываем файл
-                };
-            }
-            return result;
-        });
-        console.log('Файл удалён:', this.event.results[index].file); // будет null
+        const result = this.event.results[index];
+        if (result.fileName) {
+            this.selectedFiles = this.selectedFiles.filter(file => file.name !== result.fileName);
+            this.event.results = this.event.results.map((res, idx) => {
+                if (idx === index) {
+                    return {
+                        ...res,
+                        fileName: null
+                    };
+                }
+                return res;
+            });
+        }
+        console.log('Файл удалён:', result); // будет null
     }
 
     /** Обработчик для удаления файлов у мероприятия **/
@@ -206,11 +226,12 @@ export class FormVM {
             participantsCount: "1",
             results: []
         };
+        this.initNewResult()
         this.error = ""
     });
 
     /** Создание формы и отправка в БД **/
-    createForm = (mutateCreateEvent, mutateUploadFiles) => {
+    createForm = (mCreateEvent, mLoadFiles) => {
         if (!this.formIdValid()) {
             this.error = 'Не все поля заполнены';
             return;
@@ -219,13 +240,14 @@ export class FormVM {
             ...this.event,
             typeId: this.getFormOfEventId(),
             endDateOfEvent: this.event.dateOfEvent.toISOString(),
-            dateOfEvent: this.event.dateOfEvent.toISOString(),
+            dateOfEvent: this.event.dateOfEvent.toISOString()
         };
-        mutateCreateEvent(eventToSend, {
+        mCreateEvent(eventToSend, {
             onSuccess: (response) => {
+                console.log('мероприятие создано с ID' + response.data.id);
                 const eventId = response.data.id;
                 if (this.selectedFiles.length > 0) {
-                    mutateUploadFiles({ files: this.selectedFiles, eventId }, {
+                    mLoadFiles({ files: this.selectedFiles, eventId }, {
                         onSuccess: (response) => {
                             console.log('Файлы тоже загрузились ' + response);
                         }
@@ -261,10 +283,12 @@ export class FormVM {
 
     formIdValid() {
         if(this.currentMode === this.modes[0]) {
-            return !this.hasEmptyOrNullFields(toJS(this.event), ['formOfParticipation', 'name', 'formOfEvent', 'status', 'result'])
+            return !this.hasEmptyOrNullFields(toJS(this.event), ['formOfParticipation', 'name', 'formOfEvent', 'status'])
+                && this.hasAtLeastOneResult()
         }
         if(this.currentMode === this.modes[1]) {
-            return !this.hasEmptyOrNullFields(toJS(this.event), ['location', 'name', 'formOfEvent', 'status', 'result'])
+            return !this.hasEmptyOrNullFields(toJS(this.event), ['location', 'name', 'formOfEvent', 'status'])
+                && this.hasAtLeastOneResult()
         }
         if(this.currentMode === this.modes[2]) {
             return !this.hasEmptyOrNullFields(toJS(this.event), ['location', 'quantityOfHours'])
@@ -274,14 +298,21 @@ export class FormVM {
         }
         if(this.currentMode === this.modes[4]) {
             return !this.hasEmptyOrNullFields(toJS(this.event), ['formOfParticipation', 'name', 'formOfEvent', 'status'])
+                && this.hasAtLeastOneResult()
         }
     }
 
+    /** Проверка заполнения поля **/
     hasEmptyOrNullFields(obj, fields) {
         return fields.some(field => {
             const value = obj[field];
             return value === '' || value === null;
         });
+    }
+
+    /** Проверка наличия хотя бы 1 элемента списка **/
+    hasAtLeastOneResult() {
+        return this.event.results && this.event.results.length > 0;
     }
 
 }
