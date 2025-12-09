@@ -12,7 +12,7 @@ export class FormVM {
     participationForms = [];
     modalIsOpen = false;
     error = ""
-    selectedFiles = [];
+    selectedFiles = []; //не используется
 
     constructor() {
 
@@ -55,15 +55,14 @@ export class FormVM {
             setParticipationForms: action,
             initNewResult: action,
             setEventForms: action,
-            removeFile: action,
             clearFiles: action,
-            addFiles: action,
             setStatuses: action,
             setResults: action,
         })
         console.log(toJS(this.currentMode.name))
     }
 
+    /** Добавление нового результата в список results модели мероприятия **/
     initNewResult() {
         console.log('добавляю');
         const newResult = {
@@ -75,6 +74,7 @@ export class FormVM {
         console.log(this.event.results);
     }
 
+    /** Обработчик для добавления файла к результату **/
     handleFileSelect(index) {
         const input = document.createElement('input');
         input.type = 'file';
@@ -101,6 +101,7 @@ export class FormVM {
         input.click();
     };
 
+    /** Обработчик для удаления файла у результата **/
     handleRemoveFile(index) {
         this.event.results = this.event.results.map((result, idx) => {
             if (idx === index) {
@@ -114,35 +115,32 @@ export class FormVM {
         console.log('Файл удалён:', this.event.results[index].file); // будет null
     }
 
-    removeFile(index) {
-        this.selectedFiles = this.selectedFiles.filter((_, i) => i !== index);
-    };
-
-    addFiles = (files) => {
-        this.selectedFiles = [...this.selectedFiles, ...files];
-        console.log('Файлы добавлены:', this.selectedFiles); // Добавь лог
-    };
-
+    /** Обработчик для удаления файлов у мероприятия **/
     clearFiles = () => {
         this.selectedFiles = [];
     };
 
+    /** Инициализация списка типов принадлежности результата **/
     setOwnerTypeByResults(data) {
         this.ownerTypeByResults = data;
     }
 
+    /** Инициализация списка ... **/
     setParticipationForms(data) {
         this.participationForms = data;
     }
 
+    /** Инициализация списка ... **/
     setEventForms(data) {
         this.eventForms = data;
     }
 
+    /** Инициализация списка ... **/
     setStatuses(data) {
         this.statuses = data;
     }
 
+    /** Инициализация списка ... **/
     setResults(data) {
         this.results = data;
     }
@@ -189,6 +187,7 @@ export class FormVM {
         return cleanValue;
     }
 
+    /** Сброс формы к нормальному состоянию **/
     resetForm = action(() => {
         const { dateOfEvent} = this.event;
         this.event = {
@@ -210,6 +209,7 @@ export class FormVM {
         this.error = ""
     });
 
+    /** Создание формы и отправка в БД **/
     createForm = (mutateCreateEvent, mutateUploadFiles) => {
         if (!this.formIdValid()) {
             this.error = 'Не все поля заполнены';

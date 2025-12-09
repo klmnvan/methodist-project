@@ -35,14 +35,14 @@ namespace Methodist_API.Repositories
 
         public List<Event> SelectAll() => _context.Events
             .Include(it => it.TypeOfEvent)
-            .Include(it => it.FileEvents)
+            .Include(it => it.Results)
             .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
             .ToList();
 
         public List<Event> SelectByIdProfile(Guid profileId) => _context.Events
             .Where(it => it.ProfileId == profileId)
             .Include(it => it.TypeOfEvent)
-            .Include(it => it.FileEvents)
+            .Include(it => it.Results)
             .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
             .ToList();
 
@@ -52,7 +52,7 @@ namespace Methodist_API.Repositories
             return _context.Events
                 .Where(it => it.Profile.MC_id == profile.MC_id)
                 .Include(it => it.TypeOfEvent)
-                .Include(it => it.FileEvents)
+                .Include(it => it.Results)
                 .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
                 .ToList();
         }

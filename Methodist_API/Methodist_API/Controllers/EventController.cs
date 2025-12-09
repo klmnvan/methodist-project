@@ -89,7 +89,7 @@ namespace Methodist_API.Controllers
                 {
                     EventDetailsDto newEvent = _mapper.Map<EventDetailsDto>(e);
                     newEvent.TypeOfEvent = e.TypeOfEvent;
-                    newEvent.FileEvents = _mapper.Map<List<EventResultDto>>(e.FileEvents);
+                    newEvent.FileEvents = _mapper.Map<List<EventResultDto>>(e.Results);
                     var profile = _mapper.Map<ProfileDto>(e.Profile);
                     profile.MC = e.Profile.MethodicalСommittee;
                     profile.Email = appUser.Email;
@@ -209,7 +209,9 @@ namespace Methodist_API.Controllers
 
         [SwaggerOperation(Summary = "Создать мероприятие")]
         [HttpPost("CreateEventWithFiles")]
-        public async Task<ActionResult<EventDetailsDto>> CreateEventWithFiles([FromBody] CreateEventWithFilesDto newEvent)
+        public async Task<ActionResult<EventDetailsDto>> CreateEventWithFiles(
+            [FromBody] CreateEventWithFilesDto newEvent,
+            [FromForm] List<IFormFile> files) 
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
@@ -219,6 +221,24 @@ namespace Methodist_API.Controllers
                     if (appUser == null) return Unauthorized();
                     if (!_eventRepository.TypeIsExists(newEvent.TypeId)) return BadRequest("Тип мероприятия заполнен некорректно");
                     if (!ModelState.IsValid) return BadRequest(ModelState);
+                    var fileDictionary = new Dictionary<string, IFormFile>(StringComparer.OrdinalIgnoreCase);
+                    foreach (var file in files)
+                    {
+                        // Используем только имя файла (без пути, если он есть)
+                        var fileName = Path.GetFileName(file.FileName);
+                        if (!string.IsNullOrEmpty(fileName))
+                        {
+                            fileDictionary[fileName] = file;
+                        }
+                    }
+                    // Проверяем, что все указанные файлы действительно пришли
+                    var missingFiles = new List<string>();
+                    foreach (var resEvent in newEvent.Results)
+                        if (!string.IsNullOrEmpty(resEvent.FileName) && !fileDictionary.ContainsKey(resEvent.FileName))
+                            missingFiles.Add(resEvent.FileName);
+
+                    if (missingFiles.Any()) 
+                        return BadRequest($"Следующие файлы не были загружены: {string.Join(", ", missingFiles)}");
                     //создание мероприятия
                     var _event = _mapper.Map<Event>(newEvent);
                     _event.ProfileId = appUser.Id;
@@ -228,17 +248,22 @@ namespace Methodist_API.Controllers
                     foreach (var resEvent in newEvent.Results)
                     {
                         var _result = _mapper.Map<EventResult>(resEvent);
-                        if (resEvent.file != null)
+                        if (!string.IsNullOrEmpty(resEvent.FileName) &&
+                    fileDictionary.TryGetValue(resEvent.FileName, out var uploadedFile))
                         {
-                            string imageName = $"{Guid.NewGuid()}_{resEvent.file.FileName}";
+                            string imageName = $"{Guid.NewGuid()}_{resEvent.FileName}";
                             var filePath = Path.Combine(uploadPath, imageName);
 
                             // сохраняем файл в папку Uploads
                             using (var fileStream = new FileStream(filePath, FileMode.Create))
                             {
-                                await resEvent.file.CopyToAsync(fileStream);
+                                await uploadedFile.CopyToAsync(fileStream);
                             }
                             _result.FileName = imageName;
+                        }
+                        else
+                        {
+                            _result.FileName = null; // Если файл не был загружен
                         }
                         _result.EventId = itemEvent.Entity.Id;
                         _context.FileEvents.Add(_result);
@@ -250,7 +275,7 @@ namespace Methodist_API.Controllers
                     var createdEventWithFiles = _context.Events
                         .Include(it => it.TypeOfEvent)
                         .Include(it => it.Profile).ThenInclude(it => it.MethodicalСommittee)
-                        .Include(it => it.FileEvents)
+                        .Include(it => it.Results)
                         .Single(e => e.Id == itemEvent.Entity.Id);
 
                     var result = _mapper.Map<EventDetailsDto>(createdEventWithFiles);

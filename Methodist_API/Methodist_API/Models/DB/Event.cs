@@ -30,6 +30,6 @@ namespace Methodist_API.Models.DB
         public Profile Profile { get; set; }
 
         [JsonIgnore]
-        public ICollection<EventResult> FileEvents { get; set; } = [];
+        public ICollection<EventResult> Results { get; set; } = [];
     }
 }

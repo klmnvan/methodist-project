@@ -31,7 +31,7 @@ namespace Methodist_API.Configurations
             //связь один ко многим 
             builder.HasOne(p => p.Profile).WithMany(p => p.Events).OnDelete(DeleteBehavior.Cascade).HasForeignKey(r => r.ProfileId);
             builder.HasOne(p => p.TypeOfEvent).WithMany(p => p.Events).OnDelete(DeleteBehavior.Cascade).HasForeignKey(r => r.TypeId);
-            builder.HasMany(p => p.FileEvents).WithOne(p => p.Event).OnDelete(DeleteBehavior.Cascade).HasForeignKey(r => r.EventId);
+            builder.HasMany(p => p.Results).WithOne(p => p.Event).OnDelete(DeleteBehavior.Cascade).HasForeignKey(r => r.EventId);
         }
     }
 }

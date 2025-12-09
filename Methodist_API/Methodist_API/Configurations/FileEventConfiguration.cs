@@ -16,7 +16,7 @@ namespace Methodist_API.Configurations
             builder.Property(p => p.OwnerTypeId).HasColumnName("owner_type_id").IsRequired();
             builder.Property(p => p.Result).HasColumnName("result").IsRequired();
 
-            builder.HasOne(fe => fe.Event).WithMany(fe => fe.FileEvents).OnDelete(DeleteBehavior.Cascade).HasForeignKey(t => t.EventId);
+            builder.HasOne(fe => fe.Event).WithMany(fe => fe.Results).OnDelete(DeleteBehavior.Cascade).HasForeignKey(t => t.EventId);
             builder.HasOne(rt => rt.ResultOwnerType).WithMany(rt => rt.Results).OnDelete(DeleteBehavior.Cascade).HasForeignKey(t => t.OwnerTypeId);
         }
     }

@@ -21,5 +21,6 @@ namespace Methodist_API.Dtos.DB
         public string QuantityOfHours { get; set; } = String.Empty;
         public string Result { get; set; } = String.Empty;
         public Guid ProfileId { get; set; }
+        public ICollection<EventResult> Results { get; set; } = [];
     }
 }

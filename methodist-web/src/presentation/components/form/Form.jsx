@@ -1,7 +1,7 @@
 import {observer} from "mobx-react-lite";
 import classes from "./Form.module.css"
 import {ToggleBtnStat} from "@ui/toggleButtons/toggleBtnStat/ToggleBtnStat.jsx";
-import {useEffect, useMemo, useRef} from "react";
+import {useEffect, useMemo} from "react";
 import {FormVM} from "@/presentation/components/form/FormVM.js";
 import SpacerPX from "@ui/spacers/SpacerPX.jsx";
 import ProfileInput from "@ui/inputs/profileInput/ProfileInput.jsx";
@@ -27,7 +27,6 @@ export const Form = observer(() => {
     //#region React Queries
 
     //#endregion
-
     //#region Use Effects
     useEffect(() => {
         if(ownerTypeByResults) { vm.setOwnerTypeByResults(ownerTypeByResults) }
@@ -49,7 +48,6 @@ export const Form = observer(() => {
         if(results) { vm.setResults(results) }
     }, [vm, results])
     //#endregion
-
     return(
         <div className={classes.background}>
             {vm.modalIsOpen && createPortal(
@@ -71,43 +69,46 @@ export const Form = observer(() => {
                 <ToggleBtnStat currentValue={vm.currentMode} values={vm.modes} onChange={ vm.selectMode }/>
                 <SpacerPX size={20} orientation={"v"}/>
                 {vm.currentMode === vm.modes[0] && (
-                  <>
-                      <EventSelector
-                          label="Форма участия"
-                          defaultValues={vm.participationForms}
-                          defaultIsExists={false}
-                          onSelect={(value) => vm.handleSelect('formOfParticipation', value)}
-                      />
-                      <SpacerPX size={12} orientation={"v"}/>
-                      <ProfileInput
-                          label="Название мероприятия"
-                          type="text"
-                          name="name"
-                          placeholder = "Название"
-                          value={vm.event.name}
-                          onChange={vm.handleInput}
-                      />
-                      <SpacerPX size={12} orientation={"v"}/>
-                      <EventSelector
-                          label="Форма мероприятия"
-                          defaultValues={vm.eventForms}
-                          onSelect={(value) => vm.handleSelect('formOfEvent', value)}
-                      />
-                      <SpacerPX size={12} orientation={"v"}/>
-                      <EventSelector
-                          label="Cтатус мероприятия"
-                          defaultValues={vm.statuses}
-                          onSelect={(value) => vm.handleSelect('status', value)}
-                      />
-                      <SpacerPX size={12} orientation={"v"}/>
-                      <EventSelector
-                          label="Результат"
-                          defaultValues={vm.results}
-                          onSelect={(value) => vm.handleSelect('result', value)}
-                      />
-                  </>
+                    //#region Участие
+                    <>
+                        <EventSelector
+                            label="Форма участия"
+                            defaultValues={vm.participationForms}
+                            defaultIsExists={false}
+                            onSelect={(value) => vm.handleSelect('formOfParticipation', value)}
+                        />
+                        <SpacerPX size={12} orientation={"v"}/>
+                        <ProfileInput
+                            label="Название мероприятия"
+                            type="text"
+                            name="name"
+                            placeholder = "Название"
+                            value={vm.event.name}
+                            onChange={vm.handleInput}
+                        />
+                        <SpacerPX size={12} orientation={"v"}/>
+                        <EventSelector
+                            label="Форма мероприятия"
+                            defaultValues={vm.eventForms}
+                            onSelect={(value) => vm.handleSelect('formOfEvent', value)}
+                        />
+                        <SpacerPX size={12} orientation={"v"}/>
+                        <EventSelector
+                            label="Cтатус мероприятия"
+                            defaultValues={vm.statuses}
+                            onSelect={(value) => vm.handleSelect('status', value)}
+                        />
+                        <SpacerPX size={12} orientation={"v"}/>
+                        <EventSelector
+                            label="Результат"
+                            defaultValues={vm.results}
+                            onSelect={(value) => vm.handleSelect('result', value)}
+                        />
+                    </>
+                    //#endregion
                 )}
                 {vm.currentMode === vm.modes[1] && (
+                    //#region Проведение
                     <>
                         <ProfileInput
                             label="Название мероприятия"
@@ -145,8 +146,10 @@ export const Form = observer(() => {
                             onSelect={(value) => vm.handleSelect('result', value)}
                         />
                     </>
+                    //#endregion
                 )}
                 {vm.currentMode === vm.modes[2] && (
+                    //#region Стажировка
                     <>
                         <ProfileInput
                             label="Место прохождения"
@@ -171,8 +174,10 @@ export const Form = observer(() => {
                             maxLength={10}
                         />
                     </>
+                    //#endregion
                 )}
                 {vm.currentMode === vm.modes[3] && (
+                    //#region Публикация
                     <>
                         <ProfileInput
                             label="Название"
@@ -201,8 +206,10 @@ export const Form = observer(() => {
                             onChange={vm.handleInput}
                         />
                     </>
+                    //#endregion
                 )}
                 {vm.currentMode === vm.modes[4] && (
+                    //#region Участие студентов
                     <>
                         <EventSelector
                             label="Форма участия"
@@ -283,6 +290,7 @@ export const Form = observer(() => {
                             Добавить результат
                         </button>
                     </>
+                    //#endregion
                 )}
                 <SpacerPX size={12} orientation={"v"}/>
                 <div className={classes.label}>Дата мероприятия</div>
