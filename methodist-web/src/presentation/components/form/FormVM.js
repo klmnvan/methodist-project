@@ -4,7 +4,7 @@ import AxiosClient from "@/data/AxiosClient.jsx";
 export class FormVM {
 
     modes = ["Участие", "Проведение", "Стажировка", "Публикация", "Участие студентов"];
-    currentMode = this.modes[0];
+    currentMode = this.modes[4];
     ownerTypeByResults = [];
     statuses = [];
     eventForms = [];
@@ -49,6 +49,7 @@ export class FormVM {
             handleQuantityInput: action,
             handleParticipantsCount: action,
             handleInput: action,
+            handleRemoveFile: action,
             handleSelect: action,
             closeModal: action,
             setParticipationForms: action,
@@ -72,6 +73,45 @@ export class FormVM {
         }
         this.event.results = [...this.event.results, newResult];
         console.log(this.event.results);
+    }
+
+    handleFileSelect(index) {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '*'; // можно уточнить типы, например 'image/*, .pdf'
+        input.onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const maxSize = 10 * 1024 * 1024;
+            if (file.size > maxSize) {
+                alert('Файл слишком большой. Максимальный размер — 10 МБ.');
+                return;
+            }
+            this.event.results = this.event.results.map((result, idx) => {
+                if (idx === index) {
+                    return {
+                        ...result,
+                        file: file
+                    };
+                }
+                return result;
+            });
+            console.log('Файл добавлен:', this.event.results[index].file);
+        };
+        input.click();
+    };
+
+    handleRemoveFile(index) {
+        this.event.results = this.event.results.map((result, idx) => {
+            if (idx === index) {
+                return {
+                    ...result,
+                    file: null // сбрасываем файл
+                };
+            }
+            return result;
+        });
+        console.log('Файл удалён:', this.event.results[index].file); // будет null
     }
 
     removeFile(index) {
@@ -231,6 +271,9 @@ export class FormVM {
         }
         if(this.currentMode === this.modes[3]) {
             return !this.hasEmptyOrNullFields(toJS(this.event), ['name', 'type', 'location'])
+        }
+        if(this.currentMode === this.modes[4]) {
+            return !this.hasEmptyOrNullFields(toJS(this.event), ['formOfParticipation', 'name', 'formOfEvent', 'status'])
         }
     }
 

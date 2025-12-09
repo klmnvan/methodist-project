@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\methodist-project\\Methodist_API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\repositories\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\repositories\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\dtos\\createentity\\createresultevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\dtos\\createentity\\createresultevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,14 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\interfaces\\ieventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\interfaces\\ieventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\repositories\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\repositories\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\data\\mkdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1561,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,20 +54,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "CreateResultEvent.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\CreateEntity\\CreateResultEvent.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Dtos\\CreateEntity\\CreateResultEvent.cs",
               "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\CreateEntity\\CreateResultEvent.cs",
               "RelativeToolTip": "Methodist_API\\Dtos\\CreateEntity\\CreateResultEvent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-07T19:57:49.335Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "CreateFileEventDto.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\CreateEntity\\CreateFileEventDto.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Dtos\\CreateEntity\\CreateFileEventDto.cs",
@@ -75,12 +75,11 @@
               "RelativeToolTip": "Methodist_API\\Dtos\\CreateEntity\\CreateFileEventDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T19:57:46.666Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-07T19:57:46.666Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "EventRepository.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Repositories\\EventRepository.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Repositories\\EventRepository.cs",
@@ -101,12 +100,11 @@
               "RelativeToolTip": "Methodist_API\\Profiles\\MappingProfiles.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T16:33:26.688Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-07T16:33:26.688Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "IEventRepository.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Interfaces\\IEventRepository.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Interfaces\\IEventRepository.cs",
@@ -114,8 +112,7 @@
               "RelativeToolTip": "Methodist_API\\Interfaces\\IEventRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T16:31:58.253Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-07T16:31:58.253Z"
             },
             {
               "$type": "Document",
@@ -127,18 +124,17 @@
               "RelativeToolTip": "Methodist_API\\Data\\MKDbContext.cs",
               "ViewState": "AgIAAE0AAAAAAAAAAAAuwFkAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T16:23:43.504Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-07T16:23:43.504Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "EventController.cs",
               "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\EventController.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Controllers\\EventController.cs",
               "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\EventController.cs",
               "RelativeToolTip": "Methodist_API\\Controllers\\EventController.cs",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAiwJMAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAMoAAAAAAAAAAAAAAAkBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-01T07:49:25.564Z",
               "EditorCaption": ""
