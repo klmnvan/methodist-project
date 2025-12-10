@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import classes from "./EventSelector.module.css";
 import {IconTreg} from "@ui/icons/IconTreg.jsx";
 
-export const EventSelector = ({ value, defaultValues = [], onSelect, label, defaultIsExists = true, bg="var(--color-container)" }) => {
+export const EventSelector = ({ value, defaultValues = [], onSelect, label, defaultIsExists = true, bg="var(--color-container)", labelIsShow = true}) => {
     const [selectedValue, setSelectedValue] = useState(null);
     const [customValue, setCustomValue] = useState("");
     const [isCustom, setIsCustom] = useState(false);
@@ -54,8 +54,7 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
 
     return (
         <div className={classes.container} ref={containerRef}>
-            <label className={classes.label}>{label}</label>
-
+            {labelIsShow && (<label className={classes.label}>{label}</label>)}
             <div
                 className={classes.value}
                 onClick={() => setIsOpen((prev) => !prev)}
@@ -119,3 +118,5 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
         </div>
     );
 };
+
+

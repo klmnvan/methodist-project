@@ -1,41 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\methodist-project\\Methodist_API\\",
+  "WorkspaceRootPath": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\dtos\\createentity\\createeventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\dtos\\createentity\\createeventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|c:\\users\\ts0011\\documents\\github\\methodist-project\\methodist_api\\methodist_api\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|c:\\users\\ts0011\\documents\\github\\methodist-project\\methodist_api\\methodist_api\\dtos\\createentity\\createeventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\dtos\\createentity\\createeventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|c:\\users\\ts0011\\documents\\github\\methodist-project\\methodist_api\\methodist_api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\repositories\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|c:\\users\\ts0011\\documents\\github\\methodist-project\\methodist_api\\methodist_api\\repositories\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\repositories\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\dtos\\db\\eventdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|c:\\users\\ts0011\\documents\\github\\methodist-project\\methodist_api\\methodist_api\\dtos\\db\\eventdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\dtos\\db\\eventdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\dtos\\db\\eventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|c:\\users\\ts0011\\documents\\github\\methodist-project\\methodist_api\\methodist_api\\dtos\\db\\eventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\dtos\\db\\eventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\models\\db\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|c:\\users\\ts0011\\documents\\github\\methodist-project\\methodist_api\\methodist_api\\models\\db\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\models\\db\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\interfaces\\ieventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|c:\\users\\ts0011\\documents\\github\\methodist-project\\methodist_api\\methodist_api\\interfaces\\ieventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\interfaces\\ieventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|d:\\methodist-project\\methodist_api\\methodist_api\\data\\mkdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|c:\\users\\ts0011\\documents\\github\\methodist-project\\methodist_api\\methodist_api\\data\\mkdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2CEFF594-FC6D-4CDC-8AD6-09822BE17FA2}|Methodist_API\\Methodist_API.csproj|solutionrelative:methodist_api\\data\\mkdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -46,15 +46,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1561,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CreateEventDto.cs",
-              "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\CreateEntity\\CreateEventDto.cs",
+              "DocumentMoniker": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\CreateEntity\\CreateEventDto.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Dtos\\CreateEntity\\CreateEventDto.cs",
-              "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\CreateEntity\\CreateEventDto.cs",
+              "ToolTip": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\CreateEntity\\CreateEventDto.cs",
               "RelativeToolTip": "Methodist_API\\Dtos\\CreateEntity\\CreateEventDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -62,42 +66,36 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "EventRepository.cs",
-              "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Repositories\\EventRepository.cs",
+              "DocumentMoniker": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Repositories\\EventRepository.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Repositories\\EventRepository.cs",
-              "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Repositories\\EventRepository.cs",
+              "ToolTip": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Repositories\\EventRepository.cs",
               "RelativeToolTip": "Methodist_API\\Repositories\\EventRepository.cs",
               "ViewState": "AgIAACMAAAAAAAAAAAA9wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-09T21:50:20.855Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-09T21:50:20.855Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "EventDetailsDto.cs",
-              "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\DB\\EventDetailsDto.cs",
+              "DocumentMoniker": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\DB\\EventDetailsDto.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Dtos\\DB\\EventDetailsDto.cs",
-              "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\DB\\EventDetailsDto.cs",
+              "ToolTip": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\DB\\EventDetailsDto.cs",
               "RelativeToolTip": "Methodist_API\\Dtos\\DB\\EventDetailsDto.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAQwBIAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-09T21:45:55.377Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-09T21:45:55.377Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "IEventRepository.cs",
-              "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Interfaces\\IEventRepository.cs",
+              "DocumentMoniker": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Interfaces\\IEventRepository.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Interfaces\\IEventRepository.cs",
-              "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Interfaces\\IEventRepository.cs",
+              "ToolTip": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Interfaces\\IEventRepository.cs",
               "RelativeToolTip": "Methodist_API\\Interfaces\\IEventRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -107,9 +105,9 @@
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "MKDbContext.cs",
-              "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Data\\MKDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Data\\MKDbContext.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Data\\MKDbContext.cs",
-              "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Data\\MKDbContext.cs",
+              "ToolTip": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Data\\MKDbContext.cs",
               "RelativeToolTip": "Methodist_API\\Data\\MKDbContext.cs",
               "ViewState": "AgIAAE0AAAAAAAAAAAAuwFkAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -117,13 +115,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "EventController.cs",
-              "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\EventController.cs",
+              "DocumentMoniker": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\EventController.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Controllers\\EventController.cs",
-              "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\EventController.cs",
+              "ToolTip": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\EventController.cs",
               "RelativeToolTip": "Methodist_API\\Controllers\\EventController.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAhwLsAAABZAAAAAAAAAA==",
+              "ViewState": "AgIAAJoAAAAAAAAAAAASwLsAAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-09T13:00:24.464Z",
               "EditorCaption": ""
@@ -132,40 +130,37 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "EventDto.cs",
-              "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\DB\\EventDto.cs",
+              "DocumentMoniker": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\DB\\EventDto.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Dtos\\DB\\EventDto.cs",
-              "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\DB\\EventDto.cs",
+              "ToolTip": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Dtos\\DB\\EventDto.cs",
               "RelativeToolTip": "Methodist_API\\Dtos\\DB\\EventDto.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAA9wBcAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-09T13:05:18.662Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-09T13:05:18.662Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Event.cs",
-              "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Models\\DB\\Event.cs",
+              "DocumentMoniker": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Models\\DB\\Event.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Models\\DB\\Event.cs",
-              "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Models\\DB\\Event.cs",
+              "ToolTip": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Models\\DB\\Event.cs",
               "RelativeToolTip": "Methodist_API\\Models\\DB\\Event.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAxwAUAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-09T13:00:24.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-09T13:00:24.467Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "ProfileController.cs",
-              "DocumentMoniker": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\ProfileController.cs",
+              "DocumentMoniker": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\ProfileController.cs",
               "RelativeDocumentMoniker": "Methodist_API\\Controllers\\ProfileController.cs",
-              "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\ProfileController.cs",
+              "ToolTip": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\ProfileController.cs",
               "RelativeToolTip": "Methodist_API\\Controllers\\ProfileController.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAkwBYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-09T13:00:24.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-09T13:00:24.469Z"
             }
           ]
         }

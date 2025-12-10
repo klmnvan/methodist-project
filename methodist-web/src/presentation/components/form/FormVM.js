@@ -4,7 +4,7 @@ import AxiosClient from "@/data/AxiosClient.jsx";
 export class FormVM {
 
     modes = ["Участие", "Проведение", "Стажировка", "Публикация", "Участие студентов"];
-    currentMode = this.modes[4];
+    currentMode = this.modes[0];
     ownerTypeByResults = [];
     statuses = [];
     eventForms = [];
@@ -49,6 +49,7 @@ export class FormVM {
             handleQuantityInput: action,
             handleParticipantsCount: action,
             handleInput: action,
+            handleInputResult: action,
             handleRemoveFile: action,
             handleSelect: action,
             closeModal: action,
@@ -160,7 +161,7 @@ export class FormVM {
         this.statuses = data;
     }
 
-    /** Инициализация списка ... **/
+    /** Инициализация списка значений по умолчанию для указания результата мероприятия **/
     setResults(data) {
         this.results = data;
     }
@@ -178,6 +179,12 @@ export class FormVM {
             [name]: value
         };
         console.log(toJS(this.event))
+    }
+
+    handleInputResult = (value, idResult) => {
+        console.log(toJS(value))
+        this.event.results[idResult].result = value;
+        console.log(toJS(this.event.results[idResult]));
     }
 
     handleSelect = (fieldName, value) => {
@@ -242,6 +249,7 @@ export class FormVM {
             endDateOfEvent: this.event.dateOfEvent.toISOString(),
             dateOfEvent: this.event.dateOfEvent.toISOString()
         };
+        console.log(toJS(eventToSend));
         mCreateEvent(eventToSend, {
             onSuccess: (response) => {
                 console.log('мероприятие создано с ID' + response.data.id);

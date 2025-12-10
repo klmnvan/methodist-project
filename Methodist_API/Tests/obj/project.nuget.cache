@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "leC++Q4k6kk=",
+  "dgSpecHash": "NnwwebPy1lI=",
   "success": false,
-  "projectFilePath": "D:\\methodist-project\\Methodist_API\\Tests\\Tests.csproj",
+  "projectFilePath": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Tests\\Tests.csproj",
   "expectedPackageFiles": [],
   "logs": [
     {
       "code": "NU1201",
       "level": "Error",
       "message": "Проект Methodist_API несовместим с net8.0 (.NETCoreApp,Version=v8.0). Проект Methodist_API поддерживает: net10.0 (.NETCoreApp,Version=v10.0)",
-      "projectPath": "D:\\methodist-project\\Methodist_API\\Tests\\Tests.csproj",
-      "filePath": "D:\\methodist-project\\Methodist_API\\Tests\\Tests.csproj",
+      "projectPath": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Tests\\Tests.csproj",
+      "filePath": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Tests\\Tests.csproj",
       "libraryId": "Methodist_API",
       "targetGraphs": [
         "net8.0"

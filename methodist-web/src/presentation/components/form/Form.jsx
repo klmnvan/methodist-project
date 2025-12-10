@@ -320,9 +320,17 @@ export const Form = observer(() => {
                             <>
                                 <div key={index} className={classes.rowResult}>
                                     <div className={classes.titleResult}>
+                                        <EventSelector
+                                            label="Результат"
+                                            labelIsShow={false}
+                                            defaultValues={vm.results}
+                                            onSelect={(value) => vm.handleInputResult(value, index)}
+                                        />
+                                    </div>
+                                    {/*<div className={classes.titleResult}>
                                         <div className={classes.label}>{index + 1}.</div>
                                         <div className={classes.hint}>{result.result}</div>
-                                    </div>
+                                    </div>*/}
                                     {!result.fileName && (
                                         <button
                                             className={classes.buttonFile}
