@@ -30,7 +30,13 @@ export class FormVM {
             location: "",
             quantityOfHours: "0",
             participantsCount: "1",
-            results: []
+            results: [
+                {
+                    ownerTypeId: '',
+                    result: '',
+                    fileName: null
+                }
+            ]
         }
 
         makeObservable(this, {
@@ -51,12 +57,14 @@ export class FormVM {
             handleInput: action,
             handleInputResult: action,
             handleRemoveFile: action,
+            removeResult: action,
             handleSelect: action,
             closeModal: action,
             setParticipationForms: action,
             initNewResult: action,
             setEventForms: action,
             clearFiles: action,
+            setError: action,
             setStatuses: action,
             setResults: action,
         })
@@ -72,6 +80,27 @@ export class FormVM {
         }
         this.event.results = [...this.event.results, newResult];
         console.log(this.event.results);
+    }
+
+    /** Установка кастомной ошибки **/
+    setError(message) {
+        this.error = message;
+        setTimeout(() => {
+            this.error = '';
+        }, 10000);
+    }
+
+    /** Удаление результата из списка **/
+    removeResult(index) {
+        if (this.event.results.length <= 1) {
+            this.error = 'Вы не можете удалить все результаты из списка. Должен быть указан хотя бы один результат';
+            return;
+        }
+        const result = this.event.results[index];
+        if (result.fileName) {
+            this.selectedFiles = this.selectedFiles.filter(file => file.name !== result.fileName);
+        }
+        this.event.results = this.event.results.filter((_, idx) => idx !== index);
     }
 
     /** Обработчик для добавления файла к результату **/

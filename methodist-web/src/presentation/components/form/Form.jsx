@@ -15,6 +15,7 @@ import {useCreateEvent} from "@/presentation/components/form/hooks/useCreateEven
 import {useLoadFiles} from "@/presentation/components/form/hooks/useLoadFiles.jsx";
 import {IconAddFile, IconFile, IconRemoveFile} from "@ui/icons/IconFile.jsx";
 import {IconPlus} from "@ui/icons/IconPlus.jsx";
+import {IconDelete} from "@ui/icons/IconDelete.jsx";
 
 export const Form = observer(() => {
 
@@ -45,8 +46,11 @@ export const Form = observer(() => {
     }, [vm, statuses])
 
     useEffect(() => {
-        if(results) { vm.setResults(results) }
+        if(results) {
+            vm.setResults(results)
+        }
     }, [vm, results])
+
 
     //#endregion
     return(
@@ -102,39 +106,77 @@ export const Form = observer(() => {
                         <SpacerPX size={12} orientation={"v"}/>
                         <div className={classes.label}>Результаты</div>
                         <SpacerPX size={12} orientation={"v"}/>
+                        <div className={classes.label} style={{color: "var(--color-description)"}}>Вы можете дополнить Ваш результат файлом</div>
+                        <SpacerPX size={12} orientation={"v"}/>
                         {vm.event.results && vm.event.results.map((result, index) => (
                             <>
                                 <div key={index} className={classes.rowResult}>
-                                    <div className={classes.titleResult}>
-                                        <div className={classes.label}>{index + 1}.</div>
-                                        <div className={classes.hint}>{result.result}</div>
+                                    <span className={classes.numberItemResult}>{index + 1}</span>
+                                    <div className={classes.resultSelector}>
+                                        <EventSelector
+                                            label="Результат"
+                                            labelIsShow={false}
+                                            defaultValues={vm.results}
+                                            onSelect={(value) => vm.handleInputResult(value, index)}
+                                        />
                                     </div>
                                     {!result.fileName && (
                                         <button
-                                            className={classes.buttonFile}
+                                            className={classes.buttonIcon}
                                             onClick={() => {vm.handleFileSelect(index)}}
+                                            title="Добавить файл"
                                         >
-                                            Добавить файл
-                                        </button>)
-                                    }
-                                    {result.fileName && (
-                                        <button
-                                            className={classes.buttonFile}
-                                            onClick={() => vm.handleRemoveFile(index)}
-                                        >
-                                            Удалить файл
+                                            <div className={classes.iconBox}>
+                                                <IconAddFile/>
+                                            </div>
                                         </button>
                                     )}
+                                    {result.fileName && (
+                                        <div className={classes.rowRemoveFile}>
+                                            <div className={classes.fileName} title={result.fileName}>
+                                                <span>{result.fileName}</span>
+                                            </div>
+                                            <button
+                                                className={classes.buttonIcon}
+                                                onClick={() => {vm.handleRemoveFile(index)}}
+                                                style={{
+                                                    background: 'var(--color-error)'
+                                                }}
+                                                title="Удалить файл"
+                                            >
+                                                <div className={classes.iconBox}>
+                                                    <IconRemoveFile/>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    )}
+                                    <button
+                                        className={classes.buttonIcon}
+                                        onClick={() => {vm.removeResult(index)}}
+                                        style={{
+                                            background: 'var(--color-error)'
+                                        }}
+                                        title="Удалить результат"
+                                    >
+                                        <div className={classes.iconBox}>
+                                            <IconDelete/>
+                                        </div>
+                                    </button>
                                 </div>
                                 <SpacerPX size={12} orientation={"v"}/>
                             </>
                         ))}
                         <button
                             className={classes.buttonFile}
-                            onClick={() => vm.initNewResult()}
-                            disabled={vm.event.results.length >= 10}
+                            onClick={() => {
+                                if (vm.event.results.length >= 4) {
+                                    vm.setError('Количество результатов не может превышать 4');
+                                    return;
+                                }
+                                vm.initNewResult();
+                            }}
                         >
-                            Добавить результат
+                            <span className={classes.value}>Добавить результат</span>
                         </button>
                     </>
                     //#endregion
@@ -174,39 +216,77 @@ export const Form = observer(() => {
                         <SpacerPX size={12} orientation={"v"}/>
                         <div className={classes.label}>Результаты</div>
                         <SpacerPX size={12} orientation={"v"}/>
+                        <div className={classes.label} style={{color: "var(--color-description)"}}>Вы можете дополнить Ваш результат файлом</div>
+                        <SpacerPX size={12} orientation={"v"}/>
                         {vm.event.results && vm.event.results.map((result, index) => (
                             <>
                                 <div key={index} className={classes.rowResult}>
-                                    <div className={classes.titleResult}>
-                                        <div className={classes.label}>{index + 1}.</div>
-                                        <div className={classes.hint}>{result.result}</div>
+                                    <span className={classes.numberItemResult}>{index + 1}</span>
+                                    <div className={classes.resultSelector}>
+                                        <EventSelector
+                                            label="Результат"
+                                            labelIsShow={false}
+                                            defaultValues={vm.results}
+                                            onSelect={(value) => vm.handleInputResult(value, index)}
+                                        />
                                     </div>
                                     {!result.fileName && (
                                         <button
-                                            className={classes.buttonFile}
+                                            className={classes.buttonIcon}
                                             onClick={() => {vm.handleFileSelect(index)}}
+                                            title="Добавить файл"
                                         >
-                                            Добавить файл
-                                        </button>)
-                                    }
-                                    {result.fileName && (
-                                        <button
-                                            className={classes.buttonFile}
-                                            onClick={() => vm.handleRemoveFile(index)}
-                                        >
-                                            Удалить файл
+                                            <div className={classes.iconBox}>
+                                                <IconAddFile/>
+                                            </div>
                                         </button>
                                     )}
+                                    {result.fileName && (
+                                        <div className={classes.rowRemoveFile}>
+                                            <div className={classes.fileName} title={result.fileName}>
+                                                <span>{result.fileName}</span>
+                                            </div>
+                                            <button
+                                                className={classes.buttonIcon}
+                                                onClick={() => {vm.handleRemoveFile(index)}}
+                                                style={{
+                                                    background: 'var(--color-error)'
+                                                }}
+                                                title="Удалить файл"
+                                            >
+                                                <div className={classes.iconBox}>
+                                                    <IconRemoveFile/>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    )}
+                                    <button
+                                        className={classes.buttonIcon}
+                                        onClick={() => {vm.removeResult(index)}}
+                                        style={{
+                                            background: 'var(--color-error)'
+                                        }}
+                                        title="Удалить результат"
+                                    >
+                                        <div className={classes.iconBox}>
+                                            <IconDelete/>
+                                        </div>
+                                    </button>
                                 </div>
                                 <SpacerPX size={12} orientation={"v"}/>
                             </>
                         ))}
                         <button
                             className={classes.buttonFile}
-                            onClick={() => vm.initNewResult()}
-                            disabled={vm.event.results.length >= 10}
+                            onClick={() => {
+                                if (vm.event.results.length >= 4) {
+                                    vm.setError('Количество результатов не может превышать 4');
+                                    return;
+                                }
+                                vm.initNewResult();
+                            }}
                         >
-                            Добавить результат
+                            <span className={classes.value}>Добавить результат</span>
                         </button>
                     </>
                     //#endregion
@@ -318,9 +398,12 @@ export const Form = observer(() => {
                         <SpacerPX size={12} orientation={"v"}/>
                         <div className={classes.label}>Результаты</div>
                         <SpacerPX size={12} orientation={"v"}/>
+                        <div className={classes.label} style={{color: "var(--color-description)"}}>Вы можете дополнить Ваш результат файлом</div>
+                        <SpacerPX size={12} orientation={"v"}/>
                         {vm.event.results && vm.event.results.map((result, index) => (
                             <>
                                 <div key={index} className={classes.rowResult}>
+                                    <span className={classes.numberItemResult}>{index + 1}</span>
                                     <div className={classes.resultSelector}>
                                         <EventSelector
                                             label="Результат"
@@ -331,37 +414,59 @@ export const Form = observer(() => {
                                     </div>
                                     {!result.fileName && (
                                         <button
-                                            className={classes.buttonFile}
+                                            className={classes.buttonIcon}
                                             onClick={() => {vm.handleFileSelect(index)}}
+                                            title="Добавить файл"
                                         >
                                             <div className={classes.iconBox}>
                                                 <IconAddFile/>
                                             </div>
-                                            <span className={classes.value}>Добавить файл</span>
                                         </button>
                                     )}
                                     {result.fileName && (
-                                        <button
-                                            className={classes.buttonFile}
-                                            onClick={() => {vm.handleRemoveFile(index)}}
-                                            style={{
-                                                background: 'var(--color-error)'
-                                            }}
-                                        >
-                                            <div className={classes.iconBox}>
-                                                <IconRemoveFile/>
+                                        <div className={classes.rowRemoveFile}>
+                                            <div className={classes.fileName} title={result.fileName}>
+                                                <span>{result.fileName}</span>
                                             </div>
-                                            <span className={classes.value}>Удалить {result.fileName}</span>
-                                        </button>
+                                            <button
+                                                className={classes.buttonIcon}
+                                                onClick={() => {vm.handleRemoveFile(index)}}
+                                                style={{
+                                                    background: 'var(--color-error)'
+                                                }}
+                                                title="Удалить файл"
+                                            >
+                                                <div className={classes.iconBox}>
+                                                    <IconRemoveFile/>
+                                                </div>
+                                            </button>
+                                        </div>
                                     )}
+                                    <button
+                                        className={classes.buttonIcon}
+                                        onClick={() => {vm.removeResult(index)}}
+                                        style={{
+                                            background: 'var(--color-error)'
+                                        }}
+                                        title="Удалить результат"
+                                    >
+                                        <div className={classes.iconBox}>
+                                            <IconDelete/>
+                                        </div>
+                                    </button>
                                 </div>
                                 <SpacerPX size={12} orientation={"v"}/>
                             </>
                         ))}
                         <button
                             className={classes.buttonFile}
-                            onClick={() => vm.initNewResult()}
-                            disabled={vm.event.participantsCount <= vm.event.results.length}
+                            onClick={() => {
+                                if (vm.event.participantsCount <= vm.event.results.length) {
+                                    vm.setError('Количество результатов не может превышать количество участников');
+                                    return;
+                                }
+                                vm.initNewResult();
+                            }}
                         >
                             <span className={classes.value}>Добавить результат</span>
                         </button>

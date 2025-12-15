@@ -152,9 +152,33 @@
     flex-shrink: 0;
 }
 
+.rowResult {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 16px;
+    width: 100%;
+    min-width: 0;
+}
+
 .resultSelector {
     display: flex;
-    flex: 0 0 calc(60% - 8px);
+    flex: 1 1 60%;
+    min-width: 0;
+}
+
+.numberItemResult {
+    cursor: default;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    background: var(--color-container);
+    border-radius: var(--border-radius);
+    color: var(--color-primary);
+    font-weight: bold;
+    height: 50px;
+    flex-shrink: 0;
 }
 
 .buttonFile {
@@ -165,7 +189,9 @@
     background: var(--color-primary);
     border-radius: 10px;
     cursor: pointer;
-    flex: 0 0 calc(40% - 8px);
+    flex: 0 1 auto; /* Может сжиматься */
+    min-width: 0; /* Важно! */
+    width: 100%;
 }
 
 .buttonFile > .value {
@@ -174,6 +200,18 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.buttonIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    width: 50px;
+    background: var(--color-primary);
+    border-radius: var(--border-radius);
+    flex-shrink: 0;
 }
 
 .buttonFile_old {
@@ -186,18 +224,34 @@
     align-self: baseline;
 }
 
-.rowResult {
-    display: flex;
-    flex-direction: row;
-    align-items: start;
-    gap: 16px;
-    width: 100%;
-}
-
 .btnAddFile {
     font-family: var(--font-raleway), serif;
     font-size: 16px;
     background: var(--color-primary);
+}
+
+.rowRemoveFile {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.fileName {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 14px !important;
+    border-radius: var(--border-radius);
+    max-width: 300px;
+    background: color-mix(in srgb, var(--color-error) 20%, transparent);
+}
+
+.fileName > span {
+    cursor: default;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 @keyframes fadeIn {
@@ -214,6 +268,12 @@
 @media (max-width: 767px) {
     .container {
         padding: 8px 0 !important;
+    }
+    .fileName {
+        max-width: 150px;
+    }
+    .rowResult {
+        gap: 4px;
     }
 }
 

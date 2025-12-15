@@ -59,6 +59,7 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
                 className={classes.value}
                 onClick={() => setIsOpen((prev) => !prev)}
                 style={{backgroundColor: bg}}
+                title={selectedValue}
             >
                 <div className={classes.row}>
                     {selectedValue === "Другое" && isCustom ? (
@@ -75,11 +76,12 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
                             />
                         </div>
                     ) : (
-                        <div
-                            className={classes.customInputWrapper}
-                            style={selectedValue ? {color: "var(--color-title)"} : {color: "var(--color-description)"}}
-                        >
-                            {selectedValue || "Выберите..."}
+                        <div className={classes.customInputWrapper}>
+                            <div
+                                style={selectedValue ? {color: "var(--color-title)"} : {color: "var(--color-description)"}}
+                            >
+                                {selectedValue || "Выберите..."}
+                            </div>
                         </div>
                     )}
                     <div className={classes.icon}>
