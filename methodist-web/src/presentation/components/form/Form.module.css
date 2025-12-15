@@ -27,6 +27,7 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: normal;
+    align-self: baseline;
 }
 
 .title {
@@ -125,6 +126,21 @@
     animation: fadeIn 0.3s ease forwards !important;
 }
 
+.iconBox {
+    background: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    gap: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 8px !important;
+    width: 40px;
+    height: 40px;
+}
+
 .fileBox {
     display: flex;
     flex-direction: row;
@@ -159,6 +175,7 @@
 .rowResult {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 16px;
 }
 

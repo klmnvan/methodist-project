@@ -173,8 +173,34 @@
 .value {
     font-family: var(--font-poppins), serif;
     font-size: 16px;
-    color: var(--color-outline);
+    color: var(--color-title);
     font-weight: 300;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+/* Подсказка появляется с задержкой и плавно */
+.value:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #555;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    white-space: normal;
+    width: max-content;
+    max-width: 220px;
+}
+
+.value:hover:hover::after {
+    opacity: 1;
 }
 
 .button {
@@ -192,7 +218,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
+    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-radius: var(--border-radius);
+    padding: 12px !important;
 }
 
 .rowResult > .iconBox {
@@ -201,19 +230,15 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    border-radius: var(--border-radius);
-    padding: 5px 10px !important;
+    border-radius: 5px;
     gap: 16px;
     text-align: center;
     color: #FFFFFF;
-    font-family: var(--font-raleway), serif;
-    font-size: 16px;
+    padding: 8px !important;
+    width: 30px;
+    height: 30px;
 }
 
-.rowResult > .iconBox > .icon svg {
-    width: 20px;
-    height: 20px;
-}
 
 @media (max-width: 500px) {
     .rowTitles {

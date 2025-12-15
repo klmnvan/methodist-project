@@ -13,6 +13,8 @@ import {ImageSuccess} from "@ui/icons/ImageSuccess.jsx";
 import {useStore} from "@/presentation/providers/AppStoreProvider.jsx";
 import {useCreateEvent} from "@/presentation/components/form/hooks/useCreateEvent.jsx";
 import {useLoadFiles} from "@/presentation/components/form/hooks/useLoadFiles.jsx";
+import {IconFile} from "@ui/icons/IconFile.jsx";
+import {IconPlus} from "@ui/icons/IconPlus.jsx";
 
 export const Form = observer(() => {
 
@@ -326,6 +328,12 @@ export const Form = observer(() => {
                                             defaultValues={vm.results}
                                             onSelect={(value) => vm.handleInputResult(value, index)}
                                         />
+                                    </div>
+                                    <div className={classes.iconBox}
+                                         style={{
+                                             cursor: 'pointer',
+                                         }}>
+                                        <IconFile/>
                                     </div>
                                     {/*<div className={classes.titleResult}>
                                         <div className={classes.label}>{index + 1}.</div>

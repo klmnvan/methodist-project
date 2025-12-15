@@ -156,10 +156,10 @@ export const EventDialog = observer(({ event, onClose}) => {
                             {event.results && event.results.length > 0 &&
                                 <>
                                     <div className={classes.label}>Результаты</div>
-                                    {event.results.map(file => (
+                                    {event.results.map((file, index) => (
                                         <div className={classes.rowResult}>
-                                            <div className={classes.value}>
-                                                {file.result}
+                                            <div className={classes.value} title={file.result}>
+                                                {`${index + 1}. ${file.result}`}
                                             </div>
                                             { file.fileName && true &&
                                                 <>
@@ -168,7 +168,7 @@ export const EventDialog = observer(({ event, onClose}) => {
                                                          style={{
                                                              cursor: 'pointer',
                                                          }}>
-                                                        Скачать файл
+                                                        <IconFile/>
                                                     </div>
                                                 </>
                                             }
