@@ -20,16 +20,6 @@
     border-radius: var(--border-radius);
 }
 
-.buttonFile {
-    padding: 10px 0;
-    background: var(--color-primary);
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: normal;
-    align-self: baseline;
-}
-
 .title {
     font-size: 24px;
     font-weight: 600;
@@ -127,18 +117,8 @@
 }
 
 .iconBox {
-    background: var(--color-primary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    border-radius: 5px;
-    gap: 16px;
-    text-align: center;
-    color: #FFFFFF;
-    padding: 8px !important;
-    width: 40px;
-    height: 40px;
+    width: 17px;
+    height: 22px;
 }
 
 .fileBox {
@@ -172,19 +152,46 @@
     flex-shrink: 0;
 }
 
+.resultSelector {
+    display: flex;
+    flex: 0 0 calc(60% - 8px);
+}
+
+.buttonFile {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    padding: 14px 4px !important;
+    background: var(--color-primary);
+    border-radius: 10px;
+    cursor: pointer;
+    flex: 0 0 calc(40% - 8px);
+}
+
+.buttonFile > .value {
+    font-size: 16px;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.buttonFile_old {
+    padding: 10px 0;
+    background: var(--color-primary);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: normal;
+    align-self: baseline;
+}
+
 .rowResult {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: start;
     gap: 16px;
-}
-
-.titleResult {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    flex: 1
+    width: 100%;
 }
 
 .btnAddFile {

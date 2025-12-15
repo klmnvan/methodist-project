@@ -13,7 +13,7 @@ import {ImageSuccess} from "@ui/icons/ImageSuccess.jsx";
 import {useStore} from "@/presentation/providers/AppStoreProvider.jsx";
 import {useCreateEvent} from "@/presentation/components/form/hooks/useCreateEvent.jsx";
 import {useLoadFiles} from "@/presentation/components/form/hooks/useLoadFiles.jsx";
-import {IconFile} from "@ui/icons/IconFile.jsx";
+import {IconAddFile, IconFile, IconRemoveFile} from "@ui/icons/IconFile.jsx";
 import {IconPlus} from "@ui/icons/IconPlus.jsx";
 
 export const Form = observer(() => {
@@ -321,7 +321,7 @@ export const Form = observer(() => {
                         {vm.event.results && vm.event.results.map((result, index) => (
                             <>
                                 <div key={index} className={classes.rowResult}>
-                                    <div className={classes.titleResult}>
+                                    <div className={classes.resultSelector}>
                                         <EventSelector
                                             label="Результат"
                                             labelIsShow={false}
@@ -329,30 +329,29 @@ export const Form = observer(() => {
                                             onSelect={(value) => vm.handleInputResult(value, index)}
                                         />
                                     </div>
-                                    <div className={classes.iconBox}
-                                         style={{
-                                             cursor: 'pointer',
-                                         }}>
-                                        <IconFile/>
-                                    </div>
-                                    {/*<div className={classes.titleResult}>
-                                        <div className={classes.label}>{index + 1}.</div>
-                                        <div className={classes.hint}>{result.result}</div>
-                                    </div>*/}
                                     {!result.fileName && (
                                         <button
                                             className={classes.buttonFile}
                                             onClick={() => {vm.handleFileSelect(index)}}
                                         >
-                                            Добавить файл
-                                        </button>)
-                                    }
+                                            <div className={classes.iconBox}>
+                                                <IconAddFile/>
+                                            </div>
+                                            <span className={classes.value}>Добавить файл</span>
+                                        </button>
+                                    )}
                                     {result.fileName && (
                                         <button
                                             className={classes.buttonFile}
-                                            onClick={() => vm.handleRemoveFile(index)}
+                                            onClick={() => {vm.handleRemoveFile(index)}}
+                                            style={{
+                                                background: 'var(--color-error)'
+                                            }}
                                         >
-                                            Удалить файл
+                                            <div className={classes.iconBox}>
+                                                <IconRemoveFile/>
+                                            </div>
+                                            <span className={classes.value}>Удалить {result.fileName}</span>
                                         </button>
                                     )}
                                 </div>
@@ -364,7 +363,7 @@ export const Form = observer(() => {
                             onClick={() => vm.initNewResult()}
                             disabled={vm.event.participantsCount <= vm.event.results.length}
                         >
-                            Добавить результат
+                            <span className={classes.value}>Добавить результат</span>
                         </button>
                     </>
                     //#endregion
