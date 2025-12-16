@@ -16,6 +16,7 @@ import {useLoadFiles} from "@/presentation/components/form/hooks/useLoadFiles.js
 import {IconAddFile, IconFile, IconRemoveFile} from "@ui/icons/IconFile.jsx";
 import {IconPlus} from "@ui/icons/IconPlus.jsx";
 import {IconDelete} from "@ui/icons/IconDelete.jsx";
+import {IconClose} from "@ui/icons/IconClose.jsx";
 
 export const Form = observer(() => {
 
@@ -150,18 +151,20 @@ export const Form = observer(() => {
                                             </button>
                                         </div>
                                     )}
-                                    <button
-                                        className={classes.buttonIcon}
-                                        onClick={() => {vm.removeResult(index)}}
-                                        style={{
-                                            background: 'var(--color-error)'
-                                        }}
-                                        title="Удалить результат"
+                                    <span className={classes.numberItemResult}
+                                          style={{color: "#FFFFFF", cursor: "pointer", background: "color-mix(in srgb, #FD3535 90%, transparent)"}}
                                     >
-                                        <div className={classes.iconBox}>
-                                            <IconDelete/>
+                                        <div
+                                            style={{
+                                                width: '25px',
+                                                height: '25px',
+                                            }}
+                                            onClick={() => {vm.removeResult(index)}}
+                                            title="Удалить результат"
+                                        >
+                                            <IconClose/>
                                         </div>
-                                    </button>
+                                    </span>
                                 </div>
                                 <SpacerPX size={12} orientation={"v"}/>
                             </>
@@ -260,18 +263,20 @@ export const Form = observer(() => {
                                             </button>
                                         </div>
                                     )}
-                                    <button
-                                        className={classes.buttonIcon}
-                                        onClick={() => {vm.removeResult(index)}}
-                                        style={{
-                                            background: 'var(--color-error)'
-                                        }}
-                                        title="Удалить результат"
+                                    <span className={classes.numberItemResult}
+                                          style={{color: "#FFFFFF", cursor: "pointer", background: "color-mix(in srgb, #FD3535 90%, transparent)"}}
                                     >
-                                        <div className={classes.iconBox}>
-                                            <IconDelete/>
+                                        <div
+                                            style={{
+                                                width: '25px',
+                                                height: '25px',
+                                            }}
+                                            onClick={() => {vm.removeResult(index)}}
+                                            title="Удалить результат"
+                                        >
+                                            <IconClose/>
                                         </div>
-                                    </button>
+                                    </span>
                                 </div>
                                 <SpacerPX size={12} orientation={"v"}/>
                             </>
@@ -442,18 +447,20 @@ export const Form = observer(() => {
                                             </button>
                                         </div>
                                     )}
-                                    <button
-                                        className={classes.buttonIcon}
-                                        onClick={() => {vm.removeResult(index)}}
-                                        style={{
-                                            background: 'var(--color-error)'
-                                        }}
-                                        title="Удалить результат"
+                                    <span className={classes.numberItemResult}
+                                          style={{color: "#FFFFFF", cursor: "pointer", background: "color-mix(in srgb, #FD3535 90%, transparent)"}}
                                     >
-                                        <div className={classes.iconBox}>
-                                            <IconDelete/>
+                                        <div
+                                            style={{
+                                                width: '25px',
+                                                height: '25px',
+                                            }}
+                                            onClick={() => {vm.removeResult(index)}}
+                                            title="Удалить результат"
+                                        >
+                                            <IconClose/>
                                         </div>
-                                    </button>
+                                    </span>
                                 </div>
                                 <SpacerPX size={12} orientation={"v"}/>
                             </>

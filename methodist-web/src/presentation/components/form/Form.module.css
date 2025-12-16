@@ -34,7 +34,7 @@
 }
 
 .label {
-    font-family: var(--font-poppins), serif;
+    font-family: var(--font-raleway), serif;
     font-size: 16px;
     font-weight: normal;
 }
@@ -192,6 +192,7 @@
     flex: 0 1 auto; /* Может сжиматься */
     min-width: 0; /* Важно! */
     width: 100%;
+    color: #FFFFFF;
 }
 
 .buttonFile > .value {
@@ -212,6 +213,7 @@
     background: var(--color-primary);
     border-radius: var(--border-radius);
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 .buttonFile_old {
@@ -233,7 +235,7 @@
 .rowRemoveFile {
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: 16px;
 }
 
 .fileName {
@@ -273,6 +275,9 @@
         max-width: 150px;
     }
     .rowResult {
+        gap: 4px;
+    }
+    .rowRemoveFile {
         gap: 4px;
     }
 }

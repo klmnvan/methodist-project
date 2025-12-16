@@ -20,4 +20,5 @@
 
 .section.active {
     background: var(--color-primary);
+    color: #FFFFFF;
 }
