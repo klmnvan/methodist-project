@@ -6,11 +6,11 @@ export class EventDialogVM {
     fieldModes = [
         {
             typeOfEvent: 'Участие',
-            fields: ['dateOfEvent', 'formOfParticipation', 'name', 'formOfEvent', 'status', 'result']
+            fields: ['dateOfEvent', 'formOfParticipation', 'name', 'formOfEvent', 'status']
         },
         {
             typeOfEvent: 'Проведение',
-            fields: ['dateOfEvent', 'location', 'name', 'formOfEvent', 'status', 'result']
+            fields: ['dateOfEvent', 'location', 'name', 'formOfEvent', 'status']
         },
         {
             typeOfEvent: 'Стажировка',
@@ -19,6 +19,10 @@ export class EventDialogVM {
         {
             typeOfEvent: 'Публикация',
             fields: ['dateOfEvent', 'name', 'type', 'location']
+        },
+        {
+            typeOfEvent: 'Участие студентов',
+            fields: ['dateOfEvent', 'formOfParticipation', 'name', 'formOfEvent', 'status', 'participantsCount']
         },
     ]
     modes = ["просмотра", "редактирования"]
@@ -89,9 +93,19 @@ export class EventDialogVM {
             status: 'Статус',
             location: 'Место проведения',
             quantityOfHours: 'Количество часов',
+            participantsCount: 'Количество участников',
             type: 'Вид публикации'
         };
         return labels[fieldName] || fieldName;
     };
+
+    handleNumericInput = (value, field) => {
+        let cleanValue = value.replace(/\D/g, '');
+        cleanValue = cleanValue.replace(/^0+/, '') || '0';
+        cleanValue = cleanValue.slice(0, 10);
+        this.draftEvent[field] = cleanValue;
+        console.log(toJS(this.event));
+        return cleanValue;
+    }
 
 }

@@ -52,8 +52,7 @@ export class FormVM {
             participationForms: observable,
             event: observable,
             selectMode: action,
-            handleQuantityInput: action,
-            handleParticipantsCount: action,
+            handleNumericInput: action,
             handleInput: action,
             handleInputResult: action,
             handleRemoveFile: action,
@@ -225,21 +224,12 @@ export class FormVM {
         console.log("Новая дата", toJS(this.newDate));
     }
 
-    handleQuantityInput = (value) => {
+    handleNumericInput = (value, field) => {
         let cleanValue = value.replace(/\D/g, '');
         cleanValue = cleanValue.replace(/^0+/, '') || '0';
         cleanValue = cleanValue.slice(0, 10);
-        this.event.quantityOfHours = cleanValue;
-        console.log(toJS(this.event))
-        return cleanValue;
-    }
-
-    handleParticipantsCount = (value) => {
-        let cleanValue = value.replace(/\D/g, '');
-        cleanValue = cleanValue.replace(/^0+/, '') || '0';
-        cleanValue = cleanValue.slice(0, 10);
-        this.event.participantsCount = cleanValue;
-        console.log(toJS(this.event))
+        this.event[field] = cleanValue;
+        console.log(toJS(this.event));
         return cleanValue;
     }
 

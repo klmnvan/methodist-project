@@ -239,6 +239,12 @@
     height: 30px;
 }
 
+.titleInput {
+    font-size: 16px;
+    font-weight: normal;
+    color: var(--color-title);
+}
+
 
 @media (max-width: 500px) {
     .rowTitles {

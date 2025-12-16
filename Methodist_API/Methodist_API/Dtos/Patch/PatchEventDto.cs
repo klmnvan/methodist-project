@@ -16,6 +16,7 @@ namespace Methodist_API.Dtos.Patch
         public string Status { get; set; } = String.Empty;
         public string Location { get; set; } = String.Empty;
         public string QuantityOfHours { get; set; } = String.Empty;
+        public int? ParticipantsCount { get; set; } = 0;
         public string Result { get; set; } = String.Empty;
     }
 }

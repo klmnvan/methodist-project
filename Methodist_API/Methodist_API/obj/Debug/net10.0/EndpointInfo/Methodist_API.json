@@ -1437,6 +1437,11 @@
             "type": "string",
             "nullable": true
           },
+          "participantsCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "result": {
             "type": "string",
             "nullable": true

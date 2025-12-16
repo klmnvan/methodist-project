@@ -256,6 +256,11 @@
     min-width: 0;
 }
 
+.iconInFile {
+    width: 24px;
+    height: 24px;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -279,6 +284,9 @@
     }
     .rowRemoveFile {
         gap: 4px;
+    }
+    .fileName {
+        max-width: 50px;
     }
 }
 

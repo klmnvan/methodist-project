@@ -314,10 +314,7 @@ export const Form = observer(() => {
                             inputMode="numeric"
                             name="quantityOfHours"
                             value={vm.event.quantityOfHours}
-                            onChange={(e) => {
-                                const newValue = vm.handleQuantityInput(e.target.value);
-                                e.target.value = newValue; // Синхронизируем значение
-                            }}
+                            onChange={(e) => e.target.value = vm.handleNumericInput(e.target.value, 'quantityOfHours')}
                             title="Только положительные целые числа"
                             maxLength={10}
                         />
@@ -393,12 +390,9 @@ export const Form = observer(() => {
                             inputMode="numeric"
                             name="participantsCount"
                             value={vm.event.participantsCount}
-                            onChange={(e) => {
-                                const newValue = vm.handleParticipantsCount(e.target.value);
-                                e.target.value = newValue; // Синхронизируем значение
-                            }}
+                            onChange={(e) => e.target.value = vm.handleNumericInput(e.target.value, 'participantsCount')}
                             title="Только положительные целые числа"
-                            maxLength={10}
+                            maxLength={3}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
                         <div className={classes.label}>Результаты</div>

@@ -18,6 +18,7 @@ import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
 import {DatePicker} from "@ui/datePicker/datePicker/DatePicker.jsx";
 import {EventSelector} from "@/presentation/components/form/eventSelector/EventSelector.jsx";
 import {IconFile} from "@ui/icons/IconFile.jsx";
+import SpacerPX from "@ui/spacers/SpacerPX.jsx";
 
 export const EventDialog = observer(({ event, onClose}) => {
 
@@ -237,23 +238,29 @@ export const EventDialog = observer(({ event, onClose}) => {
                                             />
                                         </div>
                                     )}
-                                    {field === 'result' && (
-                                        <div key={field} className={classes.fieldInfo}>
-                                            <EventSelector
-                                                value={vm.draftEvent[field]}
-                                                label="Результат"
-                                                defaultValues={results}
-                                                onSelect={(value) => vm.onSelect('result', value)}
-                                                bg="var(--color-bg)"
-                                            />
-                                        </div>
-                                    )}
-                                    {field === 'dateOfEvent' && (
-                                        <DatePicker
-                                            selectedDate={vm.draftEvent.dateOfEvent}
-                                            handleDateSelect={vm.handleDateSelect}
+                                    {(field === 'quantityOfHours' || field === 'participantsCount') && (
+                                        <ProfileInput
+                                            label={vm.getFieldLabel(field)}
+                                            type="text"
+                                            inputMode="numeric"
+                                            name={field}
+                                            value={vm.draftEvent[field]}
+                                            onChange={(e) => vm.draftEvent[field] = vm.handleNumericInput(e.target.value, field)}
+                                            title="Только положительные целые числа"
+                                            maxLength={field === 'quantityOfHours' ? 10 : 3}
                                             bg="var(--color-bg)"
                                         />
+                                    )}
+                                    {field === 'dateOfEvent' && (
+                                        <>
+                                            <div className={classes.titleInput}>Дата мероприятия</div>
+                                            <DatePicker
+                                                selectedDate={vm.draftEvent.dateOfEvent}
+                                                handleDateSelect={vm.handleDateSelect}
+                                                bg="var(--color-bg)"
+                                            />
+                                        </>
+
                                     )}
                                 </>
                             ))}
