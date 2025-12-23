@@ -42,8 +42,7 @@
               "RelativeToolTip": "Methodist_API\\Models\\DB\\Event.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAowBYAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T21:39:44.828Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T21:39:44.828Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "Methodist_API\\Dtos\\Patch\\PatchEventDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T21:39:24.82Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T21:39:24.82Z"
             },
             {
               "$type": "Document",
@@ -68,8 +66,7 @@
               "RelativeToolTip": "Methodist_API\\Repositories\\EventRepository.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAAWwE4AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T21:39:15.948Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T21:39:15.948Z"
             },
             {
               "$type": "Document",
@@ -79,7 +76,7 @@
               "RelativeDocumentMoniker": "Methodist_API\\Controllers\\EventController.cs",
               "ToolTip": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Controllers\\EventController.cs",
               "RelativeToolTip": "Methodist_API\\Controllers\\EventController.cs",
-              "ViewState": "AgIAALAAAAAAAAAAAAAAwLAAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-16T21:38:44.691Z",
               "EditorCaption": ""

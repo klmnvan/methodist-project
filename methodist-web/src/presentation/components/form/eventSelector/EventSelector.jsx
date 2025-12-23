@@ -7,10 +7,41 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
     const [customValue, setCustomValue] = useState("");
     const [isCustom, setIsCustom] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const isInternalChange = useRef(false); // Флаг для отслеживания внутренних изменений
 
     useEffect(() => {
-        if(value) setSelectedValue(value)
-    }, [value])
+        // Пропускаем обработку, если изменение происходит изнутри компонента
+        if (isInternalChange.current) {
+            isInternalChange.current = false;
+            return;
+        }
+
+        if(value) {
+            // Проверяем, является ли value кастомным значением
+            const isValueInList = defaultValues.some(item => {
+                const itemName = typeof item === 'object' ? item.name : item;
+                const valueName = typeof value === 'object' ? value.name : value;
+                return itemName === valueName;
+            });
+
+            if (!isValueInList && typeof value === 'string') {
+                // Кастомное значение
+                setIsCustom(true);
+                setSelectedValue("Другое");
+                setCustomValue(value);
+            } else {
+                // Значение из списка
+                setIsCustom(false);
+                setSelectedValue(value);
+                setCustomValue("");
+            }
+        } else if (value === "" && !isCustom) {
+            // Если пустая строка и не режим "Другое", сбрасываем
+            setSelectedValue(null);
+            setIsCustom(false);
+            setCustomValue("");
+        }
+    }, [value, defaultValues])
 
     const containerRef = useRef(null);
 
@@ -34,13 +65,17 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
 
     const handleSelect = (option) => {
         if (option === "Другое") {
+            isInternalChange.current = true; // Помечаем как внутреннее изменение
             setIsCustom(true);
             setSelectedValue(option);
-            onSelect?.("");
+            setCustomValue("");
+            // НЕ вызываем onSelect с пустой строкой сразу
             setIsOpen(false);
         } else {
+            isInternalChange.current = true; // Помечаем как внутреннее изменение
             setIsCustom(false);
             setSelectedValue(option);
+            setCustomValue("");
             onSelect?.(option);
             setIsOpen(false);
         }
@@ -52,6 +87,45 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
         onSelect?.(val);
     };
 
+    // Функция для получения отображаемого текста
+    const getDisplayText = (val) => {
+        if (!val) return "Выберите...";
+
+        // Если это объект с name
+        if (typeof val === 'object' && val !== null && val.name) {
+            return val.name;
+        }
+
+        // Если это строка
+        if (typeof val === 'string') {
+            return val;
+        }
+
+        return "Выберите...";
+    };
+
+    // Функция для получения отображаемого текста опции
+    const getOptionText = (option) => {
+        if (typeof option === 'object' && option !== null && option.name) {
+            return option.name;
+        }
+        return option;
+    };
+
+    // Функция для сравнения значений
+    const isOptionSelected = (option) => {
+        if (!selectedValue) return false;
+
+        if (option === "Другое" && selectedValue === "Другое") {
+            return true;
+        }
+
+        const optionName = typeof option === 'object' ? option.name : option;
+        const selectedName = typeof selectedValue === 'object' ? selectedValue.name : selectedValue;
+
+        return optionName === selectedName;
+    };
+
     return (
         <div className={classes.container} ref={containerRef}>
             {labelIsShow && (<label className={classes.label}>{label}</label>)}
@@ -59,13 +133,13 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
                 className={classes.value}
                 onClick={() => setIsOpen((prev) => !prev)}
                 style={{backgroundColor: bg}}
-                title={selectedValue}
+                title={getDisplayText(selectedValue)}
             >
                 <div className={classes.row}>
                     {selectedValue === "Другое" && isCustom ? (
                         <div className={classes.customInputWrapper}>
                             <div className={classes.hintOther}>Другое: </div>
-                            <input
+                            <input style={{color: "var(--color-title)"}}
                                 type="text"
                                 className={classes.customInputInValue}
                                 placeholder="введите свой вариант"
@@ -80,7 +154,7 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
                             <div
                                 style={selectedValue ? {color: "var(--color-title)"} : {color: "var(--color-description)"}}
                             >
-                                {selectedValue || "Выберите..."}
+                                {getDisplayText(selectedValue)}
                             </div>
                         </div>
                     )}
@@ -92,15 +166,15 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
 
             {isOpen && (
                 <div className={classes.dropdown} role="listbox"
-                style={{backgroundColor: bg}}>
+                     style={{backgroundColor: bg}}>
                     {options.map((option, i) => (
                         <div
                             key={i}
                             className={`${classes.option} ${
-                                selectedValue === option ? classes.active : ""
+                                isOptionSelected(option) ? classes.active : ""
                             }`}
                             onClick={(e) => {
-                                e.stopPropagation(); // чтобы не закрывать дважды
+                                e.stopPropagation();
                                 handleSelect(option);
                             }}
                             tabIndex={0}
@@ -110,9 +184,9 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
                                 }
                             }}
                             role="option"
-                            aria-selected={selectedValue === option}
+                            aria-selected={isOptionSelected(option)}
                         >
-                            {option}
+                            {getOptionText(option)}
                         </div>
                     ))}
                 </div>
@@ -120,5 +194,3 @@ export const EventSelector = ({ value, defaultValues = [], onSelect, label, defa
         </div>
     );
 };
-
-

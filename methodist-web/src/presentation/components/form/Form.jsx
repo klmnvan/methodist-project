@@ -14,8 +14,6 @@ import {useStore} from "@/presentation/providers/AppStoreProvider.jsx";
 import {useCreateEvent} from "@/presentation/components/form/hooks/useCreateEvent.jsx";
 import {useLoadFiles} from "@/presentation/components/form/hooks/useLoadFiles.jsx";
 import {IconAddFile, IconFile, IconRemoveFile} from "@ui/icons/IconFile.jsx";
-import {IconPlus} from "@ui/icons/IconPlus.jsx";
-import {IconDelete} from "@ui/icons/IconDelete.jsx";
 import {IconClose} from "@ui/icons/IconClose.jsx";
 
 export const Form = observer(() => {
@@ -27,7 +25,6 @@ export const Form = observer(() => {
     const { mutate: mCreateEvent } = useCreateEvent()
     //#endregion
     //#region Use Effects
-
     useEffect(() => {
         if(ownerTypeByResults) {
             vm.setOwnerTypeByResults(ownerTypeByResults)
@@ -47,10 +44,15 @@ export const Form = observer(() => {
     }, [vm, statuses])
 
     useEffect(() => {
-        if(results) {
-            vm.setResults(results)
-        }
+        if(results) { vm.setResults(results) }
     }, [vm, results])
+
+    useEffect(() => {
+        if(ownerTypeByResults && participationForms &&
+            eventForms && statuses && results) {
+            vm.loadFromStorage() 
+        }
+    }, [eventForms, ownerTypeByResults, participationForms, results, statuses, vm])
 
 
     //#endregion
@@ -81,6 +83,7 @@ export const Form = observer(() => {
                             label="Форма участия"
                             defaultValues={vm.participationForms}
                             defaultIsExists={false}
+                            value={vm.event.formOfParticipation}
                             onSelect={(value) => vm.handleSelect('formOfParticipation', value)}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
@@ -96,12 +99,14 @@ export const Form = observer(() => {
                         <EventSelector
                             label="Форма мероприятия"
                             defaultValues={vm.eventForms}
+                            value={vm.event.formOfEvent}
                             onSelect={(value) => vm.handleSelect('formOfEvent', value)}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
                         <EventSelector
                             label="Cтатус мероприятия"
                             defaultValues={vm.statuses}
+                            value={vm.event.status}
                             onSelect={(value) => vm.handleSelect('status', value)}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
@@ -118,6 +123,7 @@ export const Form = observer(() => {
                                             label="Результат"
                                             labelIsShow={false}
                                             defaultValues={vm.results}
+                                            value={result.result}
                                             onSelect={(value) => vm.handleInputResult(value, index)}
                                         />
                                     </div>
@@ -199,6 +205,7 @@ export const Form = observer(() => {
                         <EventSelector
                             label="Форма мероприятия"
                             defaultValues={vm.eventForms}
+                            value={vm.event.formOfEvent}
                             onSelect={(value) => vm.handleSelect('formOfEvent', value)}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
@@ -214,6 +221,7 @@ export const Form = observer(() => {
                         <EventSelector
                             label="Cтатус мероприятия"
                             defaultValues={vm.statuses}
+                            value={vm.event.status}
                             onSelect={(value) => vm.handleSelect('status', value)}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
@@ -230,6 +238,7 @@ export const Form = observer(() => {
                                             label="Результат"
                                             labelIsShow={false}
                                             defaultValues={vm.results}
+                                            value={result.result}
                                             onSelect={(value) => vm.handleInputResult(value, index)}
                                         />
                                     </div>
@@ -360,6 +369,7 @@ export const Form = observer(() => {
                             label="Форма участия"
                             defaultValues={vm.participationForms}
                             defaultIsExists={false}
+                            value={vm.event.formOfParticipation}
                             onSelect={(value) => vm.handleSelect('formOfParticipation', value)}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
@@ -375,12 +385,14 @@ export const Form = observer(() => {
                         <EventSelector
                             label="Форма мероприятия"
                             defaultValues={vm.eventForms}
+                            value={vm.event.formOfEvent}
                             onSelect={(value) => vm.handleSelect('formOfEvent', value)}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
                         <EventSelector
                             label="Cтатус мероприятия"
                             defaultValues={vm.statuses}
+                            value={vm.event.status}
                             onSelect={(value) => vm.handleSelect('status', value)}
                         />
                         <SpacerPX size={12} orientation={"v"}/>
@@ -408,6 +420,7 @@ export const Form = observer(() => {
                                             label="Результат"
                                             labelIsShow={false}
                                             defaultValues={vm.results}
+                                            value={result.result}
                                             onSelect={(value) => vm.handleInputResult(value, index)}
                                         />
                                     </div>

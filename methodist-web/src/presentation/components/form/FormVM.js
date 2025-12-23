@@ -1,4 +1,4 @@
-import {action, makeObservable, observable, toJS} from "mobx";
+import {action, makeObservable, observable, reaction, toJS} from "mobx";
 import AxiosClient from "@/data/AxiosClient.jsx";
 
 export class FormVM {
@@ -60,6 +60,7 @@ export class FormVM {
             handleSelect: action,
             closeModal: action,
             setParticipationForms: action,
+            loadFromStorage: action,
             initNewResult: action,
             setEventForms: action,
             clearFiles: action,
@@ -67,14 +68,82 @@ export class FormVM {
             setStatuses: action,
             setResults: action,
         })
+        this.setupAutoSave();
         console.log(toJS(this.currentMode.name))
+    }
+
+    /** Загрузка состояния из localStorage **/
+    loadFromStorage() {
+        try {
+            const savedData = localStorage.getItem('formEventData');
+            if (!savedData) return;
+            const parsed = JSON.parse(savedData);
+
+            if (parsed.currentMode && this.modes.includes(parsed.currentMode)) {
+                this.currentMode = parsed.currentMode;
+            }
+
+            if (parsed.event) {
+                this.event = {
+                    ...this.event,
+                    ...parsed.event,
+                    // Преобразуем строки дат обратно в объекты Date
+                    dateOfEvent: parsed.event.dateOfEvent ? new Date(parsed.event.dateOfEvent) : new Date(),
+                    endDateOfEvent: parsed.event.endDateOfEvent ? new Date(parsed.event.endDateOfEvent) : new Date(),
+                };
+            }
+
+            console.log('Данные формы загружены из localStorage');
+        } catch (error) {
+            console.error('Ошибка при загрузке данных из localStorage:', error);
+        }
+    }
+
+    /** Сохранение состояния в localStorage **/
+    saveToStorage() {
+        try {
+            const dataToSave = {
+                currentMode: this.currentMode,
+                event: toJS(this.event)
+            };
+            localStorage.setItem('formEventData', JSON.stringify(dataToSave));
+            console.log('Данные формы сохранены в localStorage');
+        } catch (error) {
+            console.error('Ошибка при сохранении в localStorage:', error);
+        }
+    }
+
+    /** Настройка автосохранения **/
+    setupAutoSave() {
+        // Автосохранение при изменении режима
+        reaction(
+            () => this.currentMode,
+            () => this.saveToStorage()
+        );
+
+        // Автосохранение при изменении данных формы
+        reaction(
+            () => toJS(this.event),
+            () => this.saveToStorage(),
+            { delay: 500 } // Задержка 500мс для оптимизации
+        );
+    }
+
+    /** Очистка сохраненных данных **/
+    clearStorage() {
+        try {
+            localStorage.removeItem('formEventData');
+            console.log('Сохраненные данные формы удалены');
+        } catch (error) {
+            console.error('Ошибка при очистке localStorage:', error);
+        }
     }
 
     /** Добавление нового результата в список results модели мероприятия **/
     initNewResult() {
         const newResult = {
-            ownerTypeId: this.ownerTypeByResults[0].id,
-            result: this.results[0],
+            ownerTypeId: this.ownerTypeByResults[0]?.id || '',
+            result: this.results[0] || '',
             fileName: null
         }
         this.event.results = [...this.event.results, newResult];
@@ -283,6 +352,7 @@ export class FormVM {
                 this.resetForm();
                 this.modalIsOpen = true;
                 this.clearFiles();
+                this.clearStorage();
             }
         })
     }

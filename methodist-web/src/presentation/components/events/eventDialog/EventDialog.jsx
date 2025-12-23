@@ -26,7 +26,7 @@ export const EventDialog = observer(({ event, onClose}) => {
 
     const { queryClient } = useStore()
 
-    const { statuses, results, eventForms, participationForms } = useStore()
+    const { statuses, eventForms, participationForms } = useStore()
 
     const { mutate: deleteEvent, isSuccess: deleted } = useMutation({
         mutationKey: "deleteEvent",
@@ -36,11 +36,6 @@ export const EventDialog = observer(({ event, onClose}) => {
     const { mutate: updateEvent, isSuccess: updated } = useMutation({
         mutationKey: "updateEvent",
         mutationFn: ({event, id}) => postService.updateEvent(event, id),
-    });
-
-    const { mutate: getFile, isSuccess: fileSuccess } = useMutation({
-        mutationKey: "getFile",
-        mutationFn: (fileName) => postService.getResultFile(fileName),
     });
 
     const handleDownload = (fileName) => {
