@@ -1,7 +1,10 @@
 .datepicker {
     font-family: var(--font-poppins), sans-serif;
+    font-weight: normal;
+    font-size: 14px;
     width: fit-content;
     border-radius: 10px;
+    line-height: inherit;
 }
 
 .dateRow {
@@ -58,8 +61,6 @@
 .title {
     color: var(--color-title);
     margin-bottom: 8px !important;
-    font-size: 16px;
-    font-weight: normal;
     text-align: center;
 }
 
@@ -71,7 +72,6 @@
     gap: 12px;
     width: 100%;
     color: var(--color-title);
-    font-size: 12px;
     margin-bottom: 8px !important;
 }
 
@@ -85,9 +85,22 @@
 .dateViewer {
     display: flex;
     box-sizing: border-box;
-    background: color-mix(in srgb, var(--color-primary) 20%, transparent);
-    padding: 8px !important;
-    border-radius: 10px;
+    background: var(--color-container);
+    border: 1px solid var(--color-primary);
+    padding: 4px 8px !important;
+    border-radius: 8px;
+}
+
+.buttonArrow {
+    background: var(--color-container);
+    border-radius: 8px;
+    width: auto;
+}
+
+.buttonArrow > .icon {
+    width: auto;
+    height: 12px;
+    margin: 5px 15px !important;
 }
 
 .monthHeader {
@@ -97,50 +110,61 @@
     justify-content: space-between;
     width: 100%;
     margin-bottom: 15px !important;
-    text-transform: uppercase;
+}
+
+.monthRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+    background: var(--color-container);
+    border-radius: 8px;
+    padding: 0 8px !important;
+}
+
+.monthRow > svg {
+    width: 16px;
+    height: 16px;
+    color: white;
 }
 
 .monthTitle {
     color: var(--color-title);
     margin: 0 !important;
     text-align: center;
-    flex: 100%;
-    font-size: 12px;
     background: none;
-    font-weight: bold;
     border: none;
     cursor: pointer;
+    padding: 4px 8px !important;
 }
 
 .monthHeader button {
     color: var(--color-title);
     padding: 0 !important;
+    cursor: pointer;
 }
 
 .monthHeader button:hover {
-    color: var(--color-primary);
+    background: var(--color-primary);
 }
 
 .weekDaysRow {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
-    font-size: 16px;
     margin-bottom: 8px !important;
 }
 
 .weekDay {
     text-align: center;
     color: var(--color-title);
-    font-weight: bold;
 }
 
 .days-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
-    font-size: 16px;
-    font-weight: 200;
 }
 
 .day {
@@ -149,6 +173,7 @@
     cursor: pointer;
     border-radius: 4px;
     color: var(--color-title);
+    background: var(--color-container);
 }
 
 .day:hover {
