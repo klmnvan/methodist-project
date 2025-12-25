@@ -15,6 +15,8 @@ import {useCreateEvent} from "@/presentation/components/form/hooks/useCreateEven
 import {useLoadFiles} from "@/presentation/components/form/hooks/useLoadFiles.jsx";
 import {IconAddFile, IconFile, IconRemoveFile} from "@ui/icons/IconFile.jsx";
 import {IconClose} from "@ui/icons/IconClose.jsx";
+import ButtonIconSmall from "@ui/button/buttonIconSmall/ButtonIconSmall.jsx";
+import {IconClear} from "@ui/icons/IconClear.jsx";
 
 export const Form = observer(() => {
 
@@ -74,7 +76,17 @@ export const Form = observer(() => {
                 <SpacerPX size={12} orientation={"v"}/>
                 <div className={classes.titleInput}>Форма работы</div>
                 <SpacerPX size={12} orientation={"v"}/>
-                <ToggleBtnStat currentValue={vm.currentMode} values={vm.modes} onChange={ vm.selectMode }/>
+                <div className={classes.rowModes}>
+                    <ToggleBtnStat currentValue={vm.currentMode} values={vm.modes} onChange={ vm.selectMode }/>
+                    <ButtonIconSmall
+                        icon={<IconClear/>}
+                        background="var(--color-error)"
+                        color="white"
+                        children="Очистить форму"
+                        width="auto"
+                        onClick={() => vm.resetForm()}
+                    />
+                </div>
                 <SpacerPX size={20} orientation={"v"}/>
                 {vm.currentMode === vm.modes[0] && (
                     //#region Участие

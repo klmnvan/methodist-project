@@ -3,9 +3,8 @@ button {
     font-size: 12px;
     font-weight: 600;
     padding: 12px !important;
-    width: 60%;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;

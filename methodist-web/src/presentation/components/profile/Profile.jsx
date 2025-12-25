@@ -16,8 +16,6 @@ import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
 import {postService} from "@/data/network/PostService.js";
 import {useStore} from "@/presentation/providers/AppStoreProvider.jsx";
 import {useMutation} from "@tanstack/react-query";
-import httpClient from "@/data/AxiosClient.jsx";
-import {userStore} from "@/stores/UserStore.jsx";
 
 export const Profile = observer(() => {
     const vm = useMemo(() => new ProfileVM(), [])

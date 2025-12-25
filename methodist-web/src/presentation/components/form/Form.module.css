@@ -33,6 +33,13 @@
     color: var(--color-title);
 }
 
+.rowModes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+}
+
 .label {
     font-family: var(--font-raleway), serif;
     font-size: 16px;
@@ -287,6 +294,12 @@
     }
     .fileName {
         max-width: 50px;
+    }
+}
+
+@media (max-width: 900px) {
+    .rowModes {
+        flex-direction: column;
     }
 }
 

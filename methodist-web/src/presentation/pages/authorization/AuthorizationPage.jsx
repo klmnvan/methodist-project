@@ -14,10 +14,6 @@ function AuthorizationPage() {
         setAuthMode(prev => prev === 'login' ? 'register' : 'login');
     }
 
-    useEffect(() => {
-        //userStore.tokenIsValid()
-    }, []);
-
     return (
         <div className={classes.background}>
             {authMode === 'login' && (<div className={classes.formCont}>
