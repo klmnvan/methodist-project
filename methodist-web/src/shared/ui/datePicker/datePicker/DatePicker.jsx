@@ -1,6 +1,8 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import classes from "../customDatePicker/CustomDatePicker.module.css";
 import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
+import {IconArrowV2} from "@ui/icons/IconArrowV2.jsx";
+import {IconCalendarV2} from "@ui/icons/IconCalendarV2.jsx";
 
 export const DatePicker = ({ selectedDate, handleDateSelect }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -86,9 +88,20 @@ export const DatePicker = ({ selectedDate, handleDateSelect }) => {
             {isOpen && (
                 <div className={classes.calendar}>
                     <div className={classes.monthHeader}>
-                        <button onClick={() => changeMonth(-1)}>{"<"}</button>
-                        <div className={classes.monthTitle}>{`${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`}</div>
-                        <button onClick={() => changeMonth(1)}>{">"}</button>
+                        <button className={classes.buttonArrow} onClick={() => changeMonth(-1)}>
+                            <IconArrowV2 className={classes.icon}></IconArrowV2>
+                        </button>
+                        <div>
+
+                        </div>
+                        <div className={classes.monthRow}>
+                            <IconCalendarV2/>
+                            <div className={classes.monthTitle}>{`${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`}</div>
+                        </div>
+                        <button className={classes.buttonArrow} onClick={() => changeMonth(1)}
+                                style={{transform: "rotate(180deg)"}}>
+                            <IconArrowV2 className={classes.icon}></IconArrowV2>
+                        </button>
                     </div>
                     <div className={classes.weekDaysRow}>
                         {weekDayNames.map((dayName, index) => (
