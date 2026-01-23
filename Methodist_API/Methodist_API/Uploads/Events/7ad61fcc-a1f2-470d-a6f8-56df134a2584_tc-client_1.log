@@ -1,0 +1,729 @@
+2026-01-20 17:21:30.000 [AWT-EventQueue-0] INFO Common - closeSingletonWebcam() class: class com.cololo.tc.tools.WebcamSingleton
+2026-01-20 17:21:54.870 [main] ERROR Common - Exception: java.lang.NoSuchFieldException: sys_paths. Stack trace: java.lang.NoSuchFieldException: sys_paths
+	at java.base/java.lang.Class.getDeclaredField(Class.java:2610)
+	at com.cololo.tc.Common.patchJavaLibraryPath(Common.java:2600)
+	at com.cololo.tc.Common.globalInit(Common.java:236)
+	at com.cololo.tc.Common.<clinit>(Common.java:2188)
+	at com.cololo.tc.Configuration.getConfigurationFileName(Configuration.java:82)
+	at com.cololo.tc.Configuration.<init>(Configuration.java:130)
+	at com.cololo.tc.Configuration.get(Configuration.java:230)
+	at com.cololo.tc.Main.main(Main.java:162)
+
+2026-01-20 17:22:01.827 [AWT-EventQueue-0] INFO Common - Startup phase [] took 6201 ms
+2026-01-20 17:22:02.099 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=37 -- started
+2026-01-20 17:22:02.101 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- get() -- line=32 -- called
+2026-01-20 17:22:02.448 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- <init>() -- line=21 -- called. context=3439394816
+2026-01-20 17:22:02.448 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:02.449 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:02.449 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:03.452 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:03.453 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:03.453 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:03.606 [AWT-EventQueue-0] INFO Common - Startup phase [] took 1782 ms
+2026-01-20 17:22:03.675 [AWT-EventQueue-0] INFO Common - Startup phase [] took 68 ms
+2026-01-20 17:22:03.939 [main] INFO Common - Going to communicate with MySQL through TCP
+2026-01-20 17:22:03.939 [main] INFO Common - SQL. Trying to connect to the database.
+2026-01-20 17:22:04.272 [main] INFO Common - SQL. QUERY: SELECT PARAMVALUE FROM PARAMI WHERE NAME='DBVER'
+2026-01-20 17:22:04.291 [main] INFO Common - SQL. QUERY [SELECT PARAMVALUE FROM PARAMI WHERE NAME='DBVER'] execution time: 17.8661 ms.
+2026-01-20 17:22:04.317 [main] INFO Common - SQL. Trying to connect to the database.
+2026-01-20 17:22:04.328 [main] INFO Common - SQL. QUERY: SELECT ID FROM PERSONAL WHERE USER_ENABLED=1 AND STATUS='AVAILABLE' AND USER_LOGIN=?
+2026-01-20 17:22:04.347 [main] INFO Common - SQL. QUERY [SELECT ID FROM PERSONAL WHERE USER_ENABLED=1 AND STATUS='AVAILABLE' AND USER_LOGIN=?] preparation time: 9.056 ms. Execution time: 3.9998
+2026-01-20 17:22:04.368 [main] INFO Common - SQL. QUERY: SELECT ID, NAME FROM SYSTEM_LOG_FIELDS
+2026-01-20 17:22:04.370 [main] INFO Common - SQL. QUERY [SELECT ID, NAME FROM SYSTEM_LOG_FIELDS] execution time: 1.5049 ms.
+2026-01-20 17:22:04.371 [main] INFO Common - SQL. QUERY: SELECT ID, NAME, FIELDS FROM SYSTEM_LOG_TYPES
+2026-01-20 17:22:04.377 [main] INFO Common - SQL. QUERY [SELECT ID, NAME, FIELDS FROM SYSTEM_LOG_TYPES] execution time: 6.0014 ms.
+2026-01-20 17:22:04.379 [main] INFO Common - SQL. QUERY: SELECT ID, NAME, GROUPS, TYPES FROM SYSTEM_LOG_TREE
+2026-01-20 17:22:04.383 [main] INFO Common - SQL. QUERY [SELECT ID, NAME, GROUPS, TYPES FROM SYSTEM_LOG_TREE] execution time: 2.5262 ms.
+2026-01-20 17:22:04.386 [main] INFO Common - SQL. Trying to connect to the database.
+2026-01-20 17:22:04.405 [main] INFO Common - SQL. QUERY: SELECT ID, NAME, FIELDS FROM EVENT_TYPES
+2026-01-20 17:22:04.412 [main] INFO Common - SQL. QUERY [SELECT ID, NAME, FIELDS FROM EVENT_TYPES] execution time: 6.5158 ms.
+2026-01-20 17:22:04.426 [main] INFO Common - SQL. Trying to connect to the database.
+2026-01-20 17:22:04.440 [main] INFO Common - SQL. QUERY: SELECT ID, NAME, GROUPS, TYPES FROM EVENT_TREE
+2026-01-20 17:22:04.443 [main] INFO Common - SQL. QUERY [SELECT ID, NAME, GROUPS, TYPES FROM EVENT_TREE] execution time: 3.0733 ms.
+2026-01-20 17:22:04.480 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:04.483 [main] INFO Common - SQL. QUERY: SELECT * FROM PERSONAL WHERE ID=6
+2026-01-20 17:22:04.483 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:04.484 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:04.488 [main] INFO Common - SQL. QUERY [SELECT * FROM PERSONAL WHERE ID=6] execution time: 4.0012 ms.
+2026-01-20 17:22:04.490 [main] INFO Common - SQL. QUERY: SELECT EMP_ID FROM REPORTUSERDEP WHERE USER_ID=6
+2026-01-20 17:22:04.493 [main] INFO Common - SQL. QUERY [SELECT EMP_ID FROM REPORTUSERDEP WHERE USER_ID=6] execution time: 2.5519 ms.
+2026-01-20 17:22:04.493 [main] INFO Common - SQL. QUERY: SELECT DEP_ID, CREATION_LIMIT FROM OPERATOR_LIMITS_CREATION_ENTITY WHERE USER_ID=6
+2026-01-20 17:22:04.497 [main] INFO Common - SQL. QUERY [SELECT DEP_ID, CREATION_LIMIT FROM OPERATOR_LIMITS_CREATION_ENTITY WHERE USER_ID=6] execution time: 4.514 ms.
+2026-01-20 17:22:04.498 [main] INFO Common - SQL. QUERY: SELECT RULE_ID FROM USERRULES WHERE USER_ID=6
+2026-01-20 17:22:04.501 [main] INFO Common - SQL. QUERY [SELECT RULE_ID FROM USERRULES WHERE USER_ID=6] execution time: 2.5524 ms.
+2026-01-20 17:22:04.508 [main] INFO Common - SQL. QUERY: SELECT RULE_ID FROM USEREDITABLERULES WHERE USER_ID=6
+2026-01-20 17:22:04.510 [main] INFO Common - SQL. QUERY [SELECT RULE_ID FROM USEREDITABLERULES WHERE USER_ID=6] execution time: 2.0101 ms.
+2026-01-20 17:22:04.512 [main] INFO Common - SQL. QUERY: SELECT DEP_ID FROM USERRULEDEPS WHERE USER_ID=6
+2026-01-20 17:22:04.513 [main] INFO Common - SQL. QUERY [SELECT DEP_ID FROM USERRULEDEPS WHERE USER_ID=6] execution time: 1.5207 ms.
+2026-01-20 17:22:04.513 [main] INFO Common - SQL. QUERY: SELECT DEP_ID FROM USEREDITABLERULEDEPS WHERE USER_ID=6
+2026-01-20 17:22:04.516 [main] INFO Common - SQL. QUERY [SELECT DEP_ID FROM USEREDITABLERULEDEPS WHERE USER_ID=6] execution time: 2.0136 ms.
+2026-01-20 17:22:04.516 [main] INFO Common - SQL. QUERY: SELECT MONVIEW_ID FROM MONUSERS WHERE USER_ID = 6
+2026-01-20 17:22:04.518 [main] INFO Common - SQL. QUERY [SELECT MONVIEW_ID FROM MONUSERS WHERE USER_ID = 6] execution time: 1.9988 ms.
+2026-01-20 17:22:04.519 [main] INFO Common - SQL. Trying to connect to the database.
+2026-01-20 17:22:04.532 [main] INFO Common - SQL. QUERY: SELECT RULE_ID, DEP_ID FROM DEPRULEBINDINGS
+2026-01-20 17:22:04.535 [main] INFO Common - SQL. QUERY [SELECT RULE_ID, DEP_ID FROM DEPRULEBINDINGS] execution time: 1.9979 ms.
+2026-01-20 17:22:04.535 [main] INFO Common - SQL. QUERY: SELECT ID, PARENT_ID FROM RULEDEPS
+2026-01-20 17:22:04.538 [main] INFO Common - SQL. QUERY [SELECT ID, PARENT_ID FROM RULEDEPS] execution time: 1.9975 ms.
+2026-01-20 17:22:04.541 [AWT-EventQueue-0] INFO Common - Startup phase [] took 866 ms
+2026-01-20 17:22:04.553 [AWT-EventQueue-0] INFO Common - Startup phase [] took 12 ms
+2026-01-20 17:22:04.557 [main] INFO Common - SQL. QUERY: SELECT ID,NAME,HWCONF,CONTROLSPERIMETER,TYPE FROM DEVICES
+2026-01-20 17:22:04.569 [main] INFO Common - SQL. QUERY [SELECT ID,NAME,HWCONF,CONTROLSPERIMETER,TYPE FROM DEVICES] execution time: 11.5773 ms.
+2026-01-20 17:22:04.587 [AWT-EventQueue-0] INFO Common - Startup phase [Читаем данные о точках доступа...] took 33 ms
+2026-01-20 17:22:04.623 [AWT-EventQueue-0] INFO Common - Startup phase [Инициализируем работу с контрольным считывателем...] took 35 ms
+2026-01-20 17:22:04.706 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, IP, PORT, LOGIN, PASSWD, PARAM1, PARAM2, PARAM3, PARAM4, PARAM5, PARAM6, PARAM7, PARAM8, URL, FG_VIDEO, FG_PHOTO, FG_SET_GUEST_PHOTO, FG_MAXFRAMEWIDTH, FG_MAXFRAMEHEIGHT, FG_MAXFPS, FG_PRESECONDS, FG_POSTSECONDS, FG_ONVIF_TOKEN, FG_ONVIF_NAME, FG_ONVIF_TYPE FROM CCTVSERVERS ORDER BY TYPE, NAME
+2026-01-20 17:22:04.716 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, IP, PORT, LOGIN, PASSWD, PARAM1, PARAM2, PARAM3, PARAM4, PARAM5, PARAM6, PARAM7, PARAM8, URL, FG_VIDEO, FG_PHOTO, FG_SET_GUEST_PHOTO, FG_MAXFRAMEWIDTH, FG_MAXFRAMEHEIGHT, FG_MAXFPS, FG_PRESECONDS, FG_POSTSECONDS, FG_ONVIF_TOKEN, FG_ONVIF_NAME, FG_ONVIF_TYPE FROM CCTVSERVERS ORDER BY TYPE, NAME] execution time: 8.5982 ms.
+2026-01-20 17:22:05.040 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM DEVICES_SECURITY_DATA
+2026-01-20 17:22:05.061 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM DEVICES_SECURITY_DATA] execution time: 19.7255 ms.
+2026-01-20 17:22:05.146 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT NAME FROM CLASSES WHERE PARENT = ?
+2026-01-20 17:22:05.163 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT NAME FROM CLASSES WHERE PARENT = ?] preparation time: 0.0 ms. Execution time: 15.52
+2026-01-20 17:22:05.218 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT NAME FROM CLASSES WHERE PARENT = ?
+2026-01-20 17:22:05.234 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT NAME FROM CLASSES WHERE PARENT = ?] preparation time: 0.0 ms. Execution time: 14.0531
+2026-01-20 17:22:05.250 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID,TYPE,LINKTYPE,LINKPARAM1,LINKPARAM2,LINKPARAM3 FROM DEVICES
+2026-01-20 17:22:05.271 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID,TYPE,LINKTYPE,LINKPARAM1,LINKPARAM2,LINKPARAM3 FROM DEVICES] execution time: 21.1041 ms.
+2026-01-20 17:22:05.276 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID,PARENT_ID,ORDER_IDX,TYPE,NAME FROM DEVICES ORDER BY ORDER_IDX
+2026-01-20 17:22:05.280 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID,PARENT_ID,ORDER_IDX,TYPE,NAME FROM DEVICES ORDER BY ORDER_IDX] execution time: 4.0147 ms.
+2026-01-20 17:22:05.310 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM PERSONAL WHERE DEPLOYMENT_ID IS NOT NULL
+2026-01-20 17:22:05.313 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM PERSONAL WHERE DEPLOYMENT_ID IS NOT NULL] execution time: 3.0204 ms.
+2026-01-20 17:22:05.314 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM DEPLOYMENTS
+2026-01-20 17:22:05.315 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM DEPLOYMENTS] execution time: 1.004 ms.
+2026-01-20 17:22:05.317 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM PERSONAL WHERE STATUS='AVAILABLE'
+2026-01-20 17:22:05.319 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM PERSONAL WHERE STATUS='AVAILABLE'] execution time: 0.9981 ms.
+2026-01-20 17:22:05.322 [AWT-EventQueue-0] INFO Common - SQL. Trying to connect to the database.
+2026-01-20 17:22:05.333 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT EMP_ID, CODEKEY,CODEKEY_DESC FROM PERSONAL_KEYS WHERE EMP_ID IN (1,2,3,4,5,6,7)
+2026-01-20 17:22:05.336 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT EMP_ID, CODEKEY,CODEKEY_DESC FROM PERSONAL_KEYS WHERE EMP_ID IN (1,2,3,4,5,6,7)] execution time: 3.0021 ms.
+2026-01-20 17:22:05.337 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM PHOTO
+2026-01-20 17:22:05.340 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM PHOTO] execution time: 3.516 ms.
+2026-01-20 17:22:05.340 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID,PARENT_ID,TYPE,EMP_TYPE,NAME,TABID,POS,STATUS,CODEKEY,CODEKEY_DESC,DEPLOYMENT_ID,EMAIL,USER_ENABLED,PIN_CODE FROM PERSONAL WHERE ID IN (1,2,3,4,5,6,7)
+2026-01-20 17:22:05.344 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID,PARENT_ID,TYPE,EMP_TYPE,NAME,TABID,POS,STATUS,CODEKEY,CODEKEY_DESC,DEPLOYMENT_ID,EMAIL,USER_ENABLED,PIN_CODE FROM PERSONAL WHERE ID IN (1,2,3,4,5,6,7)] execution time: 2.5206 ms.
+2026-01-20 17:22:05.375 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM PLANFLOORS
+2026-01-20 17:22:05.377 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM PLANFLOORS] execution time: 2.0007 ms.
+2026-01-20 17:22:05.379 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM PLANOBJECTS
+2026-01-20 17:22:05.381 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM PLANOBJECTS] execution time: 1.0107 ms.
+2026-01-20 17:22:05.381 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, FLOORID, OBJID FROM PLANOBJECTSBIN
+2026-01-20 17:22:05.385 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, FLOORID, OBJID FROM PLANOBJECTSBIN] execution time: 4.5191 ms.
+2026-01-20 17:22:05.392 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID,PARENT_ID,TYPE,NAME,LINETYPE,AP,ZONE,NUMBER,SPNXTYPE,RUBEZHTYPE,CAM_SERVER_ID,CAM_PARAM1,CAM_PARAM2,CAM_PARAM3,CAM_PARAM4,ORDER_IDX FROM ALARMLINES WHERE LINETYPE IN ('NOT_SET','ER300','BOLID','RUBEZH') ORDER BY ID
+2026-01-20 17:22:05.395 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID,PARENT_ID,TYPE,NAME,LINETYPE,AP,ZONE,NUMBER,SPNXTYPE,RUBEZHTYPE,CAM_SERVER_ID,CAM_PARAM1,CAM_PARAM2,CAM_PARAM3,CAM_PARAM4,ORDER_IDX FROM ALARMLINES WHERE LINETYPE IN ('NOT_SET','ER300','BOLID','RUBEZH') ORDER BY ID] execution time: 1.0027 ms.
+2026-01-20 17:22:05.397 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM PAYACCTYPES
+2026-01-20 17:22:05.400 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM PAYACCTYPES] execution time: 2.9996 ms.
+2026-01-20 17:22:05.403 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM ZONES
+2026-01-20 17:22:05.403 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM ZONES] execution time: 0.0 ms.
+2026-01-20 17:22:05.405 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM ZONES WHERE ID IN (0,1,2)
+2026-01-20 17:22:05.409 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM ZONES WHERE ID IN (0,1,2)] execution time: 2.512 ms.
+2026-01-20 17:22:05.414 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM GSTAPPL_ROLES ORDER BY ID
+2026-01-20 17:22:05.417 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM GSTAPPL_ROLES ORDER BY ID] execution time: 1.9999 ms.
+2026-01-20 17:22:05.417 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM GSTAPPL_ROUTES ORDER BY ID
+2026-01-20 17:22:05.418 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM GSTAPPL_ROUTES ORDER BY ID] execution time: 1.015 ms.
+2026-01-20 17:22:05.419 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM GSTAPPL_ROUTES_STAGES ORDER BY ROUTE_ID,ORDER_IDX
+2026-01-20 17:22:05.420 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM GSTAPPL_ROUTES_STAGES ORDER BY ROUTE_ID,ORDER_IDX] execution time: 0.0 ms.
+2026-01-20 17:22:05.422 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID,NAME,TYPE,SYSTEM_DEFAULT FROM BADGES2
+2026-01-20 17:22:05.425 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID,NAME,TYPE,SYSTEM_DEFAULT FROM BADGES2] execution time: 2.9999 ms.
+2026-01-20 17:22:05.485 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT COUNT(*) AS R FROM SYSTEM_LOGS
+2026-01-20 17:22:05.487 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT COUNT(*) AS R FROM SYSTEM_LOGS] execution time: 1.0009 ms.
+2026-01-20 17:22:05.513 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:05.514 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:05.514 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:05.809 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, IP, PORT, LOGIN, PASSWD, PARAM1, PARAM2, PARAM3, PARAM4, PARAM5, PARAM6, PARAM7, PARAM8, URL, FG_VIDEO, FG_PHOTO, FG_SET_GUEST_PHOTO, FG_MAXFRAMEWIDTH, FG_MAXFRAMEHEIGHT, FG_MAXFPS, FG_PRESECONDS, FG_POSTSECONDS, FG_ONVIF_TOKEN, FG_ONVIF_NAME, FG_ONVIF_TYPE FROM CCTVSERVERS ORDER BY TYPE, NAME
+2026-01-20 17:22:05.813 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, IP, PORT, LOGIN, PASSWD, PARAM1, PARAM2, PARAM3, PARAM4, PARAM5, PARAM6, PARAM7, PARAM8, URL, FG_VIDEO, FG_PHOTO, FG_SET_GUEST_PHOTO, FG_MAXFRAMEWIDTH, FG_MAXFRAMEHEIGHT, FG_MAXFPS, FG_PRESECONDS, FG_POSTSECONDS, FG_ONVIF_TOKEN, FG_ONVIF_NAME, FG_ONVIF_TYPE FROM CCTVSERVERS ORDER BY TYPE, NAME] execution time: 3.5209 ms.
+2026-01-20 17:22:05.821 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM TZ
+2026-01-20 17:22:05.830 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM TZ] execution time: 8.5175 ms.
+2026-01-20 17:22:06.573 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:06.573 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:06.574 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:06.661 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM SIDEPARAMTYPES
+2026-01-20 17:22:06.664 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM SIDEPARAMTYPES] execution time: 2.0547 ms.
+2026-01-20 17:22:07.127 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT MONVIEWS.ID AS VIEW_ID, MONVIEWS.NAME AS VIEW_NAME FROM MONVIEWS
+2026-01-20 17:22:07.129 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT MONVIEWS.ID AS VIEW_ID, MONVIEWS.NAME AS VIEW_NAME FROM MONVIEWS] execution time: 2.0002 ms.
+2026-01-20 17:22:07.130 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT MONVIEWS.ID AS VIEW_ID, MONVIEWS.NAME AS VIEW_NAME FROM MONVIEWS
+2026-01-20 17:22:07.137 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT MONVIEWS.ID AS VIEW_ID, MONVIEWS.NAME AS VIEW_NAME FROM MONVIEWS] execution time: 7.0269 ms.
+2026-01-20 17:22:07.142 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONFRAMES WHERE MONVIEWID = 2
+2026-01-20 17:22:07.144 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONFRAMES WHERE MONVIEWID = 2] execution time: 1.9965 ms.
+2026-01-20 17:22:07.145 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMS WHERE MONFRAMEID=2
+2026-01-20 17:22:07.147 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMS WHERE MONFRAMEID=2] execution time: 1.516 ms.
+2026-01-20 17:22:07.265 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMAPS WHERE MONITEM_ID = 8
+2026-01-20 17:22:07.287 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMAPS WHERE MONITEM_ID = 8] execution time: 21.1696 ms.
+2026-01-20 17:22:07.287 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMEMPS WHERE MONITEM_ID = 8
+2026-01-20 17:22:07.293 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMEMPS WHERE MONITEM_ID = 8] execution time: 4.9962 ms.
+2026-01-20 17:22:07.294 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMZONES WHERE MONITEM_ID = 8
+2026-01-20 17:22:07.296 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMZONES WHERE MONITEM_ID = 8] execution time: 1.999 ms.
+2026-01-20 17:22:07.297 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMAPS WHERE MONITEM_ID = 9
+2026-01-20 17:22:07.299 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMAPS WHERE MONITEM_ID = 9] execution time: 1.5118 ms.
+2026-01-20 17:22:07.299 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMEMPS WHERE MONITEM_ID = 9
+2026-01-20 17:22:07.309 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMEMPS WHERE MONITEM_ID = 9] execution time: 8.0431 ms.
+2026-01-20 17:22:07.310 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMZONES WHERE MONITEM_ID = 9
+2026-01-20 17:22:07.318 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMZONES WHERE MONITEM_ID = 9] execution time: 8.5336 ms.
+2026-01-20 17:22:07.318 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMAPS WHERE MONITEM_ID = 10
+2026-01-20 17:22:07.325 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMAPS WHERE MONITEM_ID = 10] execution time: 5.5256 ms.
+2026-01-20 17:22:07.325 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMEMPS WHERE MONITEM_ID = 10
+2026-01-20 17:22:07.335 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMEMPS WHERE MONITEM_ID = 10] execution time: 7.5266 ms.
+2026-01-20 17:22:07.335 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMZONES WHERE MONITEM_ID = 10
+2026-01-20 17:22:07.344 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMZONES WHERE MONITEM_ID = 10] execution time: 9.0675 ms.
+2026-01-20 17:22:07.344 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMAPS WHERE MONITEM_ID = 11
+2026-01-20 17:22:07.356 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMAPS WHERE MONITEM_ID = 11] execution time: 11.5317 ms.
+2026-01-20 17:22:07.356 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMEMPS WHERE MONITEM_ID = 11
+2026-01-20 17:22:07.359 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMEMPS WHERE MONITEM_ID = 11] execution time: 3.5174 ms.
+2026-01-20 17:22:07.360 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM MONITEMZONES WHERE MONITEM_ID = 11
+2026-01-20 17:22:07.371 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM MONITEMZONES WHERE MONITEM_ID = 11] execution time: 9.3277 ms.
+2026-01-20 17:22:07.417 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID,PARENT_ID,ORDER_IDX,TYPE,NAME FROM DEVICES ORDER BY ORDER_IDX
+2026-01-20 17:22:07.432 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID,PARENT_ID,ORDER_IDX,TYPE,NAME FROM DEVICES ORDER BY ORDER_IDX] execution time: 14.5235 ms.
+2026-01-20 17:22:07.433 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT AP_ID FROM MONAPSELECTION WHERE USER_ID = 6 AND MONITEM_ID = 9
+2026-01-20 17:22:07.448 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT AP_ID FROM MONAPSELECTION WHERE USER_ID = 6 AND MONITEM_ID = 9] execution time: 14.0639 ms.
+2026-01-20 17:22:07.450 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID,PARENT_ID,ORDER_IDX,TYPE,NAME FROM DEVICES ORDER BY ORDER_IDX
+2026-01-20 17:22:07.454 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID,PARENT_ID,ORDER_IDX,TYPE,NAME FROM DEVICES ORDER BY ORDER_IDX] execution time: 2.5277 ms.
+2026-01-20 17:22:07.634 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:07.634 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:07.636 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:07.670 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM PAYMENUS WHERE STARTDATE<='2026-01-20' AND ENDDATE>='2026-01-20' AND ID IN (SELECT MENUID FROM PAYMENUUSERS WHERE USERID=6)
+2026-01-20 17:22:07.678 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM PAYMENUS WHERE STARTDATE<='2026-01-20' AND ENDDATE>='2026-01-20' AND ID IN (SELECT MENUID FROM PAYMENUUSERS WHERE USERID=6)] execution time: 7.0311 ms.
+2026-01-20 17:22:08.439 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT NAME FROM CLASSES WHERE PARENT = ?
+2026-01-20 17:22:08.442 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT NAME FROM CLASSES WHERE PARENT = ?] preparation time: 0.0 ms. Execution time: 3.0615
+2026-01-20 17:22:08.630 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID,NAME,PARENT_ID FROM RULEDEPS
+2026-01-20 17:22:08.633 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID,NAME,PARENT_ID FROM RULEDEPS] execution time: 2.9991 ms.
+2026-01-20 17:22:08.645 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:08.649 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:08.650 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:09.322 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM ODTYPES ORDER BY NAME
+2026-01-20 17:22:09.328 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM ODTYPES ORDER BY NAME] execution time: 5.0155 ms.
+2026-01-20 17:22:09.671 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:09.671 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:09.671 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:10.025 [AWT-EventQueue-0] INFO Common - SQL. Trying to connect to the database.
+2026-01-20 17:22:10.040 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID,USER_LOGIN FROM PERSONAL WHERE USER_ENABLED=1 ORDER BY USER_LOGIN
+2026-01-20 17:22:10.048 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID,USER_LOGIN FROM PERSONAL WHERE USER_ENABLED=1 ORDER BY USER_LOGIN] execution time: 6.4476 ms.
+2026-01-20 17:22:10.050 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM GSTAPPL_ROLES ORDER BY ID
+2026-01-20 17:22:10.052 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM GSTAPPL_ROLES ORDER BY ID] execution time: 2.0042 ms.
+2026-01-20 17:22:10.052 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM GSTAPPL_ROUTES ORDER BY ID
+2026-01-20 17:22:10.054 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM GSTAPPL_ROUTES ORDER BY ID] execution time: 1.9964 ms.
+2026-01-20 17:22:10.055 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM GSTAPPL_ROUTES_STAGES ORDER BY ROUTE_ID,ORDER_IDX
+2026-01-20 17:22:10.058 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM GSTAPPL_ROUTES_STAGES ORDER BY ROUTE_ID,ORDER_IDX] execution time: 1.509 ms.
+2026-01-20 17:22:10.131 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, DESCRIPTION FROM VISIT_PURPOSE
+2026-01-20 17:22:10.132 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, DESCRIPTION FROM VISIT_PURPOSE] execution time: 0.9994 ms.
+2026-01-20 17:22:10.135 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, DESCRIPTION, APPROVAL_ROUTE_ID, AFFECTED_RULES, QR_AFTER_APPROVAL FROM VISIT_PLACE
+2026-01-20 17:22:10.137 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, DESCRIPTION, APPROVAL_ROUTE_ID, AFFECTED_RULES, QR_AFTER_APPROVAL FROM VISIT_PLACE] execution time: 0.9966 ms.
+2026-01-20 17:22:10.205 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, IS_DEFAULT, IS_VISIBLE_IN_COMBOBOXES FROM DOCUMENTS
+2026-01-20 17:22:10.207 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, IS_DEFAULT, IS_VISIBLE_IN_COMBOBOXES FROM DOCUMENTS] execution time: 2.0015 ms.
+2026-01-20 17:22:10.453 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, IS_DEFAULT, IS_VISIBLE_IN_COMBOBOXES FROM DOCUMENTS
+2026-01-20 17:22:10.455 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, IS_DEFAULT, IS_VISIBLE_IN_COMBOBOXES FROM DOCUMENTS] execution time: 1.0135 ms.
+2026-01-20 17:22:10.499 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$Never] entity editor generated time:[0]
+2026-01-20 17:22:10.519 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$Pass] entity editor generated time:[20]
+2026-01-20 17:22:10.526 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$Deny] entity editor generated time:[5]
+2026-01-20 17:22:10.531 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$Break] entity editor generated time:[5]
+2026-01-20 17:22:10.533 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$ApStateCha] entity editor generated time:[2]
+2026-01-20 17:22:10.562 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$OnSchedule] entity editor generated time:[28]
+2026-01-20 17:22:10.565 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$FireAlarm] entity editor generated time:[2]
+2026-01-20 17:22:10.573 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$MngStateChange] entity editor generated time:[7]
+2026-01-20 17:22:10.576 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$OnDoorHold] entity editor generated time:[2]
+2026-01-20 17:22:10.586 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$CE] entity editor generated time:[10]
+2026-01-20 17:22:10.595 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$OnPayBalanceChange] entity editor generated time:[9]
+2026-01-20 17:22:10.598 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT MONFRAMES.ID AS MONFRAME_ID,MONVIEWS.NAME AS MONVIEW_NAME,MONITEMS.ID AS BUTTON_ID,MONITEMS.TP_FORMAT AS BUTTON_NAME FROM MONFRAMES INNER JOIN MONITEMS ON MONFRAMES.ID=MONITEMS.MONFRAMEID INNER JOIN MONVIEWS ON MONFRAMES.MONVIEWID=MONVIEWS.ID WHERE MONITEMS.TYPE='BUTTON' ORDER BY MONFRAME_ID;
+2026-01-20 17:22:10.601 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT MONFRAMES.ID AS MONFRAME_ID,MONVIEWS.NAME AS MONVIEW_NAME,MONITEMS.ID AS BUTTON_ID,MONITEMS.TP_FORMAT AS BUTTON_NAME FROM MONFRAMES INNER JOIN MONITEMS ON MONFRAMES.ID=MONITEMS.MONFRAMEID INNER JOIN MONVIEWS ON MONFRAMES.MONVIEWID=MONVIEWS.ID WHERE MONITEMS.TYPE='BUTTON' ORDER BY MONFRAME_ID;] execution time: 1.9986 ms.
+2026-01-20 17:22:10.603 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT MONFRAMES.ID AS MONFRAME_ID,MONVIEWS.NAME AS MONVIEW_NAME,MONITEMS.ID AS BUTTON_ID,MONITEMS.TP_FORMAT AS BUTTON_NAME FROM MONFRAMES INNER JOIN MONITEMS ON MONFRAMES.ID=MONITEMS.MONFRAMEID INNER JOIN MONVIEWS ON MONFRAMES.MONVIEWID=MONVIEWS.ID WHERE MONITEMS.TYPE='BUTTON' ORDER BY MONFRAME_ID;
+2026-01-20 17:22:10.606 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT MONFRAMES.ID AS MONFRAME_ID,MONVIEWS.NAME AS MONVIEW_NAME,MONITEMS.ID AS BUTTON_ID,MONITEMS.TP_FORMAT AS BUTTON_NAME FROM MONFRAMES INNER JOIN MONITEMS ON MONFRAMES.ID=MONITEMS.MONFRAMEID INNER JOIN MONVIEWS ON MONFRAMES.MONVIEWID=MONVIEWS.ID WHERE MONITEMS.TYPE='BUTTON' ORDER BY MONFRAME_ID;] execution time: 3.5197 ms.
+2026-01-20 17:22:10.607 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$OnMonButton] entity editor generated time:[11]
+2026-01-20 17:22:10.607 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$OnPatrolViolation] entity editor generated time:[0]
+2026-01-20 17:22:10.616 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$OnBodyTempExcess] entity editor generated time:[8]
+2026-01-20 17:22:10.625 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Condition] entity editor generated time:[3]
+2026-01-20 17:22:10.629 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond$TypedCond$EmpCountInZones] entity editor generated time:[13]
+2026-01-20 17:22:10.636 [AWT-EventQueue-0] INFO Common - Element:[class com.cololo.tc.db.orm.entities.Cond] entity editor generated time:[154]
+2026-01-20 17:22:10.662 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID,NAME FROM DEVICES WHERE TYPE='DEVICE' ORDER BY ID
+2026-01-20 17:22:10.663 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID,NAME FROM DEVICES WHERE TYPE='DEVICE' ORDER BY ID] execution time: 1.0036 ms.
+2026-01-20 17:22:10.681 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:10.681 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:10.681 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:11.401 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM WORKUNIVERSAL_PROFILES ORDER BY ID
+2026-01-20 17:22:11.412 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM WORKUNIVERSAL_PROFILES ORDER BY ID] execution time: 8.9993 ms.
+2026-01-20 17:22:11.416 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT PARAMNAME,VALUE FROM WORKUNIVERSAL_PARAMI WHERE PROFILEID = 1
+2026-01-20 17:22:11.424 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT PARAMNAME,VALUE FROM WORKUNIVERSAL_PARAMI WHERE PROFILEID = 1] execution time: 6.0504 ms.
+2026-01-20 17:22:11.425 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT PARAMNAME,VALUE FROM WORKUNIVERSAL_PARAMB WHERE PROFILEID = 1
+2026-01-20 17:22:11.438 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT PARAMNAME,VALUE FROM WORKUNIVERSAL_PARAMB WHERE PROFILEID = 1] execution time: 13.0534 ms.
+2026-01-20 17:22:11.441 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM SIDEPARAMTYPES
+2026-01-20 17:22:11.448 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM SIDEPARAMTYPES] execution time: 7.0032 ms.
+2026-01-20 17:22:11.450 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM SIDEPARAMTYPES
+2026-01-20 17:22:11.458 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM SIDEPARAMTYPES] execution time: 6.9983 ms.
+2026-01-20 17:22:11.693 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:11.705 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:11.705 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:11.826 [AWT-EventQueue-0] INFO Common - Startup phase [Читаем данные из базы данных...] took 7203 ms
+2026-01-20 17:22:12.419 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, KG_IP FROM KR_DEVICES WHERE VENDOR='KEYGUARD'
+2026-01-20 17:22:12.427 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, KG_IP FROM KR_DEVICES WHERE VENDOR='KEYGUARD'] execution time: 8.7116 ms.
+2026-01-20 17:22:12.429 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, KG_KEYLIST_TEXT_INDEX, NAME FROM KR_KEYS WHERE TYPE='KG_KEY_LIST' AND (KG_EXTENSION_PARENT_ID IS NULL OR KG_EXTENSION_PARENT_ID=0) AND KEYRACK_ID=0 ORDER BY ID ASC
+2026-01-20 17:22:12.430 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, KG_KEYLIST_TEXT_INDEX, NAME FROM KR_KEYS WHERE TYPE='KG_KEY_LIST' AND (KG_EXTENSION_PARENT_ID IS NULL OR KG_EXTENSION_PARENT_ID=0) AND KEYRACK_ID=0 ORDER BY ID ASC] execution time: 1.0018 ms.
+2026-01-20 17:22:12.434 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=0 ORDER BY ID ASC
+2026-01-20 17:22:12.444 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=0 ORDER BY ID ASC] execution time: 9.52 ms.
+2026-01-20 17:22:12.452 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=0 ORDER BY ID ASC
+2026-01-20 17:22:12.458 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=0 ORDER BY ID ASC] execution time: 5.5955 ms.
+2026-01-20 17:22:12.459 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, KG_KEYLIST_TEXT_INDEX, NAME FROM KR_KEYS WHERE TYPE='KG_KEY_LIST' AND (KG_EXTENSION_PARENT_ID IS NULL OR KG_EXTENSION_PARENT_ID=0) AND KEYRACK_ID=0 ORDER BY ID ASC
+2026-01-20 17:22:12.461 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, KG_KEYLIST_TEXT_INDEX, NAME FROM KR_KEYS WHERE TYPE='KG_KEY_LIST' AND (KG_EXTENSION_PARENT_ID IS NULL OR KG_EXTENSION_PARENT_ID=0) AND KEYRACK_ID=0 ORDER BY ID ASC] execution time: 2.0746 ms.
+2026-01-20 17:22:12.462 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=0 ORDER BY ID ASC
+2026-01-20 17:22:12.465 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=0 ORDER BY ID ASC] execution time: 3.0454 ms.
+2026-01-20 17:22:12.717 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:12.717 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:12.717 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:13.721 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:13.721 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:13.721 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:14.729 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:14.732 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:14.733 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:15.744 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:15.745 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:15.745 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:16.751 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:16.752 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:16.752 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:17.042 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, KG_KEYLIST_TEXT_INDEX, NAME FROM KR_KEYS WHERE TYPE='KG_KEY_LIST' AND (KG_EXTENSION_PARENT_ID IS NULL OR KG_EXTENSION_PARENT_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:17.043 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, KG_KEYLIST_TEXT_INDEX, NAME FROM KR_KEYS WHERE TYPE='KG_KEY_LIST' AND (KG_EXTENSION_PARENT_ID IS NULL OR KG_EXTENSION_PARENT_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 1.0136 ms.
+2026-01-20 17:22:17.044 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT TEXT FROM KR_KG_TEXTS WHERE ID=1
+2026-01-20 17:22:17.045 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT TEXT FROM KR_KG_TEXTS WHERE ID=1] execution time: 0.9998 ms.
+2026-01-20 17:22:17.048 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, KG_ROOM_NUMBER FROM KR_KEYS WHERE KEYRACK_ID=1 AND TYPE='KG_KEY' ORDER BY ID ASC
+2026-01-20 17:22:17.050 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, KG_ROOM_NUMBER FROM KR_KEYS WHERE KEYRACK_ID=1 AND TYPE='KG_KEY' ORDER BY ID ASC] execution time: 2.0101 ms.
+2026-01-20 17:22:17.051 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:17.054 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 2.9999 ms.
+2026-01-20 17:22:17.055 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:17.057 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 1.9972 ms.
+2026-01-20 17:22:17.059 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, KG_ROOM_NUMBER FROM KR_KEYS WHERE KEYRACK_ID=1 AND TYPE='KG_KEY' ORDER BY ID ASC
+2026-01-20 17:22:17.061 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, KG_ROOM_NUMBER FROM KR_KEYS WHERE KEYRACK_ID=1 AND TYPE='KG_KEY' ORDER BY ID ASC] execution time: 0.9983 ms.
+2026-01-20 17:22:17.166 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, KG_ROOM_NUMBER FROM KR_KEYS WHERE KEYRACK_ID=1 AND TYPE='KG_KEY' ORDER BY ID ASC
+2026-01-20 17:22:17.169 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, KG_ROOM_NUMBER FROM KR_KEYS WHERE KEYRACK_ID=1 AND TYPE='KG_KEY' ORDER BY ID ASC] execution time: 1.5396 ms.
+2026-01-20 17:22:17.170 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, KG_ROOM_NUMBER FROM KR_KEYS WHERE KEYRACK_ID=1 AND TYPE='KG_KEY' ORDER BY ID ASC
+2026-01-20 17:22:17.174 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, KG_ROOM_NUMBER FROM KR_KEYS WHERE KEYRACK_ID=1 AND TYPE='KG_KEY' ORDER BY ID ASC] execution time: 4.0721 ms.
+2026-01-20 17:22:17.175 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT * FROM KR_DEVICES WHERE ID=1
+2026-01-20 17:22:17.177 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT * FROM KR_DEVICES WHERE ID=1] execution time: 1.6492 ms.
+2026-01-20 17:22:17.187 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, KG_ROOM_NUMBER FROM KR_KEYS WHERE KEYRACK_ID=1 AND TYPE='KG_KEY' ORDER BY ID ASC
+2026-01-20 17:22:17.192 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, KG_ROOM_NUMBER FROM KR_KEYS WHERE KEYRACK_ID=1 AND TYPE='KG_KEY' ORDER BY ID ASC] execution time: 4.0568 ms.
+2026-01-20 17:22:17.756 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:17.756 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:17.756 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:18.682 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:18.696 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 12.5306 ms.
+2026-01-20 17:22:18.697 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:18.702 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 4.524 ms.
+2026-01-20 17:22:18.771 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:18.772 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:18.772 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:19.450 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:19.463 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 13.2318 ms.
+2026-01-20 17:22:19.464 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:19.468 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 3.0643 ms.
+2026-01-20 17:22:19.468 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:19.475 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 5.5586 ms.
+2026-01-20 17:22:19.475 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:19.477 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 0.9995 ms.
+2026-01-20 17:22:19.783 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:19.783 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:19.783 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:19.981 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:19.983 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 2.0085 ms.
+2026-01-20 17:22:19.983 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:19.993 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 10.0339 ms.
+2026-01-20 17:22:19.993 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:19.994 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 1.5113 ms.
+2026-01-20 17:22:19.994 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:19.996 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 1.5325 ms.
+2026-01-20 17:22:20.788 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:20.789 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:20.789 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:21.492 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:21.493 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 1.0019 ms.
+2026-01-20 17:22:21.493 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:21.494 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 1.5167 ms.
+2026-01-20 17:22:21.494 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:21.496 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 2.012 ms.
+2026-01-20 17:22:21.496 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:21.497 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 1.0832 ms.
+2026-01-20 17:22:21.801 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:21.801 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:21.801 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:22.820 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:22.821 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:22.821 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:22.927 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:22.932 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 4.5637 ms.
+2026-01-20 17:22:22.933 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:22.935 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 0.9985 ms.
+2026-01-20 17:22:22.935 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:22.936 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 1.5078 ms.
+2026-01-20 17:22:22.937 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:22.938 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 0.9991 ms.
+2026-01-20 17:22:23.672 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 3
+2026-01-20 17:22:23.676 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 3] execution time: 4.0988 ms.
+2026-01-20 17:22:23.677 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:23.682 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 5.0779 ms.
+2026-01-20 17:22:23.682 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:23.684 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 2.0348 ms.
+2026-01-20 17:22:23.686 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=3
+2026-01-20 17:22:23.689 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=3] execution time: 3.067 ms.
+2026-01-20 17:22:23.690 [AWT-EventQueue-0] INFO Common - SQL. UPDATE: UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (3,5)
+2026-01-20 17:22:23.692 [AWT-EventQueue-0] INFO Common - SQL. UPDATE [UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (3,5)] execution time: 2.0105 ms.
+2026-01-20 17:22:23.693 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:23.696 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 3.5097 ms.
+2026-01-20 17:22:23.696 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:23.699 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 3.0117 ms.
+2026-01-20 17:22:23.707 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:23.711 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 2.0146 ms.
+2026-01-20 17:22:23.712 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:23.713 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 1.5109 ms.
+2026-01-20 17:22:23.713 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:23.714 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 1.0115 ms.
+2026-01-20 17:22:23.714 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:23.716 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 1.4688 ms.
+2026-01-20 17:22:23.719 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:23.720 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 1.0005 ms.
+2026-01-20 17:22:23.720 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:23.721 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 0.0 ms.
+2026-01-20 17:22:23.721 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:23.722 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 0.9996 ms.
+2026-01-20 17:22:23.722 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:23.726 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 2.5197 ms.
+2026-01-20 17:22:23.825 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:23.825 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:23.825 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:24.082 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=auth; database=auth; operation=check
+2026-01-20 17:22:24.738 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:24.741 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 1.0183 ms.
+2026-01-20 17:22:24.741 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:24.742 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 0.9992 ms.
+2026-01-20 17:22:24.742 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:24.744 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 2.5357 ms.
+2026-01-20 17:22:24.744 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:24.745 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 0.9946 ms.
+2026-01-20 17:22:24.835 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:24.835 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:24.835 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:25.334 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking AUTH
+2026-01-20 17:22:25.334 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:22:25.334 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:22:25.334 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:22:25.334 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/auth (MariaDB 10.3)
+2026-01-20 17:22:25.334 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:22:25.334 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=events; database=events; operation=check
+2026-01-20 17:22:25.654 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 1
+2026-01-20 17:22:25.666 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 1] execution time: 9.5989 ms.
+2026-01-20 17:22:25.666 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:25.682 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 15.0632 ms.
+2026-01-20 17:22:25.682 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:25.687 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 4.9994 ms.
+2026-01-20 17:22:25.687 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=1
+2026-01-20 17:22:25.688 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=1] execution time: 1.0119 ms.
+2026-01-20 17:22:25.689 [AWT-EventQueue-0] INFO Common - SQL. UPDATE: UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (1,6)
+2026-01-20 17:22:25.693 [AWT-EventQueue-0] INFO Common - SQL. UPDATE [UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (1,6)] execution time: 3.9996 ms.
+2026-01-20 17:22:25.694 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:25.697 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 2.5077 ms.
+2026-01-20 17:22:25.698 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:25.699 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 1.0015 ms.
+2026-01-20 17:22:25.716 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:25.732 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 16.0815 ms.
+2026-01-20 17:22:25.732 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:25.744 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 12.0656 ms.
+2026-01-20 17:22:25.744 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:25.746 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 1.9963 ms.
+2026-01-20 17:22:25.747 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:25.749 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 2.0139 ms.
+2026-01-20 17:22:25.757 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:25.759 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 2.5213 ms.
+2026-01-20 17:22:25.759 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:25.766 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 7.0562 ms.
+2026-01-20 17:22:25.767 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:25.771 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 2.5222 ms.
+2026-01-20 17:22:25.771 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:25.775 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 4.0186 ms.
+2026-01-20 17:22:25.841 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:25.841 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:25.841 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:26.552 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:26.562 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 9.7774 ms.
+2026-01-20 17:22:26.563 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:26.565 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 0.9991 ms.
+2026-01-20 17:22:26.565 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:26.566 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 1.0006 ms.
+2026-01-20 17:22:26.566 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:26.567 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 0.9983 ms.
+2026-01-20 17:22:26.694 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking EVENTS
+2026-01-20 17:22:26.694 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:22:26.694 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:22:26.694 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:22:26.694 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/events (MariaDB 10.3)
+2026-01-20 17:22:26.694 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:22:26.694 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=notification; database=notification; operation=check
+2026-01-20 17:22:26.846 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:26.846 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:26.846 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:27.852 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:27.852 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:27.852 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:27.856 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking NOTIFICATION
+2026-01-20 17:22:27.856 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:22:27.856 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:22:27.856 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:22:27.856 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/notification (MariaDB 10.3)
+2026-01-20 17:22:27.856 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:22:27.856 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=vr; database=visitrequest; operation=check
+2026-01-20 17:22:28.260 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 3
+2026-01-20 17:22:28.262 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 3] execution time: 1.5216 ms.
+2026-01-20 17:22:28.263 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:28.266 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 3.0416 ms.
+2026-01-20 17:22:28.267 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:28.269 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 1.5275 ms.
+2026-01-20 17:22:28.269 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=3
+2026-01-20 17:22:28.271 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=3] execution time: 2.037 ms.
+2026-01-20 17:22:28.272 [AWT-EventQueue-0] INFO Common - SQL. UPDATE: UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (3,5)
+2026-01-20 17:22:28.273 [AWT-EventQueue-0] INFO Common - SQL. UPDATE [UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (3,5)] execution time: 1.0376 ms.
+2026-01-20 17:22:28.273 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:28.274 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 1.5259 ms.
+2026-01-20 17:22:28.275 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:28.276 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 1.014 ms.
+2026-01-20 17:22:28.299 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:28.301 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 2.0568 ms.
+2026-01-20 17:22:28.301 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:28.304 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 2.0357 ms.
+2026-01-20 17:22:28.304 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:28.306 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 1.5343 ms.
+2026-01-20 17:22:28.306 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:28.308 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 0.0 ms.
+2026-01-20 17:22:28.312 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:28.314 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 1.5254 ms.
+2026-01-20 17:22:28.314 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:28.315 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 0.5311 ms.
+2026-01-20 17:22:28.315 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:28.316 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 1.0132 ms.
+2026-01-20 17:22:28.317 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:28.317 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 0.5093 ms.
+2026-01-20 17:22:28.323 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:28.324 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 0.5103 ms.
+2026-01-20 17:22:28.325 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:28.326 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 1.0185 ms.
+2026-01-20 17:22:28.326 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:28.328 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 0.0 ms.
+2026-01-20 17:22:28.328 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:28.329 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 1.522 ms.
+2026-01-20 17:22:28.858 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:28.858 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:28.858 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:29.029 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking VISIT_REQUEST
+2026-01-20 17:22:29.029 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:22:29.029 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:22:29.029 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:22:29.029 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/visitrequest (MariaDB 10.3)
+2026-01-20 17:22:29.029 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:22:29.029 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=proxy_main; database=tc-db-main; operation=check
+2026-01-20 17:22:29.879 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:29.885 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:29.886 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:29.953 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:22:29.957 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 1
+2026-01-20 17:22:29.965 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 1] execution time: 8.5205 ms.
+2026-01-20 17:22:29.965 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:29.983 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 17.1156 ms.
+2026-01-20 17:22:29.983 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:29.995 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 12.3499 ms.
+2026-01-20 17:22:29.995 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=1
+2026-01-20 17:22:29.997 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=1] execution time: 2.0365 ms.
+2026-01-20 17:22:29.997 [AWT-EventQueue-0] INFO Common - SQL. UPDATE: UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (1,6)
+2026-01-20 17:22:30.003 [AWT-EventQueue-0] INFO Common - SQL. UPDATE [UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (1,6)] execution time: 5.6092 ms.
+2026-01-20 17:22:30.004 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:30.007 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 3.0335 ms.
+2026-01-20 17:22:30.007 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:30.009 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 1.9994 ms.
+2026-01-20 17:22:30.037 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:30.042 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 4.0678 ms.
+2026-01-20 17:22:30.042 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:30.043 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 0.5093 ms.
+2026-01-20 17:22:30.044 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:30.045 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 0.0 ms.
+2026-01-20 17:22:30.045 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:30.048 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 3.0326 ms.
+2026-01-20 17:22:30.053 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:30.055 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 0.9958 ms.
+2026-01-20 17:22:30.055 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:30.056 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 1.1363 ms.
+2026-01-20 17:22:30.056 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:30.058 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 1.9989 ms.
+2026-01-20 17:22:30.059 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:30.060 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 0.9978 ms.
+2026-01-20 17:22:30.066 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:30.070 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 2.5082 ms.
+2026-01-20 17:22:30.070 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:30.072 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 2.5241 ms.
+2026-01-20 17:22:30.073 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:30.074 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 1.0015 ms.
+2026-01-20 17:22:30.074 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:30.075 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 0.9971 ms.
+2026-01-20 17:22:30.519 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=auth; database=auth; operation=check
+2026-01-20 17:22:30.897 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:30.898 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:30.898 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:31.165 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 3
+2026-01-20 17:22:31.174 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 3] execution time: 8.5602 ms.
+2026-01-20 17:22:31.174 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:31.177 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 2.5257 ms.
+2026-01-20 17:22:31.177 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:31.179 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 1.5092 ms.
+2026-01-20 17:22:31.179 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=3
+2026-01-20 17:22:31.189 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=3] execution time: 9.5986 ms.
+2026-01-20 17:22:31.189 [AWT-EventQueue-0] INFO Common - SQL. UPDATE: UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (3,5)
+2026-01-20 17:22:31.192 [AWT-EventQueue-0] INFO Common - SQL. UPDATE [UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (3,5)] execution time: 2.5072 ms.
+2026-01-20 17:22:31.192 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:31.193 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 1.5066 ms.
+2026-01-20 17:22:31.193 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:31.194 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 1.0124 ms.
+2026-01-20 17:22:31.210 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:31.225 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 13.089 ms.
+2026-01-20 17:22:31.225 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:31.227 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 0.9972 ms.
+2026-01-20 17:22:31.227 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:31.228 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 1.5181 ms.
+2026-01-20 17:22:31.228 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:31.230 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 1.0024 ms.
+2026-01-20 17:22:31.235 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:31.247 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 12.5842 ms.
+2026-01-20 17:22:31.247 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:31.249 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=3 AND TYPE='KEY_AUTH_RULE'] execution time: 1.0 ms.
+2026-01-20 17:22:31.249 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:31.250 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=3 ORDER BY KEYS_ID ASC] execution time: 0.9988 ms.
+2026-01-20 17:22:31.250 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:31.252 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 2.0033 ms.
+2026-01-20 17:22:31.682 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking AUTH
+2026-01-20 17:22:31.682 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:22:31.682 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:22:31.682 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:22:31.682 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/auth (MariaDB 10.3)
+2026-01-20 17:22:31.682 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:22:31.682 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=events; database=events; operation=check
+2026-01-20 17:22:31.902 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:31.902 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:31.902 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:32.103 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:32.105 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 2.002 ms.
+2026-01-20 17:22:32.105 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:32.107 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 0.9961 ms.
+2026-01-20 17:22:32.108 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:32.111 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 3.0019 ms.
+2026-01-20 17:22:32.111 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:32.115 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 4.0136 ms.
+2026-01-20 17:22:32.789 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking EVENTS
+2026-01-20 17:22:32.789 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:22:32.789 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:22:32.789 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:22:32.789 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/events (MariaDB 10.3)
+2026-01-20 17:22:32.790 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:22:32.790 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=notification; database=notification; operation=check
+2026-01-20 17:22:32.910 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:32.910 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:32.910 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:32.996 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 1
+2026-01-20 17:22:32.997 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT NAME FROM KR_KG_KEY_AUTH WHERE KEYRACK_ID=1 AND ID != 1] execution time: 0.9988 ms.
+2026-01-20 17:22:32.998 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:32.999 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 1.0 ms.
+2026-01-20 17:22:32.999 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:33.000 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 0.0 ms.
+2026-01-20 17:22:33.000 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=1
+2026-01-20 17:22:33.002 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, TYPE FROM KR_KG_KEY_AUTH WHERE RULE_ID=1] execution time: 1.0031 ms.
+2026-01-20 17:22:33.002 [AWT-EventQueue-0] INFO Common - SQL. UPDATE: UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (1,6)
+2026-01-20 17:22:33.003 [AWT-EventQueue-0] INFO Common - SQL. UPDATE [UPDATE KR_KG_KEY_AUTH SET CONFIRM_FR=0, CONFIRM_OPR=0 WHERE ID IN (1,6)] execution time: 0.0 ms.
+2026-01-20 17:22:33.003 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:33.004 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_TZ WHERE TYPE='TIMEZONE' AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 0.0 ms.
+2026-01-20 17:22:33.004 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC
+2026-01-20 17:22:33.004 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE' AND (RULE_ID IS NULL OR RULE_ID=0) AND KEYRACK_ID=1 ORDER BY ID ASC] execution time: 0.0 ms.
+2026-01-20 17:22:33.016 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:33.017 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 1.5439 ms.
+2026-01-20 17:22:33.018 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:33.019 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 1.0427 ms.
+2026-01-20 17:22:33.020 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:33.021 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 0.5087 ms.
+2026-01-20 17:22:33.021 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:33.022 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 1.0142 ms.
+2026-01-20 17:22:33.027 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:33.029 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID FROM KR_KG_KEY_AUTH WHERE RULE_ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 0.5102 ms.
+2026-01-20 17:22:33.029 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'
+2026-01-20 17:22:33.029 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT CONFIRM_OPR, CONFIRM_FR FROM KR_KG_KEY_AUTH WHERE ID=1 AND TYPE='KEY_AUTH_RULE'] execution time: 0.0 ms.
+2026-01-20 17:22:33.030 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC
+2026-01-20 17:22:33.031 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT KEYS_ID, TZ_ID FROM KR_KG_KEY_AUTH WHERE TYPE='KEY_AUTH_RULE_ELEMENT' AND RULE_ID=1 ORDER BY KEYS_ID ASC] execution time: 0.5092 ms.
+2026-01-20 17:22:33.031 [AWT-EventQueue-0] INFO Common - SQL. QUERY: SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3
+2026-01-20 17:22:33.031 [AWT-EventQueue-0] INFO Common - SQL. QUERY [SELECT ID, NAME, TYPE, KG_KEYLIST_TEXT_INDEX FROM KR_KEYS WHERE ID=3] execution time: 0.0 ms.
+2026-01-20 17:22:33.658 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking NOTIFICATION
+2026-01-20 17:22:33.658 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:22:33.658 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:22:33.658 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:22:33.658 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/notification (MariaDB 10.3)
+2026-01-20 17:22:33.658 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:22:33.658 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=vr; database=visitrequest; operation=check
+2026-01-20 17:22:33.928 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:33.928 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:33.928 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:34.932 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:34.933 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:34.933 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:35.044 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking VISIT_REQUEST
+2026-01-20 17:22:35.044 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:22:35.044 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:22:35.044 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:22:35.044 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/visitrequest (MariaDB 10.3)
+2026-01-20 17:22:35.044 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:22:35.044 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=proxy_main; database=tc-db-main; operation=check
+2026-01-20 17:22:35.939 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:35.940 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:35.940 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:36.011 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:22:36.950 [Thread-7] INFO Common - com.sigur.reader.pcsc.PcscCardReader -- run() -- line=73 -- going to get readers
+2026-01-20 17:22:36.950 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=47 -- called
+2026-01-20 17:22:36.950 [Thread-7] INFO Common - com.cololo.tc.platform.spnxsmartcard.SpnxCardTerminalFactory -- getReaderNames() -- line=48 -- going to obtain reader list
+2026-01-20 17:22:37.518 [AWT-EventQueue-0] INFO Common - closeSingletonWebcam() class: class com.cololo.tc.tools.WebcamSingleton
+2026-01-20 17:23:20.193 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=auth; database=auth; operation=check
+2026-01-20 17:23:21.064 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking AUTH
+2026-01-20 17:23:21.064 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:23:21.064 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:23:21.064 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:23:21.064 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/auth (MariaDB 10.3)
+2026-01-20 17:23:21.064 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:23:21.064 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=events; database=events; operation=check
+2026-01-20 17:23:22.000 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking EVENTS
+2026-01-20 17:23:22.000 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:23:22.000 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:23:22.000 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:23:22.000 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/events (MariaDB 10.3)
+2026-01-20 17:23:22.000 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:23:22.000 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=notification; database=notification; operation=check
+2026-01-20 17:23:22.887 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking NOTIFICATION
+2026-01-20 17:23:22.887 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:23:22.887 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:23:22.887 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:23:22.887 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/notification (MariaDB 10.3)
+2026-01-20 17:23:22.887 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:23:22.887 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=vr; database=visitrequest; operation=check
+2026-01-20 17:23:23.794 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking VISIT_REQUEST
+2026-01-20 17:23:23.794 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:23:23.794 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:23:23.794 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:23:23.794 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/visitrequest (MariaDB 10.3)
+2026-01-20 17:23:23.795 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:23:23.795 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=proxy_main; database=tc-db-main; operation=check
+2026-01-20 17:23:24.634 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:23:25.182 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=auth; database=auth; operation=check
+2026-01-20 17:23:26.204 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking AUTH
+2026-01-20 17:23:26.204 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:23:26.204 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:23:26.204 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:23:26.204 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/auth (MariaDB 10.3)
+2026-01-20 17:23:26.205 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:23:26.205 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=events; database=events; operation=check
+2026-01-20 17:23:27.416 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking EVENTS
+2026-01-20 17:23:27.416 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:23:27.416 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:23:27.416 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:23:27.416 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/events (MariaDB 10.3)
+2026-01-20 17:23:27.416 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:23:27.416 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=notification; database=notification; operation=check
+2026-01-20 17:23:28.648 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking NOTIFICATION
+2026-01-20 17:23:28.648 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:23:28.648 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:23:28.648 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:23:28.648 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/notification (MariaDB 10.3)
+2026-01-20 17:23:28.648 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:23:28.648 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=vr; database=visitrequest; operation=check
+2026-01-20 17:23:29.891 [#ServiceMonitor] INFO Common - [main] INFO com.sigur.dbtool.FlywayServiceMigration - Checking VISIT_REQUEST
+2026-01-20 17:23:29.891 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 8.5.13 by Redgate
+2026-01-20 17:23:29.891 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.13
+2026-01-20 17:23:29.891 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.license.VersionPrinter - 
+2026-01-20 17:23:29.891 [#ServiceMonitor] INFO Common - [main] INFO org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:mariadb://127.0.0.1:3305/visitrequest (MariaDB 10.3)
+2026-01-20 17:23:29.891 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK
+2026-01-20 17:23:29.891 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): service=proxy_main; database=tc-db-main; operation=check
+2026-01-20 17:23:30.772 [#ServiceMonitor] INFO Common - ServiceDbsUtils.execute(): exitCode=0; Result=OK

@@ -233,7 +233,7 @@ export const EventDialog = observer(({ event, onClose}) => {
                                             />
                                         </div>
                                     )}
-                                    {(field === 'quantityOfHours' || field === 'participantsCount') && (
+                                    {(field === 'quantityOfHours') && (
                                         <ProfileInput
                                             label={vm.getFieldLabel(field)}
                                             type="text"
