@@ -5,7 +5,7 @@
     padding: 12px !important;
     color: #FFFFFF;
     background: var(--color-primary);
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     width: 100%;
     text-align: center;
     cursor: pointer;

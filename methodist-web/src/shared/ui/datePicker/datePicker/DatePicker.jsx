@@ -1,19 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import classes from "../customDatePicker/CustomDatePicker.module.css";
 import ButtonAuth from "@ui/button/buttonAuth/ButtonAuth.jsx";
 import {IconArrowV2} from "@ui/icons/IconArrowV2.jsx";
 import {IconCalendarV2} from "@ui/icons/IconCalendarV2.jsx";
 
-export const DatePicker = ({ selectedDate, handleDateSelect }) => {
+export const DatePicker = ({ selectedDate, handleDateSelect, colorContainer = "var(--color-bg)" }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selected, setSelected] = useState(selectedDate || null);
-
-    useEffect(() => {
-        if (selectedDate) {
-            setSelected(selectedDate);
-        }
-    }, [selectedDate]);
 
     const handleDateClick = (date) => {
         setSelected(date);
@@ -72,17 +66,121 @@ export const DatePicker = ({ selectedDate, handleDateSelect }) => {
 
     const calendarDays = buildCalendarDays();
 
+    //#region Обработка ввода даты
+    const [inputDate, setInputDate] = useState("");
+
+    //синхра
+    useEffect(() => {
+        if (selectedDate) {
+            setSelected(selectedDate);
+            setCurrentDate(new Date(selectedDate));
+            setInputDate(formatDate(selectedDate));
+        }
+    }, [selectedDate]);
+
+    const inputRef = useRef(null);
+    const [cursorTarget, setCursorTarget] = useState(null);
+
+    useEffect(() => {
+        if (cursorTarget !== null && inputRef.current) {
+            inputRef.current.setSelectionRange(cursorTarget, cursorTarget);
+            setCursorTarget(null);
+        }
+    }, [inputDate, cursorTarget]);
+
+
+    const [isInvalid, setIsInvalid] = useState(false);
+
+    const parseAndValidateDate = (digitString) => {
+        if (digitString.length !== 8) return null;
+
+        const day = parseInt(digitString.slice(0, 2), 10);
+        const month = parseInt(digitString.slice(2, 4), 10) - 1;
+        const year = parseInt(digitString.slice(4, 8), 10);
+
+        if (day < 1 || day > 31 || month < 0 || month > 11 || year < 1900 || year > 2100) {
+            return null;
+        }
+
+        const date = new Date(year, month, day);
+
+        if (date.getDate() === day && date.getMonth() === month && date.getFullYear() === year) {
+            return date;
+        }
+
+        return null;
+    }
+
+    const handleInputDate = (e) => {
+        const cursorPos = e.target.selectionStart;
+        const newValueRaw = e.target.value.replace(/\D/g, "");
+        const v = newValueRaw.slice(0, 8);
+        const formatted = v.slice(0, 2) + (v.length >= 3 ? "." + v.slice(2, 4) : "") + (v.length >= 5 ? "." + v.slice(4) : "");
+
+        // Проверяем валидность если введено 8 цифр
+        if (v.length === 8) {
+            const parsedDate = parseAndValidateDate(v);
+            if (parsedDate) {
+                // Валидная дата
+                setIsInvalid(false);
+                setSelected(parsedDate);
+                setCurrentDate(parsedDate);
+                if (handleDateSelect) {
+                    handleDateSelect(parsedDate);
+                }
+            } else {
+                // Невалидная дата
+                setIsInvalid(true);
+                // Сбрасываем через 2 секунды
+                setTimeout(() => {
+                    setInputDate(selected ? formatDate(selected) : "");
+                    setIsInvalid(false);
+                }, 2000);
+            }
+        } else {
+            setIsInvalid(false);
+        }
+
+        const digitsBeforeCursor = e.target.value.slice(0, cursorPos).replace(/\D/g, "").length;
+        let pos = 0, count = 0;
+        for (let i = 0; i < formatted.length; i++) {
+            if (formatted[i] !== '.') count++;
+            if (count === digitsBeforeCursor) {
+                pos = i + 1;
+                break;
+            }
+        }
+        if (formatted[pos] === '.') pos++;
+        setCursorTarget(pos);
+        setInputDate(formatted);
+    }
+    //#endregion
+
     return (
         <div className={classes.datepicker}>
             <div
-                className={classes.dateRow}
+                className={`${classes.dateRow} ${isInvalid ? classes.shake : ''}`}
+                style={{
+                    background: colorContainer,
+                }}
             >
-                <div className={classes.dateDisplay}>{formatDate(selected) || "Выберите дату"}</div>
+                <input
+                    ref={inputRef}
+                    type="text"
+                    className={`${classes.dateDisplay} ${isInvalid ? classes.invalid : ''}`}
+                    style={isInvalid ? { animation: 'shake 0.5s' } : {}}
+                    value={inputDate}
+                    onChange={handleInputDate}
+                    placeholder="Выберите дату"
+                    maxLength={10}
+                />
                 <ButtonAuth
                     onClick={() => setIsOpen(!isOpen)}
-                    style={{background:"var(--color-primary)"}}>
+                    style={{background:"var(--color-primary)",
+                        height: "auto"}}>
                     {isOpen ? "Скрыть" : "Изменить"}
                 </ButtonAuth>
+
             </div>
 
             {isOpen && (

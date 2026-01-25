@@ -505,6 +505,7 @@ export const Form = observer(() => {
                 <DatePicker
                     selectedDate={vm.event.dateOfEvent}
                     handleDateSelect={vm.handleDateSelect}
+                    colorContainer = "var(--color-container)"
                 />
                 {vm.error && (<>
                     <SpacerPX size={12} orientation={'v'}/>

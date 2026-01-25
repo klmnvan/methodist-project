@@ -29,7 +29,7 @@ function MainPage() {
         queryKey: ["events"],
         queryFn: () => postService.getEvents(),
         select: (data) => data.data,
-        refetchInterval: 30 * 1000, //раз в 30 сек обновляем список
+        refetchInterval: 10 * 1000, //раз в N сек обновляем список
         enabled: !!userStore.accessToken,
     })
 

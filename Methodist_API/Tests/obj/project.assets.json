@@ -3210,23 +3210,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\TS0011\\.nuget\\packages\\": {},
+    "C:\\Users\\mcsyan\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Tests\\Tests.csproj",
+      "projectUniqueName": "D:\\methodist-project\\Methodist_API\\Tests\\Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Tests\\Tests.csproj",
-      "packagesPath": "C:\\Users\\TS0011\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Tests\\obj\\",
+      "projectPath": "D:\\methodist-project\\Methodist_API\\Tests\\Tests.csproj",
+      "packagesPath": "C:\\Users\\mcsyan\\.nuget\\packages\\",
+      "outputPath": "D:\\methodist-project\\Methodist_API\\Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\TS0011\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mcsyan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3241,8 +3241,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Methodist_API.csproj": {
-              "projectPath": "C:\\Users\\TS0011\\Documents\\GitHub\\methodist-project\\Methodist_API\\Methodist_API\\Methodist_API.csproj"
+            "D:\\methodist-project\\Methodist_API\\Methodist_API\\Methodist_API.csproj": {
+              "projectPath": "D:\\methodist-project\\Methodist_API\\Methodist_API\\Methodist_API.csproj"
             }
           }
         }

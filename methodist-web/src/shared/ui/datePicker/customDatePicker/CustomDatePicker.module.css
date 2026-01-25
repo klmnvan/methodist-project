@@ -10,23 +10,21 @@
 .dateRow {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    border: 1px solid var(--color-primary);
+    align-items: stretch;
     border-radius: var(--border-radius);
     box-sizing: border-box;
+    height: 50px;
 }
 
 .dateRow input {
-    min-width: 0;
+    min-width: auto;
     width: 100px;
 }
 
 
 .dateDisplay {
     box-sizing: border-box;
-    border-radius: var(--border-radius);
-    padding: 16px 12px !important;
-    cursor: pointer;
+    margin: 16px 12px !important;
     color: var(--color-title);
 }
 
@@ -89,6 +87,7 @@
     border: 1px solid var(--color-primary);
     padding: 4px 8px !important;
     border-radius: 8px;
+    width: 90px;
 }
 
 .buttonArrow {
@@ -135,7 +134,7 @@
     text-align: center;
     background: none;
     border: none;
-    cursor: pointer;
+    cursor: default;
     padding: 4px 8px !important;
 }
 
@@ -187,6 +186,21 @@
 .start, .end {
     background: var(--color-primary);
     color: white !important;
+}
+
+.invalid {
+    border-color: #FD3535 !important;
+    color: #FD3535 !important;
+}
+
+.shake {
+    animation: shake 0.5s !important;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
 @media (max-width: 768px) {
